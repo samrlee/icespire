@@ -90,6 +90,11 @@ both the region marker and the local map). The full status ladder:
 - `known` — hollow marker, seen but not entered
 - `visited` — solid marker, local map published
 
+Because the sub-maps are our own drawings and still being reworked, every
+sub-map page carries a "work in progress" caveat above the map, and the region
+map repeats it in one line under the local-map quick links (`.map-wip` /
+`.map-wip-note` in `global.css`). Drop both if the maps ever settle.
+
 Frontmatter is validated at build time (`src/content.config.ts`); a bad field
 fails the build with a pointed error.
 

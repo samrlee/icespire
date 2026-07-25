@@ -45,6 +45,15 @@ const kindLabels: Record<string, string> = {
     {scaleNote && <span> · {scaleNote}</span>}
   </p>
 
+  <aside class="map-wip">
+    <span class="wip-label">Work in progress</span>
+    <span class="wip-text">
+      The local maps are hand-drawn and still being redrawn as we go — read them
+      for layout and landmarks, not exact distances. Details may shift, and
+      anything the party hasn't walked yet is a best guess.
+    </span>
+  </aside>
+
   <div class="map-frame" id="map-frame">
     <svg
       class="map-svg submap-svg"
