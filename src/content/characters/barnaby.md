@@ -3,11 +3,11 @@ name: 'Barnaby'
 player: 'Joseph'
 ancestry: 'Dragonborn'
 class: 'Paladin'
-level: 2
+level: 3
 status: active
 portrait: '/images/characters/barnaby.webp'
 tagline: 'Breath weapon up front, Lay on Hands in the back.'
-traits: ["Dragon's Breath", 'Shield of the Party', 'Front Line']
+traits: ["Dragon's Breath", 'Shield of the Party', 'Front Line', 'Carries the Temple Longsword']
 ---
 
 The party's dragonborn paladin: heavy hitter, healer of last resort, and the
@@ -25,3 +25,13 @@ one who ends up carrying people (and tied-up gnomes) when things go sideways.
 - His read of the orc movements gave the party the confidence to push on to the
   excavation (Session 5).
 - Blessed the front line in the ochre jelly fight (Session 5).
+- Split the last ochre jelly in two with his breath weapon — lightning tears
+  them apart the same way a blade does (Session 6).
+- Searched the vestry off the eastern passage: two dwarves in red vestments, a
+  dry stone font, and a secret door onto the priests' sleeping chamber, where
+  he pulled a **longsword** out of the dust. It hadn't rotted (Session 6).
+- Scattered a bag of a thousand ball bearings across the orcs' only way in —
+  most of what kept that fight winnable (Session 6).
+- Went down twice against the orcs, and in between crossed the room to pour
+  the last of his Lay on Hands into a dying Dax: six points, and enough
+  (Session 6).

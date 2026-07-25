@@ -3,7 +3,7 @@ name: 'Bean Hootwhistle'
 player: 'Christa'
 ancestry: 'Halfling'
 class: 'Rogue'
-level: 2
+level: 3
 status: active
 portrait: '/images/characters/bean-hootwhistle.webp'
 tagline: '"I''m Bean!" Loves gold. Finds gold. Keeps gold.'
@@ -26,3 +26,10 @@ acquiring other people's valuables.
 - Crept into the dwarven excavation to scout, kicked a pebble, stayed unseen
   anyway — and then announced herself: "I'm Bean!" (Session 5).
 - Landed a natural-20 sneak attack in the ochre jelly fight (Session 5).
+- Shot the last jelly from clear across the chamber without being spotted
+  (Session 6).
+- Settled the party's broken sixty-forty deal by digging **five gold pieces**
+  out of her own purse and handing them to the dwarves. Bean, who loves gold,
+  paid the bill nobody else would (Session 6).
+- Spent the entire orc fight behind one pillar and was never found or hit
+  once, and killed an orc from it (Session 6).
