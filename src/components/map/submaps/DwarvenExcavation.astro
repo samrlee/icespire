@@ -103,6 +103,7 @@ const rimTicks: [number, number, number][] = [
         <path d="M 630 212 L 630 238" />
         <path d="M 507 324 L 507 366 L 590 366" />
         <path d="M 630 268 L 630 299" />
+        <path d="M 655 212 L 655 252" />
         <path d="M 647 252 L 655 252 L 655 314 L 647 314" />
         <path d="M 655 285 L 736 285" />
       </g>
@@ -139,9 +140,13 @@ const rimTicks: [number, number, number][] = [
     <rect x="573" y="277" width="8" height="16" rx="1"></rect>
   </g>
 
-  <!-- Secret doors found in Session 5 -->
+  <!-- Secret doors: two off the main chamber (Session 5), the third at the
+       end of the rubble hallway and the fourth behind the vestry font
+       (Session 6). -->
   <text class="sm-note" x="540" y="243">s</text>
   <text class="sm-note" x="540" y="334">s</text>
+  <text class="sm-note" x="666" y="236">s</text>
+  <text class="sm-note" x="637" y="285">s</text>
 
   <!-- Doors -->
   <g class="sm-door">
@@ -162,14 +167,32 @@ const rimTicks: [number, number, number][] = [
   <g class="sm-poi" data-tip-title="The broken gate" data-tip-sub="Black stone, long since shattered">
     <circle cx="398" cy="234" r="8"></circle><text x="398" y="234">3</text>
   </g>
+  <g class="sm-poi danger" data-tip-title="Entrance hall" data-tip-sub="The funnel — where seven orcs died one and two at a time">
+    <circle cx="445" cy="283" r="8"></circle><text x="445" y="283">4</text>
+  </g>
   <g class="sm-poi danger" data-tip-title="Main chamber" data-tip-sub="The jelly fight; a pillar base hid the coffer">
-    <circle cx="535" cy="285" r="8"></circle><text x="535" y="285">4</text>
+    <circle cx="535" cy="285" r="8"></circle><text x="535" y="285">5</text>
   </g>
-  <g class="sm-poi danger" data-tip-title="Rubble hallway" data-tip-sub="The glint was one more jelly">
-    <circle cx="520" cy="196" r="8"></circle><text x="520" y="196">5</text>
+  <g class="sm-poi danger" data-tip-title="Rubble hallway" data-tip-sub="The last jelly died here; a third secret door lies beyond">
+    <circle cx="520" cy="196" r="8"></circle><text x="520" y="196">6</text>
   </g>
-  <g class="sm-poi" data-tip-title="South passage" data-tip-sub="A short walk to a still-closed door">
-    <circle cx="560" cy="344" r="8"></circle><text x="560" y="344">6</text>
+  <g class="sm-poi" data-tip-title="South passage" data-tip-sub="Ends in rubble — the dead dwarf and the ledger">
+    <circle cx="560" cy="344" r="8"></circle><text x="560" y="344">7</text>
+  </g>
+  <g class="sm-poi" data-tip-title="The crypt" data-tip-sub="A skeleton wearing Abbathor's holy symbol">
+    <circle cx="665" cy="183" r="8"></circle><text x="665" y="183">8</text>
+  </g>
+  <g class="sm-poi" data-tip-title="The vestry" data-tip-sub="Two dwarves in red vestments; a dry stone font">
+    <circle cx="630" cy="252" r="8"></circle><text x="630" y="252">9</text>
+  </g>
+  <g class="sm-poi" data-tip-title="Sleeping chamber" data-tip-sub="Three bed frames — and a longsword that never rotted">
+    <circle cx="630" cy="314" r="8"></circle><text x="630" y="314">10</text>
+  </g>
+  <g class="sm-poi" data-tip-title="The cave-in" data-tip-sub="Floor to ceiling, packed tight. The way east stops here.">
+    <circle cx="700" cy="255" r="8"></circle><text x="700" y="255">11</text>
+  </g>
+  <g class="sm-poi" data-tip-title="The sacrifice chamber" data-tip-sub="Two statues, per the ledger. Nobody has reached it.">
+    <circle cx="778" cy="285" r="8"></circle><text x="778" y="285">12</text>
   </g>
 
   <!-- Scale -->

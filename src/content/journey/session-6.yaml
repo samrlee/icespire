@@ -1,0 +1,16 @@
+session: 6
+route:
+  - dwarven-excavation
+events:
+  - title: 'The last jelly, and the doors behind it'
+    at: dwarven-excavation
+    kind: discovery
+    note: 'The final jelly splits once more and dies. Behind a third secret door: a cave-in, a crypt, a vestry, and a sleeping chamber with a longsword that never rotted.'
+  - title: 'The deal breaks'
+    at: dwarven-excavation
+    kind: social
+    note: 'The party lies to Norbus and Dazlyn about the haul. Bean pays out five gold of her own. The dwarves strip their camp and leave without a word.'
+  - title: 'Seven orcs at the gate'
+    at: dwarven-excavation
+    kind: battle
+    note: 'A raiding band scouting the ruin as a fort. Dax funnels them through the entrance hall; three of the party go down. Their leader knew him by his work at Gnomengarde.'

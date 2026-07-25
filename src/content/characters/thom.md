@@ -3,7 +3,7 @@ name: 'Thom'
 player: 'Nate'
 ancestry: 'Half-Elf'
 class: 'Sorcerer'
-level: 2
+level: 3
 status: active
 portrait: '/images/characters/thom.webp'
 tagline: 'Wild magic, smooth talk, and a face several years older than it was last month.'
@@ -31,3 +31,11 @@ aged by his own spells.
   aged him several years. Actual stubble now (Session 5).
 - Current holder of the hidden gemstone coffer the dwarves don't know about
   (Session 5).
+- Talked over the top of Dax's collapsing lie to the dwarves — loud, fast, and
+  generous with detail — and was the only member of the party they believed
+  (Session 6).
+- Brought a light down the passage that exposed the seamless wall Dax then
+  opened (Session 6).
+- Sent a mage hand across the orc fight with a healing potion and poured it
+  into an unconscious Hamish, then dropped Sleep on the orcs in the doorway in
+  the same breath (Session 6).

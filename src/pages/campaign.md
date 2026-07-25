@@ -7,7 +7,7 @@ kicker: The story so far
 
 # Campaign Summary
 
-_A living reference for Owen's campaign. Last updated: Session 5 (7/14/26)._
+_A living reference for Owen's campaign. Last updated: Session 6 (7/24/26)._
 
 **Setting:** Forgotten Realms, Phandalin region — *Dragon of Icespire Peak*,
 D&D 5e (2014 rules), level cap 6.
@@ -91,18 +91,64 @@ who displease me"* — that Rut pocketed. Two secret doors opened: one to a
 glinting rubble hallway, one to a closed door. The session ended with Hamish
 investigating the glint — **another ochre jelly** lurking in the rubble.
 
+### Session 6 — Doors, a Broken Deal, and Seven Orcs (7/24/26)
+
+Picking up mid-fight, the party killed the **last ochre jelly** — Barnaby's
+breath weapon split it in two on the way down, proving lightning works like a
+blade on them. Rut, still a rat, found a **third secret door** past the jelly
+and spent the whole fight failing to open it. Behind it: a straight passage
+ending in a **cave-in floor to ceiling**, with a door on either side. Hamish
+found a skeleton wearing **Abbathor's holy symbol** — a jeweled dagger reading
+*"Greed is good"* — and Barnaby found two dwarves in red vestments, a dry
+stone font, a secret door behind it, and a **longsword** under a bed frame
+that hadn't rotted with everything else. Dax opened a seamless wall that led
+straight back to the main chamber: the temple loops. Thom, Sage, and Bean
+found a dead dwarf and a **tattered ledger** in another rubble-choked branch.
+
+**Norbus and Dazlyn came for their share.** The party lied badly — only Thom
+was believed — and the dwarves put their hands out and asked for the sixty-forty
+split anyway. **Bean paid them five gold pieces of her own money.** They took
+it, looked at the temple full of doors, and walked. By the time Sage went out
+to talk them around, the camp was stripped and cold; nobody knows where they
+went. Sage read the **ledger** in the meantime: generations of offerings to
+Abbathor thinning year over year, the entries turning defensive
+(*"Abbathor will be pleased with our investments"*), a **sacrifice chamber
+flanked by two statues** the party has never seen — and no accounting anywhere
+of where the wealth went.
+
+Then Sage heard footsteps in the rock. **Seven orcs** came up the canyon
+scouting the ruin as a fort. Dax set the defence — the entrance hall as a
+funnel, archers behind the pillars — and the orc war-leader stopped when it
+saw him: *"Were you near Gnomengarde? So you killed our men."* The fight
+nearly ended the party. Sage put an arrow through the leader's skull early;
+Barnaby's **thousand ball bearings** across the entryway did most of the rest.
+Hamish went down to a javelin and was revived by a healing potion Thom
+delivered by **mage hand**; Dax dropped and bled out until Barnaby crossed the
+room to pour his last six points of healing into him; Barnaby himself went
+down twice, healed off the floor by Rut, who fought the front line as a
+**wolf**. Bean spent the whole fight behind a pillar untouched and killed an
+orc from it. Dax finished the last one — *"I killed your brothers before, and
+I'll continue to kill everyone I come across"* — and took its head off. Seven
+orcs and three jellies dead; the party holds the temple, and levelled to 3.
+
 ## Open threads
 
-- **Immediate:** an active ochre jelly in the rubble — Session 6 likely opens
-  mid-fight.
-- The **cursed-seeming necklace** Rut carries blind (no one has flagged the
-  risk in-game).
-- The **hidden gemstone coffer** kept from the dwarves — tension if the 60/40
-  split is ever audited.
-- The nearby **large orc encampment** — bypassed, not resolved. Orc activity
-  is rising region-wide.
+- The **sacrifice chamber with two statues** from the ledger — and where
+  Abbathor's hoard actually went. Everything the party can see is choked with
+  **cave-ins** they can't move by hand.
+- **The broken deal.** Norbus and Dazlyn are gone with five gold and a story;
+  the gemstone coffer was never declared. They came from Phandalin, and so far
+  the party's reputation there is intact.
+- The **cursed-seeming necklace** Rut carries blind, now joined by the holy
+  symbol Hamish took off Abbathor's dead priest.
+- The **orc bands.** Seven dead at the temple, but the **large encampment**
+  down the split trail is untouched, and the war-leader knew Dax by name for
+  what he did at Gnomengarde.
 - The **white dragon** the region is bracing for.
 - The **Zhentarim** intel pact with Thornton, plus **Harbin's stolen notes**
   on her (Dax not privy to the notes' contents; he knows the break-in happened
   but didn't participate).
 - **Rut's true name** — the party still only knows him as "Friend."
+- Harbin's two contracts (Umbrage Hill and the excavation warning) are both
+  discharged in substance but **unreported** — nobody has been back to
+  Phandalin to collect.

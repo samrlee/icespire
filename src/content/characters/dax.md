@@ -3,7 +3,7 @@ name: 'Dax'
 player: 'Samuel'
 ancestry: 'Human'
 class: 'Fighter'
-level: 2
+level: 3
 status: active
 portrait: '/images/characters/dax.webp'
 tagline: 'Follows the coin. The coin is currently in Phandalin.'
@@ -86,6 +86,17 @@ anyway").
   (Session 5).
 - Discovered the hidden coffer of gemstones in a pillar base — the dwarves
   don't know (Session 5).
+- Lied to the dwarf prospectors' faces about the temple haul and was read
+  instantly — only Thom's fast talking covered for him (Session 6).
+- Found the seamless wall Thom's light exposed, worked the mechanism, and
+  opened the temple's loop back into the main chamber (Session 6).
+- Set the party's defence against the seven orcs: the entrance hall as a
+  funnel, archers behind the pillars, everyone else out of sight (Session 6).
+- Was recognized by the orc war-leader — *"So you killed our men"* — and took
+  a greataxe to the chest for it, dropping unconscious and bleeding out until
+  Barnaby reached him (Session 6).
+- Got back up, used the Clockwork Amulet to steady a swing he no longer
+  trusted, and took the last orc's head off (Session 6).
 - Carries the Clockwork Amulet.
 
 **Tactical note:** against ochre jellies, thrown handaxes and bludgeoning work;
