@@ -2520,6 +2520,63 @@ body {
   border-color: var(--accent-gold);
 }
 
+/* ---------- Local-map caveat ----------
+ * The sub-maps are our own drawings, still being reworked; say so plainly on
+ * the map page itself, and in one line under the region map's quick links. */
+.map-wip {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--accent-gold-wash);
+  border: 1px solid var(--border-subtle);
+  border-left: 2px solid var(--accent-gold);
+  border-radius: var(--radius-sm);
+}
+
+.wip-label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  white-space: nowrap;
+}
+
+.map-wip .wip-text {
+  flex: 1 1 20ch;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-normal);
+}
+
+/* On a phone the label and the caveat each want the full width. */
+@media (max-width: 560px) {
+  .map-wip {
+    display: block;
+  }
+
+  .map-wip .wip-label {
+    display: block;
+    margin-bottom: var(--space-1);
+  }
+}
+
+.map-wip-note {
+  margin: var(--space-2) 0 0;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  line-height: var(--leading-normal);
+}
+
+.map-wip-note .wip-label {
+  margin-right: var(--space-1);
+}
+
 /* ---------- The journey so far ----------
  * A plain-language, tappable retelling of the route beneath the map. This is
  * the reliable way to read the journey — no zooming, no landing a finger on a

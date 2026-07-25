@@ -433,14 +433,21 @@ for (const leg of journey) {
 
     {
       entries.some((e) => e.hasLocalMap) && (
-        <nav class="map-quicklinks" aria-label="Local maps">
-          <span class="ql-label">Local maps</span>
-          {entries
-            .filter((e) => e.hasLocalMap)
-            .map(({ loc }) => (
-              <a href={url(`/map/${loc.id}/`)}>{loc.data.name}</a>
-            ))}
-        </nav>
+        <>
+          <nav class="map-quicklinks" aria-label="Local maps">
+            <span class="ql-label">Local maps</span>
+            {entries
+              .filter((e) => e.hasLocalMap)
+              .map(({ loc }) => (
+                <a href={url(`/map/${loc.id}/`)}>{loc.data.name}</a>
+              ))}
+          </nav>
+          <p class="map-wip-note">
+            <span class="wip-label">Work in progress</span> the local maps are
+            hand-drawn and still being redrawn — layout and landmarks, not exact
+            distances.
+          </p>
+        </>
       )
     }
 
