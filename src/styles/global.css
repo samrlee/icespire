@@ -749,6 +749,9 @@ body {
   margin-left: auto;
 }
 
+/* Round mask, square art: the padding has to keep the widest art inside the
+   circle's inscribed square, or edge-trimmed cutouts get their extremities
+   shaved off by the mask. 4px does it for every aspect ratio at this size. */
 .recap-thumbs img {
   width: 34px;
   height: 34px;
@@ -756,7 +759,7 @@ body {
   border-radius: 50%;
   background: var(--bg-inset);
   border: 1px solid var(--border-default);
-  padding: 3px;
+  padding: 4px;
 }
 
 /* ---------- Timeline: the whole story on one chronological spine ---------- */
@@ -1108,12 +1111,17 @@ body {
   margin: 0;
 }
 
+/* The official cutouts are trimmed hard to their ink box — no transparent
+   bleed on any side — so art grounded at the bottom lands its silhouette
+   exactly on the frame and its drop-shadow gets clipped by `overflow`,
+   which reads as the figure being cut off (portrait art like the orc is
+   the worst of it). The deeper bottom padding is that standing room. */
 .creature-art {
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: var(--space-4);
+  padding: var(--space-4) var(--space-4) var(--space-5);
   background:
     radial-gradient(ellipse at 50% 72%, var(--accent-gold-wash), transparent 68%),
     var(--bg-inset);
