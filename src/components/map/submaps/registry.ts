@@ -86,8 +86,8 @@ export const submaps: Record<string, SubmapEntry> = {
   'umbrage-hill': {
     Component: UmbrageHill,
     width: 900,
-    height: 570,
-    scaleNote: 'The hilltop spans about 350 feet',
+    height: 573,
+    scaleNote: 'The map spans about 400 feet across',
     legend: [
       { label: "Adabra Gwynn's windmill", note: 'the potions brew here and nowhere else' },
       { label: 'Ruined outbuilding', note: 'old garden walls; cover during the manticore fight' },
