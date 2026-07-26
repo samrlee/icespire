@@ -2431,6 +2431,14 @@ body {
   pointer-events: none;
 }
 
+/* Inset panels: framed corner floor plans, as on the official sheets */
+.sm-inset {
+  fill: var(--bg-inset);
+  stroke: var(--map-ridge);
+  stroke-width: 1.5;
+  opacity: 0.96;
+}
+
 /* Scale bar */
 .sm-scale line { stroke: var(--map-label); stroke-width: 1.5; }
 .sm-scale text {

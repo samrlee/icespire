@@ -1,0 +1,50 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { submaps } from '../../../components/map/submaps/registry';
+
+// Dev-only preview of every registered sub-map, visited or not, so hidden
+// maps can be checked against their official sources without flipping any
+// location status. Emits nothing in production builds.
+export async function getStaticPaths() {
+  if (import.meta.env.PROD) return [];
+  return Object.keys(submaps).map((id) => ({ params: { id } }));
+}
+
+const { id } = Astro.params;
+const { Component, width, height, scaleNote, legend } = submaps[id!];
+---
+
+<Base title={`Dev preview · ${id}`} description="Dev-only sub-map preview.">
+  <div class="kicker">Dev preview · not built in production</div>
+  <h1 class="page-title" style="margin-bottom: var(--space-3);">{id}</h1>
+  {scaleNote && <p class="session-meta">{scaleNote}</p>}
+
+  <div class="map-frame" id="map-frame">
+    <svg
+      class="map-svg submap-svg"
+      id="map-svg"
+      viewBox={`0 0 ${width} ${height}`}
+      role="img"
+      aria-label={`Local map of ${id}`}
+    >
+      <Component />
+    </svg>
+    <div class="map-tooltip" id="map-tooltip" hidden>
+      <div class="tip-title"></div>
+      <div class="tip-sub"></div>
+    </div>
+  </div>
+
+  {
+    legend.length > 0 && (
+      <ol class="submap-key">
+        {legend.map((item) => (
+          <li>
+            <span class="key-label">{item.label}</span>
+            {item.note && <span class="key-note"> — {item.note}</span>}
+          </li>
+        ))}
+      </ol>
+    )
+  }
+</Base>
