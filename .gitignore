@@ -19,3 +19,6 @@ pnpm-debug.log*
 
 # macOS
 .DS_Store
+
+# local-map tracer previews (tuning aids, regenerate with --preview)
+scripts/previews/

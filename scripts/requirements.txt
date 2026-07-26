@@ -1,0 +1,6 @@
+# Dependencies for scripts/trace_local_maps.py, the local-map tracer.
+# Build-time only — the site itself needs none of this.
+numpy
+pillow
+scipy
+scikit-image

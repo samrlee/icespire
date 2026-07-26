@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { submaps } from '../../components/map/submaps/registry';
+import TracedSubmap from '../../components/map/submaps/TracedSubmap.astro';
 import { url } from '../../utils/url';
 
 // Local maps are published only for places the party has actually visited.
@@ -16,7 +17,11 @@ export async function getStaticPaths() {
 
 const { location } = Astro.props;
 const submap = submaps[location.id];
-const { Component, width, height, scaleNote, legend } = submap;
+const { width, height, feetPerUnit, pois } = submap;
+
+// The sheet's own grid, turned into a sentence: how far across the site is.
+const acrossFeet = feetPerUnit ? Math.round((width * feetPerUnit) / 10) * 10 : null;
+const scaleNote = acrossFeet ? `About ${acrossFeet} feet across` : null;
 const { Content } = await render(location);
 
 // Sibling local maps, for quick hops without going back to the region.
@@ -45,15 +50,6 @@ const kindLabels: Record<string, string> = {
     {scaleNote && <span> · {scaleNote}</span>}
   </p>
 
-  <aside class="map-wip">
-    <span class="wip-label">Work in progress</span>
-    <span class="wip-text">
-      The local maps are hand-drawn and still being redrawn as we go — read them
-      for layout and landmarks, not exact distances. Details may shift, and
-      anything the party hasn't walked yet is a best guess.
-    </span>
-  </aside>
-
   <div class="map-frame" id="map-frame">
     <svg
       class="map-svg submap-svg"
@@ -62,7 +58,7 @@ const kindLabels: Record<string, string> = {
       role="img"
       aria-label={`Local map of ${location.data.name}`}
     >
-      <Component />
+      <TracedSubmap map={submap} />
     </svg>
     <div class="map-controls">
       <button type="button" id="map-zoom-in" aria-label="Zoom in">+</button>
@@ -83,14 +79,14 @@ const kindLabels: Record<string, string> = {
 
   <div class="submap-below">
     {
-      legend.length > 0 && (
+      pois.length > 0 && (
         <div>
           <h2 class="submap-key-title">Key</h2>
           <ol class="submap-key">
-            {legend.map((item) => (
+            {pois.map((poi) => (
               <li>
-                <span class="key-label">{item.label}</span>
-                {item.note && <span class="key-note"> — {item.note}</span>}
+                <span class="key-label">{poi.label}</span>
+                {poi.note && <span class="key-note"> — {poi.note}</span>}
               </li>
             ))}
           </ol>

@@ -2339,6 +2339,11 @@ body {
 
 /* ---------- Local sub-maps ---------- */
 
+/* Traced layers — one path per layer, every contour in it, holes and all */
+.sm-woods { fill: var(--map-forest-fill); stroke: var(--map-forest); stroke-width: 1.2; }
+.sm-roads { fill: var(--map-path); stroke: var(--map-trail); stroke-width: 1.2; }
+.sm-ink { fill: var(--map-shore); stroke: none; }
+
 /* Ground/base surfaces */
 .sm-ground { fill: var(--map-land); }
 .sm-water { fill: var(--map-pool); stroke: var(--map-shore); stroke-width: 1.5; }
@@ -2349,8 +2354,8 @@ body {
 
 /* Interiors: room floors inside carved/roofed structures */
 .sm-floor {
-  fill: var(--bg-inset);
-  stroke: var(--map-shore);
+  fill: var(--map-dig);
+  stroke: var(--map-ridge);
   stroke-width: 3;
   stroke-linejoin: round;
 }
@@ -2369,7 +2374,7 @@ body {
   fill: var(--map-building);
   stroke: var(--map-ridge);
   stroke-width: 1.6;
-  stroke-linejoin: round;
+  stroke-linejoin: miter;
 }
 
 .sm-roofline { fill: none; stroke: var(--map-ridge); stroke-width: 0.9; opacity: 0.8; }
@@ -2520,61 +2525,15 @@ body {
   border-color: var(--accent-gold);
 }
 
-/* ---------- Local-map caveat ----------
- * The sub-maps are our own drawings, still being reworked; say so plainly on
- * the map page itself, and in one line under the region map's quick links. */
-.map-wip {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-3);
-  margin-bottom: var(--space-4);
-  padding: var(--space-3) var(--space-4);
-  background: var(--accent-gold-wash);
-  border: 1px solid var(--border-subtle);
-  border-left: 2px solid var(--accent-gold);
-  border-radius: var(--radius-sm);
-}
-
-.wip-label {
-  font-family: var(--font-body);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-  color: var(--accent-gold);
-  white-space: nowrap;
-}
-
-.map-wip .wip-text {
-  flex: 1 1 20ch;
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
-  line-height: var(--leading-normal);
-}
-
-/* On a phone the label and the caveat each want the full width. */
-@media (max-width: 560px) {
-  .map-wip {
-    display: block;
-  }
-
-  .map-wip .wip-label {
-    display: block;
-    margin-bottom: var(--space-1);
-  }
-}
-
-.map-wip-note {
+/* ---------- Local-map provenance ----------
+ * One quiet line under the region map's quick links, saying where the local
+ * maps come from. */
+.map-source-note {
   margin: var(--space-2) 0 0;
   font-family: var(--font-body);
   font-size: var(--text-xs);
   color: var(--text-muted);
   line-height: var(--leading-normal);
-}
-
-.map-wip-note .wip-label {
-  margin-right: var(--space-1);
 }
 
 /* ---------- The journey so far ----------

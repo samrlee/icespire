@@ -76,12 +76,59 @@ a detail panel with links to recaps and codex entries, and
 `/map/#location-slug` deep-links to a location. Terrain colors live in the
 Campaign Map section of `src/styles/global.css` and follow both themes.
 
-**Local sub-maps** live in `src/components/map/submaps/` (one SVG component
-per site, registered in `registry.ts` with a numbered key). A sub-map page
-(`/map/<slug>/`) is only built — and only linked from the region map's
-detail panel — while its location's status is `visited`. Every official site
-is already drawn, including the ones the party hasn't found: to reveal one
-after a session, flip its location's `status` (`unknown` → `visited` shows
+**Local sub-maps** are *traced from the official sheets* rather than drawn by
+hand. `scripts/trace_local_maps.py` reads a scan out of `offical-assets/Maps/`,
+segments it into layers — the walkable floor and the ink inside it for a
+dungeon sheet; roads, buildings, woods and water for the painted town sheet —
+vectorises each layer, and writes the paths to
+`src/components/map/submaps/traced/<slug>.ts`. `TracedSubmap.astro` draws those
+paths in the campaign's own palette. What ships is geometry: the scans are
+never served, and the sheets' own lettering is dropped on the way through
+(the site draws its own labels).
+
+To change a map, edit `scripts/local-maps.json` and re-run the script — never
+edit a file under `traced/`, it is generated.
+
+```sh
+pip install -r scripts/requirements.txt
+python3 scripts/trace_local_maps.py                  # all maps
+python3 scripts/trace_local_maps.py --preview        # + tuning previews
+python3 scripts/trace_local_maps.py phandalin        # just one
+```
+
+Each map's config entry names its `source` scan and its `kind`:
+
+- `dungeon` — a battle-mat sheet, bright floor against dark stone. Tuned with
+  `floorLow`/`floorHigh`, the hysteresis thresholds that decide what counts as
+  floor. Raise `floorHigh` when background texture leaks in; lower `floorLow`
+  when real floor is being clipped.
+- `outdoor` — a sheet that is all ground (a ranch, a hilltop, a camp). Its
+  structures come from what the ink encloses, and the linework is kept whole.
+- `town` — the painted Phandalin sheet. Roads come off the paint; buildings are
+  the roofs the ink fences in.
+
+`margin` trims the sheet's decorative border, and `ignore` blanks named
+rectangles (a title cartouche, an inset floor plan) in fractions of the sheet.
+Run with `--preview` and look at `scripts/previews/<slug>.png` — the traced
+floor is outlined in red and the ink is filled blue — before changing numbers.
+
+Scale is measured, not guessed: the script finds the five-foot grid printed on
+each sheet and derives the scale bar and the "about N feet across" note from
+it. Because every sheet in the set shares a pitch, they cross-check each other,
+and a sheet whose measurement disagrees with the rest takes the consensus.
+
+A map's **points of interest** are its `pois`, authored in the same config as
+`{ label, note, at: [x, y] }` — `at` in pixels of the source scan, which is the
+one coordinate space you can read off the official sheet by eye. The script
+snaps each one to the nearest traced structure, so a rough reading still lands
+in the right room. `at` is optional: an entry the sheet doesn't pin down keeps
+its number in the key and simply goes unmarked. The map's numbered markers and
+the "Key" list below it are the same list, so they can never drift apart.
+
+A sub-map page (`/map/<slug>/`) is only built — and only linked from the region
+map's detail panel — while its location's status is `visited`. Every official
+site is already traced, including the ones the party hasn't found: to reveal
+one after a session, flip its location's `status` (`unknown` → `visited` shows
 both the region marker and the local map). The full status ladder:
 
 - `unknown` — not on the site at all (all the undiscovered official sites
@@ -89,11 +136,6 @@ both the region marker and the local map). The full status ladder:
 - `rumored` — dashed marker, the party has only heard of it
 - `known` — hollow marker, seen but not entered
 - `visited` — solid marker, local map published
-
-Because the sub-maps are our own drawings and still being reworked, every
-sub-map page carries a "work in progress" caveat above the map, and the region
-map repeats it in one line under the local-map quick links (`.map-wip` /
-`.map-wip-note` in `global.css`). Drop both if the maps ever settle.
 
 Frontmatter is validated at build time (`src/content.config.ts`); a bad field
 fails the build with a pointed error.

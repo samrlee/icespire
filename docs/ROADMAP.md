@@ -9,6 +9,15 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Done
 
+- **Local maps traced from the official sheets** — the hand-drawn sub-maps are
+  gone. `scripts/trace_local_maps.py` segments each official scan into layers
+  (floor + ink for a dungeon sheet; roads, buildings, woods, water for the
+  town), vectorises them, and writes
+  `src/components/map/submaps/traced/<slug>.ts`, which `TracedSubmap.astro`
+  draws in the campaign palette. Outlines now follow the source instead of an
+  estimate, and the scale bar is measured off the sheets' five-foot grid.
+  Config and points of interest live in `scripts/local-maps.json`. _(Jul 2026)_
+
 - **Per-session social-preview cards** — each session gets its own Open Graph
   image so a shared recap link shows that session's title/date instead of one
   static card. Generated at build time (`src/pages/og/sessions/[id].png.ts` →

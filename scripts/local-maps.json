@@ -1,0 +1,341 @@
+{
+  "phandalin": {
+    "source": "map-00.04-phandalin.jpg",
+    "kind": "town",
+    "ignore": [
+      [
+        0.72,
+        0.0,
+        1.0,
+        0.14
+      ],
+      [
+        0.0,
+        0.72,
+        0.16,
+        1.0
+      ],
+      [
+        0.28,
+        0.9,
+        0.72,
+        1.0
+      ]
+    ],
+    "margin": 0.065,
+    "pois": [
+      {
+        "label": "Stonehill Inn",
+        "note": "rooms, stew, and the stranger who watched the party in Session 1",
+        "at": [
+          1148,
+          727
+        ]
+      },
+      {
+        "label": "Barthen's Provisions",
+        "note": "general goods",
+        "at": [
+          1352,
+          510
+        ]
+      },
+      {
+        "label": "Lionshield Coster",
+        "note": "arms and armor",
+        "at": [
+          854,
+          950
+        ]
+      },
+      {
+        "label": "Phandalin Miner's Exchange",
+        "note": "Guildmaster Thornton. Mind the crossbows.",
+        "at": [
+          893,
+          1207
+        ]
+      },
+      {
+        "label": "Townmaster's Hall",
+        "note": "Harbin's office, behind several bolts",
+        "at": [
+          1148,
+          935
+        ]
+      },
+      {
+        "label": "Harbin Wester's home",
+        "note": "site of Bean's unauthorized visit",
+        "at": [
+          1371,
+          1007
+        ]
+      },
+      {
+        "label": "Shrine of Luck",
+        "note": "Tymora's small shrine on the square",
+        "at": [
+          988,
+          737
+        ]
+      }
+    ]
+  },
+  "axeholm": {
+    "source": "map-01.02-axeholm.jpg"
+  },
+  "butterskull-ranch": {
+    "source": "map-02.02-butterskull-ranch.jpg",
+    "kind": "outdoor",
+    "margin": 0.03,
+    "sealGap": 7
+  },
+  "circle-of-thunder": {
+    "source": "map-03.02-circle-of-thunder.jpg",
+    "kind": "outdoor",
+    "margin": 0.03,
+    "sealGap": 7
+  },
+  "dragon-barrow": {
+    "source": "map-04.02-dragon-barrow.jpg"
+  },
+  "dwarven-excavation": {
+    "source": "map-05.02-dwarven-excavation.jpg",
+    "pois": [
+      {
+        "label": "The dwarves' camp",
+        "note": "Norbus & Dazlyn \u2014 stripped bare and abandoned in Session 6",
+        "at": [
+          443,
+          1224
+        ]
+      },
+      {
+        "label": "Buried settlement",
+        "note": "ruins under Abbathor's avalanche",
+        "at": [
+          743,
+          743
+        ]
+      },
+      {
+        "label": "The broken gate",
+        "note": "black stone, long since shattered",
+        "at": [
+          1307,
+          900
+        ]
+      },
+      {
+        "label": "Entrance hall",
+        "note": "the funnel \u2014 seven orcs came through it one and two at a time",
+        "danger": true,
+        "at": [
+          1436,
+          917
+        ]
+      },
+      {
+        "label": "Main chamber",
+        "note": "the jelly fight; a pillar base hid the gemstone coffer",
+        "danger": true,
+        "at": [
+          1653,
+          917
+        ]
+      },
+      {
+        "label": "Rubble hallway",
+        "note": "behind the north secret door \u2014 the last jelly, and a third secret door beyond it",
+        "at": [
+          1880,
+          700
+        ]
+      },
+      {
+        "label": "South passage",
+        "note": "ends in rubble, beside a dead dwarf and the temple ledger",
+        "at": [
+          1918,
+          1221
+        ]
+      },
+      {
+        "label": "The crypt",
+        "note": "a skeleton wearing Abbathor's holy symbol \u2014 \u201cGreed is good\u201d"
+      },
+      {
+        "label": "The vestry",
+        "note": "two dwarves in red vestments, a font dry for centuries, and a fourth secret door"
+      },
+      {
+        "label": "Sleeping chamber",
+        "note": "three bed frames, a crushed body, and a longsword that never rotted"
+      },
+      {
+        "label": "The cave-in",
+        "note": "floor to ceiling, packed tight \u2014 an hour of digging barely dented it"
+      },
+      {
+        "label": "The sacrifice chamber",
+        "note": "described in the ledger: dark, flanked by two statues. Unreached.",
+        "at": [
+          2340,
+          913
+        ]
+      }
+    ]
+  },
+  "falcons-hunting-lodge": {
+    "source": "map-06.02-falcons-hunting-lodge.jpg",
+    "kind": "outdoor",
+    "margin": 0.03,
+    "sealGap": 7
+  },
+  "gnomengarde": {
+    "source": "map-07.02-gnomengarde.png",
+    "pois": [
+      {
+        "label": "The grotto pool",
+        "note": "mushroom farm on the isles",
+        "at": [
+          1703,
+          1185
+        ]
+      },
+      {
+        "label": "Rope bridge & waterfall",
+        "note": "goop-covered; crossed anyway",
+        "at": [
+          1786,
+          1473
+        ]
+      },
+      {
+        "label": "Throne room",
+        "note": "hidden passage, peephole, paranoid king"
+      },
+      {
+        "label": "Royal chambers",
+        "note": "where Queen Gnerkli was found tied up"
+      },
+      {
+        "label": "The ballista workshop",
+        "note": "Facktor\u00e9 field-tested it on Thom",
+        "at": [
+          1256,
+          1531
+        ]
+      },
+      {
+        "label": "Storage room",
+        "note": "two mimics, both dealt with",
+        "danger": true,
+        "at": [
+          2487,
+          1179
+        ]
+      },
+      {
+        "label": "The wheel room",
+        "note": "a gnomish contraption, purpose unclear",
+        "at": [
+          435,
+          1247
+        ]
+      }
+    ],
+    "ignore": [
+      [
+        0.0,
+        0.0,
+        0.25,
+        0.12
+      ]
+    ]
+  },
+  "icespire-hold": {
+    "source": "map-08.02-icespire-hold.jpg"
+  },
+  "loggers-camp": {
+    "source": "map-09.02-loggers-camp.jpg",
+    "kind": "outdoor",
+    "margin": 0.03,
+    "sealGap": 7
+  },
+  "mountains-toe-gold-mine": {
+    "source": "map-10.02-mountains-toe-gold-mine.jpg"
+  },
+  "shrine-of-savras": {
+    "source": "map-11.02-shrine-of-savras.jpg",
+    "kind": "outdoor",
+    "margin": 0.03,
+    "sealGap": 7
+  },
+  "tower-of-storms": {
+    "source": "map-12.02-tower-of-storms.jpg",
+    "kind": "outdoor",
+    "margin": 0.03,
+    "sealGap": 7
+  },
+  "umbrage-hill": {
+    "source": "map-13.02-umbrage-hill.jpg",
+    "kind": "outdoor",
+    "margin": 0.03,
+    "ignore": [
+      [
+        0.52,
+        0.0,
+        1.0,
+        0.36
+      ],
+      [
+        0.0,
+        0.0,
+        0.24,
+        0.11
+      ],
+      [
+        0.0,
+        0.74,
+        0.17,
+        1.0
+      ]
+    ],
+    "sealGap": 7,
+    "pois": [
+      {
+        "label": "Adabra Gwynn's windmill",
+        "note": "the potions brew here and nowhere else",
+        "at": [
+          983,
+          1192
+        ]
+      },
+      {
+        "label": "Ruined outbuilding",
+        "note": "old garden walls; cover during the manticore fight",
+        "at": [
+          1200,
+          1267
+        ]
+      },
+      {
+        "label": "The boulder field",
+        "note": "manticore country",
+        "danger": true,
+        "at": [
+          1970,
+          1620
+        ]
+      }
+    ]
+  },
+  "woodland-manse": {
+    "source": "map-14.02-woodland-manse.jpg",
+    "kind": "outdoor",
+    "margin": 0.03,
+    "sealGap": 7
+  }
+}
