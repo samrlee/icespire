@@ -1,200 +1,358 @@
 ---
-// Local map of Gnomengarde, drawn from the official map's layout
-// (offical-assets/Maps/map-07.02-gnomengarde.png — reference only).
-// A cave complex either side of a waterfall grotto. viewBox 900 × 580;
-// north is up; the whole warren spans roughly 350 feet.
+// Local map of Gnomengarde, traced feature-by-feature against the official
+// map (offical-assets/Maps/map-07.02-gnomengarde.png, 2888 × 1838 —
+// reference only, never shipped). Uniform mapping: my = official_px ×
+// 0.31163 (900/2888), no offset; viewBox 900 × 573; north is up.
+// Official grid: 1 square = 5 feet ≈ 11.4 units, so 50 feet ≈ 114 units.
 
-// Rock texture cracks as [x, y, rot].
-const cracks: [number, number, number][] = [
-  [90, 90, 20], [260, 60, -15], [420, 100, 30], [820, 60, 10],
-  [850, 500, -25], [120, 560, 15], [500, 60, -30], [860, 250, 40],
-  [60, 300, -10], [320, 560, 25],
+// Cliff-edge hatching: bands of short ticks along slope lines, as
+// [x0, y0, x1, y1, count]; ticks drawn perpendicular to each band.
+const cliffBands: [number, number, number, number, number][] = [
+  [428, 262, 440, 330, 7], [442, 340, 452, 400, 6], [488, 440, 512, 492, 6],
+  [572, 200, 585, 260, 6], [592, 285, 602, 350, 7], [606, 360, 600, 415, 5],
+  [630, 440, 652, 452, 4], [660, 460, 690, 472, 5],
 ];
+const cliffTicks: { x: number; y: number; rot: number }[] = [];
+for (const [x0, y0, x1, y1, n] of cliffBands) {
+  const rot = (Math.atan2(y1 - y0, x1 - x0) * 180) / Math.PI + 90;
+  for (let i = 0; i < n; i++) {
+    const t = n === 1 ? 0.5 : i / (n - 1);
+    cliffTicks.push({ x: x0 + (x1 - x0) * t, y: y0 + (y1 - y0) * t, rot });
+  }
+}
 
-// Storage-room barrels as [x, y].
-const barrels: [number, number][] = [
-  [742, 368], [755, 365], [768, 365], [802, 377], [808, 391], [808, 405],
-];
-
-// Mushroom patches on the isles as [x, y].
+// Mushroom farm dots on the two pool isles.
 const mushrooms: [number, number][] = [
-  [540, 322], [548, 331], [534, 334], [545, 341], [553, 318],
-  [576, 400], [584, 408], [572, 410], [582, 396],
+  // North isle
+  [504, 300], [513, 305], [521, 311], [503, 313], [511, 318], [520, 324],
+  [504, 326], [512, 331], [520, 336], [506, 338], [514, 342], [509, 296],
+  [523, 318], [507, 308],
+  // South isle
+  [552, 362], [559, 366], [554, 371], [561, 375], [552, 380], [559, 384],
+  [555, 389], [562, 368], [557, 358], [561, 391],
+];
+
+// Barrels in the storage room.
+const barrels: [number, number][] = [
+  [748, 309], [761, 309], [774, 309], [787, 309], [797, 309],
+  [842, 321], [842, 339], [842, 357], [842, 376], [842, 394], [842, 411],
+  [738, 428], [751, 428], [764, 428], [777, 428], [790, 428],
+];
+
+// Pebbles and boulders on the gorge shelves.
+const boulders: [number, number, number][] = [
+  [485, 116, 3], [498, 148, 2.4], [511, 177, 3.2], [489, 206, 2.2],
+  [514, 225, 2.8], [579, 206, 2.4], [586, 231, 3], [572, 254, 2.6],
+  [455, 270, 2.2], [452, 300, 3], [460, 330, 2.4], [470, 360, 2.8],
 ];
 ---
 
 <g class="submap-gnomengarde" aria-hidden="true">
-  <rect class="sm-rock" x="0" y="0" width="900" height="580" style="stroke:none;"></rect>
+  <rect class="sm-ground" x="0" y="0" width="900" height="573"></rect>
 
-  <g class="sm-crack">
-    {cracks.map(([x, y, r]) => (
-      <path d="M-14 0 Q-4 -4 2 1 Q8 5 14 2" transform={`translate(${x} ${y}) rotate(${r})`} />
+  <!-- The rock mass, notched by the river gorge; open hillside northwest.
+       The notch is cut slightly inside the water so the pool overdraws the seam. -->
+  <path
+    class="sm-rock"
+    d="M 0 251
+       C 40 244 85 232 120 220 C 150 208 190 180 240 150 L 276 138
+       C 288 139 310 140 335 142 L 357 145
+       C 370 158 383 172 397 185 C 407 197 415 208 420 225 L 424 254
+       C 434 266 445 278 450 290 C 453 306 454 324 455 340 C 457 354 458 367 460 380
+       C 462 391 465 401 470 410 C 476 420 483 428 490 435 C 494 440 497 445 500 450
+       C 507 456 514 463 520 470 C 526 481 531 493 535 505 C 539 517 543 528 545 540
+       L 548 559 L 557 566
+       C 563 561 569 556 575 550 C 579 540 582 530 585 520 C 587 510 589 500 592 490
+       C 598 478 604 466 610 455 L 622 448
+       C 615 436 608 423 600 410 C 602 398 604 387 605 375 C 605 363 605 352 605 340
+       C 603 330 601 320 598 310 C 594 300 590 290 585 280 C 578 270 572 260 565 250
+       C 560 240 556 230 552 220 C 549 210 546 200 545 190 C 545 178 545 167 545 155
+       C 547 140 550 125 552 110 C 554 93 556 77 558 60 L 560 0
+       L 900 0 L 900 573 L 0 573 Z"
+  ></path>
+
+  <!-- Cliff hatching along the gorge rims and ledges -->
+  <g class="sm-cliff">
+    {cliffTicks.map((t) => (
+      <line x1="0" y1="-2.5" x2="0" y2="2.5" transform={`translate(${t.x.toFixed(1)} ${t.y.toFixed(1)}) rotate(${t.rot.toFixed(0)})`} />
     ))}
   </g>
+  <text class="sm-note" x="595" y="240">+30 ft.</text>
+  <text class="sm-note" x="407" y="307">+30 ft.</text>
+  <text class="sm-note" x="598" y="303">+20 ft.</text>
+  <text class="sm-note" x="603" y="352">+20 ft.</text>
+  <text class="sm-note" x="511" y="465">+20 ft.</text>
+  <text class="sm-note" x="678" y="472">+10 ft.</text>
+  <text class="sm-note" x="251" y="408">+10 ft.</text>
 
-  <!-- Corridors (walls first, then floor) -->
-  {
-    [0, 1].map((pass) => (
-      <g class={pass === 0 ? 'sm-hall-wall' : 'sm-hall'}>
-        {/* West wing */}
-        <path d="M 193 288 C 185 315 172 340 158 358" />
-        <path d="M 138 417 C 150 450 175 480 205 494" />
-        <path d="M 238 505 C 280 502 310 492 365 481" />
-        <path d="M 302 387 C 310 360 325 335 336 322" />
-        <path d="M 315 428 C 340 450 358 462 372 468" />
-        <path d="M 382 300 C 405 305 425 310 444 318" />
-        <path d="M 425 480 C 455 478 480 470 503 460" />
-        {/* East wing */}
-        <path d="M 678 118 L 733 122" />
-        <path d="M 638 137 C 632 165 628 185 624 205" />
-        <path d="M 650 230 C 680 230 700 228 718 228" />
-        <path d="M 754 206 C 758 180 760 160 762 148" />
-        <path d="M 622 247 C 628 275 638 295 646 306" />
-        <path d="M 680 330 C 710 345 725 360 735 372" />
-        <path d="M 624 330 C 612 331 602 332 594 334" />
-        <path d="M 634 468 C 620 462 612 452 606 444" />
-        <path d="M 690 452 C 715 435 730 420 742 410" />
-        {/* The looping dead-end passage off the southeast room */}
-        <path d="M 688 480 C 730 490 752 520 730 545 C 710 563 676 554 668 528" />
-      </g>
-    ))
-  }
-
-  <!-- Rooms -->
-  <g>
-    <rect class="sm-floor" x="163" y="242" width="64" height="46" rx="12" transform="rotate(-3 195 265)"></rect>
-    <rect class="sm-floor" x="90" y="353" width="80" height="64" rx="14" transform="rotate(2 130 385)"></rect>
-    <rect class="sm-floor" x="308" y="267" width="74" height="56" rx="14" transform="rotate(3 345 295)"></rect>
-    <rect class="sm-floor" x="269" y="387" width="58" height="42" rx="12" transform="rotate(-4 298 408)"></rect>
-    <rect class="sm-floor" x="365" y="457" width="60" height="42" rx="12" transform="rotate(2 395 478)"></rect>
-    <rect class="sm-floor" x="186" y="484" width="52" height="36" rx="11" transform="rotate(-2 212 502)"></rect>
-    <rect class="sm-floor" x="610" y="93" width="70" height="44" rx="12" transform="rotate(-2 645 115)"></rect>
-    <rect class="sm-floor" x="735" y="109" width="54" height="38" rx="11" transform="rotate(3 762 128)"></rect>
-    <rect class="sm-floor" x="718" y="206" width="60" height="44" rx="12" transform="rotate(-3 748 228)"></rect>
-    <rect class="sm-floor" x="594" y="205" width="56" height="42" rx="12" transform="rotate(2 622 226)"></rect>
-    <rect class="sm-floor" x="624" y="305" width="56" height="42" rx="12" transform="rotate(-2 652 326)"></rect>
-    <rect class="sm-floor" x="729" y="360" width="86" height="64" rx="14" transform="rotate(2 772 392)"></rect>
-    <rect class="sm-floor" x="634" y="449" width="56" height="38" rx="11" transform="rotate(3 662 468)"></rect>
-  </g>
-
-  <!-- The grotto: pool, isles, waterfall -->
+  <!-- The river, the grotto pool, and the waterfall below the bridge -->
   <path
     class="sm-water"
-    d="M 505 0
-       C 500 45 540 80 535 125
-       C 530 165 495 200 488 250
-       C 482 300 468 330 475 375
-       C 483 425 510 465 540 500
-       L 548 540 L 585 540
-       C 600 500 625 470 630 430
-       C 636 385 620 350 618 300
-       C 616 250 600 210 595 160
-       C 590 110 570 50 575 0
-       Z"></path>
-  <ellipse class="sm-ground" cx="545" cy="330" rx="17" ry="26" transform="rotate(-14 545 330)" style="stroke: var(--map-shore); stroke-width: 1;"></ellipse>
-  <ellipse class="sm-ground" cx="579" cy="404" rx="12" ry="17" transform="rotate(10 579 404)" style="stroke: var(--map-shore); stroke-width: 1;"></ellipse>
+    d="M 447 0
+       C 440 20 432 40 428 58 C 424 73 421 88 421 103 C 426 120 432 137 437 154
+       C 442 167 447 180 450 193 C 449 210 447 227 447 244 L 450 251
+       C 447 264 444 276 444 289 C 445 302 446 315 447 328 C 449 341 451 354 453 366
+       C 457 379 461 392 466 405 C 473 416 482 427 492 437 L 495 450
+       C 501 455 508 460 515 465 C 519 473 522 481 525 490 C 528 500 531 510 534 520
+       C 536 528 538 537 540 545 L 546 559 L 557 566 L 568 556
+       C 573 548 578 539 582 530 C 584 520 586 510 589 500 C 592 490 595 480 598 470
+       L 627 455 L 627 450
+       C 617 437 607 424 598 412 C 600 401 602 390 604 379 C 606 368 609 358 611 347
+       C 610 336 609 326 608 315 C 603 304 598 293 592 283 C 584 272 575 262 566 251
+       C 563 244 561 238 559 231 C 552 218 545 206 539 193 C 537 180 535 167 534 154
+       C 539 137 545 120 550 103 C 553 88 556 73 559 58 L 566 0 Z"
+  ></path>
+  <!-- Mushroom isles -->
+  <ellipse class="sm-ground" cx="513" cy="319" rx="19" ry="27" style="stroke: var(--map-shore); stroke-width: 1.2;"></ellipse>
+  <ellipse class="sm-ground" cx="557" cy="375" rx="13" ry="19" style="stroke: var(--map-shore); stroke-width: 1.2;"></ellipse>
   <g>
     {mushrooms.map(([x, y]) => (
       <circle class="sm-tree" cx={x} cy={y} r="2.4" />
     ))}
   </g>
-  <!-- Waterfall over the south lip -->
-  <g class="sm-detail" style="opacity:.8;">
-    <path d="M 552 542 C 550 556 551 568 549 578"></path>
-    <path d="M 562 542 C 561 558 563 570 561 578"></path>
-    <path d="M 573 542 C 574 556 572 568 574 578"></path>
+  <!-- Waterfall streaks in the chute below the bridge -->
+  <g class="sm-detail" style="opacity: 0.8;">
+    <path d="M 528 495 C 534 512 540 530 545 548"></path>
+    <path d="M 537 490 C 543 508 549 527 554 545"></path>
+    <path d="M 546 487 C 551 505 557 523 562 541"></path>
+    <path d="M 555 490 C 560 506 566 521 570 535"></path>
   </g>
-  <text class="sm-note" x="598" y="556">waterfall</text>
+  <text class="sm-note" x="600" y="555">waterfall</text>
 
-  <!-- The rope bridge -->
-  <g class="sm-bridge" data-tip-title="Rope bridge" data-tip-sub="Goop-covered. Crossed anyway.">
-    <line x1="505" y1="461" x2="625" y2="449"></line>
-    <line x1="505" y1="455" x2="625" y2="443"></line>
-    {Array.from({ length: 10 }, (_, i) => {
-      const t = (i + 0.5) / 10;
-      const x = 505 + 120 * t;
-      const y = 458 - 12 * t;
-      return <line x1={x - 2} y1={y - 4} x2={x + 2} y2={y + 4} />;
+  <!-- Corridors, two-pass: walls then floors -->
+  <g class="sm-hall-wall">
+    <path d="M 147 315 C 143 327 143 339 147 350"></path>
+    <path d="M 212 315 C 214 330 216 342 218 355 C 222 372 240 390 258 396 L 273 399"></path>
+    <path d="M 129 430 L 129 450 C 180 452 245 448 302 445"></path>
+    <path d="M 212 450 L 212 485"></path>
+    <path d="M 338 444 L 338 466"></path>
+    <path d="M 370 384 L 437 383"></path>
+    <path d="M 331 357 L 331 376"></path>
+    <path d="M 456 479 C 470 472 482 463 494 455"></path>
+    <path d="M 646 93 L 633 93 L 633 145"></path>
+    <path d="M 759 96 L 790 96"></path>
+    <path d="M 710 177 L 759 177"></path>
+    <path d="M 668 215 L 668 264"></path>
+    <path d="M 685 341 L 685 364"></path>
+    <path d="M 611 364 C 649 364 688 364 726 364"></path>
+    <path d="M 694 364 L 694 421"></path>
+    <path d="M 630 452 L 656 448"></path>
+    <path d="M 746 468 C 770 464 796 470 812 482 C 824 492 828 507 822 518 C 814 528 797 532 782 529 C 766 526 754 517 750 505 C 747 494 746 482 746 472"></path>
+  </g>
+  <g class="sm-hall">
+    <path d="M 147 315 C 143 327 143 339 147 350"></path>
+    <path d="M 212 315 C 214 330 216 342 218 355 C 222 372 240 390 258 396 L 273 399"></path>
+    <path d="M 129 430 L 129 450 C 180 452 245 448 302 445"></path>
+    <path d="M 212 450 L 212 485"></path>
+    <path d="M 338 444 L 338 466"></path>
+    <path d="M 370 384 L 437 383"></path>
+    <path d="M 331 357 L 331 376"></path>
+    <path d="M 456 479 C 470 472 482 463 494 455"></path>
+    <path d="M 646 93 L 633 93 L 633 145"></path>
+    <path d="M 759 96 L 790 96"></path>
+    <path d="M 710 177 L 759 177"></path>
+    <path d="M 668 215 L 668 264"></path>
+    <path d="M 685 341 L 685 364"></path>
+    <path d="M 611 364 C 649 364 688 364 726 364"></path>
+    <path d="M 694 364 L 694 421"></path>
+    <path d="M 630 452 L 656 448"></path>
+    <path d="M 746 468 C 770 464 796 470 812 482 C 824 492 828 507 822 518 C 814 528 797 532 782 529 C 766 526 754 517 750 505 C 747 494 746 482 746 472"></path>
+  </g>
+  <text class="sm-note" x="150" y="310">s</text>
+  <text class="sm-note" x="150" y="362">s</text>
+
+  <!-- West wing rooms -->
+  <!-- Royal chambers (POI 4) -->
+  <path
+    class="sm-floor"
+    d="M 140 250 C 145 245 153 243 163 243 L 225 243 C 231 244 235 247 235 253
+       L 235 302 C 233 308 228 311 220 312 L 182 313 C 180 314 178 315 175 315
+       L 150 315 C 143 313 140 309 140 303 Z"
+  ></path>
+  <!-- Throne room (POI 3) -->
+  <path
+    class="sm-floor"
+    d="M 96 358 C 97 353 102 351 109 350 L 170 350 C 178 351 182 355 183 361
+       L 183 407 C 182 419 176 427 164 431 L 115 431 C 105 428 98 421 96 409 Z"
+  ></path>
+  <g class="sm-inner">
+    <rect x="118" y="356" width="41" height="23"></rect>
+    <rect x="126" y="360" width="10" height="10"></rect>
+    <rect x="142" y="360" width="10" height="10"></rect>
+  </g>
+  <rect class="sm-door" x="121" y="428" width="17" height="4"></rect>
+  <!-- The puzzle-piece hall with its three north lobes -->
+  <path
+    class="sm-floor"
+    d="M 270 258 L 293 258 L 293 241 L 307 241 L 307 258 L 316 258 L 316 241 L 331 241
+       L 331 258 L 341 258 L 341 241 L 357 241 L 357 258 C 365 261 369 267 370 275
+       L 370 350 C 368 355 363 357 356 357 L 338 357 L 338 376 L 325 376 L 325 357
+       L 284 357 C 276 355 271 350 270 342 Z"
+  ></path>
+  <!-- The ledge chamber below it -->
+  <path
+    class="sm-floor"
+    d="M 273 380 C 275 377 280 376 287 376 L 344 376 C 352 377 357 381 357 388
+       L 357 436 C 355 441 350 444 343 444 L 285 444 C 277 442 273 437 273 430 Z"
+  ></path>
+  <path class="sm-cliff" d="M 321 392 C 335 399 345 405 347 411 C 342 419 331 425 321 429" style="stroke-width: 1.4;"></path>
+  <!-- South-west store room -->
+  <path
+    class="sm-floor"
+    d="M 165 494 C 167 490 172 489 179 489 L 236 489 C 244 490 248 494 248 500
+       L 248 524 C 246 530 241 533 233 533 L 178 533 C 170 532 166 528 165 522 Z"
+  ></path>
+  <!-- Ballista workshop (POI 5) -->
+  <path
+    class="sm-floor"
+    d="M 315 479 L 357 479 L 357 471 C 359 468 364 466 370 466 L 448 466
+       C 454 467 456 470 456 475 L 456 521 C 454 526 449 528 443 528 L 366 528
+       C 360 527 357 523 357 519 L 357 501 L 315 501 Z"
+  ></path>
+  <g class="sm-detail">
+    <g transform="translate(426 471) rotate(20)">
+      <line x1="-8" y1="0" x2="8" y2="0"></line>
+      <line x1="0" y1="-8" x2="0" y2="8"></line>
+      <circle r="2"></circle>
+    </g>
+    <g transform="translate(419 496) rotate(-15)">
+      <line x1="-8" y1="0" x2="8" y2="0"></line>
+      <line x1="0" y1="-8" x2="0" y2="8"></line>
+      <circle r="2"></circle>
+    </g>
+  </g>
+
+  <!-- East wing rooms -->
+  <path
+    class="sm-floor"
+    d="M 669 54 C 671 50 676 48 683 48 L 749 48 C 756 49 759 53 759 58
+       L 759 113 C 757 117 752 119 745 119 L 680 119 C 673 118 669 114 669 109 Z"
+  ></path>
+  <g class="sm-detail">
+    <rect x="733" y="58" width="10" height="10"></rect>
+    <path d="M 738 58 C 738 54 740 52 743 51"></path>
+  </g>
+  <path
+    class="sm-floor"
+    d="M 790 75 C 792 72 797 70 803 70 L 857 70 C 864 71 867 75 867 80
+       L 867 141 C 865 145 860 147 853 147 L 800 147 C 793 146 790 142 790 137 Z"
+  ></path>
+  <path
+    class="sm-floor"
+    d="M 601 178 L 601 190 L 627 193 L 627 210 C 629 214 633 215 638 215
+       L 702 215 C 707 215 710 213 710 209 L 710 152 C 709 148 705 145 699 145
+       L 638 145 C 632 145 628 147 627 151 L 627 174 L 601 178 Z"
+  ></path>
+  <path
+    class="sm-floor"
+    d="M 759 152 C 761 148 766 146 773 145 L 781 145 L 781 139 L 812 139 L 812 145
+       L 856 145 C 862 146 865 149 865 154 L 865 206 C 863 210 858 212 852 212
+       L 767 212 C 762 211 759 208 759 203 Z"
+  ></path>
+  <g class="sm-detail">
+    <g transform="translate(783 154)">
+      <circle r="1.6"></circle>
+      <path d="M-3 -2 L-1.4 -0.8 M3 -2 L1.4 -0.8 M-3 2 L-1.4 0.8 M3 2 L1.4 0.8"></path>
+    </g>
+    <g transform="translate(836 200)">
+      <circle r="1.6"></circle>
+      <path d="M-3 -2 L-1.4 -0.8 M3 -2 L1.4 -0.8 M-3 2 L-1.4 0.8 M3 2 L1.4 0.8"></path>
+    </g>
+  </g>
+  <!-- Wheel room (POI 7) -->
+  <path
+    class="sm-floor"
+    d="M 640 270 C 642 266 647 264 654 264 L 732 264 C 737 265 739 268 739 273
+       L 739 283 L 755 283 L 755 315 L 739 315 L 739 335 C 737 339 733 341 727 341
+       L 650 341 C 644 340 640 336 640 331 Z"
+  ></path>
+  <g class="sm-detail">
+    <circle cx="661" cy="280" r="10"></circle>
+    <circle cx="661" cy="280" r="3"></circle>
+    {Array.from({ length: 8 }, (_, i) => {
+      const a = (i * Math.PI) / 4;
+      return (
+        <line
+          x1={661 + Math.cos(a) * 3}
+          y1={280 + Math.sin(a) * 3}
+          x2={661 + Math.cos(a) * 10}
+          y2={280 + Math.sin(a) * 10}
+        />
+      );
     })}
   </g>
-
-  <!-- Ledges above the pool -->
-  <text class="sm-note" x="418" y="304">+30 ft.</text>
-  <text class="sm-note" x="626" y="318">+20 ft.</text>
-  <text class="sm-note" x="612" y="432">+20 ft.</text>
-
-  <!-- Throne dais in the throne room -->
-  <g class="sm-inner">
-    <rect x="109" y="366" width="30" height="22" rx="2"></rect>
-    <rect x="116" y="371" width="16" height="12" rx="1"></rect>
-  </g>
-  <!-- Secret passage between throne room and the royal chambers -->
-  <text class="sm-note" x="182" y="330">s</text>
-
-  <!-- The ballista workshop: gnomish fan contraptions -->
+  <!-- Storage room (POI 6) -->
+  <path
+    class="sm-floor"
+    d="M 726 308 C 728 304 733 302 740 302 L 845 302 C 852 303 855 307 855 312
+       L 855 436 C 853 441 848 443 841 443 L 736 443 C 729 442 726 438 726 433 Z"
+  ></path>
   <g class="sm-detail">
-    <g transform="translate(384 471)">
-      <path d="M-8 -8 L8 8 M8 -8 L-8 8"></path><circle r="2" class="sm-detail-fill" style="stroke:none;"></circle>
-    </g>
-    <g transform="translate(408 486) rotate(20)">
-      <path d="M-7 -7 L7 7 M7 -7 L-7 7"></path><circle r="2" class="sm-detail-fill" style="stroke:none;"></circle>
-    </g>
-  </g>
-
-  <!-- The wheel contraption -->
-  <g class="sm-detail" transform="translate(648 322)">
-    <circle r="9"></circle>
-    <path d="M-9 0 H9 M0 -9 V9 M-6.4 -6.4 L6.4 6.4 M6.4 -6.4 L-6.4 6.4"></path>
-  </g>
-
-  <!-- Barrels in the storage room -->
-  <g>
     {barrels.map(([x, y]) => (
-      <circle class="sm-detail" cx={x} cy={y} r="3.2" />
+      <circle cx={x} cy={y} r="3.2" />
     ))}
   </g>
+  <!-- South-east chamber with the looping dead-end passage -->
+  <path
+    class="sm-floor"
+    d="M 656 427 C 658 423 663 421 670 421 L 739 421 C 744 422 746 425 746 430
+       L 746 467 C 744 471 740 472 734 472 L 664 472 C 659 471 656 468 656 463 Z"
+  ></path>
 
-  <!-- Doors -->
-  <g class="sm-door">
-    <rect x="153" y="354" width="9" height="6" transform="rotate(35 158 358)"></rect>
-    <rect x="201" y="490" width="9" height="6" transform="rotate(60 205 494)"></rect>
-    <rect x="641" y="302" width="9" height="6" transform="rotate(70 646 306)"></rect>
-    <rect x="729" y="119" width="9" height="6"></rect>
+  <!-- The rope bridge over the pool's south end (POI 2) -->
+  <g class="sm-bridge" data-tip-title="Rope bridge" data-tip-sub="Goop-covered. Crossed anyway.">
+    <path d="M 494 450 C 528 456 594 460 628 458"></path>
+    <path d="M 494 456 C 528 462 594 466 628 464"></path>
+    <path d="M 497 450 L 500 456 M 507 452 L 504 458 M 517 453 L 520 459 M 530 454 L 527 460 M 543 455 L 546 461 M 556 456 L 553 462 M 569 457 L 572 463 M 582 458 L 579 464 M 595 458 L 598 464 M 608 458 L 605 464 M 618 458 L 621 464"></path>
+    <path d="M 492 447 L 492 459 M 630 455 L 630 467"></path>
+  </g>
+
+  <!-- Doors (gold) -->
+  <rect class="sm-door" x="209" y="346" width="7" height="6"></rect>
+  <rect class="sm-door" x="243" y="390" width="7" height="7"></rect>
+  <rect class="sm-door" x="209" y="466" width="7" height="7"></rect>
+  <rect class="sm-door" x="643" y="89" width="6" height="8"></rect>
+
+  <!-- Pebbles on the gorge shelves -->
+  <g class="sm-rock">
+    {boulders.map(([x, y, r]) => (
+      <circle cx={x} cy={y} r={r} />
+    ))}
   </g>
 
   <!-- Numbered points of interest -->
   <g class="sm-poi" data-tip-title="The grotto pool" data-tip-sub="Mushroom farm on the isles">
-    <circle cx="514" cy="288" r="8"></circle><text x="514" y="288">1</text>
+    <circle cx="480" cy="345" r="8"></circle><text x="480" y="345">1</text>
   </g>
-  <g class="sm-poi" data-tip-title="Rope bridge &amp; waterfall" data-tip-sub="The way across, goop included">
-    <circle cx="565" cy="478" r="8"></circle><text x="565" y="478">2</text>
+  <g class="sm-poi" data-tip-title="Rope bridge & waterfall" data-tip-sub="Goop-covered; crossed anyway">
+    <circle cx="565" cy="475" r="8"></circle><text x="565" y="475">2</text>
   </g>
   <g class="sm-poi" data-tip-title="Throne room" data-tip-sub="Hidden passage, peephole, paranoid king">
-    <circle cx="103" cy="350" r="8"></circle><text x="103" y="350">3</text>
+    <circle cx="138" cy="398" r="8"></circle><text x="138" y="398">3</text>
   </g>
   <g class="sm-poi" data-tip-title="Royal chambers" data-tip-sub="Where Queen Gnerkli was found tied up">
-    <circle cx="195" cy="238" r="8"></circle><text x="195" y="238">4</text>
+    <circle cx="190" cy="278" r="8"></circle><text x="190" y="278">4</text>
   </g>
-  <g class="sm-poi danger" data-tip-title="The ballista workshop" data-tip-sub="Facktoré field-tested it on Thom">
-    <circle cx="395" cy="450" r="8"></circle><text x="395" y="450">5</text>
+  <g class="sm-poi" data-tip-title="The ballista workshop" data-tip-sub="Facktoré field-tested it on Thom">
+    <circle cx="405" cy="497" r="8"></circle><text x="405" y="497">5</text>
   </g>
-  <g class="sm-poi danger" data-tip-title="Storage room" data-tip-sub="Two mimics. Both dealt with.">
-    <circle cx="772" cy="355" r="8"></circle><text x="772" y="355">6</text>
+  <g class="sm-poi danger" data-tip-title="Storage room" data-tip-sub="Two mimics, both dealt with">
+    <circle cx="790" cy="372" r="8"></circle><text x="790" y="372">6</text>
   </g>
   <g class="sm-poi" data-tip-title="The wheel room" data-tip-sub="A gnomish contraption, purpose unclear">
-    <circle cx="626" cy="300" r="8"></circle><text x="626" y="300">7</text>
+    <circle cx="690" cy="300" r="8"></circle><text x="690" y="300">7</text>
   </g>
 
-  <!-- Scale -->
-  <g class="sm-scale" transform="translate(742 552)">
-    <line x1="0" y1="0" x2="125" y2="0"></line>
+  <!-- Scale: the official grid is 1 square = 5 feet -->
+  <g class="sm-scale" transform="translate(60 545)">
+    <line x1="0" y1="0" x2="114" y2="0"></line>
     <line x1="0" y1="-4" x2="0" y2="4"></line>
-    <line x1="125" y1="-4" x2="125" y2="4"></line>
-    <text x="62" y="-8">≈ 50 feet</text>
+    <line x1="114" y1="-4" x2="114" y2="4"></line>
+    <text x="57" y="-8">≈ 50 feet</text>
   </g>
 
-  <!-- Compass -->
-  <g class="m-compass" transform="translate(62 520)">
+  <!-- Compass, bottom-left as on the official sheet -->
+  <g class="m-compass" transform="translate(70 474)">
     <circle r="18"></circle>
     <line x1="0" y1="13" x2="0" y2="-9"></line>
     <path class="m-compass-arrow" d="M0 -16 L5 -5 L0 -8 L-5 -5 Z"></path>

@@ -51,8 +51,8 @@ export const submaps: Record<string, SubmapEntry> = {
   gnomengarde: {
     Component: Gnomengarde,
     width: 900,
-    height: 580,
-    scaleNote: 'The warren spans about 350 feet',
+    height: 573,
+    scaleNote: 'The warren spans about 400 feet',
     legend: [
       { label: 'The grotto pool', note: 'mushroom farm on the isles' },
       { label: 'Rope bridge & waterfall', note: 'goop-covered; crossed anyway' },
