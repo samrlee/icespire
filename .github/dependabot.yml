@@ -1,0 +1,19 @@
+version: 2
+
+# Nothing was watching for dependency advisories, so the four that turned up in
+# the audit had to be found by hand. Weekly is plenty for a static site: the
+# PRs are grouped so a quiet week lands one PR, not five.
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      npm-dependencies:
+        patterns: ['*']
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

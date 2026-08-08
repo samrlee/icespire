@@ -6,10 +6,24 @@ import { glob } from 'astro/loaders';
 // schemas at build time, so a typo'd field fails loudly instead of
 // rendering a broken page.
 
+// A name/title that has to appear on the page. Bare z.string() accepts "",
+// which renders as a blank card — and an empty name becomes an empty alias in
+// components/EntityLinks.astro, where it matches at every position and hangs
+// the entity linker. Require something to actually show.
+const filled = () => z.string().trim().min(1);
+
+// A path under /public or an in-site link. Anchored to a single leading slash:
+// "//evil.example" is a protocol-relative URL that would quietly point a
+// portrait or a card link off-site.
+const sitePath = () =>
+  z
+    .string()
+    .regex(/^\/(?!\/)/, 'must be a site-relative path beginning with a single "/"');
+
 const sessions = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/sessions' }),
   schema: z.object({
-    title: z.string(),
+    title: filled(),
     sessionNumber: z.number().int().nonnegative(),
     date: z.coerce.date(),
     // One-liner shown in the session list.
@@ -22,11 +36,11 @@ const sessions = defineCollection({
     encounters: z
       .array(
         z.object({
-          name: z.string(),
-          image: z.string(), // path under /public
+          name: filled(),
+          image: sitePath(), // path under /public
           note: z.string().optional(),
           // Optional site link (an NPC page, a map anchor, ...).
-          href: z.string().optional(),
+          href: sitePath().optional(),
         })
       )
       .default([]),
@@ -37,14 +51,14 @@ const sessions = defineCollection({
 const characters = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/characters' }),
   schema: z.object({
-    name: z.string(),
-    player: z.string(),
-    ancestry: z.string(), // race/species
-    class: z.string(),
+    name: filled(),
+    player: filled(),
+    ancestry: filled(), // race/species
+    class: filled(),
     level: z.number().int().positive().optional(),
     status: z.enum(['active', 'retired', 'dead', 'missing']).default('active'),
     // Path under /public, e.g. /images/characters/rook.jpg
-    portrait: z.string().optional(),
+    portrait: sitePath().optional(),
     // One-line bio shown on the roster card ("Builds things that mostly work.")
     tagline: z.string().optional(),
     // Short descriptors rendered as pills ("Tinkerer", "Afraid of Dragons")
@@ -55,7 +69,7 @@ const characters = defineCollection({
 const npcs = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/npcs' }),
   schema: z.object({
-    name: z.string(),
+    name: filled(),
     role: z.string().optional(), // e.g. "Innkeeper", "White Dragon"
     affiliation: z.string().optional(), // shown next to role: place, group, or faction name
     faction: z.string().optional(), // slug of a faction entry, for linking
@@ -79,14 +93,14 @@ const npcs = defineCollection({
     // Short directory blurb ("Means well. Is in over his head.")
     note: z.string().optional(),
     firstAppearance: z.number().int().optional(), // session number
-    portrait: z.string().optional(),
+    portrait: sitePath().optional(),
   }),
 });
 
 const factions = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/factions' }),
   schema: z.object({
-    name: z.string(),
+    name: filled(),
     type: z.string().optional(), // guild, cult, kingdom, ...
     status: z.enum(['active', 'destroyed', 'dormant', 'unknown']).default('active'),
     alignment: z.string().optional(), // friendly / hostile / complicated
@@ -97,7 +111,7 @@ const factions = defineCollection({
 const locations = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/locations' }),
   schema: z.object({
-    name: z.string(),
+    name: filled(),
     // Position on the map SVG, in viewBox units (0–1000 wide, 0–750 tall).
     x: z.number().min(0).max(1000),
     y: z.number().min(0).max(750),
@@ -132,8 +146,8 @@ const journey = defineCollection({
     events: z
       .array(
         z.object({
-          title: z.string(),
-          at: z.string(), // location slug
+          title: filled(),
+          at: filled(), // location slug
           note: z.string().optional(),
           // battle pins render in ember; everything else in gold.
           kind: z.enum(['battle', 'discovery', 'social', 'omen']).default('discovery'),
@@ -146,8 +160,8 @@ const journey = defineCollection({
 const lore = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/lore' }),
   schema: z.object({
-    title: z.string(),
-    category: z.string().default('general'), // places, history, items, ...
+    title: filled(),
+    category: filled().default('general'), // places, history, items, ...
     summary: z.string().optional(),
   }),
 });

@@ -148,7 +148,11 @@ function setupPopover(entities: Entity[]) {
   const show = (link: HTMLElement) => {
     window.clearTimeout(hideTimer);
     const idx = Number(link.dataset.entity);
-    fill(entities[idx]);
+    const entity = entities[idx];
+    // A .entity-link that didn't come from linkMentions (hand-written in prose,
+    // say) carries no index — there's nothing to preview, so leave it be.
+    if (!entity) return;
+    fill(entity);
     shownFor = link;
     pop.hidden = false;
     pop.style.visibility = 'hidden';

@@ -12,13 +12,18 @@ interface Props {
 
 const { name, player, classRace, portrait, bio, traits = [], href, variant = 'roster' } =
   Astro.props;
+
+// The portrait path lands inside a style attribute, where Astro's HTML escaping
+// doesn't help: a ")" in the value would close url() early and let the rest of
+// the string become CSS declarations of its own. Quote it and percent-encode
+// the quote so the value can only ever be read as one URL.
+const portraitCss = portrait
+  ? `background-image:url("${encodeURI(portrait).replaceAll('"', '%22')}")`
+  : undefined;
 ---
 
 <article class:list={['card', 'character-card', { page: variant === 'page' }]}>
-  <div
-    class="portrait"
-    style={portrait ? `background-image:url(${portrait})` : undefined}
-  >
+  <div class="portrait" style={portraitCss}>
     {!portrait && 'Portrait'}
   </div>
   <div class="char-body">
