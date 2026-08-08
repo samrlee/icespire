@@ -263,6 +263,12 @@ for (const leg of journey) {
     });
   }
 }
+
+// Session titles and place names ride into the page inside a <script> block,
+// so escape `<` — JSON.stringify doesn't, and a stray "</script>" in a title
+// would otherwise close the block early and spill content into HTML context.
+// (Same treatment as the entity island in components/EntityLinks.astro.)
+const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
 ---
 
 <Base title="Campaign Map" description="The Phandalin region: where the party has gone and what happened there.">
@@ -290,7 +296,7 @@ for (const leg of journey) {
           <div class="scrub-readout" id="scrub-readout" aria-live="polite"></div>
         </div>
       </div>
-      <script is:inline type="application/json" id="scrub-data" set:html={JSON.stringify(scrubSessions)} />
+      <script is:inline type="application/json" id="scrub-data" set:html={scrubJson} />
     )}
     <div class="map-frame" id="map-frame">
       <svg
@@ -654,7 +660,18 @@ for (const leg of journey) {
     history.replaceState(null, '', location.pathname + location.search);
   }
 
+  // Every slug the map knows about, read off our own markup. Anything else —
+  // notably whatever a visitor put after the "#" — is rejected before it can
+  // reach a selector, where stray punctuation would throw a SyntaxError and
+  // take the rest of this module (scrubber included) down with it.
+  const knownSlugs = new Set(
+    [...panel.querySelectorAll<HTMLTemplateElement>('template[data-loc]')].map(
+      (tpl) => tpl.dataset.loc!
+    )
+  );
+
   function openLocation(slug: string, scrollTo = false) {
+    if (!knownSlugs.has(slug)) return;
     const tpl = panel.querySelector<HTMLTemplateElement>(`template[data-loc="${slug}"]`);
     if (!tpl) return;
     panelDetail.innerHTML = '';
@@ -701,8 +718,17 @@ for (const leg of journey) {
     });
   }
 
-  // Deep link: /map/#phandalin opens that location.
-  if (location.hash.length > 1) openLocation(decodeURIComponent(location.hash.slice(1)));
+  // Deep link: /map/#phandalin opens that location. A malformed escape ("#%")
+  // makes decodeURIComponent throw, so treat the hash as best-effort.
+  if (location.hash.length > 1) {
+    let slug = '';
+    try {
+      slug = decodeURIComponent(location.hash.slice(1));
+    } catch {
+      slug = location.hash.slice(1);
+    }
+    openLocation(slug);
+  }
 
   // ---- Time-scrubber ----------------------------------------------------------
   // Wind the campaign back and forth: at each rung, the trail, tags, event pins

@@ -8,6 +8,10 @@ on:
   push:
     branches: [main]
 
+# This job only reads the repo and builds it — it never writes back.
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build site

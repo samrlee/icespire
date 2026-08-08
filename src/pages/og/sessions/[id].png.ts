@@ -24,10 +24,11 @@ export const GET: APIRoute = async ({ props }) => {
   });
   // Wrap in a plain Uint8Array: a Node Buffer's ArrayBufferLike type isn't a
   // valid Response BodyInit, but the underlying bytes are identical.
+  //
+  // In a static build these headers never reach a client — the body is written
+  // to dist/og/sessions/<id>.png and the response is discarded. Cache policy for
+  // this path lives in public/_headers, where Cloudflare Pages will read it.
   return new Response(new Uint8Array(png), {
-    headers: {
-      'Content-Type': 'image/png',
-      'Cache-Control': 'public, max-age=31536000, immutable',
-    },
+    headers: { 'Content-Type': 'image/png' },
   });
 };

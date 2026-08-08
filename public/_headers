@@ -1,0 +1,31 @@
+# Response headers for Cloudflare Pages. Copied verbatim from public/ into the
+# build output, where Pages reads it at deploy time.
+#
+# The site is static and ships no user input, so these are defence-in-depth:
+# they narrow what a page could do if a bad content edit ever landed markup
+# where only text was meant to go.
+
+/*
+  # Don't let a browser second-guess a declared Content-Type.
+  X-Content-Type-Options: nosniff
+  # Nobody frames the chronicle; also covered by frame-ancestors below, kept
+  # for older browsers that only understand this one.
+  X-Frame-Options: DENY
+  # Send the full URL to ourselves, only the origin off-site.
+  Referrer-Policy: strict-origin-when-cross-origin
+  # No page here asks for hardware or location.
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  # 'unsafe-inline' for scripts is required by the inline theme/nav scripts in
+  # layouts/Base.astro; the value of this policy is elsewhere — no third-party
+  # scripts, no off-site connections, no plugins, no framing.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+
+# Astro fingerprints these filenames, so a change ships a new URL — safe to
+# cache forever.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Social cards are regenerated on every build and keep their URL when a session
+# title is edited, so let scrapers re-check rather than pinning a stale card.
+/og/*
+  Cache-Control: public, max-age=3600

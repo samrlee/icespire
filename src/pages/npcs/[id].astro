@@ -12,6 +12,13 @@ export async function getStaticPaths() {
 const { npc } = Astro.props;
 const { Content } = await render(npc);
 const roleLine = [npc.data.role, npc.data.affiliation].filter(Boolean).join(' · ');
+
+// Resolve the faction slug rather than trusting it: an unresolved slug used to
+// render as a link to a 404, labelled with the raw slug. The map page throws on
+// this and the graph page skips it — match the graph and fail quietly.
+const faction = npc.data.faction
+  ? (await getCollection('factions')).find((f) => f.id === npc.data.faction)
+  : undefined;
 ---
 
 <Base title={npc.data.name} description={npc.data.note}>
@@ -26,9 +33,9 @@ const roleLine = [npc.data.role, npc.data.affiliation].filter(Boolean).join(' ·
     )}
   </p>
   {
-    npc.data.faction && (
+    faction && (
       <p class="session-meta">
-        Faction: <a href={url(`/factions/${npc.data.faction}/`)}>{npc.data.faction}</a>
+        Faction: <a href={url(`/factions/${faction.id}/`)}>{faction.data.name}</a>
       </p>
     )
   }
