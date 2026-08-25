@@ -2,6 +2,11 @@
 // src/content/locations/). A sub-map page is only built — and only linked
 // from the region map — once its location's status is `visited`, so maps
 // for undiscovered places can live here without appearing on the site.
+//
+// Secrets are player-facing too: a secret door (marked `s` on a sub-map),
+// hidden passage, or concealed entrance only gets drawn once the party has
+// actually found it in play. Anything still hidden stays off the map and out
+// of the legend, even on a map that isn't published yet.
 
 import Phandalin from './Phandalin.astro';
 import Gnomengarde from './Gnomengarde.astro';
@@ -141,7 +146,6 @@ export const submaps: Record<string, SubmapEntry> = {
     scaleNote: 'The mound and the catacombs beneath it',
     legend: [
       { label: 'The burial mound', note: 'shaped like something with wings' },
-      { label: 'Secret entrance', note: 'hidden among the spine-stones' },
       { label: 'The catacombs', note: 'a spiral stair at the heart of it' },
       { label: 'Tomb chambers', note: 'sarcophagi in the alcoves' },
       { label: 'Warded corridors', note: 'old traps, still armed' },
