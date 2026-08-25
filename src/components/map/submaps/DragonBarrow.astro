@@ -9,6 +9,13 @@ const spineStones: [number, number][] = [
   [252, 130], [248, 170], [246, 210], [250, 250], [254, 292], [258, 332], [264, 370],
 ];
 
+interface Props {
+  // The catacombs are the inside of this one. Until somebody is down there,
+  // the map is the mound on the grass and nothing under it.
+  interior?: boolean;
+}
+const { interior = false } = Astro.props;
+
 // Sarcophagus niches in the catacombs as [x, y, rot].
 const tombs: [number, number, number][] = [
   [612, 92, 0], [668, 92, 0], [500, 262, 0], [556, 262, 0],
@@ -18,11 +25,16 @@ const tombs: [number, number, number][] = [
 ---
 
 <g class="submap-dragonbarrow" aria-hidden="true">
-  <rect class="sm-ground" x="0" y="0" width="450" height="560"></rect>
-  <rect class="sm-rock" x="450" y="0" width="450" height="560" style="stroke:none;"></rect>
-  <text class="sm-note" x="475" y="36">Catacombs</text>
+  <rect class="sm-ground" x="0" y="0" width={interior ? 450 : 900} height="560"></rect>
+  {interior && (
+    <g>
+      <rect class="sm-rock" x="450" y="0" width="450" height="560" style="stroke:none;"></rect>
+      <text class="sm-note" x="475" y="36">Catacombs</text>
+    </g>
+  )}
   <text class="sm-note" x="60" y="530">Burial mound</text>
 
+  <g transform={interior ? undefined : 'translate(225 0)'}>
   <!-- The mound: a shape like spread wings -->
   <g class="sm-contour" style="opacity: .55;">
     <path d="M 250 90
@@ -53,6 +65,14 @@ const tombs: [number, number, number][] = [
     ))}
   </g>
 
+  <!-- Numbered points of interest, outside -->
+  <g class="sm-poi" data-tip-title="The burial mound" data-tip-sub="Shaped like something with wings">
+    <circle cx="150" cy="90" r="8"></circle><text x="150" y="90">1</text>
+  </g>
+  </g>
+
+  {interior && (
+  <g>
   <!-- Catacomb halls -->
   {
     [0, 1].map((pass) => (
@@ -87,16 +107,15 @@ const tombs: [number, number, number][] = [
     ))}
   </g>
 
-  <!-- Numbered points of interest -->
-  <g class="sm-poi" data-tip-title="The burial mound" data-tip-sub="Shaped like something with wings">
-    <circle cx="150" cy="90" r="8"></circle><text x="150" y="90">1</text>
-  </g>
+  <!-- Numbered points of interest, below -->
   <g class="sm-poi" data-tip-title="The catacombs" data-tip-sub="A spiral stair at the heart of it">
     <circle cx="688" cy="240" r="8"></circle><text x="688" y="240">2</text>
   </g>
   <g class="sm-poi" data-tip-title="Tomb chambers" data-tip-sub="Sarcophagi in the alcoves">
     <circle cx="528" cy="230" r="8"></circle><text x="528" y="230">3</text>
   </g>
+  </g>
+  )}
 
   <!-- Scale -->
   <g class="sm-scale" transform="translate(742 530)">

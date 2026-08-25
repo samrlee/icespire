@@ -2,7 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import MapTerrain from '../../components/map/MapTerrain.astro';
-import { submaps } from '../../components/map/submaps/registry';
+import { hasSubmapPage } from '../../components/map/submaps/registry';
 import { url } from '../../utils/url';
 
 // Undiscovered locations exist in the collection but render nowhere.
@@ -165,7 +165,7 @@ const entries = await Promise.all(
     }
     const events = eventsByLoc.get(loc.id) ?? [];
     // Local maps only surface once the party has actually been there.
-    const hasLocalMap = loc.data.status === 'visited' && loc.id in submaps;
+    const hasLocalMap = hasSubmapPage(loc);
     const slots = pinSlots[loc.data.labelPlacement];
     const pins = events.map((ev, i) => {
       const angle = (slots[i % slots.length] * Math.PI) / 180;

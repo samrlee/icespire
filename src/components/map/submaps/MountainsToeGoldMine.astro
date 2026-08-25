@@ -55,6 +55,12 @@ const rimTicks: [number, number, number][] = [
   [80, 320, -90], [86, 390, -100], [100, 450, -110], [150, 510, -140], [240, 532, -170],
   [360, 540, 175], [480, 536, 170], [600, 528, 168], [700, 510, 150],
 ];
+interface Props {
+  // Outside there is a hill, two adits and the spoil they threw out of them.
+  // The galleries are only mappable from inside.
+  interior?: boolean;
+}
+const { interior = false } = Astro.props;
 ---
 
 <g class="submap-goldmine" aria-hidden="true">
@@ -72,6 +78,8 @@ const rimTicks: [number, number, number][] = [
     ))}
   </g>
 
+  {interior && (
+  <g>
   <!-- Tunnels then galleries -->
   {
     [0, 1].map((pass) => (
@@ -97,6 +105,8 @@ const rimTicks: [number, number, number][] = [
     <rect x="472" y="252" width="8" height="6"></rect>
     <rect x="614" y="252" width="8" height="6"></rect>
   </g>
+  </g>
+  )}
 
   <!-- Entrances -->
   <path class="sm-path" d="M 30 330 L 92 330"></path>
@@ -123,12 +133,16 @@ const rimTicks: [number, number, number][] = [
   <g class="sm-poi" data-tip-title="West entrance" data-tip-sub="The miners' way in">
     <circle cx="60" cy="348" r="8"></circle><text x="60" y="348">1</text>
   </g>
+  {interior && (
+  <g>
   <g class="sm-poi" data-tip-title="The great gallery" data-tip-sub="Heart of the diggings">
     <circle cx="475" cy="300" r="8"></circle><text x="475" y="300">2</text>
   </g>
   <g class="sm-poi" data-tip-title="Deep galleries" data-tip-sub="The east workings, unlit">
     <circle cx="640" cy="316" r="8"></circle><text x="640" y="316">3</text>
   </g>
+  </g>
+  )}
   <g class="sm-poi" data-tip-title="East entrance" data-tip-sub="The far way in">
     <circle cx="836" cy="478" r="8"></circle><text x="836" y="478">4</text>
   </g>

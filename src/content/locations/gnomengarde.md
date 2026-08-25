@@ -4,6 +4,7 @@ x: 585
 y: 614
 kind: settlement
 status: visited
+interiorSeen: true
 firstVisited: 2
 labelPlacement: bottom
 summary: 'Reclusive gnome tinkerers in a mountain gorge. Mimics: confirmed. Facktoré: at large.'

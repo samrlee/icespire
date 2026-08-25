@@ -24,6 +24,13 @@ const vines = [
   'M 470 345 C 460 362 475 374 488 366',
   'M 470 345 C 480 320 462 315 452 325',
 ];
+interface Props {
+  // From the trail the manse is a block of wall in the trees with the round
+  // tower standing out of it. The room plan, and the courtyard buried in the
+  // middle of it, need somebody to have gone inside.
+  interior?: boolean;
+}
+const { interior = false } = Astro.props;
 ---
 
 <g class="submap-woodlandmanse" aria-hidden="true">
@@ -34,7 +41,14 @@ const vines = [
   <path class="sm-path" d="M 340 118 C 400 100 470 90 540 60"></path>
   <path class="sm-path" d="M 210 130 C 200 180 220 230 260 260"></path>
 
-  <!-- The manse -->
+  <!-- The manse. Seen from outside it is one mass of wall; the plan inside
+       it only appears once the party has been in. -->
+  {!interior && (
+    <rect class="sm-open" x="300" y="188" width="245" height="276" rx="5" style="stroke: var(--map-shore); stroke-width: 3;"></rect>
+  )}
+
+  {interior && (
+  <g>
   <!-- Central courtyard, open to the sky and badly overgrown -->
   <rect class="sm-open" x="425" y="305" width="90" height="80" rx="4" style="stroke: var(--map-shore); stroke-width: 3;"></rect>
   <g class="sm-grass" style="opacity: .9; stroke-width: 1.4;">
@@ -52,6 +66,9 @@ const vines = [
   <rect class="sm-floor" x="318" y="325" width="44" height="30" rx="3"></rect>
   <rect class="sm-floor" x="305" y="390" width="90" height="60" rx="3"></rect>
   <rect class="sm-floor" x="460" y="402" width="80" height="56" rx="3"></rect>
+  </g>
+  )}
+
   <!-- The round tower -->
   <circle class="sm-rock" cx="365" cy="205" r="26"></circle>
 
@@ -60,6 +77,8 @@ const vines = [
     <path d="M-8 -6 H8 M-8 -2 H8 M-8 2 H8 M-8 6 H8"></path>
   </g>
 
+  {interior && (
+  <g>
   <!-- Spiral stair in the southwest room -->
   <g class="sm-detail" transform="translate(332 340)">
     <circle r="7"></circle>
@@ -77,6 +96,8 @@ const vines = [
     <rect x="465" y="425" width="6" height="9"></rect>
     <rect x="418" y="340" width="6" height="9"></rect>
   </g>
+  </g>
+  )}
 
   <!-- Berry thickets -->
   <g>
@@ -104,9 +125,11 @@ const vines = [
   <g class="sm-poi" data-tip-title="The manse" data-tip-sub="A manor the wood is taking back">
     <circle cx="397" cy="240" r="8"></circle><text x="397" y="240">1</text>
   </g>
-  <g class="sm-poi" data-tip-title="The courtyard" data-tip-sub="Overgrown, open to the sky">
-    <circle cx="470" cy="310" r="8"></circle><text x="470" y="310">2</text>
-  </g>
+  {interior && (
+    <g class="sm-poi" data-tip-title="The courtyard" data-tip-sub="Overgrown, open to the sky">
+      <circle cx="470" cy="310" r="8"></circle><text x="470" y="310">2</text>
+    </g>
+  )}
   <g class="sm-poi" data-tip-title="The round tower" data-tip-sub="The last sound structure">
     <circle cx="365" cy="176" r="8"></circle><text x="365" y="176">3</text>
   </g>

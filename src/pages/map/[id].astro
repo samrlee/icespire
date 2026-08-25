@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { submaps } from '../../components/map/submaps/registry';
+import { submaps, hasSubmapPage } from '../../components/map/submaps/registry';
 import { url } from '../../utils/url';
 
 // Local maps are published only for places the party has actually visited.
@@ -10,7 +10,7 @@ import { url } from '../../utils/url';
 export async function getStaticPaths() {
   const locations = await getCollection('locations');
   return locations
-    .filter((loc) => loc.data.status === 'visited' && loc.id in submaps)
+    .filter(hasSubmapPage)
     .map((loc) => ({ params: { id: loc.id }, props: { location: loc } }));
 }
 
@@ -19,9 +19,18 @@ const submap = submaps[location.id];
 const { Component, width, height, scaleNote, legend } = submap;
 const { Content } = await render(location);
 
+// A place the party has only stood outside of publishes as its approach:
+// the interior is withheld from the drawing and from the Key, which keeps
+// its original numbering so the two always agree.
+const interiorSeen = location.data.interiorSeen;
+const keyItems = legend
+  .map((item, i) => ({ item, n: i + 1 }))
+  .filter(({ item }) => interiorSeen || !item.interior);
+const interiorWithheld = keyItems.length < legend.length;
+
 // Sibling local maps, for quick hops without going back to the region.
 const otherLocalMaps = (await getCollection('locations'))
-  .filter((loc) => loc.data.status === 'visited' && loc.id in submaps && loc.id !== location.id)
+  .filter((loc) => hasSubmapPage(loc) && loc.id !== location.id)
   .sort((a, b) => a.data.name.localeCompare(b.data.name));
 
 const kindLabels: Record<string, string> = {
@@ -45,6 +54,18 @@ const kindLabels: Record<string, string> = {
     {scaleNote && <span> · {scaleNote}</span>}
   </p>
 
+  {
+    interiorWithheld && (
+      <aside class="map-wip">
+        <span class="wip-label">Outside only</span>
+        <span class="wip-text">
+          Nobody has been inside yet, so this map stops where the party did.
+          The interior gets drawn the session they walk into it.
+        </span>
+      </aside>
+    )
+  }
+
   <aside class="map-wip">
     <span class="wip-label">Work in progress</span>
     <span class="wip-text">
@@ -62,7 +83,7 @@ const kindLabels: Record<string, string> = {
       role="img"
       aria-label={`Local map of ${location.data.name}`}
     >
-      <Component />
+      <Component interior={interiorSeen} />
     </svg>
     <div class="map-controls">
       <button type="button" id="map-zoom-in" aria-label="Zoom in">+</button>
@@ -87,8 +108,8 @@ const kindLabels: Record<string, string> = {
         <div>
           <h2 class="submap-key-title">Key</h2>
           <ol class="submap-key">
-            {legend.map((item) => (
-              <li>
+            {keyItems.map(({ item, n }) => (
+              <li value={n}>
                 <span class="key-label">{item.label}</span>
                 {item.note && <span class="key-note"> — {item.note}</span>}
               </li>
