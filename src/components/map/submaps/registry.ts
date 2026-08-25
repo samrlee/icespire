@@ -3,10 +3,20 @@
 // from the region map — once its location's status is `visited`, so maps
 // for undiscovered places can live here without appearing on the site.
 //
-// Secrets are player-facing too: a secret door (marked `s` on a sub-map),
-// hidden passage, or concealed entrance only gets drawn once the party has
-// actually found it in play. Anything still hidden stays off the map and out
-// of the legend, even on a map that isn't published yet.
+// These maps are player-facing, so they carry only what the party could see
+// standing in the place: terrain, structures, visible damage. What stays off
+// them — off the drawing, the tooltips, the legend, and the source comments,
+// which ship to the browser — is anything only the DM knows:
+//
+//   * secret doors (marked `s`), hidden passages, concealed entrances;
+//   * traps, and rooms nobody has reached;
+//   * creatures, lairs, and hints that something is denned in, watching, or
+//     about to come through the floor;
+//   * the `danger` class on a point of interest, which paints it ember.
+//
+// A secret or a threat earns its place on the map on the day the party finds
+// it in play, and not before — the maps for undiscovered places publish the
+// moment their status flips, so they have to be safe to read now.
 
 import Phandalin from './Phandalin.astro';
 import Gnomengarde from './Gnomengarde.astro';
@@ -85,7 +95,6 @@ export const submaps: Record<string, SubmapEntry> = {
       { label: 'The vestry', note: 'two dwarves in red vestments, a font dry for centuries, and a fourth secret door' },
       { label: 'Sleeping chamber', note: 'three bed frames, a crushed body, and a longsword that never rotted' },
       { label: 'The cave-in', note: 'floor to ceiling, packed tight — an hour of digging barely dented it' },
-      { label: 'The sacrifice chamber', note: 'described in the ledger: dark, flanked by two statues. Unreached.' },
     ],
   },
   'umbrage-hill': {
@@ -111,7 +120,7 @@ export const submaps: Record<string, SubmapEntry> = {
       { label: 'The gatehouse', note: 'murder-slits, twin bastions, one portcullis' },
       { label: 'The great hall', note: 'four pillars of dwarven stonework' },
       { label: 'The feast hall', note: 'twin thrones, long cold' },
-      { label: 'Natural caverns', note: 'something has moved in below' },
+      { label: 'Natural caverns', note: 'caves opening off the lower halls' },
       { label: 'Audience chamber', note: 'the upper seat of the hold' },
       { label: 'Dormitories', note: 'bunk rooms off the south gallery' },
     ],
@@ -123,7 +132,7 @@ export const submaps: Record<string, SubmapEntry> = {
     scaleNote: 'The ranch spans about a quarter mile',
     legend: [
       { label: 'The farmhouse', note: "home of Alfonse 'Big Al' Kalazorn" },
-      { label: 'Destroyed barn', note: 'something tore through here' },
+      { label: 'Destroyed barn', note: 'what is left of it' },
       { label: 'Destroyed smithy', note: 'the forge fared no better' },
       { label: 'The pasture', note: 'prize cattle — the famous butter' },
     ],
@@ -136,7 +145,7 @@ export const submaps: Record<string, SubmapEntry> = {
     legend: [
       { label: 'The stone ring', note: 'thunder rolls out of it on clear days' },
       { label: 'Fallen arches', note: 'older than the stones, maybe' },
-      { label: 'Cave mouths', note: 'burrows worm beneath the hill' },
+      { label: 'Cave mouths', note: 'openings in the hillside' },
     ],
   },
   'dragon-barrow': {
@@ -148,7 +157,6 @@ export const submaps: Record<string, SubmapEntry> = {
       { label: 'The burial mound', note: 'shaped like something with wings' },
       { label: 'The catacombs', note: 'a spiral stair at the heart of it' },
       { label: 'Tomb chambers', note: 'sarcophagi in the alcoves' },
-      { label: 'Warded corridors', note: 'old traps, still armed' },
     ],
   },
   'falcons-hunting-lodge': {
@@ -174,7 +182,7 @@ export const submaps: Record<string, SubmapEntry> = {
       { label: 'The bridge', note: 'a narrow span over a long drop' },
       { label: 'The great courtyard', note: 'open to the sky — and to wings' },
       { label: 'The keep', note: 'halls and chambers of the old garrison' },
-      { label: 'The roof', note: 'a throne with a view, for something large' },
+      { label: 'The roof', note: 'open stone above the keep' },
       { label: 'The undercroft', note: 'cold tombs beneath the keep' },
     ],
   },
@@ -185,9 +193,9 @@ export const submaps: Record<string, SubmapEntry> = {
     scaleNote: 'A timber camp on the riverbank',
     legend: [
       { label: 'The pier', note: 'timber floats downstream from here' },
-      { label: 'The bunkhouse', note: 'something erupted through the floor' },
+      { label: 'The bunkhouse', note: 'bunks for the crew' },
       { label: 'Tent rows', note: "the loggers' camp proper" },
-      { label: 'Churned earth', note: 'eruption mounds pock the clearing' },
+      { label: 'Churned earth', note: 'broken ground across the clearing' },
       { label: 'Old foundations', note: 'an earlier camp, long gone' },
     ],
   },
@@ -199,8 +207,8 @@ export const submaps: Record<string, SubmapEntry> = {
     legend: [
       { label: 'West entrance', note: "the miners' way in" },
       { label: 'The great gallery', note: 'heart of the diggings' },
-      { label: 'Deep galleries', note: 'something dens in the dark east halls' },
-      { label: 'East entrance', note: 'quieter. Too quiet.' },
+      { label: 'Deep galleries', note: 'the east workings, unlit' },
+      { label: 'East entrance', note: 'the far way in' },
     ],
   },
   'shrine-of-savras': {
@@ -212,7 +220,7 @@ export const submaps: Record<string, SubmapEntry> = {
       { label: 'The gatehouse', note: 'the old north gate' },
       { label: 'The shrine', note: 'a cross-shaped hall to the All-Seeing' },
       { label: 'The belfry hole', note: 'a gap in the ceiling — a way up, or down' },
-      { label: 'The standing tower', note: 'the only whole corner. Occupied?' },
+      { label: 'The standing tower', note: 'the only whole corner' },
     ],
   },
   'tower-of-storms': {
@@ -223,7 +231,7 @@ export const submaps: Record<string, SubmapEntry> = {
     legend: [
       { label: 'The tower', note: 'its beacon has been dark for years' },
       { label: 'The wrecks', note: 'the reefs collect ships' },
-      { label: 'Sea caves', note: 'something dens in the rocks' },
+      { label: 'Sea caves', note: 'openings in the rocks at the waterline' },
       { label: 'The causeway', note: 'a wave-swept scramble from shore' },
     ],
   },
@@ -234,9 +242,9 @@ export const submaps: Record<string, SubmapEntry> = {
     scaleNote: 'A ruin the wood is reclaiming',
     legend: [
       { label: 'The manse', note: 'a manor the wood is taking back' },
-      { label: 'The courtyard', note: 'the vines in there are not still' },
+      { label: 'The courtyard', note: 'overgrown, open to the sky' },
       { label: 'The round tower', note: 'the last sound structure' },
-      { label: 'Berry thickets', note: 'tempting. Watched.' },
+      { label: 'Berry thickets', note: 'berries along the forest edge' },
     ],
   },
 };
