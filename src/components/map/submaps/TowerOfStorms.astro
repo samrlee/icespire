@@ -19,6 +19,13 @@ const rimTicks: [number, number, number][] = [
   [290, 452, 175], [225, 435, -160], [180, 395, -140], [152, 340, -115],
   [140, 270, -95], [146, 200, -75], [170, 130, -50],
 ];
+interface Props {
+  // The tower on its rock, the causeway, the reefs and the wrecks are all
+  // visible from the shore. The stair inside it and the halls at its foot
+  // are not.
+  interior?: boolean;
+}
+const { interior = false } = Astro.props;
 ---
 
 <g class="submap-towerofstorms" aria-hidden="true">
@@ -51,6 +58,8 @@ const rimTicks: [number, number, number][] = [
 
   <!-- The lighthouse and its halls -->
   <circle class="sm-rock" cx="255" cy="230" r="24" style="stroke-width: 2.5;"></circle>
+  {interior && (
+  <g>
   <g class="sm-detail" transform="translate(255 230)">
     <circle r="10"></circle>
     <path d="M0 0 L10 0 M0 0 L-7 7 M0 0 L-3 -9"></path>
@@ -68,6 +77,8 @@ const rimTicks: [number, number, number][] = [
       </g>
     ))
   }
+  </g>
+  )}
 
   <!-- The winding causeway to shore -->
   {
@@ -104,10 +115,10 @@ const rimTicks: [number, number, number][] = [
   <g class="sm-poi" data-tip-title="The tower" data-tip-sub="Its beacon has been dark for years">
     <circle cx="255" cy="196" r="8"></circle><text x="255" y="196">1</text>
   </g>
-  <g class="sm-poi danger" data-tip-title="The wrecks" data-tip-sub="The reefs collect ships">
+  <g class="sm-poi" data-tip-title="The wrecks" data-tip-sub="The reefs collect ships">
     <circle cx="128" cy="440" r="8"></circle><text x="128" y="440">2</text>
   </g>
-  <g class="sm-poi danger" data-tip-title="Sea caves" data-tip-sub="Something dens in the rocks">
+  <g class="sm-poi" data-tip-title="Sea caves" data-tip-sub="Openings in the rocks at the waterline">
     <circle cx="688" cy="428" r="8"></circle><text x="688" y="428">3</text>
   </g>
   <g class="sm-poi" data-tip-title="The causeway" data-tip-sub="A wave-swept scramble from shore">

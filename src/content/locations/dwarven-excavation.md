@@ -4,6 +4,7 @@ x: 422
 y: 668
 kind: dungeon
 status: visited
+interiorSeen: true
 firstVisited: 5
 labelPlacement: left
 summary: 'A buried temple of Abbathor, god of greed. The jellies are dead, the dwarves are gone, and the hoard is still missing.'

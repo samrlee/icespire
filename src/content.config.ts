@@ -125,6 +125,11 @@ const locations = defineCollection({
     // Renders the marker in ember (reserved for genuine danger).
     danger: z.boolean().default(false),
     firstVisited: z.number().int().optional(), // session number
+    // Has the party actually been inside? A local map draws its interior —
+    // rooms, halls, undercrofts — only once this is true; until then the
+    // sub-map publishes as the approach alone, which is all anyone standing
+    // outside could map. Places with nothing enclosed to draw leave it false.
+    interiorSeen: z.boolean().default(false),
     // One-liner for the marker tooltip and the top of the detail panel.
     summary: z.string().optional(),
     // Which side of the marker the map label sits on.

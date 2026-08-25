@@ -22,6 +22,13 @@ const rubble: [number, number][] = [
 const columns: [number, number][] = [
   [420, 232], [480, 232], [420, 268], [480, 268], [420, 342], [480, 342], [420, 378], [480, 378],
 ];
+interface Props {
+  // The compound is a ruin and the shrine's cross-shaped footprint reads from
+  // the courtyard, so the shell stays. What is under its roof — the columns,
+  // the benches, the hole in the ceiling — waits for somebody to walk in.
+  interior?: boolean;
+}
+const { interior = false } = Astro.props;
 ---
 
 <g class="submap-shrineofsavras" aria-hidden="true">
@@ -65,6 +72,8 @@ const columns: [number, number][] = [
   <rect class="sm-floor" x="484" y="272" width="86" height="56" rx="4"></rect>
   <path class="sm-floor" d="M 424 394 A 26 26 0 0 0 476 394 Z"></path>
 
+  {interior && (
+  <g>
   <!-- Columns and the belfry hole -->
   <g class="sm-inner">
     {columns.map(([x, y]) => (
@@ -88,6 +97,8 @@ const columns: [number, number][] = [
     <rect x="326" y="296" width="6" height="9"></rect>
     <rect x="568" y="296" width="6" height="9"></rect>
   </g>
+  </g>
+  )}
 
   <!-- Courtyard labels -->
   <text class="sm-note" x="240" y="200">courtyard</text>
@@ -101,10 +112,12 @@ const columns: [number, number][] = [
   <g class="sm-poi" data-tip-title="The shrine" data-tip-sub="A cross-shaped hall to the All-Seeing">
     <circle cx="450" cy="186" r="8"></circle><text x="450" y="186">2</text>
   </g>
-  <g class="sm-poi" data-tip-title="The belfry hole" data-tip-sub="A gap in the ceiling — a way up, or down">
-    <circle cx="478" cy="305" r="8"></circle><text x="478" y="305">3</text>
-  </g>
-  <g class="sm-poi danger" data-tip-title="The standing tower" data-tip-sub="The only whole corner. Occupied?">
+  {interior && (
+    <g class="sm-poi" data-tip-title="The belfry hole" data-tip-sub="A gap in the ceiling — a way up, or down">
+      <circle cx="478" cy="305" r="8"></circle><text x="478" y="305">3</text>
+    </g>
+  )}
+  <g class="sm-poi" data-tip-title="The standing tower" data-tip-sub="The only whole corner">
     <circle cx="732" cy="60" r="8"></circle><text x="732" y="60">4</text>
   </g>
 

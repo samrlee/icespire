@@ -18,7 +18,7 @@ const digRubble: [number, number][] = [
 ];
 const hallRubble: [number, number][] = [[508, 208], [520, 214]];
 const eastRubble: [number, number][] = [[704, 284], [714, 290]];
-const roomRubble: [number, number][] = [[612, 384], [622, 376], [757, 307], [634, 318]];
+const roomRubble: [number, number][] = [[612, 384], [622, 376], [634, 318]];
 
 // Cliff hachure ticks along the canyon rim as [x, y, rot].
 const rimTicks: [number, number, number][] = [
@@ -105,7 +105,7 @@ const rimTicks: [number, number, number][] = [
         <path d="M 630 268 L 630 299" />
         <path d="M 655 212 L 655 252" />
         <path d="M 647 252 L 655 252 L 655 314 L 647 314" />
-        <path d="M 655 285 L 736 285" />
+        <path d="M 655 285 L 716 285" />
       </g>
     ))
   }
@@ -127,9 +127,6 @@ const rimTicks: [number, number, number][] = [
   <rect class="sm-floor" x="613" y="238" width="34" height="28" rx="3"></rect>
   <rect class="sm-floor" x="612" y="299" width="36" height="30" rx="3"></rect>
   <rect class="sm-floor" x="591" y="362" width="42" height="36" rx="3"></rect>
-  <path
-    class="sm-floor"
-    d="M 754 251 L 802 251 L 818 267 L 818 303 L 802 319 L 754 319 L 738 303 L 738 267 Z"></path>
 
   <!-- Main chamber furniture: pillars and the altar -->
   <g class="sm-inner">
@@ -154,7 +151,6 @@ const rimTicks: [number, number, number][] = [
     <rect x="419" y="290" width="6" height="8"></rect>
     <rect x="651" y="204" width="8" height="6"></rect>
     <rect x="586" y="369" width="6" height="8"></rect>
-    <rect x="732" y="281" width="6" height="8"></rect>
   </g>
 
   <!-- Numbered points of interest -->
@@ -190,9 +186,6 @@ const rimTicks: [number, number, number][] = [
   </g>
   <g class="sm-poi" data-tip-title="The cave-in" data-tip-sub="Floor to ceiling, packed tight. The way east stops here.">
     <circle cx="700" cy="255" r="8"></circle><text x="700" y="255">11</text>
-  </g>
-  <g class="sm-poi" data-tip-title="The sacrifice chamber" data-tip-sub="Two statues, per the ledger. Nobody has reached it.">
-    <circle cx="778" cy="285" r="8"></circle><text x="778" y="285">12</text>
   </g>
 
   <!-- Scale -->

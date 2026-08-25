@@ -26,6 +26,14 @@ const niches: [number, number][] = [
   [730, 448], [754, 448], [730, 488], [754, 488],
 ];
 
+interface Props {
+  // From the icy path you can map the curtain wall, its breaches, the bridge
+  // and the courtyard. The keep's rooms, the roof and the undercroft need
+  // somebody to have gone in.
+  interior?: boolean;
+}
+const { interior = false } = Astro.props;
+
 // Ridge lines radiating down the mountainside.
 const ridges: [number, number, number][] = [
   [80, 140, 30], [150, 500, -20], [420, 500, 15], [560, 120, -35],
@@ -62,6 +70,8 @@ const ridges: [number, number, number][] = [
     ))
   }
 
+  {interior && (
+  <g>
   {
     [0, 1].map((pass) => (
       <g class={pass === 0 ? 'sm-hall-wall' : 'sm-hall'}>
@@ -82,6 +92,9 @@ const ridges: [number, number, number][] = [
     <circle r="7"></circle>
     <path d="M0 0 L7 0 M0 0 L-5 5 M0 0 L-2 -6.5"></path>
   </g>
+  <text class="sm-note" x="66" y="196">Main floor of the fortress</text>
+  </g>
+  )}
 
   <!-- The bridge over the drop -->
   <g class="sm-bridge">
@@ -92,6 +105,8 @@ const ridges: [number, number, number][] = [
   <!-- Gatehouse -->
   <rect class="sm-open" x="420" y="240" width="96" height="170" rx="8"></rect>
   <rect class="sm-crenel" x="420" y="240" width="96" height="170" rx="8"></rect>
+  {interior && (
+  <g>
   <rect class="sm-floor" x="428" y="262" width="44" height="56" rx="3"></rect>
   <rect class="sm-floor" x="476" y="274" width="24" height="42" rx="3"></rect>
   <rect class="sm-floor" x="478" y="340" width="30" height="28" rx="3"></rect>
@@ -142,10 +157,10 @@ const ridges: [number, number, number][] = [
       <rect class="sm-inner" x={x - 4} y={y - 6} width="8" height="12" rx="1" />
     ))}
   </g>
-  <text class="sm-note" x="750" y="516">s</text>
+  </g>
+  )}
 
   <!-- Labels -->
-  <text class="sm-note" x="66" y="196">Main floor of the fortress</text>
   <text class="sm-note" x="424" y="432">Gatehouse</text>
   <text class="sm-note" x="60" y="490">Icespire Peak rises southwest</text>
 
@@ -156,18 +171,22 @@ const ridges: [number, number, number][] = [
   <g class="sm-poi" data-tip-title="The bridge" data-tip-sub="A narrow span over a long drop">
     <circle cx="394" cy="260" r="8"></circle><text x="394" y="260">2</text>
   </g>
-  <g class="sm-poi" data-tip-title="The great courtyard" data-tip-sub="Open to the sky — and to wings">
+  <g class="sm-poi" data-tip-title="The great courtyard" data-tip-sub="Open to the sky">
     <circle cx="112" cy="270" r="8"></circle><text x="112" y="270">3</text>
   </g>
+  {interior && (
+  <g>
   <g class="sm-poi" data-tip-title="The keep" data-tip-sub="Halls and chambers of the old garrison">
     <circle cx="272" cy="250" r="8"></circle><text x="272" y="250">4</text>
   </g>
-  <g class="sm-poi danger" data-tip-title="The roof" data-tip-sub="A throne with a view, for something large">
+  <g class="sm-poi" data-tip-title="The roof" data-tip-sub="Open stone above the keep">
     <circle cx="742" cy="66" r="8"></circle><text x="742" y="66">5</text>
   </g>
   <g class="sm-poi" data-tip-title="The undercroft" data-tip-sub="Cold tombs beneath the keep">
     <circle cx="700" cy="330" r="8"></circle><text x="700" y="330">6</text>
   </g>
+  </g>
+  )}
 
   <!-- Scale -->
   <g class="sm-scale" transform="translate(60 528)">

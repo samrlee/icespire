@@ -24,7 +24,7 @@ const trees: [number, number, number][] = [
   [810, 480, 12], [250, 160, 8], [380, 350, 8], [770, 320, 8],
 ];
 
-// Ankheg eruption marks as [x, y].
+// Churned ground across the clearing as [x, y].
 const eruptions: [number, number][] = [[318, 292], [600, 408], [742, 432]];
 ---
 
@@ -107,7 +107,7 @@ const eruptions: [number, number][] = [[318, 292], [600, 408], [742, 432]];
     ))}
   </g>
 
-  <!-- Ankheg eruptions -->
+  <!-- Churned ground -->
   <g class="sm-detail" style="stroke-width: 1.5;">
     {eruptions.map(([x, y]) => (
       <path
@@ -128,13 +128,13 @@ const eruptions: [number, number][] = [[318, 292], [600, 408], [742, 432]];
   <g class="sm-poi" data-tip-title="The pier" data-tip-sub="Timber floats downstream from here">
     <circle cx="376" cy="66" r="8"></circle><text x="376" y="66">1</text>
   </g>
-  <g class="sm-poi danger" data-tip-title="The bunkhouse" data-tip-sub="Something erupted through the floor">
+  <g class="sm-poi" data-tip-title="The bunkhouse" data-tip-sub="Bunks for the crew">
     <circle cx="295" cy="228" r="8"></circle><text x="295" y="228">2</text>
   </g>
   <g class="sm-poi" data-tip-title="Tent rows" data-tip-sub="The loggers' camp proper">
     <circle cx="676" cy="130" r="8"></circle><text x="676" y="130">3</text>
   </g>
-  <g class="sm-poi danger" data-tip-title="Churned earth" data-tip-sub="Eruption mounds pock the clearing">
+  <g class="sm-poi" data-tip-title="Churned earth" data-tip-sub="Broken ground across the clearing">
     <circle cx="742" cy="408" r="8"></circle><text x="742" y="408">4</text>
   </g>
   <g class="sm-poi" data-tip-title="Old foundations" data-tip-sub="An earlier camp, long gone">
