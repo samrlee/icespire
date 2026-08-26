@@ -7,7 +7,7 @@ status: visited
 interiorSeen: true
 firstVisited: 5
 labelPlacement: left
-summary: 'A buried temple of Abbathor, god of greed. The jellies are dead, the dwarves are gone, and the hoard is still missing.'
+summary: 'A buried temple of Abbathor, god of greed. The jellies are dead, the sacrifice room is open and empty, and the hoard is still missing.'
 lore: 'temple-of-abbathor'
 ---
 
@@ -20,5 +20,14 @@ necklace that reads *"This is what happens to those who displease me."*
 By the end of Session 6 all three jellies were dead, the prospectors had
 walked out on the broken deal and stripped their camp, and **seven orcs** had
 come up the canyon to claim the ruin as a fort — and died in the entrance
-hall. The party holds the temple. Behind the cave-ins, per Abbathor's ledger,
-is a sacrifice chamber flanked by two statues that nobody has reached.
+hall.
+
+In Session 7 the party burrowed through the last rubble wall into the
+**sacrifice room** the ledger described: two pedestals, two statues, one
+already in pieces, and a booby-trapped emerald. Working the gearing beneath
+both pedestals opened a hidden alcove holding the temple's final offering
+chest — 150 gold, 70 tarnished silver, and a written instruction to take it and
+forget the god. The party left at dawn with all of it.
+
+Two cave-ins in the eastern passage are still unexcavated, and the temple's
+actual hoard has never been found.

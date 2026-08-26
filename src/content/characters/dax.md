@@ -97,7 +97,47 @@ anyway").
   Barnaby reached him (Session 6).
 - Got back up, used the Clockwork Amulet to steady a swing he no longer
   trusted, and took the last orc's head off (Session 6).
-- Carries the Clockwork Amulet.
+- Stripped the orc leader's chain mail and identified it as **human work out
+  of a Neverwinter garrison** (Perception 23) — reading correctly that the band
+  had been raiding settlements close by. The second time his background has
+  produced usable intelligence (Session 7).
+- Put his sword into the dead war-leader once, flicked the blood off the blade,
+  and walked away: *"That's the last time orcs try to almost kill me."*
+  (Session 7).
+- Stayed out of the badger tunnel until the statue detonated, then went in with
+  Hamish to find out who was still alive (Session 7).
+- Argued for scouting the way out rather than walking blindly off a site where
+  seven orcs had just ambushed them (Session 7).
+- Put **15 gp into the bag the party gave Norbus**, then went back alone
+  afterward and left **another 15 of his own** with an offer of future work —
+  and gave the dwarf his name (Session 7).
+- Carries the Clockwork Amulet — available, recharges at dawn, unused in
+  Session 7. Still holding the **inspiration die** awarded at the end of
+  Session 6.
+
+**Standing with the dwarves:** the goodwill he earned in Dwarvish in Session 5
+was spent by his failed lie in Session 6 — and in Session 7 he squared it
+privately with the survivor, on his own terms and out of his own purse.
+
+## Dax and Rut
+
+Since Session 7, Dax has been quietly telling Rut things that are not true,
+with a completely straight face, and Rut believes all of them.
+
+It started when Sage and Rut were discussing whether dragons eat people. Dax
+joined in to confirm that they do — which is precisely why the party makes
+certain **Barnaby** is kept well fed, and Rut should see to it personally. When
+Sage's panther arrived, Dax extended the doctrine: the panther must also be
+kept fed, though a panther is easier to kill than a dragon if it ever comes to
+that.
+
+Rut has taken all of this entirely seriously. He has raised the feeding
+question with Barnaby directly, and mentioned it to Adabra Gwynn, who advised
+that it sounded wise.
+
+**Barnaby does not know Rut believes he is a man-eating dragon.** The rest of
+the party does not know Dax is the source. These conversations are held between
+the two of them, out of everyone else's hearing.
 
 **Tactical note:** against ochre jellies, thrown handaxes and bludgeoning work;
 slashing just makes more jellies. His longsword follow-up after a

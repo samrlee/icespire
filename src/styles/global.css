@@ -1346,6 +1346,12 @@ body {
   border-color: color-mix(in srgb, var(--status-neutral) 20%, transparent);
 }
 
+.status-pill.deceased {
+  color: var(--status-deceased);
+  background: var(--status-deceased-wash);
+  border-color: color-mix(in srgb, var(--status-deceased) 20%, transparent);
+}
+
 /* ---------- NpcEntry ---------- */
 
 .npc-list {
@@ -2993,6 +2999,11 @@ body {
   color: var(--status-neutral);
 }
 
+.g-node.deceased,
+.g-edge.deceased {
+  color: var(--status-deceased);
+}
+
 /* ---- Edges ---- */
 .g-edge {
   stroke: currentColor;
@@ -3261,6 +3272,7 @@ body {
 .glg-line.unresolved { border-top-color: var(--status-unresolved); }
 .glg-line.at-large { border-top-color: var(--status-at-large); }
 .glg-line.neutral { border-top-color: var(--status-neutral); }
+.glg-line.deceased { border-top-color: var(--status-deceased); }
 .glg-line.member {
   border-top-style: dashed;
   border-top-width: 1.5px;
@@ -3405,6 +3417,7 @@ body {
 .rollcall-tag.unresolved { color: var(--status-unresolved); }
 .rollcall-tag.at-large { color: var(--status-at-large); }
 .rollcall-tag.neutral { color: var(--status-neutral); }
+.rollcall-tag.deceased { color: var(--status-deceased); }
 
 .rollcall-list {
   list-style: none;

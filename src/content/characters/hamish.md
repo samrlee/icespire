@@ -35,3 +35,15 @@ tracking, and — when the longbow isn't enough — the leaping-in-with-a-shorts
 - Told Norbus and Dazlyn the party had found "not much. Jellies." (Session 6).
 - Took a javelin in the orc fight and went down; came back up on a healing
   potion Thom delivered by mage hand across the room (Session 6).
+- Hauled the orc dead off one another to get at their packs, and turned up
+  rations, ten gold, and a child's doll with its head torn off (Session 7).
+- Read the orc leader's **sheepskin map** of the Sword Coast: raid targets
+  along the Triboar Trail and the High Road, around Leilon, and near Phandalin,
+  with a preference for mountainous ground (Session 7).
+- Found the **gearing sunk beneath both pedestals** in the wreckage of the
+  sacrifice room and worked the mechanisms until the hidden alcove opened
+  (Session 7).
+- Scouted the road north with Sage, confirmed the main orc body had moved west,
+  and drew on the panther coming for her — then lowered the bow (Session 7).
+- Pried Dazlyn Grayshard's stiff fingers open and took out the sending stone
+  (Session 7).

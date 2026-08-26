@@ -18,8 +18,10 @@ laid before Abbathor across generations of priests.
   start justifying themselves — *"Abbathor will be pleased with our
   investments."* Whether that pleading was aimed at the god or at each other,
   it did not work: the avalanche came, and the priests became jellies.
-- **There is a room the party has never seen.** The ledger describes a
-  **sacrifice chamber**: dark, flanked by two statues.
+- **It describes a room.** A **sacrifice chamber**: dark, flanked by two
+  statues. The description proved
+  accurate — the room was found and cleared in Session 7, and both statues were
+  exactly where it said they would be.
 - **It never says where the wealth went.** Not one entry accounts for the
   hoard leaving the temple, and nothing the party has dug through so far comes
   close to matching the totals on the page.
@@ -33,4 +35,4 @@ book that catalogues exactly what happens to people who take from this god and
 give too little back.
 
 The party lied to their partners about the haul and kept the coffer that same
-day.
+day. One of those partners was dead on the road within a week.

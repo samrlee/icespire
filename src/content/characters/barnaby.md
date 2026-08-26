@@ -35,3 +35,14 @@ one who ends up carrying people (and tied-up gnomes) when things go sideways.
 - Went down twice against the orcs, and in between crossed the room to pour
   the last of his Lay on Hands into a dying Dax: six points, and enough
   (Session 6).
+- Collected orc blood in his waterskin — emptied it first, sat a body up, cut
+  its throat, stoppered it, and put it away without explaining (Session 7).
+- Threw his shoulder into the sacrifice room's hidden slab at a run and got a
+  bruise out of it (Session 7).
+- Took 10 piercing from the exploding statue and let his armor turn most of it
+  (Session 7).
+- Carried **Dazlyn Grayshard's body** north from the trail to Umbrage Hill, to
+  Phandalin, and into the inn, where he set it down at the dwarf's brother's
+  feet (Session 7).
+- Does not know that Rut believes he is a man-eating dragon who must be kept
+  fed (Session 7).

@@ -1,12 +1,14 @@
 ---
 title: 'The Temple of Abbathor'
 category: 'places'
-summary: 'A ruined dwarven temple to the god of greed. The ochre jellies inside used to be its priests. The wealth they hoarded has never been found.'
+summary: 'A ruined dwarven temple to the god of greed. The ochre jellies inside used to be its priests. Its last room has been opened; the wealth it accounted for has still never been found.'
 ---
 
 A ruined dwarven settlement and temple southwest of Phandalin, behind a broken
 black-stone gate in a canyon — until Session 6, the dig site of prospectors
-Norbus Ithermel and Dazlyn Grayshard, who have since packed up and gone.
+Norbus Ithermel and Dazlyn Grayshard, who walked off it after the party lied to
+them about the haul. Dazlyn was dead on the road north within days; Norbus is
+in Phandalin, and nobody is digging here now.
 
 **The history:** Abbathor, dwarven god of greed, grew displeased with his
 priests' sacrifices. He buried the settlement in an avalanche — and
@@ -36,15 +38,44 @@ back out beside the altars.
 - **The south passage** (south secret door) — dead-ends in rubble. A dead
   dwarf lies off to one side with a few coins scattered around him, and the
   temple **ledger** half-buried beside the body.
+- **The sacrifice room** — behind the rubble at the end of a dead branch,
+  reached in Session 7 by Rut in the shape of a giant badger. See below.
+
+## The sacrifice room
+
+The room the ledger described, opened at last in Session 7. It is round, and
+holds **two pedestals**, each of which once carried a statue cradling a large
+gem.
+
+- **Lifting a gem detonates its statue.** Thom took the emerald off the
+  left-hand statue with a Mage Hand and it burst — 20 piercing to Rut, 10 to
+  Barnaby. The gem itself was untouched.
+- **It had happened before.** The right-hand statue was already in pieces when
+  the party crawled in, scattered in a wide radius. After the blast, the fresh
+  rubble lay in exactly the same pattern. Somebody tried this centuries ago and
+  nobody learned anything from it.
+- **The pedestals are the lock.** Under the base of each, sunk into the floor,
+  is gearing — Hamish found it in the wreckage and worked both mechanisms until
+  they clicked.
+- **Behind the wall** is an alcove the size of a closet, vented to the surface
+  (which is where the draft that gave it away comes from), holding a pedestal,
+  a small locked chest, and two miniature idols of the temple's door-statues
+  bent in prayer toward it. Bean picked the lock.
+
+Inside the chest: **150 gp, 70 tarnished silver**, and the **final offering
+note** — written in Common, which nobody has explained.
 
 ## What is still missing
 
-The ledger describes a room nobody has set foot in: a **sacrifice chamber**,
-dark, flanked by two statues. Nowhere in it does it say where generations of
-gold, gems, and offerings actually went. Every route the party can see is
-choked with **cave-ins** — packed tight, the stone too large to shift by hand.
-They spent an hour clearing rubble and were nowhere near through when the orcs
-arrived.
+The sacrifice chamber has been found and emptied, and it does not answer the
+question. A hundred and fifty gold in a collection box is not generations of
+offerings — that was the last of the takings, not the treasury. Nowhere in the
+ledger does it say where the hoard actually went; the entries only insist it
+was **invested**.
+
+Two **cave-ins** in the eastern passage remain unexcavated, packed tight and
+too large to shift by hand, and the prospectors who might have dug them out are
+one dead and one grieving in Phandalin.
 
 ## Field notes
 

@@ -89,7 +89,11 @@ const npcs = defineCollection({
     //                patrons, one-off contacts, the newly-met. Renders as
     //                "Neutral". This is the default — an NPC earns "ally", they
     //                don't start there.
-    status: z.enum(['ally', 'hostile', 'unresolved', 'at-large', 'neutral']).default('neutral'),
+    //   deceased   — dead, and known to the party to be dead. The relationship
+    //                 is over; what they left behind may not be.
+    status: z
+      .enum(['ally', 'hostile', 'unresolved', 'at-large', 'neutral', 'deceased'])
+      .default('neutral'),
     // Short directory blurb ("Means well. Is in over his head.")
     note: z.string().optional(),
     firstAppearance: z.number().int().optional(), // session number

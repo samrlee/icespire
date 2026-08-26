@@ -33,3 +33,14 @@ acquiring other people's valuables.
   paid the bill nobody else would (Session 6).
 - Spent the entire orc fight behind one pillar and was never found or hit
   once, and killed an orc from it (Session 6).
+- Checked the sacrifice room for traps twice, found none, and was right —
+  the statue was not a trap so much as a consequence (Session 7).
+- Picked the lock on the offering chest in the hidden alcove, the last locked
+  thing in the temple (Session 7).
+- Would not put her hands anywhere near the orc dead, and came away from the
+  looting with nothing (Session 7).
+
+**House rule:** Owen ruled in Session 7 that Bean can **appraise** valuables —
+an Intelligence check, at disadvantage, always, because she is a thief with an
+eye for it and not an expert. The gemstone coffer and the emerald are both
+still waiting on that.
