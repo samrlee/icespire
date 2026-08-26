@@ -169,18 +169,19 @@ hauling a backpack that seemed to be trying to sit down.
 
 ---
 
-On the road down, Sage and Rut fell to discussing whether dragons eat people.
+On the road down, with nobody else in earshot, the talk between Dax and Rut
+came round to dragons. Dax told him that dragons eat people. He says everything
+the same way — flatly, reasonably, no tell in his face at all — and Rut
+believed him.
 
-Dax said that they do.
+Then Rut looked over at Barnaby, and gestured.
 
-He said it the way he says everything — flatly, reasonably, with no tell in his
-face at all. Dragons eat people. Which is precisely why the party takes such
-care to keep Barnaby well fed, and why Rut, personally, should see to it.
+"That's why we make sure to keep him well fed."
 
-"Make sure he's well fed."
+By the time Sage caught them up, Rut had the whole thing and was explaining it
+to her himself: dragons eat people, and that is why Barnaby is kept well fed.
 
-Rut took this with enormous seriousness. He had follow-up questions. Dax
-answered every one of them.
+Dax confirmed that dragons do, in fact, eat people.
 
 ---
 
@@ -215,11 +216,11 @@ name.
 
 Hamish lowered the bow.
 
-Dax took Rut aside and extended the doctrine. The panther would have to be kept
-fed as well, on the same principle — though a panther, he allowed, is a good
-deal easier to kill than a dragon, if it ever came to that.
+Later, the same conversation happened again about the panther. He would have to
+be kept fed as well, on the same principle — though a panther, Dax allowed, is
+a good deal easier to kill than a dragon, if it ever came to that.
 
-Rut went and raised the matter with Barnaby directly.
+Rut raised the feeding question with Barnaby directly.
 
 ---
 

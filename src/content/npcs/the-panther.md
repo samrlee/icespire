@@ -28,5 +28,5 @@ and the road north was open.
 - Took an interest in Barnaby's waterskin, which Barnaby moved.
 - Sage said she would think about a name.
 
-**Rut has been told the panther must be kept fed so it does not eat anyone.**
+**Rut has been told the panther must be kept fed so he does not eat anyone.**
 He believes this. He has not been told where the idea came from.

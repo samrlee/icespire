@@ -126,16 +126,19 @@ privately with the survivor, on his own terms and out of his own purse.
 Since Session 7, Dax has been quietly telling Rut things that are not true,
 with a completely straight face, and Rut believes all of them.
 
-It started when Sage and Rut were discussing whether dragons eat people. Dax
-joined in to confirm that they do — which is precisely why the party makes
-certain **Barnaby** is kept well fed, and Rut should see to it personally. When
-Sage's panther arrived, Dax extended the doctrine: the panther must also be
+It started on the road down from the temple, out of everyone else's hearing,
+when the talk came round to whether dragons eat people. Dax said they do. Rut
+believed him, and gestured at **Barnaby** — and Dax supplied the rest: that is
+why the party makes certain he is kept well fed. When Sage caught up, it was
+Rut who explained the doctrine to her, as his own. Dax simply agreed with it.
+
+The same conversation happened again about **the panther**, who must also be
 kept fed, though a panther is easier to kill than a dragon if it ever comes to
 that.
 
-Rut has taken all of this entirely seriously. He has raised the feeding
-question with Barnaby directly, and mentioned it to Adabra Gwynn, who advised
-that it sounded wise.
+Rut has taken all of it entirely seriously. He has raised the feeding question
+with Barnaby directly, and mentioned it to Adabra Gwynn, who said it sounded
+advisable.
 
 **Barnaby does not know Rut believes he is a man-eating dragon.** The rest of
 the party does not know Dax is the source. These conversations are held between
