@@ -1,5 +1,5 @@
 ---
-title: 'The Sacrifice Room, a Debt Paid, and a Dragon'
+title: 'The Hidden Chamber, a Debt Paid, and a Dragon'
 sessionNumber: 7
 date: 2026-08-25
 summary: 'The last room in the temple gives up an emerald and a written blessing to rob the place, a dead dwarf is carried home to his brother — and the dragon stops being a rumor.'

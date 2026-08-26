@@ -39,7 +39,7 @@ aged by his own spells.
 - Sent a mage hand across the orc fight with a healing potion and poured it
   into an unconscious Hamish, then dropped Sleep on the orcs in the doorway in
   the same breath (Session 6).
-- Lifted the sacrifice room's emerald with a **Mage Hand** after Bean had
+- Lifted the hidden chamber's emerald with a **Mage Hand** after Bean had
   cleared the room for traps, and set off the statue holding it. The gem was
   fine; Rut and Barnaby were not (Session 7).
 - Carries the **great emerald**, which he can throw one-handed and can barely

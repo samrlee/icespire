@@ -1,7 +1,7 @@
 ---
 title: 'The Temple of Abbathor'
 category: 'places'
-summary: 'A ruined dwarven temple to the god of greed. The ochre jellies inside used to be its priests. Its last room has been opened; the wealth it accounted for has still never been found.'
+summary: 'A ruined dwarven temple to the god of greed. The ochre jellies inside used to be its priests. Its last sealed chamber has been opened; the wealth it accounted for has still never been found.'
 ---
 
 A ruined dwarven settlement and temple southwest of Phandalin, behind a broken
@@ -38,14 +38,18 @@ back out beside the altars.
 - **The south passage** (south secret door) — dead-ends in rubble. A dead
   dwarf lies off to one side with a few coins scattered around him, and the
   temple **ledger** half-buried beside the body.
-- **The sacrifice room** — behind the rubble at the end of a dead branch,
+- **The hidden chamber** — behind the rubble at the end of a dead branch,
   reached in Session 7 by Rut in the shape of a giant badger. See below.
 
-## The sacrifice room
+## The hidden chamber
 
-The room the ledger described, opened at last in Session 7. It is round, and
-holds **two pedestals**, each of which once carried a statue cradling a large
-gem.
+Opened in Session 7. It is round, and holds **two pedestals**, each of which
+once carried a statue cradling a large gem.
+
+Two pedestals, two statues: it fits the **sacrifice chamber** the ledger
+describes, and the party has been treating it as that room. Nothing in the
+chamber says so outright — no inscription, no name, no altar — so the match is
+inference, not proof.
 
 - **Lifting a gem detonates its statue.** Thom took the emerald off the
   left-hand statue with a Mage Hand and it burst — 20 piercing to Rut, 10 to
@@ -67,7 +71,7 @@ note** — written in Common, which nobody has explained.
 
 ## What is still missing
 
-The sacrifice chamber has been found and emptied, and it does not answer the
+The chamber has been found and emptied, and it does not answer the
 question. A hundred and fifty gold in a collection box is not generations of
 offerings — that was the last of the takings, not the treasury. Nowhere in the
 ledger does it say where the hoard actually went; the entries only insist it

@@ -131,7 +131,7 @@ orc from it. Dax finished the last one — *"I killed your brothers before, and
 I'll continue to kill everyone I come across"* — and took its head off. Seven
 orcs and three jellies dead; the party holds the temple, and levelled to 3.
 
-### Session 7 — The Sacrifice Room, a Debt Paid, and a Dragon (8/25/26)
+### Session 7 — The Hidden Chamber, a Debt Paid, and a Dragon (8/25/26)
 
 The party stripped the orc dead. Hamish recovered rations, ten gold, and a
 child's doll with its head torn off; **Barnaby collected orc blood in his
@@ -144,9 +144,11 @@ Trail** and **High Road**, around **Leilon**, and near **Phandalin**, with a
 stated preference for mountainous ground.
 
 **Rut wild-shaped into a giant badger and burrowed through the blocked
-rubble**, opening the **sacrifice room from the ledger** — two pedestals, one
-holding a statue of a horned dwarf cradling an enormous emerald, the other
-blown to fragments scattered in a wide radius. Thom, Bean, and Barnaby went in;
+rubble**, opening a **sealed round chamber** — two pedestals, one holding a
+statue of a horned dwarf cradling an enormous emerald, the other blown to
+fragments scattered in a wide radius. Two pedestals and two statues match the
+ledger's description of a sacrifice chamber, but nothing in the room named
+itself, and the party never confirmed it. Thom, Bean, and Barnaby went in;
 Dax, Hamish, and Sage held outside. Thom found a **draft and a hairline seam**
 in the far wall with no visible mechanism; Barnaby's shoulder charge failed;
 Bean cleared the room for traps. **Thom lifted the emerald with Mage Hand and

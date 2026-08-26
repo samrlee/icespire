@@ -41,7 +41,7 @@ tracking, and — when the longbow isn't enough — the leaping-in-with-a-shorts
   along the Triboar Trail and the High Road, around Leilon, and near Phandalin,
   with a preference for mountainous ground (Session 7).
 - Found the **gearing sunk beneath both pedestals** in the wreckage of the
-  sacrifice room and worked the mechanisms until the hidden alcove opened
+  hidden chamber and worked the mechanisms until the alcove opened
   (Session 7).
 - Scouted the road north with Sage, confirmed the main orc body had moved west,
   and drew on the panther coming for her — then lowered the bow (Session 7).
