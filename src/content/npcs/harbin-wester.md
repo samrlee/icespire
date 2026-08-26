@@ -3,7 +3,7 @@ name: 'Harbin Wester'
 role: 'Townmaster'
 affiliation: 'Phandalin'
 status: ally
-note: 'Nervous, portly, dragon-paranoid. Pays promptly, checks the sky before opening the door.'
+note: 'Nervous, portly, dragon-paranoid. Pays promptly, checks the sky before opening the door. Has unfortunate work lined up.'
 firstAppearance: 4
 ---
 
@@ -19,3 +19,21 @@ visitors inside.
   unauthorized return visit. He doesn't know (Session 4).
 - Adabra Gwynn knows him well; Sage carries her note back to him confirming
   she's staying at her windmill (Session 5).
+
+## Paying up (Session 7)
+
+Delighted to see the party, delighted to see Adabra home, and satisfied by a
+two-word report on the dwarves — *"They left."* — which he took for a job well
+done. He paid out **35 gp** for the midwife and **70 gp** for the dwarves,
+both above the posted rates, and refused to add anything for actually bringing
+Adabra back: he had already paid them more than he would have paid another
+group. It was pointed out, in front of her, that this made Adabra's life worth
+thirty-five gold.
+
+He **does not know Dazlyn Grayshard is dead**. The body was in a bush outside
+his front door while he counted out the coin.
+
+On the way out he mentioned he is compiling some **concerning reports**, and
+that there is **unfortunate work** to be taken care of — part of the job. He
+expects the party back the next day. Then he stood in the doorway, sniffed the
+air, and decided it was probably nothing.

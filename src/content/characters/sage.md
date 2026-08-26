@@ -6,8 +6,8 @@ class: 'Ranger'
 level: 3
 status: active
 portrait: '/images/characters/sage.webp'
-tagline: 'Would rather soothe the beast. Will shoot it through the eye if she must.'
-traits: ['Sharpshooter', 'Scout', 'Dual Daggers', "Keeper of Abbathor's Ledger"]
+tagline: 'Would rather soothe the beast. Will shoot it through the eye if she must. Has, at last, been found by a cat.'
+traits: ['Sharpshooter', 'Scout', 'Dual Daggers', "Keeper of Abbathor's Ledger", 'Panther Companion']
 ---
 
 The party's other wood elf ranger. Sage would rather calm an animal than kill
@@ -35,3 +35,22 @@ it — but when it comes to it, she doesn't miss.
 - Went out alone to talk the dwarves around, found their camp stripped and
   cold — and heard seven sets of footsteps coming up the canyon (Session 6).
 - Put the arrow through the orc war-leader's skull that ended him (Session 6).
+- Healed Rut with **Cure Wounds** after the statue blast, and stayed outside
+  with him rather than going in for the treasure (Session 7).
+- Said out loud what nobody else would: that she had tried to keep the peace
+  with the dwarves, that the party had done them dirty, and that the treasure
+  was theirs by right of the work anyway (Session 7).
+- Stopped Hamish from shooting the panther that came out of the underbrush for
+  her, spent a spell on **Speak with Animals**, and gained an **animal
+  companion** (Session 7).
+- Gathered flowers from Adabra's field to lay on Dazlyn's body (Session 7).
+
+## The panther
+
+He found her — he had been asking every animal that watched the party pass, on
+the grounds that she treats animals well, and could not believe the cat
+distribution system had overlooked him for so long. He follows her commands and
+scouts ahead; she can only talk to him with **Speak with Animals** up, at the
+cost of a spell slot. In a fight she spends her action to command him.
+
+She said she would think about a name.

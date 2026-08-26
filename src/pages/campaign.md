@@ -7,7 +7,7 @@ kicker: The story so far
 
 # Campaign Summary
 
-_A living reference for Owen's campaign. Last updated: Session 6 (7/24/26)._
+_A living reference for Owen's campaign. Last updated: Session 7 (8/25/26)._
 
 **Setting:** Forgotten Realms, Phandalin region — *Dragon of Icespire Peak*,
 D&D 5e (2014 rules), level cap 6.
@@ -131,24 +131,119 @@ orc from it. Dax finished the last one — *"I killed your brothers before, and
 I'll continue to kill everyone I come across"* — and took its head off. Seven
 orcs and three jellies dead; the party holds the temple, and levelled to 3.
 
-## Open threads
+### Session 7 — The Sacrifice Room, a Debt Paid, and a Dragon (8/25/26)
 
-- The **sacrifice chamber with two statues** from the ledger — and where
-  Abbathor's hoard actually went. Everything the party can see is choked with
-  **cave-ins** they can't move by hand.
-- **The broken deal.** Norbus and Dazlyn are gone with five gold and a story;
-  the gemstone coffer was never declared. They came from Phandalin, and so far
-  the party's reputation there is intact.
+The party stripped the orc dead. Hamish recovered rations, ten gold, and a
+child's doll with its head torn off; **Barnaby collected orc blood in his
+waterskin**; Thom pulled an eye for Rut's trophy collection. **Dax stripped the
+leader's chain mail and identified it as human-made Neverwinter garrison
+work**, concluding the band had been raiding settlements nearby — a read
+supported by the leader's **sheepskin map of the Sword Coast** (read by
+Hamish), marked with scouting notes for raid targets along the **Triboar
+Trail** and **High Road**, around **Leilon**, and near **Phandalin**, with a
+stated preference for mountainous ground.
+
+**Rut wild-shaped into a giant badger and burrowed through the blocked
+rubble**, opening the **sacrifice room from the ledger** — two pedestals, one
+holding a statue of a horned dwarf cradling an enormous emerald, the other
+blown to fragments scattered in a wide radius. Thom, Bean, and Barnaby went in;
+Dax, Hamish, and Sage held outside. Thom found a **draft and a hairline seam**
+in the far wall with no visible mechanism; Barnaby's shoulder charge failed;
+Bean cleared the room for traps. **Thom lifted the emerald with Mage Hand and
+the statue detonated** — 20 piercing to Rut (breaking his badger form), 10 to
+Barnaby. The emerald was undamaged. Sage healed Rut with **Cure Wounds**
+outside; Dax and Hamish then entered.
+
+**Hamish found gearing beneath both pedestals** and worked the mechanism until
+the seam opened onto a hidden alcove: a small locked chest flanked by miniature
+idols of the temple's door-statues, praying toward it. **Bean picked the lock.**
+Inside were **150 gp, 70 tarnished silver, and a note written in Common** — an
+instruction that all offerings to Abbathor cease forever, and that whoever
+found the room and survived should take what remained and let Abbathor be
+forgotten. The party treated the note as license.
+
+Sage voiced guilt over the broken dwarf deal; Rut answered with a parable about
+eating squirrels' nuts because he was bigger. Leaving at dawn, **Hamish and
+Sage scouted ahead** and confirmed the main orc encampment had moved west, away
+from the road. A **panther** then came out of the underbrush directly for Sage
+— her **animal companion**, who had been asking after her among the local
+wildlife. Via Speak with Animals he confirmed the road north was clear. He
+remains unnamed.
+
+Running alongside all of this: **Dax convinced Rut that dragons eat people**,
+privately, on the road down from the temple. Rut gestured at Barnaby; Dax
+supplied the reason the party keeps him well fed. Rut then explained the whole
+doctrine to Sage as his own, and it was extended to the panther the same day.
+He has raised the feeding question with Barnaby directly and with Adabra Gwynn.
+Barnaby does not know why, and nobody knows Dax is the source.
+
+North on the trail they found **Dazlyn Grayshard dead**, an orc javelin in his
+back, a **sending stone** clutched in his hand. Hamish pried it loose; **Thom
+identified it and used it**, reaching **Norbus**, who replied: bring my brother
+back to Phandalin, I will bury him, and pay me what you owe. **Barnaby carried
+the body.**
+
+At Umbrage Hill, **Adabra Gwynn agreed to return to Phandalin** — the orc
+threat moved her where the dragon had not, and she recounted an orc raid that
+burned Phandalin to the ground roughly a century ago. She supplied a burlap
+sack for the corpse; Sage gathered flowers and Rut bloomed them with
+Druidcraft.
+
+In Phandalin, the party **left Dazlyn's body in a bush outside Harbin Wester's
+house** and told him only that the dwarves "left." Harbin declared it a job
+well done and paid **35 gp** (Adabra) and **70 gp** (dwarves), refusing to pay
+more for bringing Adabra home. He flagged **concerning reports and "unfortunate
+work"** coming, to be discussed the next day.
+
+At the inn — unusually crowded and visibly agitated — the party delivered the
+body to Norbus at the bar. He broke down, said they could have settled it
+together, and revealed the sending stones were a gift from his and Dazlyn's
+parents for the brothers' mining venture. He surrendered the second stone.
+**Thom and Dax paid him 25 gp out of their own purses** — ten from Thom,
+fifteen from Dax — **plus the 70 tarnished silver**; afterward, **Dax privately
+left an additional 15 gp and offered his sword for future work**, and Norbus
+took his name. The party does not know about the second payment.
+
+As they turned to leave, a man burst in with a report: **Umbrage Hill had been
+attacked and completely destroyed by the dragon.**
+
+**Final split: 36 gp each (255 gp across seven — the chest's 150 plus both
+quest payouts). No long or short rest was taken in town — the party remains
+injured and un-rested. All characters remain Level 3.**
+
+## Open threads
+- Where the temple's wealth actually went. The ledger says **invested**, not
+  stored, and the alcove chest was a final offering, not a treasury.
+- **Umbrage Hill is destroyed.** The dragon attacked it the same day the party
+  evacuated Adabra Gwynn. She is alive because they came back for her; her
+  windmill — and Phandalin's only source of healing potions — is gone.
+- **The white dragon** is no longer a rumor. It destroyed Umbrage Hill on the
+  evening of Session 7, a few hours' walk from where the party had been that
+  morning.
+- **Harbin's next assignment** — "concerning reports" and "unfortunate work,"
+  to be handed over the day after Session 7.
+- **The great emerald.** Thom carries it and it slows him to half speed. Its
+  properties are unexamined and it has not been appraised — nor has the coffer
+  of gemstones, which has still never been to the Miner's Exchange.
+- **The rest of what the party owes Norbus.** He was paid 25 gp and 70 silver
+  against a 60/40 split of a haul that includes the gemstone coffer and the
+  emerald. He accepted it and believes it was fair. He was never told about the
+  gems.
+- **Dax's private arrangement with Norbus** — 15 gp of his own and a standing
+  offer of his sword, unknown to the rest of the party.
+- **The offering note is in Common.** Nobody has asked why a dwarven temple's
+  final message was left in a language its priests would not have used among
+  themselves.
+- **The town is uneasy.** The inn was unusually crowded and agitated *before*
+  the news arrived, and nobody in the party asked why.
+- **The party is injured and un-rested.** A rest in Phandalin was raised and
+  never taken before the session ended.
 - The **cursed-seeming necklace** Rut carries blind, now joined by the holy
   symbol Hamish took off Abbathor's dead priest.
-- The **orc bands.** Seven dead at the temple, but the **large encampment**
-  down the split trail is untouched, and the war-leader knew Dax by name for
-  what he did at Gnomengarde.
-- The **white dragon** the region is bracing for.
-- The **Zhentarim** intel pact with Thornton, plus **Harbin's stolen notes**
-  on her (Dax not privy to the notes' contents; he knows the break-in happened
-  but didn't participate).
+- The **orc bands.** Seven dead at the temple; tracks confirm they came from
+  the **large encampment**, whose main body has since moved west, away from the
+  road north. The war-leader knew Dax by sight for what he did at Gnomengarde.
+- The **Zhentarim** intel pact with Thornton, plus **Harbin's stolen notes** on
+  her (Dax not privy to the notes' contents; he knows the break-in happened but
+  didn't participate).
 - **Rut's true name** — the party still only knows him as "Friend."
-- Harbin's two contracts (Umbrage Hill and the excavation warning) are both
-  discharged in substance but **unreported** — nobody has been back to
-  Phandalin to collect.

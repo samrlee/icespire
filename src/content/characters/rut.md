@@ -43,3 +43,19 @@ party has never learned anything better. His real name remains a mystery.
   down beside him when it was over (Session 6).
 - Sprang at the last orc's face and split its eye open with a dagger
   (Session 6).
+- Took the shape of a **giant badger** and burrowed through the rubble wall
+  the party had given up on, opening the way into the sacrifice room
+  (Session 7).
+- Took the worst of the statue blast — 20 piercing — and was knocked out of
+  the badger, coming apart back into himself in a spray of stone (Session 7).
+- Answered Sage's guilt over the dwarves with a parable: squirrels store nuts,
+  he found the nuts, winter was cold, he ate them, and when they complained he
+  was bigger, so they left (Session 7).
+- Kept the **orc eyeball** Thom pulled for him — green, optic nerve attached —
+  and showed it to everyone he met. Adabra Gwynn said it was very good work and
+  patted him on the head; Norbus was the only one who didn't recoil
+  (Session 7).
+- Opened the flower buds Sage gathered for Dazlyn's body with Druidcraft
+  (Session 7).
+- Believes, on Dax's authority, that Barnaby must be kept well fed or he will
+  eat the party, and that the same now goes for Sage's panther (Session 7).

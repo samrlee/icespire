@@ -34,6 +34,7 @@
 --status-unresolved:var(--gold-500);--status-unresolved-wash:var(--accent-gold-wash);
 --status-at-large:#b083c9;--status-at-large-wash:rgba(176,131,201,.14);
 --status-neutral:var(--frost-400);--status-neutral-wash:rgba(139,156,170,.14);
+--status-deceased:#8b7d86;--status-deceased-wash:rgba(139,125,134,.14);
 }
 [data-theme="light"]{
 --bg-page:var(--snow-050);
@@ -65,4 +66,5 @@
 --status-unresolved:#8f6a2c;--status-unresolved-wash:rgba(143,106,44,.10);
 --status-at-large:#71468f;--status-at-large-wash:rgba(113,70,143,.10);
 --status-neutral:#5e7182;--status-neutral-wash:rgba(94,113,130,.12);
+--status-deceased:#6b5a64;--status-deceased-wash:rgba(107,90,100,.12);
 }

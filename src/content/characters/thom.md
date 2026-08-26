@@ -39,3 +39,17 @@ aged by his own spells.
 - Sent a mage hand across the orc fight with a healing potion and poured it
   into an unconscious Hamish, then dropped Sleep on the orcs in the doorway in
   the same breath (Session 6).
+- Lifted the sacrifice room's emerald with a **Mage Hand** after Bean had
+  cleared the room for traps, and set off the statue holding it. The gem was
+  fine; Rut and Barnaby were not (Session 7).
+- Carries the **great emerald**, which he can throw one-handed and can barely
+  walk with. By the time the party reached Phandalin he was down to half speed
+  (Session 7).
+- Identified the runed stone from Dazlyn's hand as a **sending stone** —
+  "like tin cans on a string, if the string were gone" — and used it to reach
+  Norbus (Session 7).
+- Keeps the party's tally: the emerald, the gemstone coffer, and the coin, all
+  in one pot. Showed the offering note around so nobody could say they hadn't
+  been invited to rob the place (Session 7).
+- Put **10 gp of his own money** into the bag the party handed Norbus
+  (Session 7).

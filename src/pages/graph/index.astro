@@ -11,7 +11,7 @@ import { url } from '../../utils/url';
 // or neutral frost. Membership lines (NPC → faction) are dashed and quiet.
 // Everything is laid out at build time; the page ships a single inline SVG.
 
-type Disposition = 'ally' | 'hostile' | 'unresolved' | 'at-large' | 'neutral';
+type Disposition = 'ally' | 'hostile' | 'unresolved' | 'at-large' | 'neutral' | 'deceased';
 
 const factions = (await getCollection('factions')).sort((a, b) =>
   a.data.name.localeCompare(b.data.name)
@@ -38,6 +38,7 @@ const dispositionLabel: Record<Disposition, string> = {
   unresolved: 'Unresolved',
   'at-large': 'At large',
   neutral: 'Neutral',
+  deceased: 'Deceased',
 };
 
 // ---- Cluster NPCs by faction. An NPC whose `faction` slug doesn't resolve is
@@ -371,6 +372,7 @@ const roleLine = (role?: string, affiliation?: string) =>
           <li><span class="glg-line unresolved"></span> Unresolved thread</li>
           <li><span class="glg-line at-large"></span> At large</li>
           <li><span class="glg-line neutral"></span> Neutral</li>
+          <li><span class="glg-line deceased"></span> Deceased</li>
           <li><span class="glg-line member"></span> Belongs to a faction</li>
         </ul>
         <p class="graph-panel-hint">

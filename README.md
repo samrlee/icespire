@@ -41,9 +41,13 @@ replace it with the real campaign as you go.
   - `hostile` — actively opposed (renders in ember, "Hostile").
   - `unresolved` — a relationship the story hasn't settled, owed a reckoning
     either way (renders as "Unresolved Thread").
+  - `at-large` — a wildcard the party has lost track of: escaped, fled, or
+    otherwise unaccounted for and still out there. Renders as "At Large".
+  - `deceased` — dead, and known to the party to be dead. The relationship is
+    over; what they left behind may not be.
   - `neutral` — met and non-hostile but uncommitted: townsfolk, patrons,
-    one-off contacts, the newly-met, wildcards. Renders as "At Large". This is
-    the default.
+    one-off contacts, the newly-met. Renders as "Neutral". This is the
+    default.
 - **Factions**: `name`, `type`, `status`, `alignment`, `summary` (codex panel text).
 - **Lore**: `title`, `category` (places/history/items/…), `summary`.
 - **Locations** (`src/content/locations/`): places on the campaign map. `name`,

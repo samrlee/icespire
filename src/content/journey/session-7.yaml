@@ -1,0 +1,30 @@
+session: 7
+route:
+  - dwarven-excavation
+  - umbrage-hill
+  - phandalin
+events:
+  - title: 'The sacrifice room'
+    at: dwarven-excavation
+    kind: discovery
+    note: 'Rut burrows through the rubble as a giant badger. Lifting the emerald detonates the statue holding it; working the gearing under both pedestals opens the alcove, its last offering chest, and a note releasing whoever survived the room.'
+  - title: 'The cat distribution system'
+    at: umbrage-hill
+    kind: discovery
+    note: "A panther walks out of the underbrush on the road north, straight for Sage. He had been asking every animal on the road where to find her. Hamish lowers the bow."
+  - title: 'Dazlyn on the road'
+    at: umbrage-hill
+    kind: omen
+    note: 'One of the dwarves face down with an orc javelin in his back and a sending stone in his fist. His brother answers on the other stone: bring him back to Phandalin, and pay me what you owe.'
+  - title: 'Adabra leaves the windmill'
+    at: umbrage-hill
+    kind: social
+    note: 'The dragon never moved her. The orcs do. She packs her brewing equipment and walks to Phandalin with the party — hours before the hill is destroyed.'
+  - title: 'A debt paid at the bar'
+    at: phandalin
+    kind: social
+    note: "Harbin pays 105 gold and says nothing about the body in his bush. Norbus gets his brother, 25 gold, 70 tarnished silver, and — privately, from Dax — another 15 and an offer of work."
+  - title: 'Umbrage Hill is gone'
+    at: phandalin
+    kind: omen
+    note: 'A man runs into the crowded inn with a report he has just been handed. The hill was attacked. It was a dragon. There is nothing left of it.'
