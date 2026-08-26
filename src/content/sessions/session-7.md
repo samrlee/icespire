@@ -45,9 +45,7 @@ Nobody at the table could say what the note beside the map meant. Dax looked
 over the body one more time, found no rank markings, no tattoos, nothing to say
 the thing had been anyone important. A captain, maybe. A troop leader. Then he
 drew his sword, put it into the corpse once, pulled it out, flicked the blood
-off the blade, and walked away.
-
-"That's the last time orcs try to almost kill me."
+off the blade, and walked away without saying anything.
 
 Thom, meanwhile, had dug a thumb into the leader's eye socket and pulled the
 eye out whole, optic nerve trailing, and handed it to Rut, who wanted a trophy.

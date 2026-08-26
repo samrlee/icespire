@@ -102,8 +102,7 @@ anyway").
   had been raiding settlements close by. The second time his background has
   produced usable intelligence (Session 7).
 - Put his sword into the dead war-leader once, flicked the blood off the blade,
-  and walked away: *"That's the last time orcs try to almost kill me."*
-  (Session 7).
+  and walked away without a word (Session 7).
 - Stayed out of the badger tunnel until the statue detonated, then went in with
   Hamish to find out who was still alive (Session 7).
 - Argued for scouting the way out rather than walking blindly off a site where
