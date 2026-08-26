@@ -169,6 +169,21 @@ hauling a backpack that seemed to be trying to sit down.
 
 ---
 
+On the road down, Sage and Rut fell to discussing whether dragons eat people.
+
+Dax said that they do.
+
+He said it the way he says everything — flatly, reasonably, with no tell in his
+face at all. Dragons eat people. Which is precisely why the party takes such
+care to keep Barnaby well fed, and why Rut, personally, should see to it.
+
+"Make sure he's well fed."
+
+Rut took this with enormous seriousness. He had follow-up questions. Dax
+answered every one of them.
+
+---
+
 Hamish and Sage went out ahead to scout, the two of them faster than the rest
 and better in the rock than anyone.
 
@@ -200,6 +215,12 @@ name.
 
 Hamish lowered the bow.
 
+Dax took Rut aside and extended the doctrine. The panther would have to be kept
+fed as well, on the same principle — though a panther, he allowed, is a good
+deal easier to kill than a dragon, if it ever came to that.
+
+Rut went and raised the matter with Barnaby directly.
+
 ---
 
 North on the trail, they found the body.
@@ -215,8 +236,12 @@ there was another one somewhere, and someone holding it.
 
 He used it.
 
-*We found this stone. Please let us know how to find you. I have bad news about
-the person who held it. My name is Thom.*
+*Hello there. We found this stone. Please let us know how to find you. I have
+bad news about the person who held it. My*
+
+The stone gives you twenty-five words and takes the rest. Thom said "my name is
+Thom" out loud, in the ordinary way, standing on the road. What arrived at the
+other end stopped at *my*.
 
 The answer came back in his head in a voice he had heard before, and it was
 short.
@@ -252,14 +277,17 @@ out. Sage went out into the field and gathered what flowers she could find, and
 Rut coaxed the buds open for her, and they laid them on top.
 
 Rut showed Adabra the orc eye. She told him it was very good work and patted
-him on the head.
+him on the head. He also explained, while she was being pleasant to him, that
+the panther has to be kept fed so that he does not eat anybody.
+
+*Well, that's advisable.*
 
 ---
 
 They came into Phandalin in the rain, muddy and slow and very tired, and Thom
 slower than any of them — by the end of the walk the emerald had him down to
 half his usual pace, though he could lift the thing out of his pack and throw
-it one-handed without trouble. Whatever was wrong with it was not weight.
+it one-handed without trouble.
 
 They left the body outside the Quest Master's house, in a bush, in the rain,
 with the boots sticking up.
@@ -310,7 +338,7 @@ in the bag turned out to be catching.
 *We could have just settled this together,* he said. *And then maybe my brother
 wouldn't have died.*
 
-Somebody said he was the one who ran off.
+"You did run off," Thom said.
 
 *Well, of course. What are we going to do against a bunch of heavily armed
 adventurers? We're just miners. I'm not going to fight you. Do I look like a
@@ -319,6 +347,9 @@ fighter?*
 He told them how it had gone. The orcs had caught them on the road — the same
 band, he assumed, that had gone on to the temple. They killed Dazlyn before he
 could react. He ran, and lived, and had been in this room ever since.
+
+Dax told him the orcs were dealt with. "If it gives you any peace, they're long
+dead."
 
 Rut held out the orc eye to him. Of everyone he had shown it to, Norbus was the
 first not to recoil. He said it was good, and then he hugged the gnome, and a

@@ -108,6 +108,8 @@ anyway").
   Hamish to find out who was still alive (Session 7).
 - Argued for scouting the way out rather than walking blindly off a site where
   seven orcs had just ambushed them (Session 7).
+- Told a weeping Norbus that the orcs who killed his brother were long dead, if
+  it gave him any peace (Session 7).
 - Put **15 gp into the bag the party gave Norbus**, then went back alone
   afterward and left **another 15 of his own** with an offer of future work —
   and gave the dwarf his name (Session 7).

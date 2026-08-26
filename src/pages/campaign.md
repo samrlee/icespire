@@ -170,6 +170,12 @@ from the road. A **panther** then came out of the underbrush directly for Sage
 wildlife. Via Speak with Animals he confirmed the road north was clear. He
 remains unnamed.
 
+Running alongside all of this: **Dax has quietly convinced Rut that dragons eat
+people**, and that Barnaby must therefore be kept well fed — a doctrine he
+extended to the panther the same day. Rut believes it completely and has raised
+it with Barnaby, with Adabra Gwynn, and with anyone else who will listen.
+Barnaby does not know why. Nobody knows Dax is the source.
+
 North on the trail they found **Dazlyn Grayshard dead**, an orc javelin in his
 back, a **sending stone** clutched in his hand. Hamish pried it loose; **Thom
 identified it and used it**, reaching **Norbus**, who replied: bring my brother

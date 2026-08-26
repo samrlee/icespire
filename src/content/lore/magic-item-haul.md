@@ -18,7 +18,8 @@ The running inventory:
   any distance. Recovered in Session 7: the first pried out of Dazlyn
   Grayshard's dead hand on the road, the second put on the bar by his brother
   Norbus, who had no use for half a pair. **Thom carries one; the other travels
-  with the party** and has not been assigned to anyone.
+  with the party** and has not been assigned to anyone. The word limit is
+  strict: Thom's first message was cut off one word short of his own name.
 
 ## Suspicious acquisitions (not yet identified)
 
@@ -37,8 +38,7 @@ The running inventory:
   which set the statue off. Diamond-cut, roughly **8 lbs**, and very large.
   Thom can lift it out of his pack one-handed and throw it without trouble, but
   carrying it wears on him: by the end of a day's walk to Phandalin he was down
-  to **half speed**. Whatever is wrong with it is not weight. Unappraised, and
-  nobody has cast Detect Magic on it yet.
+  to **half speed**. Unappraised, and nobody has cast Detect Magic on it yet.
 - **A manticore tail spike** — pulled from a corpse by Rut, who kept it
   without saying why. Now filed alongside a mimic tentacle and a green orc
   eyeball, optic nerve attached (Session 7).

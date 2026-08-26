@@ -26,9 +26,11 @@ The orc band caught the brothers on the road north — the same seven, he
 assumes, that went on to the temple. They killed **Dazlyn** before he could
 react. Norbus ran, lived, and had been sitting in the Phandalin inn ever since.
 
-The party reached him first through his brother's **sending stone**, and his
-answer was five words longer than it needed to be: *Bring my brother back to
-Phandalin. I will bury him. P.S. Pay me what you owe.* They carried the body
+The party reached him first through his brother's **sending stone** — Thom's
+message ran out of its twenty-five words one short of his name, so all Norbus
+got was a stranger and bad news. His answer was five words longer than it
+needed to be: *Bring my brother back to Phandalin. I will bury him. P.S. Pay me
+what you owe.* They carried the body
 in and set it at his feet at the bar, and he broke down in front of the whole
 room.
 
@@ -43,7 +45,9 @@ sat up fat enough in his hand that he thought it was more than it was. He
 called it decent, thanked them, and asked to be left alone. They had more
 dwarves to swindle, he supposed.
 
-He was not repulsed by Rut's orc eye. He said it was good work, and hugged him.
+Dax told him the orcs were long dead, if that gave him any peace. He was not
+repulsed by Rut's orc eye either — he said it was good work, and hugged the
+gnome.
 
 ## Dax's arrangement
 
