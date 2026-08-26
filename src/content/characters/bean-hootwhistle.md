@@ -33,7 +33,7 @@ acquiring other people's valuables.
   paid the bill nobody else would (Session 6).
 - Spent the entire orc fight behind one pillar and was never found or hit
   once, and killed an orc from it (Session 6).
-- Checked the sacrifice room for traps twice, found none, and was right —
+- Checked the hidden chamber for traps twice, found none, and was right —
   the statue was not a trap so much as a consequence (Session 7).
 - Picked the lock on the offering chest in the hidden alcove, the last locked
   thing in the temple (Session 7).

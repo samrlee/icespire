@@ -44,7 +44,7 @@ party has never learned anything better. His real name remains a mystery.
 - Sprang at the last orc's face and split its eye open with a dagger
   (Session 6).
 - Took the shape of a **giant badger** and burrowed through the rubble wall
-  the party had given up on, opening the way into the sacrifice room
+  the party had given up on, opening the way into the hidden chamber
   (Session 7).
 - Took the worst of the statue blast — 20 piercing — and was knocked out of
   the badger, coming apart back into himself in a spray of stone (Session 7).

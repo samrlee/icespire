@@ -37,7 +37,7 @@ one who ends up carrying people (and tied-up gnomes) when things go sideways.
   (Session 6).
 - Collected orc blood in his waterskin — emptied it first, sat a body up, cut
   its throat, stoppered it, and put it away without explaining (Session 7).
-- Threw his shoulder into the sacrifice room's hidden slab at a run and got a
+- Threw his shoulder into the hidden chamber's sealed slab at a run and got a
   bruise out of it (Session 7).
 - Took 10 piercing from the exploding statue and let his armor turn most of it
   (Session 7).

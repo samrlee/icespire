@@ -4,10 +4,10 @@ route:
   - umbrage-hill
   - phandalin
 events:
-  - title: 'The sacrifice room'
+  - title: 'The hidden chamber'
     at: dwarven-excavation
     kind: discovery
-    note: 'Rut burrows through the rubble as a giant badger. Lifting the emerald detonates the statue holding it; working the gearing under both pedestals opens the alcove, its last offering chest, and a note releasing whoever survived the room.'
+    note: 'Rut burrows through the rubble as a giant badger into a sealed round chamber. Lifting the emerald detonates the statue holding it; working the gearing under both pedestals opens the alcove, its last offering chest, and a note releasing whoever survived the room.'
   - title: 'The cat distribution system'
     at: umbrage-hill
     kind: discovery

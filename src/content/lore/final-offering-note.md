@@ -4,10 +4,10 @@ category: 'history'
 summary: 'The last thing anyone wrote in the Temple of Abbathor: an instruction to stop paying the god, and permission for whoever survived the room to take what was left.'
 ---
 
-Found in Session 7, folded in with the coin in the locked chest in the
-sacrifice room's hidden alcove — behind a wall that only opens once both
-statues have given up their gems, in a temple where taking a gem detonates the
-statue holding it.
+Found in Session 7, folded in with the coin in the locked chest in the hidden
+chamber's alcove — behind a wall that only opens once both statues have given
+up their gems, in a temple where taking a gem detonates the statue holding
+it.
 
 > May all offerings to Abbathor forever cease. If you have found this room and
 > you have survived, take what remains. Let the memory of Abbathor be

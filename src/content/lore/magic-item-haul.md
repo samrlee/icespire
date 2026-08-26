@@ -34,7 +34,7 @@ The running inventory:
   lifted from a skeleton in the temple crypt by Hamish. The Dwarvish runes cut
   into it read *"Greed is good."* Two members of the party now carry jewellery
   taken off this god's dead (Session 6).
-- **The great emerald** — taken off the sacrifice-room statue with a Mage Hand,
+- **The great emerald** — taken off a statue in the temple's hidden chamber with a Mage Hand,
   which set the statue off. Diamond-cut, roughly **8 lbs**, and very large.
   Thom can lift it out of his pack one-handed and throw it without trouble, but
   carrying it wears on him: by the end of a day's walk to Phandalin he was down
@@ -59,7 +59,7 @@ The running inventory:
   Hamish. Raid targets marked along the **Triboar Trail** and the **High
   Road**, around **Leilon**, and near **Phandalin**, with a clear preference
   for mountainous ground (Session 7).
-- **150 gp and 70 tarnished silver** — the sacrifice room's last offering
-  chest, taken with written permission. The silver went to Norbus (Session 7).
+- **150 gp and 70 tarnished silver** — the last offering chest, from the
+  hidden chamber's alcove, taken with written permission. The silver went to Norbus (Session 7).
 - **Thom's shovel** — currently the party's primary tool against several
   hundred tons of cave-in.
