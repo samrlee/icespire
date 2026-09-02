@@ -192,6 +192,33 @@ npm run dev      # local dev server at localhost:4321
 npm run build    # production build (also validates all content)
 ```
 
+## Response headers
+
+`dist/_headers` — the file Cloudflare Pages reads for response headers — is
+**generated at build time** by [`integrations/security-headers.mjs`](integrations/security-headers.mjs).
+Edit the policy there; don't add a `public/_headers`, it would be overwritten.
+
+It is generated because the Content-Security-Policy's `script-src` names the
+SHA-256 hash of every inline script the build emitted (the pre-paint theme
+script, the nav and contents-rail scripts, Astro's own small bundles). That
+replaces `'unsafe-inline'`, which would have waved through any inline script —
+including one arriving in a bad content edit, which is what the policy is here
+to stop. Touch a script and the next build recomputes its hash; nothing to
+remember.
+
+Two invariants the policy leans on, so change them together:
+
+- `build.inlineStylesheets: 'never'` in `astro.config.mjs` keeps every
+  stylesheet a linked file, which is what lets `style-src-elem` drop
+  `'unsafe-inline'`. `style-src` keeps it for the `style="…"` attributes on
+  the map SVGs — CSP can't hash attributes.
+- The Google Fonts allowances (`fonts.googleapis.com`, `fonts.gstatic.com`)
+  exist only for the `@import` in `src/styles/tokens/fonts.css`. Self-host
+  those faces and both can go.
+
+To check a change locally, `npm run build` and read `dist/_headers`; `npm run
+preview` does **not** apply it.
+
 ## One-time Cloudflare Pages setup
 
 Deploys are handled by Cloudflare Pages (not GitHub Actions). Connect the repo
