@@ -18,7 +18,7 @@ import { url } from '../utils/url';
         id="search-input"
         class="search-input"
         type="search"
-        placeholder="Search recaps, people, places, lore…"
+        placeholder="Search the chronicle, or ask a question…"
         autocomplete="off"
         spellcheck="false"
         role="combobox"
@@ -27,6 +27,18 @@ import { url } from '../utils/url';
         aria-autocomplete="list"
       />
       <button class="search-close" type="submit" aria-label="Close search">Esc</button>
+    </div>
+    <div id="search-intro" class="search-intro">
+      <p class="search-intro-lead">
+        <span class="search-intro-kicker">Ask the chronicle</span>
+        Put a question to the chronicler and it answers from the published recaps —
+        and says so plainly when the chronicle doesn't record something.
+      </p>
+      <ul class="search-intro-examples">
+        <li><button type="button" data-search-example>Why did the dwarves walk away from the deal?</button></li>
+        <li><button type="button" data-search-example>What happened at Gnomengarde?</button></li>
+        <li><button type="button" data-search-example>Who is Facktoré?</button></li>
+      </ul>
     </div>
     <div id="search-results" class="search-results" role="listbox" aria-label="Results"></div>
     <div id="search-ask" class="search-ask" aria-live="polite" hidden></div>

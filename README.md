@@ -181,6 +181,12 @@ the index fetch is same-origin, which `connect-src 'self'` already allows.
 
 ## Ask the Chronicle
 
+Three ways in, because a feature nobody finds may as well not exist: the
+header button (**Search or ask**), an **Ask the chronicle** button in the
+homepage hero, and `⌘K`/`/` as before — all opening the same palette. Opening
+it empty now shows what the chronicler does, with a few real questions as
+one-click examples, rather than an empty box that only looks like search.
+
 Under the search results, the palette offers to put the question to a model:
 `functions/api/ask.ts` retrieves the few published entries that bear on it and
 hands **only those** to Llama 3.3 70B through Cloudflare's Workers AI binding.

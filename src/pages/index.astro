@@ -42,6 +42,9 @@ const latest = sessions[0];
       <div class="hero-actions">
         {latest && <a class="btn-gold" href={url(`/sessions/${latest.id}/`)}>Read the latest recap</a>}
         <a class="btn-ghost" href={url('/campaign/')}>The story so far</a>
+        <button class="btn-ghost" type="button" data-search-open aria-haspopup="dialog">
+          Ask the chronicle
+        </button>
       </div>
     </div>
     <a class="hero-cover" href={url('/campaign/')} aria-label="Campaign summary">

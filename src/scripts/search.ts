@@ -18,6 +18,7 @@ const input = document.querySelector<HTMLInputElement>('#search-input');
 const list = document.querySelector<HTMLElement>('#search-results');
 const statusLine = document.querySelector<HTMLElement>('#search-status');
 const askBox = document.querySelector<HTMLElement>('#search-ask');
+const intro = document.querySelector<HTMLElement>('#search-intro');
 const openers = document.querySelectorAll<HTMLButtonElement>('[data-search-open]');
 
 if (dialog && input && list && statusLine) {
@@ -97,6 +98,14 @@ function wire(
     active = -1;
   });
 
+  for (const example of document.querySelectorAll<HTMLButtonElement>('[data-search-example]')) {
+    example.addEventListener('click', () => {
+      input.value = example.textContent?.trim() ?? '';
+      input.focus();
+      render();
+    });
+  }
+
   input.addEventListener('input', render);
 
   input.addEventListener('keydown', (e) => {
@@ -133,6 +142,7 @@ function wire(
     input.removeAttribute('aria-activedescendant');
 
     const query = input.value.trim();
+    if (intro) intro.hidden = tokens.length > 0;
 
     if (tokens.length === 0) {
       statusLine.textContent = '';
