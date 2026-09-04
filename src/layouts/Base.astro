@@ -1,5 +1,6 @@
 ---
 import EntityLinks from '../components/EntityLinks.astro';
+import SearchPalette from '../components/SearchPalette.astro';
 import { url } from '../utils/url';
 import '../styles/global.css';
 
@@ -130,7 +131,13 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
           ))
         }
       </nav>
-      <button class="theme-toggle" id="theme-toggle" type="button">Snowfield</button>
+      <div class="header-tools">
+        <button class="search-trigger" type="button" data-search-open aria-haspopup="dialog">
+          <span class="search-trigger-label">Search</span>
+          <kbd class="search-trigger-key">⌘K</kbd>
+        </button>
+        <button class="theme-toggle" id="theme-toggle" type="button">Snowfield</button>
+      </div>
     </header>
     <main class="page">
       <slot />
@@ -142,6 +149,7 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
       A chronicle kept by the party. Updated between sessions.
     </footer>
     <EntityLinks />
+    <SearchPalette />
     <script is:inline>
       (() => {
         const root = document.documentElement;

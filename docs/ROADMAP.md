@@ -9,6 +9,15 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Done
 
+- **Site-wide search (`⌘K`)** — a palette over every published page: recaps,
+  roster, NPCs, factions, lore, visited places, and the campaign summary. The
+  index is a build-time static file (`/search-index.json`, from
+  `src/lib/search-index.ts`); ranking, snippets, and highlighting all happen in
+  the browser (`src/scripts/search.ts`), so search adds no server, no runtime
+  dependency, and nothing that can be rate-limited or run up a bill. It reuses
+  the site's publish gates — a `draft` recap and an `unknown` location are
+  unsearchable for exactly as long as they are unlinked. _(Sep 2026)_
+
 - **Per-session social-preview cards** — each session gets its own Open Graph
   image so a shared recap link shows that session's title/date instead of one
   static card. Generated at build time (`src/pages/og/sessions/[id].png.ts` →
@@ -19,26 +28,21 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 Ordered high → low by rough impact-per-effort.
 
-1. **Site-wide search.** No search today (only the map's URL sync). With this
-   much content — sessions, NPCs, locations, lore, factions — a client-side
-   search (a prebuilt JSON index + a small `⌘K` palette, no runtime deps
-   needed) is the biggest usability win. "Who was that NPC in session 2?"
-
-2. **Quest Board page (`/quests/`).** *Dragon of Icespire Peak* is built around
+1. **Quest Board page (`/quests/`).** *Dragon of Icespire Peak* is built around
    Phandalin's job board. A page listing jobs (posted → active → completed →
    failed), each tied to a location and the session it resolved in. Nothing on
    the site currently tracks objectives.
 
-3. **Treasury / loot index.** `callout loot` and `callout magic-item` blocks
+2. **Treasury / loot index.** `callout loot` and `callout magic-item` blocks
    are scattered through recaps but never aggregated. A page collecting every
    magic item and notable haul (who carries it, which session it dropped)
    surfaces content that's currently buried in prose.
 
-4. **RSS feed + sitemap.** No `@astrojs/sitemap`, no RSS. An RSS feed of recaps
+3. **RSS feed + sitemap.** No `@astrojs/sitemap`, no RSS. An RSS feed of recaps
    lets players subscribe to new sessions; a sitemap helps the deployed site.
    Both are near-zero-effort Astro integrations.
 
-5. **"Ask the Chronicle" — an AI bot for player questions.** A box on the site
+4. **"Ask the Chronicle" — an AI bot for player questions.** A box on the site
    where a player asks "who was that priest in Phandalin?" or "why do the orcs
    want the mine?" and gets an answer grounded in the published campaign. The
    whole publishable corpus (sessions, campaign summary, NPCs, factions, lore,
@@ -80,18 +84,37 @@ Ordered high → low by rough impact-per-effort.
    cite real site URLs, since every corpus entry maps to a page. Grounding
    instruction should be strict — answer only from the corpus, say "the
    chronicle doesn't record that" rather than inventing, and never speculate
-   about what's coming. Pairs well with idea 1: the same corpus builder feeds
-   a search index.
+   about what's coming. The shipped search index (see Done)
+   already proves the gating approach and gives the corpus builder a model to
+   follow.
 
-6. ~~Per-session dynamic OG images~~ — **done, see above.**
+   **Next step is the free path: Cloudflare Workers AI.** Every account gets
+   10,000 Neurons/day free (then $0.011/1,000), and we are already on
+   Cloudflare Pages, so a binding replaces the API key entirely — nothing to
+   leak and no bill to cap. Two things to check before committing to it: the
+   per-model Neuron rate against a ~30k-token prompt, since the daily pool is
+   shared across models and a whole-campaign prompt is a heavy request; and
+   the served context limit in Cloudflare's model catalog rather than the
+   model's headline spec. If the served context is smaller than the corpus,
+   the "no retrieval needed" advantage is gone and this becomes a much larger
+   job — at which point the search index above is already answering the
+   lookup questions anyway. Smaller open models are also weaker at grounded
+   Q&A, which on a canon-of-record site is the failure mode that matters.
 
-7. **Reading time + "dramatis personae" on recaps.** A reading-time estimate
+   Whichever backend wins, the cheapest architecture is **search first, model
+   second**: let the free index answer lookups, fall through to a model only
+   for genuine "why/how" questions, and cache answers (Workers KV) so seven
+   people asking the same thing after a session costs one call.
+
+5. ~~Per-session dynamic OG images~~ — **done, see above.**
+
+6. **Reading time + "dramatis personae" on recaps.** A reading-time estimate
    and an auto-generated cast strip (NPCs/characters appearing in a session,
    from the encounters array or entity links) at the top of each recap.
 
-8. **Print stylesheet.** A `@media print` block so a recap or the campaign
+7. **Print stylesheet.** A `@media print` block so a recap or the campaign
    summary prints cleanly for players/DMs who want a hard copy.
 
-9. **Replace the sample data.** The README still flags the current content as
+8. **Replace the sample data.** The README still flags the current content as
    sample data from the design system. The features above only pay off once
    real campaign content fills them in. (Content work, not code.)

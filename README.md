@@ -18,6 +18,7 @@ to `main`).
 | NPCs | `/npcs/` | `src/content/npcs/` |
 | Relations | `/graph/` | derived from `src/content/npcs/` + `factions/` + `characters/` |
 | Codex | `/codex/` | factions (`src/content/factions/`) + lore (`src/content/lore/`) |
+| Search (`⌘K`) | `/search-index.json` | every published entry, built by `src/lib/search-index.ts` |
 
 ## Adding content
 
@@ -148,6 +149,34 @@ Callout boxes (game mechanics stay out of narrative prose per the design system)
 
 Character portraits go in `public/images/characters/` and are referenced as
 `portrait: /images/characters/brindle.jpg`.
+
+## Search
+
+Every page is searchable from the header button, `⌘K`/`Ctrl-K`, or `/`. There
+is no search server: `src/lib/search-index.ts` flattens the published content
+into one static JSON file at `/search-index.json` during the build, and
+`src/scripts/search.ts` fetches it the first time someone opens the palette and
+does the ranking, snippets, and highlighting in the browser. Nothing to run,
+nothing to pay for, nothing to rate-limit.
+
+**The index publishes only what the site publishes**, and that is the rule to
+keep when editing it. Each collection is filtered exactly as its page filters:
+a `draft` recap and a location whose `status` is `unknown` are absent from the
+index for precisely as long as they are absent from the site — so a place
+becomes searchable the moment you flip it to `rumored`, and not a build
+before. Add a collection to `buildSearchIndex()` and you must bring its
+publish gate with it; reaching for a bare `getCollection()` there is how a
+spoiler ships.
+
+Ranking is deliberately small: every term has to appear somewhere in an entry
+for it to place at all (so "dax mine" means both, not either), and a hit
+counts most in a name, then a subtitle, then body prose. Snippets are built
+from DOM nodes rather than an HTML string, so campaign prose can never smuggle
+markup into the palette.
+
+Nothing about this changes the CSP — the palette's script bundles to an
+external file under `/_astro/` (already covered by `script-src 'self'`), and
+the index fetch is same-origin, which `connect-src 'self'` already allows.
 
 ## Design system
 
