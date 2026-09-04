@@ -2,28 +2,13 @@
 // (/search-index.json, built by lib/search-index.ts); this fetches it on the
 // first open and ranks it in the browser. No server, no runtime dependency —
 // which is the whole point: search costs nothing to run and can't be abused.
+//
+// The ranking itself lives in lib/search-rank.ts, shared with the Ask
+// endpoint so both retrieve from the index by the same rules.
 
-type SearchDoc = {
-  title: string;
-  kind: string;
-  sub?: string;
-  href: string;
-  text: string;
-};
-
-/** A doc plus the lowercased copies we match against, folded once at load. */
-type Indexed = SearchDoc & {
-  titleLc: string;
-  subLc: string;
-  textLc: string;
-};
-
-type Hit = {
-  doc: Indexed;
-  score: number;
-  /** Where in the body text the best match landed, for the snippet. */
-  at: number;
-};
+import { contentTokens, index, pickAll, tokenize } from '../lib/search-rank';
+import type { Hit, Indexed, SearchDoc } from '../lib/search-rank';
+import { createAsk } from './ask';
 
 const MAX_HITS = 8;
 const SNIPPET_RADIUS = 90;
@@ -32,6 +17,7 @@ const dialog = document.querySelector<HTMLDialogElement>('#search-dialog');
 const input = document.querySelector<HTMLInputElement>('#search-input');
 const list = document.querySelector<HTMLElement>('#search-results');
 const statusLine = document.querySelector<HTMLElement>('#search-status');
+const askBox = document.querySelector<HTMLElement>('#search-ask');
 const openers = document.querySelectorAll<HTMLButtonElement>('[data-search-open]');
 
 if (dialog && input && list && statusLine) {
@@ -45,6 +31,10 @@ function wire(
   statusLine: HTMLElement
 ) {
   const indexUrl = dialog.dataset.index ?? '/search-index.json';
+  // The Ask panel is optional: without the endpoint configured the palette is
+  // exactly the search it was before.
+  const ask =
+    askBox && dialog.dataset.ask ? createAsk(askBox, dialog.dataset.ask) : null;
   let docs: Indexed[] | null = null;
   let loading: Promise<void> | null = null;
   let hits: Hit[] = [];
@@ -55,12 +45,7 @@ function wire(
     loading = fetch(indexUrl)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((raw: SearchDoc[]) => {
-        docs = raw.map((d) => ({
-          ...d,
-          titleLc: d.title.toLowerCase(),
-          subLc: (d.sub ?? '').toLowerCase(),
-          textLc: d.text.toLowerCase(),
-        }));
+        docs = index(raw);
       })
       .catch(() => {
         docs = [];
@@ -107,6 +92,7 @@ function wire(
     input.value = '';
     list.replaceChildren();
     statusLine.textContent = '';
+    ask?.clear();
     hits = [];
     active = -1;
   });
@@ -146,8 +132,11 @@ function wire(
     active = -1;
     input.removeAttribute('aria-activedescendant');
 
+    const query = input.value.trim();
+
     if (tokens.length === 0) {
       statusLine.textContent = '';
+      ask?.clear();
       hits = [];
       return;
     }
@@ -157,85 +146,24 @@ function wire(
       return;
     }
 
-    hits = search(docs, tokens);
+    hits = pickAll(docs, tokens, MAX_HITS);
+    // Match on everything the reader typed, but only mark the words that
+    // carry meaning — highlighting every "the" in a typed-out question is
+    // noise, and the Ask box invites exactly those questions.
+    const marks = contentTokens(input.value);
+    // Offered either way — a question the keyword list can't answer is exactly
+    // where asking earns its keep.
+    ask?.offer(query);
+
     if (hits.length === 0) {
-      statusLine.textContent = `Nothing in the chronicle matches “${input.value.trim()}”.`;
+      statusLine.textContent = `Nothing in the chronicle matches “${query}”.`;
       return;
     }
 
     statusLine.textContent = `${hits.length} result${hits.length === 1 ? '' : 's'}.`;
-    hits.forEach((hit, i) => list.append(row(hit, tokens, i)));
+    hits.forEach((hit, i) => list.append(row(hit, marks, i)));
     setActive(0);
   }
-}
-
-/** Query text to the distinct lowercase terms worth matching on. */
-function tokenize(query: string): string[] {
-  return [...new Set(query.toLowerCase().split(/[^\p{L}\p{N}']+/u).filter(Boolean))];
-}
-
-/**
- * Where `needle` sits in `haystack`, how often, and whether any occurrence
- * starts a word — a match on "Dax" should beat one buried inside "Daxholm".
- */
-function matchIn(haystack: string, needle: string) {
-  let idx = haystack.indexOf(needle);
-  let count = 0;
-  let first = -1;
-  let boundary = false;
-  while (idx !== -1 && count < 20) {
-    count++;
-    const starts = idx === 0 || !/[\p{L}\p{N}]/u.test(haystack[idx - 1]);
-    if (first === -1 || (starts && !boundary)) {
-      first = idx;
-      boundary = boundary || starts;
-    }
-    idx = haystack.indexOf(needle, idx + needle.length);
-  }
-  return { count, first, boundary };
-}
-
-/**
- * Every term has to land somewhere in a document for it to place at all, so
- * "dax mine" finds the recap that has both rather than everything with either.
- * Weights just say where a hit counts most: a name beats a subtitle, which
- * beats a mention buried in prose.
- */
-function search(docs: Indexed[], tokens: string[]): Hit[] {
-  const hits: Hit[] = [];
-
-  for (const doc of docs) {
-    let score = 0;
-    let at = -1;
-    let matchedAll = true;
-
-    for (const token of tokens) {
-      const title = matchIn(doc.titleLc, token);
-      const subtitle = matchIn(doc.subLc, token);
-      const body = matchIn(doc.textLc, token);
-      let termScore = 0;
-
-      if (doc.titleLc === token) termScore += 40;
-      else if (title.count > 0) termScore += title.boundary ? 16 : 7;
-      if (subtitle.count > 0) termScore += subtitle.boundary ? 4 : 2;
-      if (body.count > 0) {
-        termScore += (body.boundary ? 3 : 1) + Math.min(body.count, 4);
-        if (at === -1) at = body.first;
-      }
-
-      if (termScore === 0) {
-        matchedAll = false;
-        break;
-      }
-      score += termScore;
-    }
-
-    if (matchedAll) hits.push({ doc, score, at });
-  }
-
-  return hits
-    .sort((a, b) => b.score - a.score || a.doc.title.localeCompare(b.doc.title))
-    .slice(0, MAX_HITS);
 }
 
 function row(hit: Hit, tokens: string[], i: number): HTMLAnchorElement {
