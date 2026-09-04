@@ -212,6 +212,15 @@ working is in `docs/ROADMAP.md`):
   Axeholm, which the party has not found, it answered "The chronicle does not
   record that" rather than reciting the book.
 
+The system prompt is tuned between two opposite failures, so change it with
+both in mind. Too loose and the model answers from its own knowledge of the
+module, telling players what is in rooms they have never entered. Too strict
+and it refuses questions the chronicle plainly answers: the first live
+question was "why do the orcs want the mine", and it refused despite Session 6
+saying three times that the orcs wanted the ruin as "a good fort" — because
+the reader said *mine* where the recap says *ruin*. Hence the explicit
+instruction to match on meaning rather than wording.
+
 Spoiler-safety is inherited rather than re-implemented: the model only ever
 sees documents `/search-index.json` was allowed to contain, so the publish
 gates that protect search protect this too. A question that retrieves nothing
