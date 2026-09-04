@@ -88,23 +88,60 @@ Ordered high → low by rough impact-per-effort.
    already proves the gating approach and gives the corpus builder a model to
    follow.
 
-   **Next step is the free path: Cloudflare Workers AI.** Every account gets
-   10,000 Neurons/day free (then $0.011/1,000), and we are already on
-   Cloudflare Pages, so a binding replaces the API key entirely — nothing to
-   leak and no bill to cap. Two things to check before committing to it: the
-   per-model Neuron rate against a ~30k-token prompt, since the daily pool is
-   shared across models and a whole-campaign prompt is a heavy request; and
-   the served context limit in Cloudflare's model catalog rather than the
-   model's headline spec. If the served context is smaller than the corpus,
-   the "no retrieval needed" advantage is gone and this becomes a much larger
-   job — at which point the search index above is already answering the
-   lookup questions anyway. Smaller open models are also weaker at grounded
-   Q&A, which on a canon-of-record site is the failure mode that matters.
+   **Cloudflare Workers AI — investigated Sep 2026; it works, but not the way
+   the section above assumes.** We are already on Cloudflare Pages, so a
+   Workers AI binding replaces the API key outright: no secret to leak, no
+   spend cap to set, nothing to rotate. Pages Functions do support the
+   binding, but unlike a plain Worker it is configured in the **dashboard**
+   (Pages project → Settings → Bindings → Workers AI), not in a config file,
+   and reached as `context.env.AI.run(...)`. Free allowance is 10,000
+   Neurons/day shared across all models, then $0.011/1,000 Neurons. Text
+   generation is rate-limited around 300 req/min, far above anything we'd see.
 
-   Whichever backend wins, the cheapest architecture is **search first, model
-   second**: let the free index answer lookups, fall through to a model only
-   for genuine "why/how" questions, and cache answers (Workers KV) so seven
-   people asking the same thing after a session costs one call.
+   Measured against our real index (44 docs, ~30,700 tokens whole, ~1,800
+   tokens for five typical entries, ~400-token answers):
+
+   | Model | Prompt | Neurons/question | Free questions/day | $/question after |
+   | --- | --- | --- | --- | --- |
+   | Llama 3.1 8B | whole corpus | 140 | ~71 | $0.0015 |
+   | Llama 3.1 8B | top-5 retrieved | 25 | ~403 | $0.0003 |
+   | Llama 3.3 70B | whole corpus | 900 | ~11 | $0.0099 |
+   | Llama 3.3 70B | top-5 retrieved | 152 | ~66 | $0.0017 |
+
+   (Neuron rates: 8B 4,119 in / 34,909 out per M tokens; 70B 26,668 in /
+   204,805 out. Cross-checked against the published per-token dollar prices.)
+
+   **The finding that changes the design: don't send the whole corpus.** The
+   "it all fits in one prompt, so no retrieval" conclusion above holds for a
+   large-context commercial API. It does not hold here. Cloudflare serves many
+   models with far smaller context than their headline spec — plenty sit at
+   4K–8K, and the `fp8-fast` 70B is listed by third-party catalogues at 24K,
+   which our ~30,700-token corpus would not fit. (Llama 3.1/3.2 do appear to
+   serve their full 128K on Workers AI.) Cloudflare's own docs have at least
+   one confirmed case of documented context exceeding what the API actually
+   returns, so **the catalogue is not authoritative — ask the API.**
+
+   Retrieval dissolves the problem instead of working around it. Feeding the
+   top few search hits rather than everything cuts input roughly 17×, which
+   simultaneously: fits every model in the catalogue including the 4K ones;
+   makes the *good* model affordable (the 70B goes from ~11 to ~66 free
+   questions a day); and needs no new machinery, because `/search-index.json`
+   and the ranking in `src/scripts/search.ts` are already exactly the
+   retrieval layer this wants. The bot becomes a thin reader over search.
+
+   So the shape is **search first, model second**: the free index answers
+   lookups outright, the model is called only for genuine "why/how" questions
+   and only ever sees the handful of entries search already matched, and
+   answers cache (Workers KV) so seven people asking the same thing after a
+   session costs one call. Spoiler-safety comes along for free — the model
+   can only ever see documents the index was allowed to contain.
+
+   Still open before building: confirm the served context of whichever model
+   we pick by asking the API rather than trusting the catalogue, and judge
+   grounded-answer quality on real campaign questions — small open models
+   confabulate more, and on a canon-of-record site that is the failure that
+   matters. Keep Turnstile on the endpoint regardless; the binding removes the
+   billing risk, not the abuse.
 
 5. ~~Per-session dynamic OG images~~ — **done, see above.**
 
