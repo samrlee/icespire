@@ -212,14 +212,22 @@ working is in `docs/ROADMAP.md`):
   Axeholm, which the party has not found, it answered "The chronicle does not
   record that" rather than reciting the book.
 
-The system prompt is tuned between two opposite failures, so change it with
-both in mind. Too loose and the model answers from its own knowledge of the
-module, telling players what is in rooms they have never entered. Too strict
-and it refuses questions the chronicle plainly answers: the first live
-question was "why do the orcs want the mine", and it refused despite Session 6
-saying three times that the orcs wanted the ruin as "a good fort" — because
-the reader said *mine* where the recap says *ruin*. Hence the explicit
-instruction to match on meaning rather than wording.
+The system prompt is tuned between three failures that pull against each
+other, so change it with all of them in mind.
+
+1. **Too loose** and the model answers from its own knowledge of the module,
+   telling players what is in rooms they have never entered.
+2. **Too strict** and it refuses questions the chronicle plainly answers. The
+   first live question was "why do the orcs want the mine", and it refused
+   despite Session 6 saying three times that the orcs wanted the ruin as "a
+   good fort" — because the reader said *mine* where the recap says *ruin*.
+   Hence the instruction to match on meaning rather than wording.
+3. **Given licence to say what is missing**, it hedges: the next attempt at
+   that same question opened "The chronicle does not record the orcs'
+   motivations… it only records that they were scouting the ruin as a
+   potential fort" — a disclaimer its own next clause contradicts. Hence the
+   instruction to answer directly when the entries do answer, and that what
+   someone is recorded saying or intending *is* an answer about their reasons.
 
 Spoiler-safety is inherited rather than re-implemented: the model only ever
 sees documents `/search-index.json` was allowed to contain, so the publish
