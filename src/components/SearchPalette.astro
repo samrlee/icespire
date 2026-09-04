@@ -1,0 +1,36 @@
+---
+// The search dialog itself. Rendered once per page by Base.astro and opened
+// by any [data-search-open] button, ⌘K, or "/". The index it reads is a
+// separate static file, fetched on first open — see scripts/search.ts.
+import { url } from '../utils/url';
+---
+
+<dialog id="search-dialog" class="search-dialog" data-index={url('/search-index.json')}>
+  <form class="search-panel" method="dialog" role="search">
+    <div class="search-field">
+      <label class="visually-hidden" for="search-input">Search the chronicle</label>
+      <input
+        id="search-input"
+        class="search-input"
+        type="search"
+        placeholder="Search recaps, people, places, lore…"
+        autocomplete="off"
+        spellcheck="false"
+        role="combobox"
+        aria-expanded="true"
+        aria-controls="search-results"
+        aria-autocomplete="list"
+      />
+      <button class="search-close" type="submit" aria-label="Close search">Esc</button>
+    </div>
+    <div id="search-results" class="search-results" role="listbox" aria-label="Results"></div>
+    <p id="search-status" class="search-status" role="status" aria-live="polite"></p>
+    <p class="search-hint">
+      <kbd>↑</kbd><kbd>↓</kbd> to move · <kbd>↵</kbd> to open · <kbd>Esc</kbd> to close
+    </p>
+  </form>
+</dialog>
+
+<script>
+  import '../scripts/search';
+</script>
