@@ -19,6 +19,7 @@ to `main`).
 | Relations | `/graph/` | derived from `src/content/npcs/` + `factions/` + `characters/` |
 | Codex | `/codex/` | factions (`src/content/factions/`) + lore (`src/content/lore/`) |
 | Search (`⌘K`) | `/search-index.json` | every published entry, built by `src/lib/search-index.ts` |
+| Ask | `POST /api/ask` | `functions/api/ask.ts` (Cloudflare Pages Function) |
 
 ## Adding content
 
@@ -177,6 +178,51 @@ markup into the palette.
 Nothing about this changes the CSP — the palette's script bundles to an
 external file under `/_astro/` (already covered by `script-src 'self'`), and
 the index fetch is same-origin, which `connect-src 'self'` already allows.
+
+## Ask the Chronicle
+
+Under the search results, the palette offers to put the question to a model:
+`functions/api/ask.ts` retrieves the few published entries that bear on it and
+hands **only those** to Llama 3.3 70B through Cloudflare's Workers AI binding.
+Search answers first and for free; the model runs only when a reader decides
+the list didn't answer them, so a call is always a choice rather than a side
+effect of typing.
+
+**It needs one dashboard step to work.** In the Cloudflare dashboard: Workers &
+Pages → icespire → Settings → Bindings → Add → Workers AI, variable name `AI`,
+then redeploy. Pages Functions cannot declare this binding in a config file —
+the dashboard is the only place. Until it exists the endpoint answers 503 and
+the palette says so; search is unaffected either way.
+
+There is **no API key anywhere in this repo**. The binding is the credential,
+so there is nothing to leak, nothing to rotate, and no spend cap to set.
+
+Three measured numbers shape the code, all from probing the live API (the
+working is in `docs/ROADMAP.md`):
+
+- **The context window is 24,000 tokens**, and Cloudflare counts `max_tokens`
+  against it — exceed the sum and the call fails `413`/`5021`. The whole
+  campaign is ~27,600 tokens, so it does *not* fit. Retrieval is what makes
+  this work at all, not an optimisation.
+- **~124 Neurons per question** at these prompt sizes, against a free
+  allowance of 10,000/day. Bigger questions that pull five long recaps cost
+  nearer 400. Call it 25–80 questions a day free, then ~$0.0014 each.
+- **The model refuses cleanly** when the entries don't cover the question,
+  including when it plainly knows the published module — asked what is inside
+  Axeholm, which the party has not found, it answered "The chronicle does not
+  record that" rather than reciting the book.
+
+Spoiler-safety is inherited rather than re-implemented: the model only ever
+sees documents `/search-index.json` was allowed to contain, so the publish
+gates that protect search protect this too. A question that retrieves nothing
+is answered "The chronicle does not record that." without calling the model at
+all — honest, instant, and free.
+
+Ranking lives in `src/lib/search-rank.ts`, shared by the palette and the
+endpoint. They differ in strictness on purpose: `pickAll` (palette) needs every
+term to land, while `pickAny` (endpoint) drops question scaffolding and ranks
+by overlap, because "what did the party find in the temple?" is mostly filler
+and demanding every word would answer nothing.
 
 ## Design system
 

@@ -465,6 +465,82 @@ body {
   }
 }
 
+/* The Ask panel, under the results inside the palette. Search answers first;
+ * this is the deliberate second step, so it stays quiet until chosen. */
+.search-ask {
+  border-top: 1px solid var(--border-subtle);
+  padding: var(--space-3) var(--space-4);
+}
+
+.ask-trigger {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 1px dashed var(--border-default);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  cursor: pointer;
+  transition:
+    border-color var(--duration-fast) var(--ease-standard),
+    background var(--duration-fast) var(--ease-standard);
+}
+
+.ask-trigger:hover {
+  background: var(--bg-inset);
+  border-color: var(--accent-gold-muted);
+  border-style: solid;
+}
+
+.ask-trigger-label {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  color: var(--accent-gold);
+}
+
+.ask-trigger-query {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ask-status {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* The answer is prose, so it reads as prose — the gold rule marks it as the
+ * chronicler speaking rather than another search result. */
+.ask-answer {
+  margin: 0;
+  border-left: 2px solid var(--accent-gold);
+  padding-left: var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--text-primary);
+}
+
+.ask-sources {
+  margin: var(--space-2) 0 0;
+  padding-left: calc(var(--space-3) + 2px);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.ask-sources a {
+  color: var(--link);
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
