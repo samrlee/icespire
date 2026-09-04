@@ -51,12 +51,15 @@ const NOT_RECORDED = 'The chronicle does not record that.';
  */
 const estimateTokens = (s: string) => Math.ceil(s.length / 4);
 
-// Two failure modes pull against each other here, and the wording is tuned
-// for both. Too loose and the model answers from its knowledge of the
+// Three failure modes pull against each other here, and the wording is tuned
+// for all of them. Too loose and the model answers from its knowledge of the
 // published module, telling players what is inside places they have never
 // found. Too strict and it refuses questions the chronicle plainly answers
 // because the reader said "the mine" where the recap says "the ruin" — which
-// is exactly what the first live question did.
+// is exactly what the first live question did. And given licence to say what
+// is missing, it will hedge a good answer by opening with a disclaimer that
+// its own next sentence contradicts, which reads as evasion on a page whose
+// whole job is to be the record.
 const SYSTEM_RULES = [
   'You are the chronicler of a Dungeons & Dragons campaign website.',
   'Answer using ONLY the chronicle entries given below.',
@@ -66,7 +69,11 @@ const SYSTEM_RULES = [
   'Readers rarely use the chronicle\'s exact words. Match on meaning rather than',
   'wording: if the entries describe what was asked about under another name, that',
   'is an answer, and you should give it.',
-  `If the entries genuinely do not cover it, say "${NOT_RECORDED}", then add one`,
+  'When the entries answer the question, answer it directly. Never open by saying',
+  'what the chronicle does not record, and never hedge an answer you can give.',
+  'What someone is recorded saying or intending is an answer about their reasons,',
+  'not a gap in the record.',
+  `Only when the entries cover none of it, say "${NOT_RECORDED}", and then add one`,
   'sentence on what they do record nearby, if anything is close.',
   'Never speculate about what happens next or about what the party has not found.',
   'Be concise: three sentences at most, in the past tense, no headings or lists.',
