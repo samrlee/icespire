@@ -1,0 +1,119 @@
+---
+// The cast of one session: who was at the table, and which NPCs and factions
+// the recap names. Party membership comes from `playersPresent` (attendance is
+// recorded, not inferred); the rest is matched against the recap's Markdown
+// with the same alias table that auto-links entity mentions in prose, so a
+// name written into a recap enrolls its owner here with no extra tagging.
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { buildEntities, matchEntities, type Entity } from '../lib/entities';
+import { url } from '../utils/url';
+
+interface Props {
+  session: CollectionEntry<'sessions'>;
+}
+
+const { session } = Astro.props;
+
+const entities = await buildEntities();
+const mentioned = matchEntities(session.body ?? '', entities);
+
+// Attendance beats prose: a player at the table brings their character, even
+// in a session where the recap never writes the name out. This also handles
+// arrivals for free — Samuel first appears in Session 2's `playersPresent`,
+// so Dax stays out of Sessions 0 and 1 without anyone recording a join date.
+//
+// It assumes one character per player, which holds today (seven of each).
+// If someone's character dies and they roll a replacement, both would show up
+// in every session that player attended, and telling them apart needs a
+// "played from session N" field that no schema has yet.
+const present = new Set(session.data.playersPresent);
+const party = (await getCollection('characters'))
+  .filter((c) => present.has(c.data.player))
+  .map((c) => ({
+    name: c.data.name,
+    sub: `played by ${c.data.player}`,
+    href: url(`/characters/${c.id}/`),
+    portrait: c.data.portrait ? url(c.data.portrait) : undefined,
+    kind: 'party' as const,
+    status: undefined as string | undefined,
+  }));
+
+// Two bits of frontmatter assert an appearance outright, and outrank the
+// prose scan: an encounter card that links an NPC, and an NPC whose
+// `firstAppearance` names this session. Both catch the figure a recap only
+// ever calls "the Queen" or "it".
+const trim = (href: string) => href.replace(/\/$/, '');
+const declaredHrefs = new Set([
+  ...session.data.encounters
+    .map((e) => e.href)
+    .filter((h): h is string => Boolean(h))
+    .map((h) => trim(url(h))),
+  ...(await getCollection('npcs'))
+    .filter((n) => n.data.firstAppearance === session.data.sessionNumber)
+    .map((n) => trim(url(`/npcs/${n.id}/`))),
+]);
+
+// A faction that shares its name with a place ("Gnomengarde" the gnomes vs.
+// Gnomengarde the warren) can't be told apart from that place by a bare
+// mention, and recaps mostly mean the ground: "the Gnomengarde quest",
+// "business at Gnomengarde". Rather than guess, leave those factions out —
+// their members are named NPCs and appear on their own merits.
+const placeNames = new Set(
+  (await getCollection('locations')).map((l) => l.data.name.replace(/^The\s+/i, '').toLowerCase())
+);
+const namesAPlace = (e: Entity) =>
+  placeNames.has(e.name.replace(/^The\s+/i, '').toLowerCase());
+
+const isCast = (e: Entity) =>
+  e.type === 'NPC' || (e.type === 'Faction' && !namesAPlace(e));
+const cast = [
+  ...mentioned.filter(isCast),
+  ...entities.filter(
+    (e) => isCast(e) && declaredHrefs.has(trim(e.href)) && !mentioned.includes(e)
+  ),
+].map((e) => ({
+  name: e.name,
+  sub: e.sub,
+  href: e.href,
+  portrait: e.portrait,
+  kind: e.type === 'Faction' ? ('faction' as const) : ('npc' as const),
+  status: e.status,
+}));
+
+const members = [...party, ...cast];
+
+// The monogram standing in for a missing portrait. Skips a leading "The" so
+// the Zhentarim reads Z, not T.
+const monogram = (name: string) =>
+  [...name.replace(/^The\s+/i, '')].find((ch) => /\p{L}|\p{N}/u.test(ch))?.toUpperCase() ?? '?';
+---
+
+{
+  members.length > 0 && (
+    <section class="dramatis" aria-labelledby="dramatis-heading">
+      <h2 class="kicker" id="dramatis-heading">Dramatis personae</h2>
+      <ul class="dramatis-list">
+        {members.map((m) => (
+          <li>
+            <a class={`dp-chip ${m.kind}`} href={m.href}>
+              {m.portrait ? (
+                /* Top of the page — in the first viewport, so not lazy. The
+                   dimensions match the CSS box to keep the strip from
+                   reflowing as portraits arrive. */
+                <img class="dp-avatar" src={m.portrait} alt="" width="32" height="32" />
+              ) : (
+                <span class={`dp-avatar dp-monogram${m.status ? ` ${m.status}` : ''}`} aria-hidden="true">
+                  {monogram(m.name)}
+                </span>
+              )}
+              <span class="dp-text">
+                <span class="dp-name">{m.name}</span>
+                {m.sub && <span class="dp-sub">{m.sub}</span>}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

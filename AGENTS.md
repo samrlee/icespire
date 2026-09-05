@@ -75,6 +75,8 @@ sketched with enough detail to pick up cold.
 | Content schemas (the source of truth for frontmatter) | `src/content.config.ts` |
 | Design tokens / component CSS | `src/styles/tokens/`, `src/styles/global.css` |
 | Search index + ranking | `src/lib/search-index.ts`, `src/lib/search-rank.ts` |
+| Entity names + aliases (prose links, recap casts) | `src/lib/entities.ts` |
+| Sitemap + crawler rules | `astro.config.mjs`, `public/robots.txt` |
 | Ask endpoint (Cloudflare Pages Function) | `functions/api/ask.ts` |
 | Response headers / CSP | `integrations/security-headers.mjs` |
 | Official module scans (**reference only, never shipped**) | `offical-assets/` |
@@ -110,11 +112,21 @@ the search index, and each session's Open Graph card are all generated at build
 time from the content collections. Add an NPC with a `faction` and a `status`
 and the graph grows on its own.
 
-**Prose links itself.** `src/components/EntityLinks.astro` turns the first
+**Prose links itself, and now casts itself too.** `src/lib/entities.ts` holds
+the cast of named things and the aliases each answers to;
+`src/components/EntityLinks.astro` ships it to the browser to turn the first
 mention of any character, NPC, faction, or known location inside `.prose` into a
-link with a hover card. Do not hand-write `[Adabra Gwynn](/npcs/adabra-gwynn)`
-in a recap — write the name. If a name is not linking, check the `STOP_TOKENS`
-list and the alias rules in that component.
+link with a hover card, and `src/components/DramatisPersonae.astro` matches the
+same table against a recap's Markdown at build time to work out who appears in
+it. Do not hand-write `[Adabra Gwynn](/npcs/adabra-gwynn)` in a recap — write
+the name. If a name is not linking, or an NPC is missing from a recap's cast,
+check the `STOP_TOKENS` list and the alias rules in `src/lib/entities.ts`.
+
+Writing the name is what enrolls someone, so a figure the prose only ever calls
+"the Queen" is missed by design — the cast list under-reports rather than
+guesses. Frontmatter is the way to assert an appearance the prose cannot: an
+`encounters` entry that links an NPC, or an NPC's `firstAppearance`. That is
+what puts Sage's panther in Session 7, where she had no name yet.
 
 **The `ally` bar is high, on purpose.** An NPC earns `ally` with real material
 aid; `neutral` is the default for met-and-parted. NPC `status` colours their

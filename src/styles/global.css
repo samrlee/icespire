@@ -1557,6 +1557,130 @@ body {
   margin: 0 0 var(--space-6);
 }
 
+/* ---------- Dramatis personae: a recap's cast strip ---------- */
+
+.dramatis {
+  margin: 0 0 var(--space-6);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.dramatis .kicker {
+  margin-bottom: var(--space-3);
+}
+
+.dramatis-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+}
+
+.dp-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3) var(--space-1) var(--space-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  background: var(--bg-surface);
+  text-decoration: none;
+  transition:
+    border-color var(--duration-fast) var(--ease-standard),
+    background var(--duration-fast) var(--ease-standard);
+}
+
+.dp-chip:hover,
+.dp-chip:focus-visible {
+  border-color: var(--accent-gold-muted);
+  background: var(--bg-surface-raised);
+}
+
+/* Round mask, square art — same 3px inset the recap thumbnails use, so
+   edge-trimmed portrait cutouts don't get their extremities shaved off. */
+.dp-avatar {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: var(--bg-inset);
+  border: 1px solid var(--border-default);
+  padding: 3px;
+}
+
+/* No NPC or faction carries a portrait today, so the monogram is the common
+   case rather than a rare fallback — it has to hold the row's height on its
+   own. */
+.dp-monogram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+/* The disposition colours from the NPC status pills, carried onto the
+   monogram ring so the strip reads at a glance. */
+.dp-monogram.ally {
+  border-color: var(--status-ally);
+  background: var(--status-ally-wash);
+}
+
+.dp-monogram.hostile {
+  border-color: var(--status-hostile);
+  background: var(--status-hostile-wash);
+}
+
+.dp-monogram.unresolved {
+  border-color: var(--status-unresolved);
+  background: var(--status-unresolved-wash);
+}
+
+.dp-monogram.at-large {
+  border-color: var(--status-at-large);
+  background: var(--status-at-large-wash);
+}
+
+.dp-monogram.deceased {
+  border-color: var(--status-deceased);
+  background: var(--status-deceased-wash);
+}
+
+.dp-chip.party .dp-avatar {
+  border-color: var(--accent-gold-muted);
+}
+
+.dp-text {
+  display: flex;
+  flex-direction: column;
+  line-height: var(--leading-tight);
+}
+
+.dp-name {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+}
+
+.dp-sub {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+/* The sub-line is a nicety, not the point — drop it before the strip starts
+   wrapping to three rows on a phone. */
+@media (max-width: 640px) {
+  .dp-sub {
+    display: none;
+  }
+}
+
 /* ---------- CharacterCard ---------- */
 
 .roster-grid {
@@ -1598,14 +1722,25 @@ body {
   font-size: var(--text-xs);
 }
 
+/* Pinned to the top of the row rather than stretched. The height here comes
+   from `aspect-ratio`, and a flex item under the default `align-items:
+   stretch` can have that overridden by the line's height — which browsers
+   have disagreed about. If it happens the box stops being 3/4, and
+   `background-size: cover` answers by scaling the portrait up and cropping it
+   to fill, so a taller text column silently zooms the art. Anchoring the
+   cross-axis keeps the ratio the only thing deciding the height. */
 .character-card.page .portrait {
   width: 200px;
+  align-self: flex-start;
 }
 
 @media (max-width: 640px) {
+  /* Stacked, the cross axis is the width — which is set explicitly here, so
+     it stretches to the card and stays there. */
   .character-card.page .portrait {
     width: 100%;
     max-width: 280px;
+    align-self: stretch;
   }
 }
 
