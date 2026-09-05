@@ -274,7 +274,9 @@ wizard."**
 
 Outside: **Rut wild-shaped into a weasel and wedged himself under the front
 door**, head and shoulders inside — where he heard the entire negotiation.
-**Sage named the panther Phantom** and set him to circle the building; then,
+**Sage named the panther Phantom** — out loud for the first time as she called
+him off Hamish, whom he had just knocked flat — and set him to circle the
+building; then,
 rather than let a weasel get crushed by an opening door, she instructed Phantom
 to pull him clear, gently and without eating him. She had watched Rut transform
 and knew exactly whose weasel it was, and later told Dax — which is why the

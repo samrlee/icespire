@@ -26,8 +26,8 @@ and the road north was open.
 - In a fight, Sage spends her action to command him — she acts, or he does.
 - Scouts and reports. Stood watch in Adabra Gwynn's yard while she packed.
 - Took an interest in Barnaby's waterskin, which Barnaby moved.
-- **Sage named him Phantom** in Session 8, in the street outside the Miner's
-  Exchange, the first time she needed to call him to do something.
+- **Sage named him Phantom** in Session 8 — out loud for the first time as she
+  called him off Hamish, whom he had just knocked flat.
 
 **Rut has been told the panther must be kept fed so he does not eat anyone.**
 He believes this. He has not been told where the idea came from.
@@ -35,7 +35,9 @@ He believes this. He has not been told where the idea came from.
 ## Session 8
 
 Set to circle the Miner's Exchange and watch the party's backs while Dax was
-inside. When Rut — as a weasel — wedged himself under the front door and could
+inside. He came back having found Barnaby and Hamish hidden in the dark, and
+announced it by walking into Hamish hard enough to put him on the ground — which
+is when Sage said his name for the first time, to stop him. When Rut — as a weasel — wedged himself under the front door and could
 not get out, Sage gave Phantom the job of retrieving him: wait for him to
 struggle, take hold of him gently, do not eat him, and pull him clear before
 anyone opened the door.

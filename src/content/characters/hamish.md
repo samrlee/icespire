@@ -52,9 +52,15 @@ tracking, and — when the longbow isn't enough — the leaping-in-with-a-shorts
   mattered — *"Did Harbin know?"* (Session 8).
 - Spotted the dark-clad figure making for the Miner's Exchange, and tailed him
   through the alleys to the back door (Session 8).
-- Rode Barnaby's shoulders at the high back window twice: saw the single
-  candle, the man they had followed, Thornton grinning at whatever she was
-  being told — and the second guard coming around the building (Session 8).
+- Rode Barnaby's shoulders at the high back window three times: saw the single
+  candle and the man they had followed; then Thornton grinning at whatever she
+  was being told, and the second guard coming around the building. The third
+  attempt left him **sitting** on the dragonborn's shoulders instead of
+  standing, able to see only the tops of the heads inside, with no leverage to
+  pull himself higher and the crown of his head showing in the glass
+  (Session 8).
+- Was knocked flat by Phantom, who had found him and Barnaby in the dark and
+  wanted Sage to know it (Session 8).
 - Climbed down a dragonborn's scales and got clear without being seen at all
   (Session 8).
 - Took up a watch on the Exchange from inside one of Phandalin's burned-out

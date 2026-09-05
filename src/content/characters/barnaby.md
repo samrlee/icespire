@@ -46,9 +46,10 @@ one who ends up carrying people (and tied-up gnomes) when things go sideways.
   feet (Session 7).
 - Does not know that Rut believes he is a man-eating dragon who must be kept
   fed (Session 7).
-- Hoisted Hamish onto his shoulders at the Miner's Exchange's high back window,
-  twice — the second attempt left the ranger sitting rather than standing, with
-  his eyes barely over the sill (Session 8).
+- Hoisted Hamish onto his shoulders at the Miner's Exchange's high back window
+  three times — the third left the ranger sitting rather than standing and
+  stuck there, and the pair of them made enough noise doing it that the room
+  inside turned to look at the window (Session 8).
 - Got away from the second guard cleanly and was never seen at all (Session 8).
 - Fell in with Dax on the walk back up the lane and kept the watch near the
   shrine on the square with him (Session 8).

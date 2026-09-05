@@ -46,8 +46,9 @@ it — but when it comes to it, she doesn't miss.
 - Gathered flowers from Adabra's field to lay on Dazlyn's body (Session 7).
 - Said plainly what the party had worked out about Harbin: that he had been
   content to leave the town he lives in sitting in the dark (Session 8).
-- **Named the panther Phantom** and set him to circle the Miner's Exchange and
-  watch the party's backs (Session 8).
+- Set the panther to circle the Miner's Exchange and watch the party's backs;
+  **named him Phantom** when he came back and put Hamish on the ground —
+  *"Phantom. No, this is a friend"* (Session 8).
 - Worked out what an opening door would do to a weasel wedged under it, and
   gave Phantom his orders: wait until he struggles, take hold of him gently,
   do not eat him, pull him clear (Session 8).

@@ -27,15 +27,15 @@ And then, from somewhere off to the side, the one that mattered.
 
 Thom got them all pointed at the door and out into the street, where a person
 could hear. Hamish told them what he had heard. Nobody had to work out what it
-meant — Harbin knew, and Harbin had spent the time since
-paying them to warn the two or three people he cared about and nobody else.
+meant — Harbin knew, and Harbin had spent the time since paying them to warn
+the two or three people he cared about and nobody else.
 
 Sage said he had been happy enough to leave the town he lives in sitting in
 the dark.
 
-Somebody remembered that the scary lady at the Miner's Exchange had known
-about the dragon too, and had known it since the night she put crossbows on
-them. Hamish had seen the pin on her.
+Somebody remembered that the scary lady at the Miner's Exchange had known about
+the dragon too. The one with all the people. The one with the pin — and the pin,
+Hamish said, was the Zhentarim's.
 
 Harbin had said he would have something for them in the morning. They decided
 the morning was too far away, and that they had better reach him before the
@@ -57,9 +57,8 @@ The rest went on to Harbin's door.
 
 ---
 
-He kept to the alleys the whole way and never once looked behind him, which was
-the only part of it he did badly, and he ducked around the back of the Miner's
-Exchange. A door opened and closed.
+He darted in and out of the alleys the whole way, keeping off the open lane,
+and ducked around the back of the Miner's Exchange. A door opened and closed.
 
 The building was shut for the night. The windows on the back wall were set too
 high to see through, there was nothing in the yard to stand on, and Dax's
@@ -72,8 +71,8 @@ So Barnaby put Hamish on his shoulders.
 Inside there was a single candle burning on the guildmaster's desk and two
 people leaning into the light of it. One was the man they had followed. The
 other was sitting where Holia Thornton sits, and Hamish could not make out her
-face, only the fact that she was in her chair at that hour with the shutters
-closed.
+face, only the fact that she was in her chair, in a building long since shut for
+the day.
 
 Dax kept the yard. There was nothing in it but owls and rats.
 
@@ -154,14 +153,11 @@ been paid.
 
 ---
 
-Barnaby put Hamish up a second time and it went worse. Hamish ended up sitting
-on his shoulders rather than standing, with his eyes barely above the sill, and
-when he tried to haul himself up on the ledge he had no leverage and stayed
-where he was.
+Barnaby put Hamish up a second time.
 
-He could see the tops of two heads. He could also see the candle catching
-Holia's face properly now, and the grin on it. Whatever she was hearing, she
-was delighted with it.
+The two inside were still talking, and the candle had come round far enough to
+catch Holia's face properly. She was grinning. Whatever she was being told, she
+was delighted with it, and neither of them looked anywhere near the window.
 
 Then a second man in the same dark clothes came around the side of the
 building, looking everywhere, working his way toward them.
@@ -195,11 +191,10 @@ Hamish and Barnaby he never saw at all.
 
 ---
 
-Thom had spent part of the walk over reading his own spells, and had turned up
-something he had not used before: a whisper he could put directly into
+Thom had a cantrip nobody had seen him use: a whisper he could put directly into
 somebody's ear from a hundred and twenty feet away, through walls, around
-corners, with no limit on the words and nothing to spend. All he needed was to
-know whose ear.
+corners, with no limit on the words and nothing to spend. It did not need line
+of sight. All it needed was to know whose ear.
 
 He aimed it at Dax.
 
@@ -211,7 +206,7 @@ his breath without moving his head.
 
 "Miner's Guild. Stand by. Negotiations happening."
 
-Nobody outside the two of them knew any of it had happened.
+Nobody else heard a word of it.
 
 Rut turned into a weasel. Sage, coming up the lane with him, saw two figures
 disappear into the Miner's Exchange and the door shut behind them. She whistled
@@ -220,7 +215,13 @@ circle wide and watch their backs — that their friends were in there going
 after somebody, that she did not know who, and that there would be enemies and
 friends both.
 
-She called him Phantom. It was the first time anyone had.
+He went. He came back a few minutes later having found Barnaby and Hamish
+crouched in the dark where they had gone to ground, and announced the discovery
+by walking into Hamish hard enough to put him flat.
+
+"Phantom. No — this is a friend."
+
+It was the first time she had called him anything.
 
 ---
 
@@ -349,9 +350,9 @@ Rut had found the gap under the front door and gone at it head first.
 
 He got his head through. He got his shoulders through. The rest of the weasel
 stayed in the street. He could not go forward and he could not go back and he
-was, in that position, in the best listening post anyone in the party had all
-night — his ears were inside the room, and he heard the whole of it, every word
-Dax and Holia said to one another.
+was, in that position, in the best seat anyone in the party had all night. His
+head was through into the room. He could see everything and hear everything,
+and he heard the whole of it, every word Dax and Holia said to one another.
 
 Sage watched him thrash and worked out what was going to happen to a weasel
 wedged under a door at the moment somebody opened that door. So she went to the
@@ -388,6 +389,25 @@ They waited by the door for it to open.
 
 ---
 
+Barnaby and Hamish went back to the window. If Dax came out of that building at
+a run, they wanted to be looking at it when he did.
+
+The third go was the worst of the three. Hamish came down onto Barnaby's
+shoulders sitting rather than standing, and from there he could see nothing but
+the tops of the heads inside; when he got his hands on the ledge and tried to
+haul himself higher he had no leverage at all and stayed exactly where he was,
+stuck, with the crown of his head showing in the window.
+
+Between the two of them they made far too much noise doing it. Inside, the
+people in the room stopped talking and turned to look at the glass.
+
+"Go, go, go."
+
+They came down and went, and did not stop until there was a good distance
+between them and the building.
+
+---
+
 It opened for Dax.
 
 The guard walked him out and stood holding it — his presence forgiven, but not
@@ -405,11 +425,12 @@ earlier, she had been looking for him ever since, and she needed him — he had 
 come with the rest of the band so they could work out what they were doing.
 Every word of it was true.
 
-He bought it. He shoved her back toward the party.
+He bought it. He picked the weasel up and shoved it at her.
 
 *Well. She was looking for you. She found you. You can go on your way now.*
 
-"Yeah," Dax said. "She's a good tracker."
+"Yeah," Dax said. "She's a good tracker. Thank you, sir. We'll be heading
+out."
 
 Then the guard looked down at the weasel and said what people say about vermin
 and threw a knife at it.
@@ -451,9 +472,10 @@ have been standing open to the weather since the last time something came
 through Phandalin — and put a broken wall between himself and the street, and
 watched, and rested as much as a person can rest sitting up in a ruin.
 
-Dax noted, on the way past, that the Lionshield Coster was around the corner
-and that he badly needed better armor. Nobody had ever seen it open at this
-hour. It was not open now.
+Dax noted, on the way past, that the Lionshield Coster was just around the
+corner and that he badly needed better armor. They had only ever been there by
+daylight. Nobody could say what hours it kept, and it was not a night for
+finding out.
 
 ---
 
@@ -482,11 +504,13 @@ understand? I want you to sic our entire troop on them.*
 *I think that's enough for tonight. Let's head on back to our recon point. We
 have a lot of work to do this evening.*
 
-She packed up her things and went down through the floor. Two of the guards
-went after her. The third locked the front door, and the shutters were pulled
-across the windows, and on his way past one of them he stopped and looked out
-into the lane at the party walking away, and squinted at them for a moment
-before he moved on.
+She packed up her things and went down through the floor. One guard locked the
+front door. The other two went round the windows pulling the shutters across,
+and at the last of them one stopped and looked out into the lane at the party
+walking away, and squinted at them a moment before he moved on.
+
+Then two of the three followed her down the stairs, and the man who had been at
+the window was the only one left in the building.
 
 Thom and Bean stood perfectly still while he came around the desk, close enough
 to touch, and went down the ladder.
@@ -514,6 +538,8 @@ They went over the desk again for false bottoms and hidden drawers and found
 none. They walked the room feeling for pressure plates and found none. They ran
 their hands along the wall for a lever or a mechanism or a book that would pull
 out of a shelf, the way it always works, and there was nothing there either.
+There were side rooms off the office, and a balcony on the floor above looking
+down into it, and they had no hour to spare on either.
 
 Thom got a dagger into the seam of the trap door and felt it stop against
 something — not a lock with a keyhole in it, something more like a bar laid
@@ -534,7 +560,8 @@ Nothing crazy.
 
 "Alright. Let's do it."
 
-Thom went down the ladder into the dark, and Bean, who cannot see in the dark
-at all, went down after him and lost sight of everything.
+They went down the ladder into the passage, Thom seeing it perfectly well and
+Bean seeing nothing at all — and Bean, already on the rungs, asked whether it
+was too late to get hold of Thom.
 
-Their feet hit the bottom, into cool air and stone.
+It was. Their feet hit the bottom, into cool air and stone.
