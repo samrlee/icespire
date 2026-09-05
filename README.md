@@ -7,6 +7,13 @@ Built with [Astro](https://astro.build) and deployed to Cloudflare Pages at
 **https://icespire.ghostbloods.net/** (deploys automatically on every push
 to `main`).
 
+**Picking this up cold — or handing it to an AI coding tool?** Start with
+[`AGENTS.md`](AGENTS.md): how the repo works, what is generated, and what must
+never be published. Then [`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md)
+for turning a recorded session into a published recap, and
+[`docs/WRITING-STYLE.md`](docs/WRITING-STYLE.md) for the chronicle's voice.
+This README stays the reference manual for the collections and subsystems below.
+
 ## Site structure
 
 | Nav item | Route | Source |
@@ -281,6 +288,14 @@ endpoint that calls `renderOgCard(...)` and point its `ogImage` at it.
 
 Planned and possible improvements are tracked in
 [`docs/ROADMAP.md`](docs/ROADMAP.md) — check there before starting new work.
+
+## Publishing a session
+
+The pipeline from a recorded game to a live recap — whisperx on the laptop, the
+transcript handed to a coding agent, the clarifying round, and the checklist of
+every place a session has to be propagated to — is documented in
+[`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md), with the prose
+conventions in [`docs/WRITING-STYLE.md`](docs/WRITING-STYLE.md).
 
 ## Development
 

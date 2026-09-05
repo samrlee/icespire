@@ -17,5 +17,9 @@ pnpm-debug.log*
 .env
 .env.production
 
+# session audio and whisperx transcripts — working material, never published
+# (see docs/SESSION-WORKFLOW.md)
+transcripts/
+
 # macOS
 .DS_Store
