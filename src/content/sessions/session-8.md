@@ -373,8 +373,8 @@ Thom found a bush a good distance from the building, far enough that walking
 over to it later would look like nothing, and put his backpack in it. The
 emerald went in the bush with the backpack.
 
-Then he cast one spell on both of them at once, and he and Bean went out of the
-world.
+Then he cast one spell on both of them at once, and the two of them vanished
+where they stood.
 
 An hour of it, as long as he held his concentration, and it covered everything
 they wore and everything they carried. What it did not do was let the two of
