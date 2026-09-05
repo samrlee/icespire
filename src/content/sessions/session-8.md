@@ -47,10 +47,10 @@ Halfway there, three of them saw the figure.
 
 It was dark out and the man was dressed for it, moving up the lane away from
 the inn toward the Miner's Exchange, taking the shadows where there were
-shadows. Dax saw him. Hamish saw him. Barnaby saw him. Sage, Thom, Bean and Rut
-walked on none the wiser, and had to be told, and were told very badly — a
-sentence about a dude going to tell somebody about the dragon attack, delivered
-without stopping.
+shadows. Dax saw him. Hamish saw him. Barnaby saw him. Sage, Thom, Bean and Rut walked
+on none the wiser, and got their explanation over somebody's shoulder — a man
+going to tell somebody about the dragon attack — from three people who were
+already moving after him.
 
 The party split on the spot. Dax, Hamish and Barnaby peeled off after the man.
 The rest went on to Harbin's door.
@@ -149,7 +149,8 @@ What Harbin wanted, in the end, was files. Anything of hers, anything about
 what she was planning, anything at all. He offered ninety gold for it. He was
 told he was not in a position to negotiate.
 
-He paid a hundred.
+The price went to a hundred. Nothing has been brought to him, and nothing has
+been paid.
 
 ---
 
@@ -233,29 +234,63 @@ night?*
 
 *Are you talking about our lovely visit from our reptile friend?*
 
-She was smiling before he finished. Umbrage Hill was gone, the inn was in
-chaos, and she had heard all of it already — she told him plainly that if all
-he had was the attack, he was too late and she would not be paying a premium
-for it.
+She was smiling before he finished. She had all of it already, and she said so
+plainly: if the attack on Umbrage Hill was everything he had brought, he was
+too late, and she would not be paying a premium for it.
 
-So he gave her the attack for free, and made sure she understood what he was
-giving her. The party had been at Umbrage Hill that day. They had stood in
-Adabra Gwynn's yard and talked her into leaving, and walked her to Phandalin,
-and the hill had been destroyed while they were still getting their boots off.
-Which meant the dragon had covered that ground in the space of an evening.
-Which meant it was close.
+Dax did not argue the price. He changed what was for sale.
+
+"How about news not on a dragon, but on some orcs?"
+
+*Orcs. I'm listening.*
+
+He put the terms up before he put up a word of the substance. The dragon news
+was a freebie, thrown in on top, if the two of them could strike a deal on the
+orcs.
+
+*I like you. You're smart.*
+
+Only then did he spend it, and he made sure she understood the shape of what
+she was getting. The party had been at Umbrage Hill that day. They had
+stood in Adabra Gwynn's yard and talked her into leaving, and walked her back
+to Phandalin, and the hill had been destroyed while they were still getting
+their boots off. The thing had covered that ground in an evening.
 
 *Your luck is with you tonight.*
 
-Then he offered her orcs.
+And then, working it through: the dragon was close. Very close. A short flight
+from Phandalin.
 
-He told her about the band that had come up the canyon at the excavation,
-seven of them, out of the east; that the party had killed all seven; and that
-the tracks afterward showed a much larger body moving off west. She wanted to
-know exactly where, and exactly which way. He told her that too. She had a
-small map out on the desk before he had finished.
+*Well. I appreciate the freebie. What about this orc information? Let's see how
+much it's worth tonight.*
 
-She paid fifty gold for it.
+Thom's voice arrived in his head while she was saying it. Harbin was paying a
+hundred gold for anything about what Holia was planning, Harbin thought she was
+after his job, and if Dax happened to be standing in front of her he ought to
+keep that in mind.
+
+Dax kept it in mind, and did not answer her question yet.
+
+"So what are you willing to pay for information? Are you just paying gold, or
+do we trade information?"
+
+*That sounds like an amicable arrangement to me.*
+
+With that settled he spent his first question before he spent anything else.
+What was there to know about Harbin Wester? The party had done work for the man
+and knew nothing about him past talk.
+
+Something moved in her face at the name — a twinkle in the eye, the corner of
+the mouth going up — and what Dax read there was a woman extremely pleased with
+herself.
+
+Then he paid his half of it. The band that came up the canyon at the
+excavation, seven of them, out of the east; all seven dead; and the tracks
+afterward showing a much larger body moving off west. She wanted to know
+exactly where, and exactly which way. He told her that too, and she had a small
+map out on the desk before he finished.
+
+She counted out fifty gold.
 
 <div class="callout loot">
   <div class="callout-label">Loot</div>
@@ -265,16 +300,12 @@ She paid fifty gold for it.
   force behind it. Dax has not mentioned it to anyone.</div>
 </div>
 
-While she counted it out, Thom's voice arrived in his head again: Harbin was
-paying a hundred gold for anything about what Holia was planning, Harbin
-thought she was after his job, and if Dax happened to be standing in front of
-her he should keep that in mind.
+Then he collected the other half of the arrangement, and asked about Harbin
+again.
 
-Dax asked her about Harbin.
-
-Something moved in her face. She said Harbin was afraid, and had been afraid of
-this dragon for a long while. She said — and this part she seemed to
-enjoy — that she had to admit he had done her a real service, bringing her news of that
+This time she answered. Harbin was afraid, she said, and had been afraid of
+this dragon a long while. She said — and this part she seemed to enjoy — that
+she had to admit he had done her a real service, bringing her news of that
 dragon.
 
 Then she stopped herself, and started again more carefully.
@@ -303,11 +334,14 @@ sends you.*
 
 *And I think I might just start with that gangly wizard.*
 
-*But for now, everything is going exactly how I want it to go. You may go.*
+*But for now, everything is going exactly how I want it to go. Anyway, you may
+go now.*
 
-"Pleasure doing business."
+"It was a pleasure doing business with you."
 
-*Have a good night, Dax.*
+*Pleasure as well. Have a good night, Dax.*
+
+"You too."
 
 ---
 
@@ -338,13 +372,13 @@ Thom found a bush a good distance from the building, far enough that walking
 over to it later would look like nothing, and put his backpack in it. The
 emerald went in the bush with the backpack.
 
-Then he spent two points of the raw stuff he carries around inside him to cast
-one spell on two people, and he and Bean went out of the world.
+Then he cast one spell on both of them at once, and he and Bean went out of the
+world.
 
-An hour of it, as long as he held his concentration. It covered everything they
-were wearing and carrying. It did not, they noted, cover them from each other:
-the moment they let go they would have no way of finding one another again. So
-Thom kept a hand on her.
+An hour of it, as long as he held his concentration, and it covered everything
+they wore and everything they carried. What it did not do was let the two of
+them see each other. If they let go in that room, neither would have any way of
+finding the other again — so Thom kept a hand on her and did not take it off.
 
 Sage asked whether they were sure nobody in there could see through it.
 
@@ -380,8 +414,8 @@ He bought it. He shoved her back toward the party.
 Then the guard looked down at the weasel and said what people say about vermin
 and threw a knife at it.
 
-It missed. It went into the dirt beside him. The weasel did not move and did
-not stop being a weasel, and the party walked away up the lane.
+It missed. It went into the dirt beside him. The weasel held still and stayed a
+weasel, and the party walked away up the lane.
 
 ---
 
@@ -392,7 +426,10 @@ and that she did not know where they went and they had not told anyone. Dax
 knew slightly more and it did not help: Thom had told him they were up to
 shenanigans.
 
-*That's never good.*
+"That's never good," Sage said.
+
+She also told him which of them the weasel was. Dax put an arm down and let it
+climb up onto his shoulder.
 
 He tried the sending stone anyway, and got the silence of a thing that will not
 work again until tomorrow. He could not start a whisper of his own — he could
@@ -402,9 +439,9 @@ Dax told them the rest of it: that she had threatened them, all of them, if
 anyone was caught sneaking around here again.
 
 So they left where the building could see them leave. Dax and Sage went out up
-the lane toward the inn, unhurried, with the weasel riding on Dax's shoulder
-and Barnaby walking with them, and then circled back through the town and
-settled in near the little shrine on the square. Sage came back further than
+the lane toward the inn, unhurried, Barnaby walking with them and the weasel
+riding where it was, and then circled back through the town and settled in near
+the little shrine on the square. Sage came back further than
 that, splitting the difference, close enough to keep an eye on the Exchange and
 on Dax at once.
 
@@ -490,8 +527,10 @@ floor with enough of a gap to get fingers under.
 
 Ten minutes gone. Fifty left, and no way to stretch it.
 
-They talked about going back for the others. They talked about going down for
-a look and no further — just far enough to hear a conversation, nothing crazy.
+Going back for the others meant crossing the town and crossing it again, and
+the hour would not wait for them. So they took the smaller version of the idea:
+down the ladder, far enough to hear a conversation, and not one step past that.
+Nothing crazy.
 
 "Alright. Let's do it."
 

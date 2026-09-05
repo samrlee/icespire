@@ -249,15 +249,21 @@ a switchboard for the rest of the night: 120 feet, through walls, no word limit,
 and the target can answer under their breath. Dax answered mid-arrest —
 *"Miner's Guild. Stand by. Negotiations happening."*
 
-**Inside, Dax negotiated with Thornton.** The Umbrage Hill attack was worthless
-to her — she already had it — so he gave it away framed as proximity: the party
-walked Adabra out that morning and the hill was destroyed by evening, so **the
-dragon is within an evening's flight of Phandalin**. Then he sold her the orcs:
-the band at the excavation came from the east, all seven died, and the tracks
-showed **a much larger force moving west**. She took the heading, put a map on
-the desk, and **paid 50 gold** — which **Dax has not mentioned to the party**.
-Asked about Harbin, she said he has been afraid of the dragon a long while,
-that the party had handed her *"a great opportunity"*, and then caught herself:
+**Inside, Dax negotiated with Thornton**, and struck each deal before handing
+anything over. The Umbrage Hill attack was worthless to her — she already had
+it — so rather than sell it he **offered it as a freebie on condition they
+agreed terms on orcs first**, and only then spent it, framed as proximity: the
+party walked Adabra out that morning and the hill was destroyed by evening, so
+**the dragon is within an evening's flight of Phandalin**. Then he asked what
+she was paying with — gold, or information — and **got her to agree to a
+trade** before answering a single question of hers. His first purchase under
+that arrangement was Harbin. Only then did he pay his half: the band at the
+excavation came from the east, all seven died, and the tracks showed **a much
+larger force moving west**. She took the heading, put a map on the desk, and
+**paid 50 gold** — which **Dax has not mentioned to the party**. Collecting the
+rest of what he was owed, he asked about Harbin again; she said he has been
+afraid of the dragon a long while, that the party had handed her *"a great
+opportunity"*, and then caught herself:
 *"Things may be looking up in Phandalin. And Harbin may no longer be a part of
 it."* Dax closed by **answering Holia and Thom in the same spoken sentence** —
 "things are fine right now, but we're afraid of movement later" — which she
@@ -270,7 +276,9 @@ Outside: **Rut wild-shaped into a weasel and wedged himself under the front
 door**, head and shoulders inside — where he heard the entire negotiation.
 **Sage named the panther Phantom** and set him to circle the building; then,
 rather than let a weasel get crushed by an opening door, she instructed Phantom
-to pull him clear, gently and without eating him.
+to pull him clear, gently and without eating him. She had watched Rut transform
+and knew exactly whose weasel it was, and later told Dax — which is why the
+animal rode out of there on Dax's shoulder.
 
 **Thom stashed his backpack — and the emerald — in a bush**, then spent two
 sorcery points to **twin Invisibility on himself and Bean**. One hour on
@@ -279,8 +287,8 @@ When the guard held the door open for Dax on his way out, **the two of them
 walked in**.
 
 The guard then found **Sage** in the lane and she talked her way out truthfully
-(she had been looking for her friend), before **throwing a knife at the weasel
-and missing**. The five regrouped, left visibly, and circled back to watch the
+(she had been looking for her friend, and the weasel at her feet was the friend
+in question), before **throwing a knife at the weasel and missing**. The five regrouped, left visibly, and circled back to watch the
 Exchange: **Dax, Barnaby and the weasel near the shrine on the square, Sage in
 between, Hamish holed up in one of the burned-out houses.** Nobody knew where
 Thom and Bean had gone. **The sending stone was spent and will not work until

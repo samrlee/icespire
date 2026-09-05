@@ -27,13 +27,19 @@ revealed, an agent of the **Zhentarim**. Dax's former contract employer.
 
 The dragon's attack on Umbrage Hill reached her before the party did, and she
 was delighted by it — *"our lovely visit from our reptile friend."* She would
-not pay a premium for news the whole town already had, so Dax gave it to her
-free and sold her orcs instead: where the band that attacked the excavation had
-come from, that all seven were dead, and where the much larger force behind
-them had gone. She had a map out on the desk before he finished and **paid 50
-gold** for it.
+not pay a premium for news the whole town already had, so Dax stopped selling it
+and offered it as a freebie instead — thrown in on top, on condition they came
+to terms on orcs first. *"I like you. You're smart."*
 
-Asked about Harbin, she said he had been afraid of this dragon a long while,
+He then made her agree the currency before he answered anything: gold, or
+information for information. She agreed to the trade, and he spent his first
+question on Harbin before spending anything of his own. Only then did he pay:
+where the band that attacked the excavation had come from, that all seven were
+dead, and where the much larger force behind them had gone. She had a map out on
+the desk before he finished and **paid 50 gold** for it.
+
+Collecting the rest of the bargain, he asked about Harbin again. She said he had
+been afraid of this dragon a long while,
 that the party had handed her *"a great opportunity"* — and then caught herself
 and finished more carefully.
 

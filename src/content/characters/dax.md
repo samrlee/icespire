@@ -121,11 +121,18 @@ anyway").
   two on, stood in the open, and let the guard come to him (Session 8).
 - Blew the bluff — the guard did not believe a word — but was recognised as
   *"that sellsword"* and walked inside instead of run off (Session 8).
-- **Negotiated with Guildmaster Thornton in her own office at night.** Gave her
-  the Umbrage Hill attack free, framed as proximity — the party walked Adabra
-  out that morning and the hill burned by evening, so the dragon is within an
-  evening's flight of Phandalin — then sold her the orc band's origin, its
-  death, and the larger force's heading west (Session 8).
+- **Negotiated with Guildmaster Thornton in her own office at night, and closed
+  each deal before he handed anything over.** Told the Umbrage Hill news was
+  worth nothing to her, he stopped selling it and offered it as a freebie
+  conditional on terms for orcs first — *"I like you. You're smart."* — then
+  spent it framed as proximity: the party walked Adabra out that morning and the
+  hill burned by evening, so the dragon is within an evening's flight of
+  Phandalin (Session 8).
+- **Made her name the currency before he answered a question**: gold, or
+  information for information. She took the trade, and he spent his first
+  purchase on Harbin before paying anything of his own — then paid with the orc
+  band's origin, its death, and the larger force's heading west, and collected
+  the rest of the bargain afterward (Session 8).
 - **Took 50 gold for it and has not mentioned it to the party** (Session 8).
 - Read her reaction to the news about Harbin: a twinkle, a curl of the lip, and
   a woman very pleased with herself (Session 8).

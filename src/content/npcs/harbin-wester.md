@@ -64,8 +64,9 @@ once:
 
 He asked the party to spend the night guarding his house from angry
 townspeople. Bean turned him down and mentioned that a fee might help. Then he
-offered **90 gold for anything about what Thornton is planning**, was told he
-was not in a position to negotiate, and paid **100**.
+offered **90 gold for anything about what Thornton is planning** and was told
+he was not in a position to negotiate, and the price settled at **100**. Nothing
+has been brought to him and nothing has been paid.
 
 He does not know that Thornton has already said out loud that he will be out
 and she will have his job. Two of the people he is paying were standing in the

@@ -69,4 +69,5 @@ party has never learned anything better. His real name remains a mystery.
   eaten, on Sage's instructions (Session 8).
 - Had a knife thrown at him by a Zhentarim guard, who took him for vermin. It
   missed and went into the dirt beside him (Session 8).
-- Ended the session still a weasel, riding on Dax's shoulder (Session 8).
+- Ended the session still a weasel, riding on Dax's shoulder — Sage had told
+  Dax whose weasel it was (Session 8).

@@ -52,8 +52,10 @@ it — but when it comes to it, she doesn't miss.
   gave Phantom his orders: wait until he struggles, take hold of him gently,
   do not eat him, pull him clear (Session 8).
 - Talked her way past a Zhentarim guard **without lying** — she had lost track
-  of her friend, she had been looking for him, and she needed him. All true
-  (Session 8).
+  of her friend, she had been looking for him, and she needed him. All true,
+  and all of it about a weasel she knew perfectly well was Rut (Session 8).
+- Told Dax which of them the weasel was, which is why a wild animal spent the
+  rest of the night riding on a fighter's shoulder (Session 8).
 - Circled back closer to the Exchange than anyone else and held the middle,
   watching the building and Dax at the same time (Session 8).
 
