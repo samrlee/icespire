@@ -1722,14 +1722,25 @@ body {
   font-size: var(--text-xs);
 }
 
+/* Pinned to the top of the row rather than stretched. The height here comes
+   from `aspect-ratio`, and a flex item under the default `align-items:
+   stretch` can have that overridden by the line's height — which browsers
+   have disagreed about. If it happens the box stops being 3/4, and
+   `background-size: cover` answers by scaling the portrait up and cropping it
+   to fill, so a taller text column silently zooms the art. Anchoring the
+   cross-axis keeps the ratio the only thing deciding the height. */
 .character-card.page .portrait {
   width: 200px;
+  align-self: flex-start;
 }
 
 @media (max-width: 640px) {
+  /* Stacked, the cross axis is the width — which is set explicitly here, so
+     it stretches to the card and stays there. */
   .character-card.page .portrait {
     width: 100%;
     max-width: 280px;
+    align-self: stretch;
   }
 }
 
