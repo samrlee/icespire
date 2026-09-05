@@ -11,6 +11,10 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Done
 
+- **Reading time on substantial recaps** — recap pages show an estimated read
+  length once their prose reaches 500 words. Short early entries stay quiet
+  rather than repeating an unhelpful "1 min read" label. _(Sep 2026)_
+
 - **Dramatis personae on recaps** — each recap opens with its cast: the party
   at the table (from `playersPresent`), then the NPCs and factions the session
   involves, as chips linking to their pages
@@ -75,14 +79,7 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 Ordered high → low by rough impact-per-effort.
 
-1. **Reading time on recaps.** The cast strip half of this idea shipped (see
-   Done); the reading-time estimate did not. It was held back because it reads
-   as noise on the early recaps — Sessions 0–4 run 61 to 389 words, and "1 min
-   read" tells nobody anything. The trend argues for revisiting: the last four
-   sessions ran 749, 1,789, 3,214 and 4,165 words. Ship it behind a threshold
-   (say 500 words) rather than on every recap.
-
-2. **Print stylesheet.** A `@media print` block so a recap or the campaign
+1. **Print stylesheet.** A `@media print` block so a recap or the campaign
    summary prints cleanly for players/DMs who want a hard copy.
 
 ## Considered and dropped

@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import CreatureCard from '../../components/CreatureCard.astro';
 import DramatisPersonae from '../../components/DramatisPersonae.astro';
+import { readingTime } from '../../lib/reading-time';
 import { url } from '../../utils/url';
 
 export async function getStaticPaths() {
@@ -31,6 +32,7 @@ const dateStr = session.data.date.toLocaleDateString('en-US', {
   day: 'numeric',
   year: 'numeric',
 });
+const readLength = readingTime(session.body ?? '');
 
 // The session's travels, from the same data that draws the campaign map.
 const journey = (await getCollection('journey')).find(
@@ -56,8 +58,16 @@ const hasAside = hasEncounters || hasJourney;
   </div>
   <h1 class="session-title">{session.data.title}</h1>
   {
-    session.data.playersPresent.length > 0 && (
-      <p class="session-meta">At the table: {session.data.playersPresent.join(', ')}</p>
+    (session.data.playersPresent.length > 0 || readLength) && (
+      <p class="session-meta">
+        {session.data.playersPresent.length > 0 && (
+          <span>At the table: {session.data.playersPresent.join(', ')}</span>
+        )}
+        {session.data.playersPresent.length > 0 && readLength && (
+          <span class="meta-separator" aria-hidden="true">·</span>
+        )}
+        {readLength && <span>{readLength}</span>}
+      </p>
     )
   }
   <DramatisPersonae session={session} />
