@@ -86,8 +86,8 @@ export const submaps: Record<string, SubmapEntry> = {
     legend: [
       { label: 'Stonehill Inn', note: 'rooms, stew, and the stranger who watched the party in Session 1' },
       { label: "Barthen's Provisions", note: 'general goods' },
-      { label: 'Lionshield Coster', note: 'arms and armor' },
-      { label: "Phandalin Miner's Exchange", note: 'Guildmaster Thornton. Mind the crossbows.' },
+      { label: 'Lionshield Coster', note: 'arms and armor; never open when the party has time to shop' },
+      { label: "Phandalin Miner's Exchange", note: 'Guildmaster Thornton. A trap door in the floor, and stairs under the town.' },
       { label: "Townmaster's Hall", note: "Harbin's office, behind several bolts" },
       { label: "Harbin Wester's home", note: "site of Bean's unauthorized visit" },
       { label: 'Shrine of Luck', note: "Tymora's small shrine on the square" },

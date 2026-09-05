@@ -59,3 +59,14 @@ party has never learned anything better. His real name remains a mystery.
   (Session 7).
 - Believes, on Dax's authority, that Barnaby must be kept well fed or he will
   eat the party, and that the same now goes for Sage's panther (Session 7).
+- Took the shape of a **weasel** outside the Miner's Exchange and went at the
+  gap under the front door head first. His head and shoulders went through. The
+  rest of him did not (Session 8).
+- Stuck there, he had the best listening post in the party: his ears were
+  inside the room, and he heard the whole of Dax's negotiation with Guildmaster
+  Thornton (Session 8).
+- Was pulled out from under the door by **Phantom**, gently and without being
+  eaten, on Sage's instructions (Session 8).
+- Had a knife thrown at him by a Zhentarim guard, who took him for vermin. It
+  missed and went into the dirt beside him (Session 8).
+- Ended the session still a weasel, riding on Dax's shoulder (Session 8).

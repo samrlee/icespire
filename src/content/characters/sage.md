@@ -44,6 +44,18 @@ it — but when it comes to it, she doesn't miss.
   her, spent a spell on **Speak with Animals**, and gained an **animal
   companion** (Session 7).
 - Gathered flowers from Adabra's field to lay on Dazlyn's body (Session 7).
+- Said plainly what the party had worked out about Harbin: that he had been
+  content to leave the town he lives in sitting in the dark (Session 8).
+- **Named the panther Phantom** and set him to circle the Miner's Exchange and
+  watch the party's backs (Session 8).
+- Worked out what an opening door would do to a weasel wedged under it, and
+  gave Phantom his orders: wait until he struggles, take hold of him gently,
+  do not eat him, pull him clear (Session 8).
+- Talked her way past a Zhentarim guard **without lying** — she had lost track
+  of her friend, she had been looking for him, and she needed him. All true
+  (Session 8).
+- Circled back closer to the Exchange than anyone else and held the middle,
+  watching the building and Dax at the same time (Session 8).
 
 ## The panther
 
@@ -54,3 +66,8 @@ scouts ahead; she can only talk to him with **Speak with Animals** up, at the
 cost of a spell slot. In a fight she spends her action to command him.
 
 She said she would think about a name.
+
+**His name is Phantom.** She gave it to him in the street outside the Miner's
+Exchange in Session 8, the first time she needed him to do something and had to
+call him something to do it. He understands what she says to him without the
+spell; she needs **Speak with Animals** only to hear him answer.

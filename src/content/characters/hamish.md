@@ -47,3 +47,15 @@ tracking, and — when the longbow isn't enough — the leaping-in-with-a-shorts
   and drew on the panther coming for her — then lowered the bow (Session 7).
 - Pried Dazlyn Grayshard's stiff fingers open and took out the sending stone
   (Session 7).
+- **The only one who could hear anything in the panicking inn.** Picked the
+  town's mood out of the noise one thread at a time, down to the question that
+  mattered — *"Did Harbin know?"* (Session 8).
+- Spotted the dark-clad figure making for the Miner's Exchange, and tailed him
+  through the alleys to the back door (Session 8).
+- Rode Barnaby's shoulders at the high back window twice: saw the single
+  candle, the man they had followed, Thornton grinning at whatever she was
+  being told — and the second guard coming around the building (Session 8).
+- Climbed down a dragonborn's scales and got clear without being seen at all
+  (Session 8).
+- Took up a watch on the Exchange from inside one of Phandalin's burned-out
+  houses, and rested as much as anyone rests sitting up in a ruin (Session 8).

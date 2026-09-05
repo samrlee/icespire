@@ -1,9 +1,9 @@
 ---
-name: 'The Panther'
+name: 'Phantom'
 role: "Sage's Animal Companion"
 affiliation: 'The Party'
 status: ally
-note: 'Asked every animal on the road until he found her. Fiercely loyal on first meeting. Still unnamed.'
+note: 'Asked every animal on the road until he found her. Named in Session 8. Would still quite like to eat the weasel.'
 firstAppearance: 7
 ---
 
@@ -26,7 +26,21 @@ and the road north was open.
 - In a fight, Sage spends her action to command him — she acts, or he does.
 - Scouts and reports. Stood watch in Adabra Gwynn's yard while she packed.
 - Took an interest in Barnaby's waterskin, which Barnaby moved.
-- Sage said she would think about a name.
+- **Sage named him Phantom** in Session 8, in the street outside the Miner's
+  Exchange, the first time she needed to call him to do something.
 
 **Rut has been told the panther must be kept fed so he does not eat anyone.**
 He believes this. He has not been told where the idea came from.
+
+## Session 8
+
+Set to circle the Miner's Exchange and watch the party's backs while Dax was
+inside. When Rut — as a weasel — wedged himself under the front door and could
+not get out, Sage gave Phantom the job of retrieving him: wait for him to
+struggle, take hold of him gently, do not eat him, and pull him clear before
+anyone opened the door.
+
+He did exactly that. He also seemed a little disappointed about the eating.
+
+He understands what Sage says to him without a spell. **Speak with Animals** is
+only needed for him to answer.

@@ -3,7 +3,7 @@ name: 'Harbin Wester'
 role: 'Townmaster'
 affiliation: 'Phandalin'
 status: ally
-note: 'Nervous, portly, dragon-paranoid. Pays promptly, checks the sky before opening the door. Has unfortunate work lined up.'
+note: 'Nervous, portly, dragon-paranoid. Has been hunting a weapon this whole time, and is about to lose his job over it.'
 firstAppearance: 4
 ---
 
@@ -37,3 +37,36 @@ On the way out he mentioned he is compiling some **concerning reports**, and
 that there is **unfortunate work** to be taken care of — part of the job. He
 expects the party back the next day. Then he stood in the doorway, sniffed the
 air, and decided it was probably nothing.
+
+## The night the town found out (Session 8)
+
+He opened the door on four of them and started explaining that he had said the
+morning. Then they told him about Umbrage Hill, and it was news — his eyes went
+wide, and the thought behind them was that Adabra Gwynn was sitting in his town
+instead of in that windmill.
+
+*I guess Adabra got out of there in the nick of time, huh.*
+
+What came out of him after that was more than he has ever given the party at
+once:
+
+- He kept the dragon quiet to avoid a panic and an emptying town. He now has to
+  get the townspeople ready instead.
+- **Phandalin cannot defend itself and he knows it.** He has been planning for
+  a dragon and the planning has produced nothing.
+- **Every job he has given the party has been a search for a weapon that would
+  kill the thing** — the gnomes, the midwife, the dwarves, all of it. It has
+  found nothing. He still has field reports to finish and expects them the next
+  day.
+- He believes **Guildmaster Thornton is angling for his position**, and
+  wondered aloud whether the rumor had been hers to spread. He is banker as
+  well as townmaster, so the money and the influence would move with the office.
+
+He asked the party to spend the night guarding his house from angry
+townspeople. Bean turned him down and mentioned that a fee might help. Then he
+offered **90 gold for anything about what Thornton is planning**, was told he
+was not in a position to negotiate, and paid **100**.
+
+He does not know that Thornton has already said out loud that he will be out
+and she will have his job. Two of the people he is paying were standing in the
+room when she said it.

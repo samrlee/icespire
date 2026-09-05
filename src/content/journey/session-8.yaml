@@ -1,0 +1,24 @@
+session: 8
+route:
+  - phandalin
+events:
+  - title: 'The town finds out'
+    at: phandalin
+    kind: social
+    note: 'The inn comes apart over the news from Umbrage Hill. Under the noise, one question keeps surfacing: did Harbin know?'
+  - title: 'A hundred gold on the guildmaster'
+    at: phandalin
+    kind: social
+    note: "Harbin admits every job so far was a hunt for a weapon to kill the dragon, and that it has turned up nothing. He pays 100 gold for anything about what Holia Thornton is planning."
+  - title: 'A deal in the dark'
+    at: phandalin
+    kind: social
+    note: 'Caught outside the Miner''s Exchange and walked in, Dax sells Thornton the orc band''s heading for 50 gold and is warned off — she knows where Harbin sends them, and she would start with the wizard.'
+  - title: 'Soon Harbin will be out'
+    at: phandalin
+    kind: omen
+    note: 'Invisible in her office, Thom and Bean hear the guildmaster tell her people she means to be town master, and that anyone caught sniffing around again dies.'
+  - title: 'The trap door'
+    at: phandalin
+    kind: discovery
+    note: 'A hatch in the floor behind the desk seals flush and vanishes. Bean picks it open anyway, and the two of them climb down a ladder into cold stone.'

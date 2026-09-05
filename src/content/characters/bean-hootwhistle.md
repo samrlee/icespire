@@ -39,6 +39,19 @@ acquiring other people's valuables.
   thing in the temple (Session 7).
 - Would not put her hands anywhere near the orc dead, and came away from the
   looting with nothing (Session 7).
+- Turned down Harbin's request that the party guard his house overnight, and
+  suggested a fee might change that (Session 8).
+- Went **invisible** on Thom's twinned spell and walked into the Miner's
+  Exchange past the guard holding the door (Session 8).
+- Searched Thornton's desk and found the business exactly as advertised — gold
+  dust, small diamonds, payouts, town names, nothing illegal — including the
+  line recording **the gold paid to Dax for the job he did for her**
+  (Session 8).
+- **Picked the sealed trap door open with her thieves' tools** after Thom's
+  dagger stopped against the catch. Nothing else in the room had a lever, a
+  pressure plate, or a book that pulled out of a shelf (Session 8).
+- Climbed down the ladder behind Thom into total darkness, which she cannot see
+  through at all (Session 8).
 
 **House rule:** Owen ruled in Session 7 that Bean can **appraise** valuables —
 an Intelligence check, at disadvantage, always, because she is a thief with an
