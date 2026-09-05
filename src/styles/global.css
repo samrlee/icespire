@@ -1557,6 +1557,10 @@ body {
   margin: 0 0 var(--space-6);
 }
 
+.session-meta .meta-separator {
+  margin-inline: var(--space-2);
+}
+
 /* ---------- Dramatis personae: a recap's cast strip ---------- */
 
 .dramatis {
