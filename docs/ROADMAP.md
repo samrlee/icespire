@@ -33,8 +33,11 @@ Priorities are a rough guide, not a contract — reorder freely.
   `/sessions/` and the search index. **One dashboard step left** — verify the
   domain in Google Search Console and submit the sitemap. _(Sep 2026)_
 
-- **Replace the sample data** — done, and the README no longer claims
-  otherwise. Every collection holds real campaign content. _(Sep 2026)_
+- **The sample data is gone.** The design system's placeholder content was
+  replaced session by session as the campaign was actually written up; Sessions
+  0–8, the roster, the NPCs, the factions, the lore and the places are all real.
+  The README's "sample data" note lagged behind, and has been corrected.
+  _(Sep 2026)_
 
 - **"Ask the Chronicle" — grounded Q&A over the campaign** — the palette offers
   to put a question to Llama 3.3 70B via Cloudflare's Workers AI binding, after
@@ -75,17 +78,12 @@ Ordered high → low by rough impact-per-effort.
 1. **Reading time on recaps.** The cast strip half of this idea shipped (see
    Done); the reading-time estimate did not. It was held back because it reads
    as noise on the early recaps — Sessions 0–4 run 61 to 389 words, and "1 min
-   read" tells nobody anything. The trend argues for revisiting: the last
-   three sessions ran 749, 1,789 and 3,214 words. Ship it behind a threshold
+   read" tells nobody anything. The trend argues for revisiting: the last four
+   sessions ran 749, 1,789, 3,214 and 4,165 words. Ship it behind a threshold
    (say 500 words) rather than on every recap.
 
 2. **Print stylesheet.** A `@media print` block so a recap or the campaign
    summary prints cleanly for players/DMs who want a hard copy.
-
-3. **Capitalise Sage's panther in the Session 7 recap.** One-line content fix:
-   the prose says "panther" lowercase, so the cast strip only picks it up via
-   `firstAppearance`. Writing "the Panther" would link it in prose too.
-   (Content work, not code.)
 
 ## Considered and dropped
 
@@ -99,8 +97,8 @@ Kept here so they don't get re-proposed cold.
 
 - **Treasury / loot index.** The premise was that `callout loot` and
   `callout magic-item` blocks were scattered through the recaps waiting to be
-  aggregated. Counted: there are exactly two `callout loot` blocks and no
-  `callout magic-item` blocks at all, so a generated page would have two rows.
+  aggregated. Counted across Sessions 0–8: three `callout loot` blocks and no
+  `callout magic-item` blocks at all, so a generated page would have three rows.
   `src/content/lore/magic-item-haul.md` is already the treasury, and it
   handles what a table could not — the second sending stone "has not been
   assigned to anyone", the coffer is "still unappraised". Ownership is often
