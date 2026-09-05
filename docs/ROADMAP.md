@@ -9,6 +9,12 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Done
 
+- **The sample data is gone.** The design system's placeholder content was
+  replaced session by session as the campaign was actually written up; Sessions
+  0–7, the roster, the NPCs, the factions, the lore and the places are all real.
+  Only the README's "sample data" note lagged behind, and it has been corrected.
+  _(Sep 2026)_
+
 - **"Ask the Chronicle" — grounded Q&A over the campaign** — the palette offers
   to put a question to Llama 3.3 70B via Cloudflare's Workers AI binding, after
   retrieving only the published entries that bear on it
@@ -69,7 +75,3 @@ Ordered high → low by rough impact-per-effort.
 
 6. **Print stylesheet.** A `@media print` block so a recap or the campaign
    summary prints cleanly for players/DMs who want a hard copy.
-
-7. **Replace the sample data.** The README still flags the current content as
-   sample data from the design system. The features above only pay off once
-   real campaign content fills them in. (Content work, not code.)

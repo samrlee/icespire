@@ -31,10 +31,14 @@ This README stays the reference manual for the collections and subsystems below.
 ## Adding content
 
 All content lives as Markdown files — one file per entry. Copy an existing file,
-rename it, and edit. The current content is **sample data from the design system**;
-replace it with the real campaign as you go.
+rename it, and edit. Everything here is the real campaign — Sessions 0–7 as
+played, with the roster, NPCs, factions, lore and places they turned up in. The
+design system's original sample data is gone; match what is already written
+rather than the shape of a fresh install. [`docs/WRITING-STYLE.md`](docs/WRITING-STYLE.md)
+covers the voice, and [`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md) the
+process for adding a session.
 
-- **Sessions**: `session-15.md` etc. Frontmatter: `title`, `sessionNumber`, `date`,
+- **Sessions**: `session-8.md` etc. Frontmatter: `title`, `sessionNumber`, `date`,
   `summary` (the card excerpt), `playersPresent`, optional `draft: true` to hide.
 - **Characters**: `name`, `player`, `ancestry`, `class`, optional `level`,
   `status` (active/retired/dead/missing), `tagline` (one-line bio on the card),
