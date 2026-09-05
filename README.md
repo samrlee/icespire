@@ -24,8 +24,8 @@ to `main`).
 ## Adding content
 
 All content lives as Markdown files — one file per entry. Copy an existing file,
-rename it, and edit. The current content is **sample data from the design system**;
-replace it with the real campaign as you go.
+rename it, and edit. The content is the real campaign, not sample data — the
+design system's placeholder entries have all been replaced.
 
 - **Sessions**: `session-15.md` etc. Frontmatter: `title`, `sessionNumber`, `date`,
   `summary` (the card excerpt), `playersPresent`, optional `draft: true` to hide.
@@ -194,11 +194,12 @@ Search answers first and for free; the model runs only when a reader decides
 the list didn't answer them, so a call is always a choice rather than a side
 effect of typing.
 
-**It needs one dashboard step to work.** In the Cloudflare dashboard: Workers &
-Pages → icespire → Settings → Bindings → Add → Workers AI, variable name `AI`,
-then redeploy. Pages Functions cannot declare this binding in a config file —
-the dashboard is the only place. Until it exists the endpoint answers 503 and
-the palette says so; search is unaffected either way.
+**The Workers AI binding is configured and the feature is live.** It was set
+up once in the Cloudflare dashboard: Workers & Pages → icespire → Settings →
+Bindings → Add → Workers AI, variable name `AI`. Pages Functions cannot declare
+this binding in a config file, so that dashboard entry is the only thing
+holding it — if it is ever removed the endpoint answers 503 and the palette
+says so, and search carries on unaffected.
 
 There is **no API key anywhere in this repo**. The binding is the credential,
 so there is nothing to leak, nothing to rotate, and no spend cap to set.
@@ -277,6 +278,56 @@ prop on `Base.astro`. The card fonts are bundled under `src/assets/og-fonts/`
 `/images/social-card.jpg`. To give another page type its own card, add an
 endpoint that calls `renderOgCard(...)` and point its `ogImage` at it.
 
+## Dramatis personae
+
+Each recap opens with its cast: the party who were at the table, then the NPCs
+and factions the session involves, as chips linking to their pages.
+
+Nothing about this is hand-maintained. Party membership comes from
+`playersPresent` — attendance is recorded, so it is never guessed. The rest is
+matched against the recap's Markdown using the same alias table that
+auto-links entity mentions in prose, which now lives in `src/lib/entities.ts`
+and is shared by both features (`components/EntityLinks.astro` ships it to the
+browser; `components/DramatisPersonae.astro` matches against it at build
+time). Write a name into a recap and its owner joins the cast.
+
+Two rules keep it honest, both of which cost coverage on purpose:
+
+- **A name has to be written out.** An NPC the prose only ever calls "the
+  Queen" is missed — "Queen" is a stop token, and a cast list that guesses is
+  worse than one that under-reports. Frontmatter covers the gap where it
+  exists: an `encounters` entry that links an NPC, and an NPC whose
+  `firstAppearance` names the session, are both taken as assertions and
+  outrank the prose scan.
+- **A faction that shares a place's name is left out.** "Gnomengarde" is both
+  the gnomes and their warren, and recaps mostly mean the ground — "the
+  Gnomengarde quest", "business at Gnomengarde". A bare mention cannot tell
+  them apart, so the faction stays out and its members appear on their own
+  merits as named NPCs.
+
+The one known gap today: Sage's panther is written as a lowercase "panther"
+in Session 7, so only its `firstAppearance` enrolls it. Capitalising it in the
+prose would link it there too.
+
+## Indexing
+
+`public/robots.txt` allows crawling and points at the sitemap; the sitemap
+itself is `@astrojs/sitemap`, configured in `astro.config.mjs`.
+
+The filter there is the part worth reading before touching it. Draft recaps
+build to a page but are deliberately unlinked — off `/sessions/`, out of the
+prev/next chain, out of the search index — and a sitemap that listed them
+would be the back door that hands search engines the one thing the site
+withholds. So the filter reads `draft:` straight from the session frontmatter
+(astro.config runs before content collections exist) and drops those URLs,
+along with the generated OG images and the search index, which are machinery
+rather than destinations. Undiscovered locations need no filter: their pages
+are never built in the first place.
+
+To finish getting indexed, the site has to be verified in Google Search
+Console and `https://icespire.ghostbloods.net/sitemap-index.xml` submitted
+there — a dashboard step, like the Workers AI binding.
+
 ## Roadmap
 
 Planned and possible improvements are tracked in
@@ -334,3 +385,13 @@ once in the Cloudflare dashboard:
 
 After that, every push to `main` triggers a production deploy, and other
 branches / PRs get automatic preview URLs.
+
+Two dashboard steps live outside the repo, because nothing in a config file
+can express them:
+
+- **Workers AI binding** (done) — Settings → Bindings → Add → Workers AI,
+  variable name `AI`. This is what makes Ask the Chronicle work; see above.
+- **Google Search Console** (outstanding) — verify the domain and submit
+  `https://icespire.ghostbloods.net/sitemap-index.xml`. The repo ships the
+  sitemap and a crawler-friendly `robots.txt`, but only this step actually
+  asks Google to come and look.

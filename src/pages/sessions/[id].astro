@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import CreatureCard from '../../components/CreatureCard.astro';
+import DramatisPersonae from '../../components/DramatisPersonae.astro';
 import { url } from '../../utils/url';
 
 export async function getStaticPaths() {
@@ -59,6 +60,7 @@ const hasAside = hasEncounters || hasJourney;
       <p class="session-meta">At the table: {session.data.playersPresent.join(', ')}</p>
     )
   }
+  <DramatisPersonae session={session} />
   <div class={`session-layout${hasAside ? '' : ' no-aside'}`}>
     <div class="prose">
       <Content />

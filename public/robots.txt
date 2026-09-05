@@ -1,0 +1,13 @@
+# The site is public and meant to be found. Everything linked from the
+# homepage is fair game; draft recaps and undiscovered locations are withheld
+# by not being linked or listed at all, not by a rule here — see the sitemap
+# filter in astro.config.mjs.
+User-agent: *
+Allow: /
+
+# Machinery, not destinations: the generated social cards and the search
+# index are fetched by the site itself and have nothing to read.
+Disallow: /og/
+Disallow: /search-index.json
+
+Sitemap: https://icespire.ghostbloods.net/sitemap-index.xml

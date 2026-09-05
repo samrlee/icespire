@@ -3,20 +3,45 @@
 A living to-do list of site improvements, kept so it can be referenced across
 work sessions. When you finish one, move it to **Done** with a one-line note.
 When you think of a new one, add it under **Ideas** with enough detail that
-someone (or a future chat) can pick it up cold.
+someone (or a future chat) can pick it up cold. When you decide against one,
+move it to **Considered and dropped** with the reason, so it doesn't come
+back around as a fresh idea.
 
 Priorities are a rough guide, not a contract — reorder freely.
 
 ## Done
+
+- **Dramatis personae on recaps** — each recap opens with its cast: the party
+  at the table (from `playersPresent`), then the NPCs and factions the session
+  involves, as chips linking to their pages
+  (`src/components/DramatisPersonae.astro`). The alias table that auto-links
+  entity mentions in prose moved to `src/lib/entities.ts` and now does double
+  duty — the browser linker and the build-time cast scan share one definition
+  of who answers to what name, so a name written into a recap enrolls its
+  owner with no extra tagging.
+
+  Two deliberate limits, both costing coverage to avoid guessing: a name has
+  to be written out (an NPC called only "the Queen" is missed — frontmatter
+  `firstAppearance` and linked `encounters` cover that gap where it exists),
+  and a faction sharing a place's name stays out, since "business at
+  Gnomengarde" means the warren, not the gnomes. _(Sep 2026)_
+
+- **Sitemap + `robots.txt`** — the site is crawlable and lists its own pages
+  for Search Console (`@astrojs/sitemap` in `astro.config.mjs`,
+  `public/robots.txt`). The filter reuses the site's publish gates: a draft
+  recap builds a page but stays out of the sitemap, exactly as it stays out of
+  `/sessions/` and the search index. **One dashboard step left** — verify the
+  domain in Google Search Console and submit the sitemap. _(Sep 2026)_
+
+- **Replace the sample data** — done, and the README no longer claims
+  otherwise. Every collection holds real campaign content. _(Sep 2026)_
 
 - **"Ask the Chronicle" — grounded Q&A over the campaign** — the palette offers
   to put a question to Llama 3.3 70B via Cloudflare's Workers AI binding, after
   retrieving only the published entries that bear on it
   (`functions/api/ask.ts`, ranking shared with search in
   `src/lib/search-rank.ts`). No API key: the binding is the credential.
-  **Needs one dashboard step to go live** — Pages project → Settings →
-  Bindings → Add → Workers AI, variable `AI` — until which the endpoint
-  answers 503 and search carries on unaffected.
+  **Live** — the Workers AI binding is configured on the Pages project.
 
   What the investigation settled, since the numbers drove the design: the
   served context is **24,000 tokens** with `max_tokens` counted against it, so
@@ -47,29 +72,39 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 Ordered high → low by rough impact-per-effort.
 
-1. **Quest Board page (`/quests/`).** *Dragon of Icespire Peak* is built around
-   Phandalin's job board. A page listing jobs (posted → active → completed →
-   failed), each tied to a location and the session it resolved in. Nothing on
-   the site currently tracks objectives.
+1. **Reading time on recaps.** The cast strip half of this idea shipped (see
+   Done); the reading-time estimate did not. It was held back because it reads
+   as noise on the early recaps — Sessions 0–4 run 61 to 389 words, and "1 min
+   read" tells nobody anything. The trend argues for revisiting: the last
+   three sessions ran 749, 1,789 and 3,214 words. Ship it behind a threshold
+   (say 500 words) rather than on every recap.
 
-2. **Treasury / loot index.** `callout loot` and `callout magic-item` blocks
-   are scattered through recaps but never aggregated. A page collecting every
-   magic item and notable haul (who carries it, which session it dropped)
-   surfaces content that's currently buried in prose.
-
-3. **RSS feed + sitemap.** No `@astrojs/sitemap`, no RSS. An RSS feed of recaps
-   lets players subscribe to new sessions; a sitemap helps the deployed site.
-   Both are near-zero-effort Astro integrations.
-
-4. ~~Per-session dynamic OG images~~ — **done, see above.**
-
-5. **Reading time + "dramatis personae" on recaps.** A reading-time estimate
-   and an auto-generated cast strip (NPCs/characters appearing in a session,
-   from the encounters array or entity links) at the top of each recap.
-
-6. **Print stylesheet.** A `@media print` block so a recap or the campaign
+2. **Print stylesheet.** A `@media print` block so a recap or the campaign
    summary prints cleanly for players/DMs who want a hard copy.
 
-7. **Replace the sample data.** The README still flags the current content as
-   sample data from the design system. The features above only pay off once
-   real campaign content fills them in. (Content work, not code.)
+3. **Capitalise Sage's panther in the Session 7 recap.** One-line content fix:
+   the prose says "panther" lowercase, so the cast strip only picks it up via
+   `firstAppearance`. Writing "the Panther" would link it in prose too.
+   (Content work, not code.)
+
+## Considered and dropped
+
+Kept here so they don't get re-proposed cold.
+
+- **Quest Board page (`/quests/`).** *Dragon of Icespire Peak* is built around
+  Phandalin's job board, but this party accepts every job offered — so the
+  posted/active/failed states would sit empty and the board would collapse
+  into a list of completed jobs. The recaps and the campaign page already
+  narrate those, in prose, with their consequences attached. _(Sep 2026)_
+
+- **Treasury / loot index.** The premise was that `callout loot` and
+  `callout magic-item` blocks were scattered through the recaps waiting to be
+  aggregated. Counted: there are exactly two `callout loot` blocks and no
+  `callout magic-item` blocks at all, so a generated page would have two rows.
+  `src/content/lore/magic-item-haul.md` is already the treasury, and it
+  handles what a table could not — the second sending stone "has not been
+  assigned to anyone", the coffer is "still unappraised". Ownership is often
+  genuinely unsettled, and prose can say so where a column cannot. _(Sep 2026)_
+
+- **RSS feed.** Not wanted — the group is seven people who already know when
+  they played. The sitemap half of this idea shipped on its own merits. _(Sep 2026)_
