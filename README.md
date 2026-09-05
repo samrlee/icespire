@@ -7,6 +7,13 @@ Built with [Astro](https://astro.build) and deployed to Cloudflare Pages at
 **https://icespire.ghostbloods.net/** (deploys automatically on every push
 to `main`).
 
+**Picking this up cold — or handing it to an AI coding tool?** Start with
+[`AGENTS.md`](AGENTS.md): how the repo works, what is generated, and what must
+never be published. Then [`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md)
+for turning a recorded session into a published recap, and
+[`docs/WRITING-STYLE.md`](docs/WRITING-STYLE.md) for the chronicle's voice.
+This README stays the reference manual for the collections and subsystems below.
+
 ## Site structure
 
 | Nav item | Route | Source |
@@ -24,10 +31,14 @@ to `main`).
 ## Adding content
 
 All content lives as Markdown files — one file per entry. Copy an existing file,
-rename it, and edit. The current content is **sample data from the design system**;
-replace it with the real campaign as you go.
+rename it, and edit. Everything here is the real campaign — Sessions 0–7 as
+played, with the roster, NPCs, factions, lore and places they turned up in. The
+design system's original sample data is gone; match what is already written
+rather than the shape of a fresh install. [`docs/WRITING-STYLE.md`](docs/WRITING-STYLE.md)
+covers the voice, and [`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md) the
+process for adding a session.
 
-- **Sessions**: `session-15.md` etc. Frontmatter: `title`, `sessionNumber`, `date`,
+- **Sessions**: `session-8.md` etc. Frontmatter: `title`, `sessionNumber`, `date`,
   `summary` (the card excerpt), `playersPresent`, optional `draft: true` to hide.
 - **Characters**: `name`, `player`, `ancestry`, `class`, optional `level`,
   `status` (active/retired/dead/missing), `tagline` (one-line bio on the card),
@@ -281,6 +292,14 @@ endpoint that calls `renderOgCard(...)` and point its `ogImage` at it.
 
 Planned and possible improvements are tracked in
 [`docs/ROADMAP.md`](docs/ROADMAP.md) — check there before starting new work.
+
+## Publishing a session
+
+The pipeline from a recorded game to a live recap — whisperx on the laptop, the
+transcript handed to a coding agent, the clarifying round, and the checklist of
+every place a session has to be propagated to — is documented in
+[`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md), with the prose
+conventions in [`docs/WRITING-STYLE.md`](docs/WRITING-STYLE.md).
 
 ## Development
 
