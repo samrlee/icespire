@@ -7,7 +7,7 @@ kicker: The story so far
 
 # Campaign Summary
 
-_A living reference for Owen's campaign. Last updated: Session 7 (8/25/26)._
+_A living reference for Owen's campaign. Last updated: Session 8 (9/4/26)._
 
 **Setting:** Forgotten Realms, Phandalin region — *Dragon of Icespire Peak*,
 D&D 5e (2014 rules), level cap 6.
@@ -213,20 +213,154 @@ attacked and completely destroyed by the dragon.**
 quest payouts). No long or short rest was taken in town — the party remains
 injured and un-rested. All characters remain Level 3.**
 
+### Session 8 — The Town Finds Out, a Deal in the Dark, and a Trap Door (9/4/26)
+
+Picking up in the inn the instant the messenger finished shouting. **Only
+Hamish could pick speech out of the crowd**, and what he heard was the town
+working out that it had been kept in the dark — *"I only heard about the dragon
+yesterday"*, and *"Did Harbin know?"* The party got outside and decided to
+reach Harbin before the town did.
+
+On the way, **Dax, Hamish and Barnaby spotted a dark-clad figure** moving
+toward the Miner's Exchange; Sage, Thom, Bean and Rut never saw him. **The party
+split.**
+
+**At Harbin's door**, the news of Umbrage Hill was genuinely new to him — and he
+gave up more than he ever has. He wanted to avoid a panic and an emptying town;
+**Phandalin cannot defend itself and he knows it**; and **every job he has given
+the party has been a search for a weapon that would kill the dragon**, which
+has found nothing. Told that Holia Thornton knew about the dragon too, he said
+he believes **she is angling for the townmaster's position** — he is banker as
+well as townmaster, so both the money and the influence would move with it — and
+wondered whether the rumor had been hers to spread. He asked the party to guard
+his house; Bean declined, and suggested a fee. He then **offered 90 gold for
+information on what Thornton is planning and was talked up to 100**. Unpaid so
+far.
+
+**Behind the Miner's Exchange**, Barnaby twice hoisted Hamish to a high window:
+one candle, Thornton at her desk with the man they had followed, and a grin on
+her face. A second guard came around the building; **Dax's chain mail gave the
+three of them away**, and he stood his ground while the other two got clear.
+His bluff failed, but the guard recognised him — *"You're that sellsword"* —
+and walked him inside rather than running him off.
+
+**Thom picked up the `message` cantrip** and ran the two halves of the party as
+a switchboard for the rest of the night: 120 feet, through walls, no word limit,
+and the target can answer under their breath. Dax answered mid-arrest —
+*"Miner's Guild. Stand by. Negotiations happening."*
+
+**Inside, Dax negotiated with Thornton**, and struck each deal before handing
+anything over. The Umbrage Hill attack was worthless to her — she already had
+it — so rather than sell it he **offered it as a freebie on condition they
+agreed terms on orcs first**, and only then spent it, framed as proximity: the
+party walked Adabra out that morning and the hill was destroyed by evening, so
+**the dragon is within an evening's flight of Phandalin**. Then he asked what
+she was paying with — gold, or information — and **got her to agree to a
+trade** before answering a single question of hers. His first purchase under
+that arrangement was Harbin. Only then did he pay his half: the band at the
+excavation came from the east, all seven died, and the tracks showed **a much
+larger force moving west**. She took the heading, put a map on the desk, and
+**paid 50 gold** — which **Dax has not mentioned to the party**. Collecting the
+rest of what he was owed, he asked about Harbin again; she said he has been
+afraid of the dragon a long while, that the party had handed her *"a great
+opportunity"*, and then caught herself:
+*"Things may be looking up in Phandalin. And Harbin may no longer be a part of
+it."* Dax closed by **answering Holia and Thom in the same spoken sentence** —
+"things are fine right now, but we're afraid of movement later" — which she
+took as intelligence and Thom took as a status report. Her parting words: if
+anyone is caught sniffing around at night again she knows where to find them,
+she knows where Harbin sends them, and she would **start with "that gangly
+wizard."**
+
+Outside: **Rut wild-shaped into a weasel and wedged himself under the front
+door**, head and shoulders inside — where he heard the entire negotiation.
+**Sage named the panther Phantom** — out loud for the first time as she called
+him off Hamish, whom he had just knocked flat — and set him to circle the
+building; then,
+rather than let a weasel get crushed by an opening door, she instructed Phantom
+to pull him clear, gently and without eating him. She had watched Rut transform
+and knew exactly whose weasel it was, and later told Dax — which is why the
+animal rode out of there on Dax's shoulder.
+
+**Thom stashed his backpack — and the emerald — in a bush**, then spent two
+sorcery points to **twin Invisibility on himself and Bean**. One hour on
+concentration; they held onto each other because they could not see one another.
+When the guard held the door open for Dax on his way out, **the two of them
+walked in**.
+
+The guard then found **Sage** in the lane and she talked her way out truthfully
+(she had been looking for her friend, and the weasel at her feet was the friend
+in question), before **throwing a knife at the weasel and missing**. The five regrouped, left visibly, and circled back to watch the
+Exchange: **Dax, Barnaby and the weasel near the shrine on the square, Sage in
+between, Hamish holed up in one of the burned-out houses.** Nobody knew where
+Thom and Bean had gone. **The sending stone was spent and will not work until
+tomorrow**, and `message` can only be answered, not initiated.
+
+**What Thom and Bean heard**, standing invisible in the middle of the room:
+*"Well done on your scouting… Soon Harbin will be out and I will be town
+master… Those foolish adventurers have brought me everything I needed."* And to
+a guard: **if any of them are caught sniffing around again, they all die** —
+the entire troop set on them. Thornton and two guards then went down a **trap
+door in the floor behind her desk**; the last guard locked up, closed the
+shutters, followed, and **the trap door sealed flush — no seam, no handle,
+nothing to show it had ever been there.**
+
+The desk search turned up ordinary business — gold dust, small diamonds,
+payouts, town names, nothing illegal — including **a record of the gold paid to
+Dax for the job he did for Holia.** No false bottoms, no pressure plates, no
+lever in the wall. Thom found a bar-like catch under the trap door's edge with
+a dagger and could not shift it; **Bean opened it with thieves' tools.**
+
+With about **fifty minutes of invisibility left**, they climbed down the ladder
+— Thom seeing fine in the dark, Bean seeing nothing at all — and their feet hit
+stone at the bottom. The session ended there.
+
+**No rest has been taken since the temple. All characters remain Level 3.**
+
 ## Open threads
+- **Thom and Bean are under the Miner's Exchange.** Alone, invisible for
+  roughly fifty more minutes, at the bottom of a ladder in the dark, with
+  Guildmaster Thornton, three guards and "our entire troop" somewhere ahead of
+  them. Nobody else in the party knows where they are, and neither the sending
+  stone nor the `message` cantrip can reach them from the outside.
+- **The trap door seals flush.** It took thieves' tools and a lucky angle to
+  open it from above once. If it shuts behind them, nothing on that floor says
+  a door was ever there.
+- **Thornton means to be townmaster.** *"Soon Harbin will be out and I will be
+  town master."* Only Thom and Bean heard her say it — Rut, wedged under the
+  door, heard the negotiation but not the speech that followed, and nobody has
+  told the rest of the party anything.
+- **Harbin's hundred gold**, offered for anything on what Thornton is planning.
+  Thom and Bean are currently standing in the answer. It has not been paid, and
+  it has not occurred to anyone that Harbin would be paying for his own
+  survival.
+- **Standing orders on the party.** If anyone is caught around the Exchange at
+  night again, Thornton's instruction to her guards is that they all die, and
+  her stated preference is to **start with Thom**. She knows where Harbin sends
+  them.
+- **Dax's fifty gold**, paid by Thornton for the orc band's position and
+  heading, and not mentioned to anyone. The party also does not know she keeps
+  a written record of what she has paid him — Bean read the line and Dax was
+  not there.
+- **The recon point.** *"Let's head on back to our recon point. We have a lot
+  of work to do this evening."* Whatever is down that ladder is somewhere the
+  Zhentarim work out of, and it is not empty at night.
+- **Every job has been a weapon hunt.** Harbin admitted the gnomes, the
+  midwife, and the dwarves were all him looking for something that would kill
+  the dragon. It has found nothing, he has field reports still to hand over,
+  and he says Phandalin cannot defend itself.
+- **The town knows, and it is angry at Harbin** — not at the dragon. He has
+  gone from hiding the rumor to needing the townspeople ready, in one evening,
+  and he asked the party to guard his house from his own neighbours.
+- **The emerald is in a bush** outside the Miner's Exchange, in Thom's
+  backpack, where he left it before going invisible. Its properties are still
+  unexamined, and neither it nor the coffer of gemstones has been appraised.
+- **The white dragon.** It destroyed Umbrage Hill within hours of the party
+  walking Adabra Gwynn out of it — close enough, by Thornton's reckoning and
+  Dax's, to be a short flight from Phandalin. Phandalin's only source of
+  healing potions went with the windmill.
 - Where the temple's wealth actually went. The ledger says **invested**, not
   stored, and the alcove chest was a final offering, not a treasury.
-- **Umbrage Hill is destroyed.** The dragon attacked it the same day the party
-  evacuated Adabra Gwynn. She is alive because they came back for her; her
-  windmill — and Phandalin's only source of healing potions — is gone.
-- **The white dragon** is no longer a rumor. It destroyed Umbrage Hill on the
-  evening of Session 7, a few hours' walk from where the party had been that
-  morning.
-- **Harbin's next assignment** — "concerning reports" and "unfortunate work,"
-  to be handed over the day after Session 7.
-- **The great emerald.** Thom carries it and it slows him to half speed. Its
-  properties are unexamined and it has not been appraised — nor has the coffer
-  of gemstones, which has still never been to the Miner's Exchange.
 - **The rest of what the party owes Norbus.** He was paid 25 gp and 70 silver
   against a 60/40 split of a haul that includes the gemstone coffer and the
   emerald. He accepted it and believes it was fair. He was never told about the
@@ -236,16 +370,14 @@ injured and un-rested. All characters remain Level 3.**
 - **The offering note is in Common.** Nobody has asked why a dwarven temple's
   final message was left in a language its priests would not have used among
   themselves.
-- **The town is uneasy.** The inn was unusually crowded and agitated *before*
-  the news arrived, and nobody in the party asked why.
-- **The party is injured and un-rested.** A rest in Phandalin was raised and
-  never taken before the session ended.
+- **The party has not rested since the temple.** A rest was raised in town and
+  again while posting up outside the Exchange, and has still not been taken;
+  whatever the statue left on them, they are carrying it.
 - The **cursed-seeming necklace** Rut carries blind, now joined by the holy
   symbol Hamish took off Abbathor's dead priest.
-- The **orc bands.** Seven dead at the temple; tracks confirm they came from
-  the **large encampment**, whose main body has since moved west, away from the
-  road north. The war-leader knew Dax by sight for what he did at Gnomengarde.
+- The **orc bands.** Seven dead at the temple; the main body has moved west,
+  away from the road north — and Thornton has now bought its heading and
+  written it on a map. What she wants it for is not clear.
 - The **Zhentarim** intel pact with Thornton, plus **Harbin's stolen notes** on
-  her (Dax not privy to the notes' contents; he knows the break-in happened but
-  didn't participate).
+  her, which nobody has read.
 - **Rut's true name** — the party still only knows him as "Friend."
