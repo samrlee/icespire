@@ -133,7 +133,39 @@ The rules that came out of it:
 - **When you cannot tell, ask.** See the clarifying round in
   [`SESSION-WORKFLOW.md`](SESSION-WORKFLOW.md).
 
+## Write the knowledge, not just the events
+
+Most of what is unresolved in this campaign is unresolved because somebody has
+not been told something. The chronicle has to carry that, and it is easy to lose:
+a scene reads fine with the knowledge stripped out of it, and only the Open
+threads notice.
+
+- **When the party splits, say who saw it.** Rut heard the negotiation from
+  under a door and missed the speech that followed; Thom and Bean, invisible in
+  the room, heard both. Two of them know what the guildmaster intends and five
+  do not, and every scene after that depends on which is which.
+- **Say when knowledge travels.** Sage watched Rut turn into a weasel and told
+  Dax, which is the only reason a weasel on Dax's shoulder is not a mystery to
+  him. A draft that leaves the telling out makes the party quietly omniscient.
+- **Agreed is not paid; offered is not done.** Harbin has agreed a hundred gold
+  and paid none of it. Write the state the thing is actually in — the difference
+  is usually the open thread.
+- **Nobody is off-screen by accident.** If a character was not in the room, they
+  do not know, and the prose should not let them act as though they do.
+
+## Never let the phrasing cost the reader a fact
+
+Two characters turning invisible is a plain event that the next three scenes
+depend on, and "went out of the world" was doing too much work for it — it
+shipped, and it was rewritten to say they vanished where they stood. The register
+is understated, not oblique. If a reader has to hold a mechanic in their head to
+follow what happens next, name it plainly and spend the atmosphere elsewhere.
+
 ## Names and links
+
+Canonical spellings for everything a room mic garbles are in
+[`TABLE-FACTS.md`](TABLE-FACTS.md), along with which player runs which
+character. Check every proper noun against it.
 
 Write names plainly and do not hand-write links to site pages inside recap
 prose. `EntityLinks.astro` turns the first mention of any character, NPC,
