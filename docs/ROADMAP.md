@@ -11,6 +11,20 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Done
 
+- **The handoff knows about the table.** Everything an agent needed but could
+  only get by being told — the DM's name, which player runs which character, the
+  house rules, the canonical spelling of every name a room mic garbles — is now
+  in [`TABLE-FACTS.md`](TABLE-FACTS.md) instead of scattered across seven
+  `player` fields and one Session 0 bullet.
+  [`TRANSCRIPT-BRIEF.md`](TRANSCRIPT-BRIEF.md) packs the same material, the
+  voice rules, and the clarifying round into one prompt that can be pasted into
+  any chat with a transcript — no repo access required — so the writing can
+  happen wherever it is convenient and still land here clean. The failure modes
+  the correction commits kept catching (the count of a repeated action, who knew
+  what and when, agreed-versus-paid, the order of a negotiation) are written
+  down in the workflow and the style guide rather than being rediscovered each
+  session. _(Sep 2026)_
+
 - **Dramatis personae on recaps** — each recap opens with its cast: the party
   at the table (from `playersPresent`), then the NPCs and factions the session
   involves, as chips linking to their pages

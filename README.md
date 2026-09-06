@@ -9,9 +9,13 @@ to `main`).
 
 **Picking this up cold — or handing it to an AI coding tool?** Start with
 [`AGENTS.md`](AGENTS.md): how the repo works, what is generated, and what must
-never be published. Then [`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md)
-for turning a recorded session into a published recap, and
+never be published. Then [`docs/TABLE-FACTS.md`](docs/TABLE-FACTS.md) for who is
+at the table and the house rules they play by,
+[`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md) for turning a recorded
+session into a published recap, and
 [`docs/WRITING-STYLE.md`](docs/WRITING-STYLE.md) for the chronicle's voice.
+[`docs/TRANSCRIPT-BRIEF.md`](docs/TRANSCRIPT-BRIEF.md) packs all of that into
+one prompt you can paste into a chat that has no access to this repo.
 This README stays the reference manual for the collections and subsystems below.
 
 ## Site structure
@@ -144,23 +148,31 @@ Markdown blockquotes render as gold-bordered pull quotes automatically. Add an
 attribution with a `<footer>` line inside the quote:
 
 ```markdown
-> I said the sled was fine. I did not say it would stay fine.
+> May all offerings to Abbathor forever cease. If you have found this room and
+> you have survived, take what remains.
 >
-> <footer>— Brindle Cogsworth (played by Alex)</footer>
+> <footer>— the note left in the last offering chest</footer>
 ```
+
+Attribute the quote the way the chronicle would — a character, a document, a
+voice — never with a player's real name; those stay in frontmatter.
 
 Callout boxes (game mechanics stay out of narrative prose per the design system):
 
 ```html
 <div class="callout loot">           <!-- or magic-item / house-rule -->
   <div class="callout-label">Loot</div>
-  <div class="callout-title">The Necklace, Found Again</div>
-  <div class="callout-body">Recovered from the temple vault.</div>
+  <div class="callout-title">The Great Emerald &amp; the Last Offering</div>
+  <div class="callout-body">150 gold and 70 tarnished silver, left with written
+  permission to take it.</div>
 </div>
 ```
 
+The `house-rule` variant is for a ruling the DM made at the table; the standing
+ones are collected in [`docs/TABLE-FACTS.md`](docs/TABLE-FACTS.md).
+
 Character portraits go in `public/images/characters/` and are referenced as
-`portrait: /images/characters/brindle.jpg`.
+`portrait: /images/characters/sage.webp`.
 
 ## Search
 
@@ -352,7 +364,13 @@ The pipeline from a recorded game to a live recap — whisperx on the laptop, th
 transcript handed to a coding agent, the clarifying round, and the checklist of
 every place a session has to be propagated to — is documented in
 [`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md), with the prose
-conventions in [`docs/WRITING-STYLE.md`](docs/WRITING-STYLE.md).
+conventions in [`docs/WRITING-STYLE.md`](docs/WRITING-STYLE.md) and the table's
+own facts in [`docs/TABLE-FACTS.md`](docs/TABLE-FACTS.md).
+
+To do the writing in a chat that cannot read this repo, paste
+[`docs/TRANSCRIPT-BRIEF.md`](docs/TRANSCRIPT-BRIEF.md) along with the
+transcript. It carries the roster, the voice, and the questions the tool has to
+ask, and hands back a recap plus the list of pages the session changes.
 
 ## Development
 

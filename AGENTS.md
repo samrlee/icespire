@@ -18,16 +18,21 @@ in this one.
 
 1. **This file** — how the repo works, and the rules that are not obvious from
    reading the code.
-2. **[`README.md`](README.md)** — the reference manual. Every collection, every
+2. **[`docs/TABLE-FACTS.md`](docs/TABLE-FACTS.md)** — who is at the table, who
+   the DM is, the house rules, and the spellings the transcript mangles. Short,
+   and it is the one thing you cannot work out by reading the repo.
+3. **[`README.md`](README.md)** — the reference manual. Every collection, every
    frontmatter field, the map, the graph, search, the Ask endpoint, the CSP,
    the deploy. It is long and it is accurate. Never guess at a field name when
    it is written down there.
-3. **[`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md)** — the recording →
+4. **[`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md)** — the recording →
    whisperx → transcript → agent → published-site pipeline. This is the job
-   most of the time.
-4. **[`docs/WRITING-STYLE.md`](docs/WRITING-STYLE.md)** — the chronicle's voice.
+   most of the time. Its companion
+   [`docs/TRANSCRIPT-BRIEF.md`](docs/TRANSCRIPT-BRIEF.md) is the same job
+   packed into one self-contained prompt, for a chat with no repo access.
+5. **[`docs/WRITING-STYLE.md`](docs/WRITING-STYLE.md)** — the chronicle's voice.
    Read it before writing a word of campaign prose.
-5. **[`docs/ROADMAP.md`](docs/ROADMAP.md)** — what is done and what is planned.
+6. **[`docs/ROADMAP.md`](docs/ROADMAP.md)** — what is done and what is planned.
    Check it before starting feature work, and update it when you finish some.
 
 ## Running it
@@ -100,6 +105,22 @@ reaching for a bare `getCollection()` there is how a spoiler ships.
 what is inside Axeholm. The chronicle does not, until they walk in. This
 applies to prose, to lore entries, to map rooms, and to anything the Ask bot
 could retrieve.
+
+**The table's own facts are written down once, in
+[`docs/TABLE-FACTS.md`](docs/TABLE-FACTS.md).** Which player runs which
+character, that the DM is Owen and voices every NPC, the house rules, and the
+canonical spelling of every name a room mic garbles. None of it is derivable
+from the content files — the roster's `player` fields are spread across seven
+files and the house rules live in one Session 0 bullet — so it lives in one
+place and gets updated when the table changes, not re-derived per session.
+
+**The chronicle tracks who knows what, not just what happened.** Most of what
+is unresolved in this campaign is unresolved because somebody has not been told
+something. A recap with every event right and the knowledge wrong is still
+wrong, and the correction commits bear that out: who watched Rut transform, who
+heard Thornton's speech from under a door, who was not present when Bean read
+the ledger line. When a scene splits the party, say who saw it — and remember
+that money agreed is not money paid.
 
 **Never present the table's inference as the chronicle's fact.** If nobody at
 the table said it, it does not get asserted. This has needed correcting more

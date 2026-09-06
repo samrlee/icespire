@@ -15,6 +15,12 @@ the rest of this document is written to be handed to one cold.
 
 Two documents go with this one and are not optional: **[`WRITING-STYLE.md`](WRITING-STYLE.md)**
 for the prose, and **[`../AGENTS.md`](../AGENTS.md)** for how the repo works.
+**[`TABLE-FACTS.md`](TABLE-FACTS.md)** holds the roster, the DM, the house rules
+and the name spellings — read it before the transcript.
+
+Working in a plain chat window instead of an agent with the repo checked out?
+**[`TRANSCRIPT-BRIEF.md`](TRANSCRIPT-BRIEF.md)** is all of this packed into one
+self-contained prompt you paste with the transcript.
 
 ---
 
@@ -73,8 +79,9 @@ against, and asks about the rest.
 Open the repo in whatever tool you like and give it the transcript plus a
 kickoff. There is a copy-paste prompt at the bottom of this document.
 
-Along with the transcript, the agent needs three things it cannot get from the
-audio:
+The brief in [`TRANSCRIPT-BRIEF.md`](TRANSCRIPT-BRIEF.md) is the version to
+paste into a tool that cannot read this repo. Either way, along with the
+transcript the agent needs three things it cannot get from the audio:
 
 1. **The session number and the real-world date** (the `date` frontmatter is the
    date it was played).
@@ -96,6 +103,8 @@ you will contradict it.
   transcript mentions. Their current `status` values are the state you are about
   to change.
 - `git log` for the last session's commits, for the shape of the work.
+- **[`TABLE-FACTS.md`](TABLE-FACTS.md)** — the roster, the house rules, and the
+  spellings to correct the transcript against.
 - **[`WRITING-STYLE.md`](WRITING-STYLE.md)**, in full.
 
 ## 5. The clarifying round — the part that matters
@@ -139,6 +148,26 @@ three-word correction rather than an essay:
   recap.
 - **Which threads closed**, and what new ones opened. This is the Open threads
   rewrite in `campaign.md`.
+
+**The four that the correction commits keep catching**, worth a deliberate pass
+of their own before you send the questions:
+
+- **Order and count of a repeated action.** Session 8's draft folded three
+  attempts at a window into two, which put Hamish stuck on Barnaby's shoulders
+  at the moment he was supposed to be watching Dax get caught. Everything after
+  a flattened repetition lands on the wrong person. Count them in the
+  transcript; do not summarise them from memory of what you just read.
+- **Who knew what, and when.** Sage watched Rut turn into a weasel and told Dax,
+  which is why a weasel rode on Dax's shoulder all night; the draft had the
+  party ignorant of it. Only Thom and Bean heard Thornton say she means to be
+  townmaster — Rut, under the door, heard the negotiation and not the speech.
+  Track knowledge separately from events, and ask who was told afterwards.
+- **Agreed versus paid, offered versus done.** Harbin *agreed* a hundred gold;
+  nothing has been brought to him and nothing has been paid. A draft that
+  collapses the two closes a thread that is still open.
+- **Negotiation order.** Who conceded what, and in which direction, is usually
+  the whole character beat. Dax closed his terms before handing anything over,
+  and the draft had him volunteering it — the same events, an inverted person.
 
 **Never**: invent dialogue, fill a gap from your knowledge of the published
 module, or paper over an unclear passage with vague prose so you do not have to
@@ -244,8 +273,9 @@ with what really happened.
 Paste this into a fresh agent, with the transcript attached or pasted below it.
 
 > You are picking up the Icespire campaign website. Read `AGENTS.md`,
-> `docs/SESSION-WORKFLOW.md`, and `docs/WRITING-STYLE.md` first, then read the
-> previous session's recap and the Open threads in `src/pages/campaign.md`.
+> `docs/TABLE-FACTS.md`, `docs/SESSION-WORKFLOW.md`, and
+> `docs/WRITING-STYLE.md` first, then read the previous session's recap and the
+> Open threads in `src/pages/campaign.md`.
 >
 > Attached is the whisperx transcript of **Session N**, played **DATE**.
 > Present: **PLAYERS**. Speaker map: SPEAKER_00 = …, SPEAKER_01 = … (the DM is
