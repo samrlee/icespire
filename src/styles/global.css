@@ -4213,3 +4213,21 @@ body {
 .submap-phandalin .ph-roads { fill: none; stroke: var(--map-path); stroke-width: 12; }
 .submap-phandalin .ph-square { fill: var(--map-path); }
 .submap-phandalin .ph-road-note { fill: var(--map-label); font-family: var(--font-body); font-size: 24px; font-style: italic; }
+.submap-gnomengarde .gn-rock { fill: var(--map-peak-fill); }
+.submap-gnomengarde .gn-rock-edge { fill: none; stroke: var(--map-ridge); stroke-width: 2; }
+.submap-gnomengarde .gn-cliff { fill: none; stroke: var(--map-ridge); stroke-width: 1.6; opacity: .75; }
+.submap-gnomengarde .gn-water { fill: var(--map-pool); stroke: var(--map-shore); stroke-width: 3; }
+.submap-gnomengarde .gn-ripples { fill: none; stroke: var(--map-river); stroke-width: 2; }
+.submap-gnomengarde .gn-island { fill: var(--map-dig); stroke: var(--map-ridge); stroke-width: 2; }
+.submap-gnomengarde .gn-mushrooms { fill: var(--map-forest-fill); stroke: var(--map-forest); stroke-width: 1.5; }
+.submap-gnomengarde .gn-room-walls { fill: none; stroke: var(--map-ridge); stroke-width: 6; stroke-linejoin: round; }
+.submap-gnomengarde .gn-corridor-walls { fill: none; stroke: var(--map-ridge); stroke-width: 31; stroke-linejoin: round; }
+.submap-gnomengarde .gn-room-floors { fill: var(--bg-inset); }
+.submap-gnomengarde .gn-corridor-floors { fill: none; stroke: var(--bg-inset); stroke-width: 25; stroke-linejoin: round; }
+.submap-gnomengarde .gn-room-grid { fill: url(#gn-grid); }
+.submap-gnomengarde .gn-corridor-grid { fill: none; stroke: url(#gn-grid); stroke-width: 25; stroke-linejoin: round; }
+.submap-gnomengarde .gn-steps { fill: none; stroke: var(--map-ridge); stroke-width: 1.5; }
+.submap-gnomengarde .gn-furniture { fill: none; stroke: var(--map-label); stroke-width: 2; }
+.submap-gnomengarde .gn-doors { fill: none; stroke: var(--accent-gold-muted); stroke-width: 6; }
+.submap-gnomengarde .gn-secret-doors { fill: none; stroke: var(--accent-gold-muted); stroke-width: 5; stroke-dasharray: 3 3; }
+.submap-gnomengarde .gn-bridge { fill: var(--map-building); stroke: var(--accent-gold-muted); stroke-width: 2; }

@@ -11,6 +11,11 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Done
 
+- **Gnomengarde map redraw** — traced both cave wings, the river and islands,
+  bridge, stairs, and room connections from the official five-foot grid.
+  Corrected the ballista and blade-room positions; interiors and their key
+  entries share the discovery gate. _(Sep 2026)_
+
 - **Phandalin map redraw** — aligned roads, landmark footprints, houses,
   orchard, fields, and eastern ravine with the official town map and its
   500-foot scale bar. Retains the seven campaign landmarks. _(Sep 2026)_
@@ -23,8 +28,7 @@ Priorities are a rough guide, not a contract — reorder freely.
 - **Dwarven Excavation map redraw** — traced the official canyon, ruins, room
   footprints, and passages at a consistent five-foot grid scale. Uses the
   campaign palette and existing pan/zoom viewer; includes the chamber reached
-  in Session 7 and respects the interior gate. Other local maps still await
-  the same treatment. _(Sep 2026)_
+  in Session 7 and respects the interior gate. The other three published local maps now use the same approach. _(Sep 2026)_
 
 - **The handoff knows about the table.** Everything an agent needed but could
   only get by being told — the DM's name, which player runs which character, the
