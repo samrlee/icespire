@@ -11,6 +11,11 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Done
 
+- **Visited-only region map** — unvisited places are absent from markers,
+  detail panels, event pins, replay data, location search documents, and
+  location auto-links. Draft journeys are excluded; regression checks cover
+  hidden waypoints and malformed references. _(Sep 2026)_
+
 - **Gnomengarde map redraw** — traced both cave wings, the river and islands,
   bridge, stairs, and room connections from the official five-foot grid.
   Corrected the ballista and blade-room positions; interiors and their key

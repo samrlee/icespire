@@ -70,8 +70,8 @@ process for adding a session.
 - **Locations** (`src/content/locations/`): places on the campaign map. `name`,
   `x`/`y` (map coordinates in the SVG's 1000×750 space), `kind`
   (town/settlement/landmark/dungeon/camp/lair), `status`
-  (`visited`/`known`/`rumored`/`unknown` — drives the marker style; `unknown`
-  renders nowhere until you change it), optional `danger` (ember marker,
+  (`visited`/`known`/`rumored`/`unknown` — only `visited` places get map
+  markers, panels, location search results, or prose links), optional `danger` (ember marker,
   reserved for real threats), `firstVisited` (session number), `summary`
   (tooltip/panel one-liner), `labelPlacement` (top/bottom/left/right), and
   optional `lore`/`faction` slugs to link from the detail panel. The body is
@@ -105,11 +105,16 @@ is already drawn, including the ones the party hasn't found: to reveal one
 after a session, flip its location's `status` (`unknown` → `visited` shows
 both the region marker and the local map). The full status ladder:
 
-- `unknown` — not on the site at all (all the undiscovered official sites
-  start here)
-- `rumored` — dashed marker, the party has only heard of it
-- `known` — hollow marker, seen but not entered
-- `visited` — solid marker, local map published
+- `unknown` — undiscovered, not published as a location
+- `rumored` — heard about, but not labelled or linked on the map
+- `known` — sighted, but not labelled or linked on the map
+- `visited` — labelled on the region map; local map published when its interior gate allows
+
+The visited-only rule lives in `src/lib/map-publication.ts` and is shared by
+map data, location search documents, and prose links. Map events and replay
+also exclude unvisited locations and draft sessions. Unvisited waypoints do
+not create shortcut route arcs. The published recaps remain the record of
+what the party heard or saw; the map does not label those places early.
 
 Because the sub-maps are our own drawings and still being reworked, every
 sub-map page carries a "work in progress" caveat above the map, and the region
@@ -185,10 +190,9 @@ nothing to pay for, nothing to rate-limit.
 
 **The index publishes only what the site publishes**, and that is the rule to
 keep when editing it. Each collection is filtered exactly as its page filters:
-a `draft` recap and a location whose `status` is `unknown` are absent from the
-index for precisely as long as they are absent from the site — so a place
-becomes searchable the moment you flip it to `rumored`, and not a build
-before. Add a collection to `buildSearchIndex()` and you must bring its
+a `draft` recap and an unvisited location are absent from the index. A place becomes a
+location search result when its status changes to `visited`, matching its
+map panel. Add a collection to `buildSearchIndex()` and you must bring its
 publish gate with it; reaching for a bare `getCollection()` there is how a
 spoiler ships.
 
