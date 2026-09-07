@@ -4202,3 +4202,14 @@ body {
 .ref-map .ref-scale path { fill: none; stroke: var(--map-label); stroke-width: 2; }
 .ref-map .ref-elevation { fill: var(--map-label); font-family: var(--font-mono); font-size: 18px; text-anchor: middle; paint-order: stroke; stroke: var(--map-land); stroke-width: 6; }
 .submap-umbrage .uh-contours { fill: none; stroke: var(--map-ridge); stroke-width: 2; opacity: .8; }
+.submap-phandalin .ph-contours { fill: none; stroke: var(--map-ridge); stroke-width: 1.6; opacity: .45; }
+.submap-phandalin .ph-stream { fill: none; stroke: var(--map-river); stroke-width: 7; }
+.submap-phandalin .ph-fields { fill: none; stroke: var(--map-ridge); stroke-width: 2; opacity: .6; }
+.submap-phandalin .ph-ruin-walls { fill: none; stroke: var(--map-ridge); stroke-width: 5; stroke-dasharray: 8 6; }
+.submap-phandalin .ph-ravine { fill: none; stroke: var(--map-ridge); stroke-width: 2; }
+.submap-phandalin .ph-trees { fill: var(--map-forest-fill); stroke: var(--map-forest); stroke-width: 2; }
+.submap-phandalin .ph-tree-branch { fill: none; stroke-width: 1; }
+.submap-phandalin .ph-road-edge { fill: none; stroke: var(--map-ridge); stroke-width: 16; opacity: .5; }
+.submap-phandalin .ph-roads { fill: none; stroke: var(--map-path); stroke-width: 12; }
+.submap-phandalin .ph-square { fill: var(--map-path); }
+.submap-phandalin .ph-road-note { fill: var(--map-label); font-family: var(--font-body); font-size: 24px; font-style: italic; }

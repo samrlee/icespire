@@ -80,9 +80,9 @@ export function hasSubmapPage(loc: {
 export const submaps: Record<string, SubmapEntry> = {
   phandalin: {
     Component: Phandalin,
-    width: 900,
-    height: 650,
-    scaleNote: 'The town spans about a third of a mile',
+    width: 1872,
+    height: 1344,
+    scaleNote: 'Official town layout · Scale in feet',
     legend: [
       { label: 'Stonehill Inn', note: 'rooms, stew, and the stranger who watched the party in Session 1' },
       { label: "Barthen's Provisions", note: 'general goods' },

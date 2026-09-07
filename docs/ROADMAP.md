@@ -11,6 +11,10 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Done
 
+- **Phandalin map redraw** — aligned roads, landmark footprints, houses,
+  orchard, fields, and eastern ravine with the official town map and its
+  500-foot scale bar. Retains the seven campaign landmarks. _(Sep 2026)_
+
 - **Umbrage Hill map redraw** — traced the official contour lines, windmill
   footprint, yard fence, ruined outbuilding, and boulders at five-foot grid
   scale. Labels the exterior as a record before the dragon destroyed it;
