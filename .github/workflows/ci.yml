@@ -41,5 +41,8 @@ jobs:
       - name: Type-check
         run: npm run check
 
+      - name: Map publication gates
+        run: npm run test:map
+
       - name: Build
         run: npm run build

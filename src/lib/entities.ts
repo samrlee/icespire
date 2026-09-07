@@ -8,6 +8,7 @@
 // aliases and the same collision rules, so they live here rather than in
 // either caller.
 import { getCollection } from 'astro:content';
+import { isMapLocationPublished } from './map-publication';
 import { url } from '../utils/url';
 
 export type EntityType = 'Party' | 'NPC' | 'Faction' | 'Location';
@@ -100,9 +101,9 @@ export async function buildEntities(): Promise<Entity[]> {
     });
   }
 
-  // Locations the party hasn't discovered stay unlinked (and unspoiled).
+  // Location links inherit the map's visited-only publication gate.
   for (const l of await getCollection('locations')) {
-    if (l.data.status === 'unknown') continue;
+    if (!isMapLocationPublished(l)) continue;
     entities.push({
       name: l.data.name,
       type: 'Location',

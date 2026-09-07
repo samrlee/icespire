@@ -1,7 +1,7 @@
 ---
 name: 'Axeholm'
-x: 498
-y: 668
+x: 807
+y: 1598
 kind: dungeon
 status: unknown
 labelPlacement: bottom

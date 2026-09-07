@@ -1,380 +1,111 @@
 ---
-// Static terrain artwork for the campaign map — stylized line-art of the
-// Phandalin region in the site's design language, traced feature-by-feature
-// against the official Sword Coast regional map (offical-assets/Maps/
-// map-00.02-sword-coast.jpg, reference only — never shipped to the site).
-//
-// Coordinate space: 1000 × 750 viewBox units, shared with the location
-// coordinates in src/content/locations/. The mapping from the official
-// sheet is uniform (my = (official_display − (240, 860)) × 0.8), so every
-// road bend, river curve, forest boundary, and landmark sits where the
-// official map puts it. The crop covers the campaign region: the official
-// sheet's own east border falls at x ≈ 910; terrain beyond that is a quiet
-// continuation. North of y = 0 (Neverwinter, Mount Hotenow, the Crags) is
-// cropped out per the campaign's house rule.
-
-// Mountain peaks as [x, y, scale], sitting on the dark massif shapes below.
-const peaks: [number, number, number][] = [
-  // The Icespire ridge, southwest to northeast
-  [612, 456, 1.0], [650, 440, 1.2], [692, 447, 0.9], [734, 456, 1.0],
-  [772, 468, 0.9], [802, 448, 1.0], [840, 420, 1.1], [876, 394, 0.9],
-  [906, 364, 1.0], [932, 338, 0.8], [662, 486, 0.9], [702, 508, 0.8],
-  [746, 508, 0.9],
-  // The spur down toward Gnomengarde, its west flank and saddle
-  [628, 544, 0.9], [604, 580, 0.8], [592, 610, 0.7],
-  [566, 514, 0.8], [590, 486, 0.7],
-  // Southeast of Gnomengarde, into the gap before Kryptgarden
-  [634, 660, 0.7], [672, 638, 0.8], [706, 610, 0.7], [720, 576, 0.8],
-  // The range running up the sheet's east edge toward the Starmetal Hills
-  [936, 296, 0.9], [952, 258, 0.8], [966, 222, 0.9], [978, 196, 0.7],
-  [918, 388, 0.8],
-  // The southwestern massif over the excavation and Axeholm
-  [382, 692, 0.8], [412, 662, 0.9], [446, 670, 0.8], [482, 692, 0.9],
-  [516, 682, 0.8], [452, 700, 0.7], [396, 726, 0.7], [456, 732, 0.8],
-  [524, 720, 0.7], [548, 690, 0.7],
+// Traced from map-00.02-sword-coast.jpg in a 1344 × 1872 coordinate space.
+// The complete sheet is drawn at one scale: a hex is five miles across flats.
+// Terrain has no place names, settlement symbols, or adventure-site glyphs.
+// All location labels are supplied by the visited-only collection in /map/.
+const coast = 'M79 89 L82 177 79 225 Q69 263 88 295 L100 314 Q119 324 111 347 L102 365 116 385 115 407 130 438 136 464 130 483 124 500 132 521 141 550 137 578 146 610 143 640 160 659 175 675 175 690 196 703 191 725 204 758 219 779 241 792 259 813 277 844 286 871 284 900 Q289 938 313 961 L344 993 355 1016 357 1040 348 1064 351 1092 359 1114 349 1141 356 1161 376 1185 384 1215 380 1239 389 1262 402 1284 409 1309 407 1338 397 1368 397 1400 409 1433 413 1458 426 1481 443 1500 449 1520 443 1542 449 1564 448 1586 438 1606 430 1636 435 1661 449 1684 455 1706 449 1732 436 1757 422 1789';
+const forests = [
+ 'M205 80 H550 L548 140 545 182 541 240 529 280 535 294 519 323 486 351 480 388 464 411 458 451 479 479 492 492 518 483 580 469 638 448 676 418 702 384 722 377 742 379 770 395 800 401 822 422 837 451 842 488 824 512 815 542 818 574 851 584 875 577 894 593 916 601 944 620 971 612 1006 613 1032 612 1079 639 1097 681 1083 707 1061 724 1059 751 1030 782 1054 811 1091 838 1123 866 1134 907 1132 952 1109 981 1083 1002 1067 1005 1040 1011 1012 1025 973 1045 929 1064 876 1077 863 1071 841 1076 825 1093 810 1114 788 1148 767 1173 734 1193 704 1201 681 1193 663 1203 641 1197 623 1178 612 1150 605 1111 588 1075 578 1048 582 1010 581 986 605 960 624 927 631 895 635 873 621 850 627 825 605 820 575 815 534 792 508 793 487 775 457 764 420 755 391 751 351 724 332 703 320 670 304 648 294 612 281 578 274 545 260 529 259 497 247 479 260 451 252 434 266 412 257 391 267 376 274 351 266 333 269 304 244 295 236 273 243 253 226 239 241 216 240 201 246 185 250 170 230 157 224 135 229 120 215 106 Z',
+ 'M965 1740 L975 1701 1002 1677 1003 1644 1038 1621 1065 1601 1076 1570 1121 1537 1143 1515 1150 1481 1179 1463 1182 1439 1208 1425 1257 1408 1281 1411 V1571 L1276 1598 1263 1621 1270 1639 1252 1666 1226 1678 1208 1663 1184 1688 1154 1689 1136 1711 1112 1709 1080 1739 1034 1751 1008 1745 986 1760 Z',
 ];
-
-// Sunburst hill country as [x, y, scale] arcs.
-const hills: [number, number, number][] = [
-  // The knot around Phandalin and Umbrage Hill
-  [478, 552, 0.8], [512, 542, 0.9], [548, 566, 0.8], [524, 606, 0.7],
-  [464, 612, 0.7],
-  // Between the Triboar Trail and the mountains
-  [545, 352, 0.9], [576, 320, 0.8], [612, 344, 0.9], [642, 302, 0.8],
-  [672, 270, 0.9], [582, 396, 0.8], [620, 415, 0.7],
-  // The northeast hill country, Conyberry to the sheet edge
-  [640, 120, 0.9], [672, 88, 0.8], [704, 58, 0.8], [732, 100, 0.9],
-  [762, 70, 0.8], [796, 94, 0.9], [832, 120, 0.8], [862, 88, 0.9],
-  [886, 142, 0.8], [838, 192, 0.9], [872, 232, 0.8], [902, 272, 0.9],
-  [692, 256, 0.8], [736, 230, 0.7], [796, 236, 0.8], [718, 300, 0.8],
-  // The gap between the mountains and Kryptgarden
-  [572, 680, 0.8], [602, 712, 0.7], [636, 690, 0.8], [662, 730, 0.7],
-  [610, 748, 0.6], [700, 660, 0.7], [736, 634, 0.8],
-  // Reinforcements in the far northeast hill country
-  [742, 120, 0.8], [790, 150, 0.9], [850, 60, 0.8], [912, 100, 0.8],
-  [924, 160, 0.9], [886, 200, 0.8], [920, 320, 0.8], [944, 368, 0.7],
-  [856, 300, 0.8],
-  // Around the Gnomengarde saddle
-  [556, 478, 0.7], [598, 462, 0.8], [544, 540, 0.7],
-  // The dense hill country flanking the northeast range
-  [852, 230, 0.8], [820, 262, 0.7], [880, 252, 0.8],
-  // Broken ground around Umbrage Hill
-  [516, 600, 0.7], [480, 618, 0.6], [498, 598, 0.6], [478, 584, 0.5],
-  // The band between the Gnomengarde spur and Kryptgarden
-  [714, 610, 0.7], [686, 652, 0.7], [644, 666, 0.7], [730, 586, 0.7],
+const rivers = [
+ 'M306 906 Q324 891 356 891 Q392 880 414 905 Q443 930 443 898 Q430 874 449 878 Q463 878 464 896 Q475 921 492 901 Q501 890 500 873 Q505 848 541 842 Q577 828 605 833 Q634 834 659 823 Q685 818 705 820 Q762 820 781 794',
+ 'M781 794 Q792 779 774 762 Q743 745 746 722 Q747 702 777 693 L818 681 Q850 681 832 662 Q814 652 818 637',
+ 'M746 718 Q725 706 704 720 Q672 730 646 712 Q618 713 596 689 Q583 671 554 674 Q519 675 526 642 Q535 619 519 601 L487 577',
+ 'M781 794 Q800 796 808 807 Q832 804 845 819 Q865 826 868 844 L891 868',
+ 'M843 818 Q861 813 880 826 L911 833',
+ 'M781 794 Q768 766 754 757 M761 764 Q762 740 740 722',
+ 'M777 694 Q754 670 754 634 Q758 602 741 581 Q729 570 701 568 Q674 565 673 545 Q669 533 692 531 Q731 537 725 510 Q709 490 730 476 Q738 472 750 480 Q776 489 762 452 Q749 434 727 433',
+ 'M741 581 Q741 591 724 586 L688 580 Q660 573 650 548 Q639 526 609 524 Q579 515 553 530 Q520 539 489 547',
+ 'M818 681 Q835 708 863 743 Q885 776 916 784 Q950 795 984 794 L1041 794 Q1079 782 1100 792 Q1140 808 1176 789',
 ];
-
-// Scrub and grass marks scattered over the open country, [x, y, rot].
-const scrub: [number, number, number][] = [
-  [230, 130, 10], [300, 160, -15], [360, 110, 20], [250, 250, 5],
-  [320, 300, -10], [255, 330, 15], [352, 370, -5], [300, 420, 10],
-  [225, 420, -20], [330, 470, 5], [372, 430, 18], [412, 390, -8],
-  [455, 350, 12], [502, 310, -14], [420, 300, 6], [378, 250, -6],
-  [430, 220, 14], [480, 250, -18], [520, 220, 8], [560, 250, -4],
-  [478, 420, 8], [520, 460, -10], [548, 500, 6], [420, 570, -12],
-  [386, 610, 8], [340, 640, -6], [310, 590, 14], [250, 560, -8],
-  [225, 620, 10], [255, 690, -14], [610, 180, 8], [590, 90, -10],
-  [770, 300, 12], [840, 300, -8], [700, 360, 6], [745, 395, -12],
-  [660, 620, 10], [700, 680, -8], [755, 720, 12], [590, 660, -15],
+const roads = [
+ 'M87 95 Q109 151 133 201 Q159 252 166 315 L182 468 Q176 527 192 575 L208 651 Q216 700 240 739 Q274 794 290 844 L306 906 Q327 947 365 987 Q413 1040 449 1103 Q481 1157 505 1227 Q526 1282 529 1342 L532 1454 Q532 1553 550 1593 L563 1605 Q600 1644 640 1663 L711 1691 Q769 1710 813 1787',
 ];
-
-// Marsh tufts of the Mere of Dead Men (mostly below the sheet's crop).
-const marshes: [number, number, number][] = [
-  [306, 730, 1.0], [346, 742, 0.9], [388, 730, 0.8], [428, 744, 0.9],
-  [468, 734, 0.8], [270, 742, 0.8], [500, 746, 0.7],
+const trails = [
+ 'M537 1365 Q581 1353 617 1355 Q642 1353 672 1337 Q701 1317 738 1305 Q765 1298 789 1274 Q811 1244 832 1213 Q858 1173 897 1154 Q929 1140 958 1108 Q987 1074 1023 1056 Q1081 1024 1112 990 Q1148 980 1183 986 Q1244 990 1280 1018',
+ 'M718 1316 Q711 1339 724 1364 Q749 1397 765 1432',
 ];
-
-// Faint hex grid, aligned 1-to-1 with the official sheet's lattice
-// (measured from the scan: flat-top hexes, edge 30 units, so one hex spans
-// ~52 units across the flats = 5 miles). One path for the whole lattice.
-const hexPath: string = (() => {
-  const r = 30;
-  const colStep = r * 1.5; // 45
-  const rowStep = r * Math.sqrt(3); // 51.96
-  const x0 = -2.49;
-  const y0 = 45.73;
-  const parts: string[] = [];
-  for (let col = -1; x0 + col * colStep < 1060; col++) {
-    const cx = x0 + col * colStep;
-    const yOff = ((col % 2) + 2) % 2 === 1 ? rowStep / 2 : 0;
-    for (let row = -2; y0 + row * rowStep + yOff < 800; row++) {
-      const cy = y0 + row * rowStep + yOff;
-      const pts: string[] = [];
-      for (let i = 0; i < 6; i++) {
-        const a = (Math.PI / 3) * i;
-        pts.push(`${(cx + r * Math.cos(a)).toFixed(1)} ${(cy + r * Math.sin(a)).toFixed(1)}`);
-      }
-      parts.push(`M ${pts.join(' L ')} Z`);
-    }
-  }
-  return parts.join(' ');
-})();
+// Hill centres and dimensions measured from the reference's relief marks.
+// Vary ridge lengths deterministically so the engraving stays stable on builds.
+const hills = [
+ [735,106,26,23],[802,112,27,24],[728,151,25,34],[809,158,30,36],
+ [648,184,17,29],[663,230,32,29],[716,215,29,31],[777,228,31,30],
+ [666,282,30,23],[724,275,29,29],[785,273,22,21],[636,328,26,28],[698,326,27,28],[758,314,29,25],
+ [417,624,23,26],[466,624,18,19],[407,676,30,25],[454,687,27,25],[427,727,25,21],
+ [1088,571,25,20],[1132,566,26,22],[1179,549,28,24],[1210,585,20,22],
+ [1116,615,23,21],[1170,621,28,30],[1150,672,21,28],[1206,695,27,26],[1243,736,26,24],
+ [1135,730,30,32],[1118,785,28,24],[1189,753,30,24],[1248,792,27,34],
+ [1186,814,20,27],[1208,853,28,25],[1255,857,22,24],
+ [1149,1071,30,26],[1194,1067,32,26],[1204,1125,26,26],[1144,1138,30,28],[1088,1147,24,22],[1051,1100,34,23],[1260,1176,22,20],
+ [873,1248,29,22],[933,1245,25,27],[976,1229,32,25],[1024,1227,25,24],[1085,1227,28,22],[1140,1203,24,28],[1201,1228,30,24],[1248,1222,19,27],
+ [870,1299,24,27],[915,1288,29,22],[988,1291,25,24],[1022,1312,23,24],
+ [799,1449,26,21],[847,1432,29,23],[873,1477,33,24],[815,1516,29,22],
+ [1090,1507,22,23],[1126,1458,23,27],[1163,1399,26,27],
+ [913,1628,26,22],[868,1660,25,23],[819,1704,29,29],[879,1738,23,26],[948,1727,25,23],
+ [625,1746,30,14],[678,1779,22,14],
+];
+const peaks = [
+ [509,469,57,41],[599,424,70,49],[462,579,58,40],
+ [930,1432,66,41],[994,1390,51,40],[1048,1376,66,52],[1117,1360,58,34],[1173,1349,54,39],[1234,1329,52,41],
+ [1060,1464,57,39],[1004,1513,58,42],[939,1570,58,34],[865,1585,57,37],
+ [679,1624,75,30],[758,1650,63,38],[835,1610,55,33],
+];
+function hillRidges(x: number,y: number,rx: number,ry: number,index: number) {
+ return Array.from({length:20},(_,i)=>{
+   const a=i*Math.PI/10, inner=.52+(i*7%5)*.035, outer=.9+Math.sin(i*3+index)*.12;
+   const px=x+Math.cos(a)*rx*inner, py=y+Math.sin(a)*ry*inner;
+   return `M${px} ${py} Q${x+Math.cos(a+.07)*rx*.77} ${y+Math.sin(a+.07)*ry*.77} ${x+Math.cos(a)*rx*outer} ${y+Math.sin(a)*ry*outer}`;
+ });
+}
+const hexes: string[] = [];
+const radius=35, rowStep=radius*Math.sqrt(3);
+for(let col=-1;col<27;col++) for(let row=-1;row<33;row++) {
+ const x=58+col*52.5,y=95+row*rowStep+(col%2?rowStep/2:0);
+ hexes.push(Array.from({length:6},(_,i)=>`${i?'L':'M'}${x+radius*Math.cos(i*Math.PI/3)} ${y+radius*Math.sin(i*Math.PI/3)}`).join(' ')+' Z');
+}
+const treeMark='M0 -7 L3 -5 6 -5 6 -2 8 0 6 3 6 6 3 6 0 8 -3 6 -6 6 -6 3 -8 0 -6 -3 -6 -6 -3 -5 Z';
 ---
-
-<g class="map-terrain" aria-hidden="true">
+<g class="map-terrain sword-coast" aria-hidden="true">
   <defs>
-    <g id="m-peak">
-      <path class="m-peak" d="M-16 0 L-6 -20 L-1 -13 L7 -26 L20 0 Z"></path>
-      <path class="m-ridge" d="M7 -26 L3 -14"></path>
-    </g>
-    <g id="m-marsh">
-      <path class="m-marsh" d="M-7 0 L-4 -7 M0 0 L0 -8 M7 0 L4 -7 M-10 2 L10 2"></path>
-    </g>
+    <clipPath id="sc-sheet"><rect x="52" y="80" width="1237" height="1713" rx="3" /></clipPath>
+    <clipPath id="sc-land"><path d={`${coast} L1289 1793 V80 H79 Z`} /></clipPath>
+    <pattern id="sc-trees" width="49" height="43" patternUnits="userSpaceOnUse">
+      <g class="sc-tree">{[[8,9,1],[29,5,.8],[45,18,1.1],[23,25,1],[4,37,.75],[39,40,.8]].map(([x,y,s])=><path d={treeMark} transform={`translate(${x} ${y}) scale(${s})`} />)}</g>
+    </pattern>
+    <pattern id="sc-scrub" width="113" height="97" patternUnits="userSpaceOnUse">
+      <g class="sc-scrub"><path d="M13 19 l4 -3 m3 7 l6 -2 M75 61 l3 -3 m3 5 l5 -1 M52 84 l3 -4 m2 6 l6 -2" /></g>
+    </pattern>
   </defs>
-
-  <!-- Land -->
-  <rect class="m-land" x="0" y="0" width="1000" height="750"></rect>
-
-  <!-- Hex lattice -->
-  <path class="m-hex" d={hexPath}></path>
-
-  <!-- Neverwinter Wood: both banks of the river, the great southern lobe,
-       and the long southeast boundary toward Conyberry -->
-  <path
-    class="m-canopy"
-    d="M 296 0 L 756 0
-       C 762 12 764 24 766 36
-       C 772 66 776 96 776 126
-       C 764 136 752 144 740 152
-       C 722 158 706 164 690 170
-       C 670 180 650 191 630 202
-       C 610 214 590 227 570 239
-       C 553 245 536 251 520 258
-       C 502 271 486 285 470 300
-       C 452 313 434 326 416 339
-       C 406 332 396 325 386 318
-       C 372 309 358 300 344 290
-       C 346 264 340 239 336 215
-       C 332 196 330 176 328 158
-       C 318 138 306 120 298 101
-       C 301 82 304 63 306 44
-       C 302 29 299 15 296 0
-       Z"></path>
-
-  <!-- Kryptgarden Forest, sweeping up from the southeast corner -->
-  <path
-    class="m-canopy"
-    d="M 616 750
-       C 646 704 678 670 714 644
-       C 744 620 772 592 800 564
-       C 834 536 868 508 900 482
-       C 920 446 936 414 950 381
-       C 966 372 984 366 1000 362
-       L 1000 750 Z"></path>
-
-  <!-- The Sword Mountains as dark masses beneath the peaks -->
-  <!-- Icespire ridge, arcing northeast, with the spur down to Gnomengarde -->
-  <path
-    class="m-mass"
-    d="M 596 434
-       C 640 414 690 414 738 428
-       C 774 438 812 430 846 410
-       C 872 396 898 372 920 344
-       C 938 316 952 286 962 254
-       C 970 228 978 204 988 184
-       L 1000 176 L 1000 250
-       C 992 282 982 312 968 342
-       C 952 374 934 404 912 432
-       C 888 458 862 484 842 512
-       C 842 540 814 560 772 560
-       C 750 559 728 556 706 550
-       C 690 572 676 596 664 622
-       C 654 644 636 652 614 646
-       C 592 640 580 622 586 600
-       C 592 576 602 554 616 534
-       C 604 524 596 512 592 498
-       C 586 476 588 454 596 434
-       Z"></path>
-  <!-- The southwestern massif: the excavation and Axeholm, running south
-       to the sheet's bottom edge -->
-  <path
-    class="m-mass"
-    d="M 378 660
-       C 406 646 436 644 470 650
-       C 504 656 536 664 558 678
-       C 576 688 582 708 572 726
-       C 558 744 524 750 486 748
-       C 444 745 400 740 364 726
-       C 344 714 342 690 352 672
-       C 364 668 370 661 378 656
-       Z"></path>
-
-  <!-- Faint contour hints in the open country -->
-  <g class="m-contour">
-    <path d="M 210 470 C 265 490 320 482 365 502"></path>
-    <path d="M 640 330 C 700 348 760 340 815 358"></path>
-    <path d="M 230 190 C 275 205 315 198 350 212"></path>
+  <rect class="m-land" width="1344" height="1872" />
+  <g clip-path="url(#sc-sheet)">
+    <path class="m-sea" d={`${coast} L52 1793 V80 H79 Z`} />
+    <g class="sc-offshore"><path d={coast} transform="translate(-18 0)" /><path d={coast} transform="translate(-36 0)" /><path d={coast} transform="translate(-57 0)" /></g>
+    <path class="sc-hex" d={hexes.join(' ')} />
+    <rect width="1344" height="1872" fill="url(#sc-scrub)" clip-path="url(#sc-land)" />
+    <g class="sc-forest">{forests.map(d=><path d={d} />)}</g>
+    {forests.map(d=><path fill="url(#sc-trees)" d={d} />)}
+    <g class="sc-hill">{hills.flatMap(([x,y,rx,ry],i)=>hillRidges(x,y,rx,ry,i)).map(d=><path d={d} />)}</g>
+    <g class="sc-mountains">{peaks.map(([x,y,w,h],i)=><g transform={`translate(${x} ${y})`}>
+      <path class="sc-mountain-face" d={`M${-w} 13 L${-w*.73} ${-h*.36} ${-w*.45} ${-h*.5} ${-w*.16} ${-h} ${w*.12} ${-h*.9} ${w*.34} ${-h*.33} ${w*.64} ${-h*.12} ${w} 16 Q0 ${h*.48} ${-w} 13 Z`} />
+      <path class="sc-crest" d={`M${-w*.73} ${-h*.36} L${-w*.45} ${-h*.5} ${-w*.16} ${-h} ${w*.12} ${-h*.9} ${w*.34} ${-h*.33} ${w*.64} ${-h*.12}`} />
+      <g class="sc-ridges">{Array.from({length:15},(_,n)=>{
+        const t=n/14,xx=-w+w*2*t, yy=-h*(.28+.65*Math.sin(t*Math.PI)), drift=Math.sin(n+i)*7;
+        return <path d={`M${xx*.64} ${yy} Q${xx*.8+drift} ${yy*.3} ${xx} ${10+Math.sin(n*3)*5}`} />;
+      })}</g>
+    </g>)}</g>
+    <g class="sc-river-bank">{rivers.map(d=><path d={d} />)}</g>
+    <g class="sc-river">{rivers.map(d=><path d={d} />)}</g>
+    <path class="sc-shore" d={coast} />
+    <g class="sc-road">{roads.map(d=><path d={d} />)}</g>
+    <g class="sc-trail">{trails.map(d=><path d={d} />)}</g>
+    <g class="sc-marsh">{Array.from({length:42},(_,i)=>{
+      const x=480+(i%9)*29+Math.sin(i*3)*9,y=1685+Math.floor(i/9)*25+Math.cos(i)*8;
+      return <path d="M-7 0 L-3 -5 M0 0 V-7 M7 0 L4 -5 M-11 4 H11" transform={`translate(${x} ${y})`} />;
+    })}</g>
   </g>
-
-  <!-- The sea, west of the coastline -->
-  <path
-    class="m-sea"
-    d="M 48 0
-       C 58 60 66 100 90 140
-       C 104 168 108 186 112 210
-       C 120 244 126 274 130 307
-       C 138 344 146 380 152 417
-       C 156 437 159 456 160 476
-       C 158 495 155 514 154 533
-       C 158 546 162 560 166 572
-       C 168 578 169 584 170 590
-       C 174 598 178 606 181 614
-       C 183 630 185 645 186 660
-       C 188 674 190 688 191 701
-       C 194 718 197 734 200 750
-       L 0 750 L 0 0 Z"></path>
-  <!-- Deeper water offshore -->
-  <path
-    class="m-sea-deep"
-    d="M 0 0 L 16 0
-       C 26 60 34 104 56 144
-       C 70 172 76 190 80 214
-       C 88 250 94 280 98 312
-       C 106 350 114 386 120 422
-       C 124 452 126 480 124 508
-       C 126 540 132 570 138 598
-       C 142 626 146 654 150 682
-       C 152 706 154 728 156 750
-       L 0 750 Z"></path>
-  <path
-    class="m-shore"
-    d="M 48 0
-       C 58 60 66 100 90 140
-       C 104 168 108 186 112 210
-       C 120 244 126 274 130 307
-       C 138 344 146 380 152 417
-       C 156 437 159 456 160 476
-       C 158 495 155 514 154 533
-       C 158 546 162 560 166 572
-       C 168 578 169 584 170 590
-       C 174 598 178 606 181 614
-       C 183 630 185 645 186 660
-       C 188 674 190 688 191 701
-       C 194 718 197 734 200 750"></path>
-  <g class="m-wave">
-    <path d="M 22 150 q 12 -6 24 0 q 12 6 24 0"></path>
-    <path d="M 52 402 q 12 -6 24 0 q 12 6 24 0"></path>
-    <path d="M 40 560 q 12 -6 24 0 q 12 6 24 0"></path>
-    <path d="M 66 680 q 12 -6 24 0 q 12 6 24 0"></path>
-  </g>
-
-  <!-- The river: out of the wood's northwest marches, southwest along the
-       wood's edge, then west to the sea -->
-  <path
-    class="m-river"
-    d="M 420 0
-       C 400 8 382 13 365 16
-       C 344 20 324 23 305 27
-       C 283 32 262 40 242 50
-       C 224 58 206 68 190 79
-       C 176 83 162 85 150 84
-       C 122 86 94 88 68 88"></path>
-  <!-- The stream down to Falcon's lodge -->
-  <path class="m-river" d="M 532 0 C 544 16 556 36 566 52" style="stroke-width: 2;"></path>
-
-  <!-- Mere of Dead Men, creeping in along the bottom edge -->
-  <g>
-    {marshes.map(([x, y, s]) => (
-      <use href="#m-marsh" transform={`translate(${x} ${y}) scale(${s})`} />
-    ))}
-  </g>
-
-  <!-- Mountains -->
-  <g>
-    {peaks.map(([x, y, s]) => (
-      <use href="#m-peak" transform={`translate(${x} ${y}) scale(${s})`} />
-    ))}
-  </g>
-
-  <!-- The tallest peak of the range -->
-  <g transform="translate(706 464)">
-    <path class="m-peak m-peak-major" d="M-46 0 L-20 -56 L-10 -40 L8 -74 L25 -38 L46 0 Z"></path>
-    <path class="m-snow" d="M8 -74 L15 -58 L7 -51 L0 -60 Z"></path>
-    <path class="m-ridge" d="M8 -74 L4 -46 M-20 -56 L-16 -36"></path>
-  </g>
-
-  <!-- Hills -->
-  <g class="m-hill">
-    {hills.map(([x, y, s]) => (
-      <path d="M-12 0 Q0 -11 12 0" transform={`translate(${x} ${y}) scale(${s})`} />
-    ))}
-  </g>
-
-  <!-- Scrub -->
-  <g class="m-scrub">
-    {scrub.map(([x, y, r]) => (
-      <path d="M-6 0 Q-2 -3 2 0 M4 2 Q7 0 10 2" transform={`translate(${x} ${y}) rotate(${r})`} />
-    ))}
-  </g>
-
-  <!-- Roads (solid): the High Road, inland of the coast, through Leilon,
-       then southeast along the Mere's north edge and off the sheet -->
-  <g class="m-road">
-    <path
-      d="M 86 0
-         C 92 30 98 62 106 92
-         C 118 122 132 150 144 176
-         C 164 200 184 222 199 246
-         C 208 282 220 320 235 354
-         C 242 374 248 394 252 412
-         C 258 448 263 482 266 516
-         C 270 538 273 560 275 583
-         C 279 616 283 650 288 682
-         C 295 688 302 693 310 698
-         C 322 706 334 714 347 721
-         C 362 728 376 735 390 742
-         C 400 745 410 748 420 750"></path>
-  </g>
-
-  <!-- Trails (dashed) -->
-  <g class="m-trail">
-    <!-- Triboar Trail: off the High Road just northwest of Phandalin, east
-         to the town junction, then northeast past the wood to Conyberry -->
-    <path
-      d="M 270 480
-         C 300 478 330 474 360 464
-         C 380 458 400 450 417 444
-         C 436 434 456 420 474 402
-         C 495 380 515 360 534 339
-         C 553 319 573 300 592 280
-         C 610 262 629 244 648 228
-         C 666 212 684 196 703 192
-         C 720 178 738 166 756 158"></path>
-    <!-- On past Butterskull Ranch and off the sheet's east edge -->
-    <path d="M 756 158 C 776 155 796 154 815 154 C 838 156 862 164 884 174 C 892 177 901 180 910 182"></path>
-    <!-- The spur south into Phandalin -->
-    <path d="M 417 444 C 430 470 444 500 455 520 C 457 524 459 529 461 532"></path>
-    <!-- The spur from Conyberry down to the Shrine of Savras -->
-    <path d="M 756 163 L 762 200"></path>
-    <!-- Trivial Trail (the campaign's own): south out of Phandalin, west of
-         the mountains, fading toward the ruined temple and the Mere -->
-    <path d="M 454 540 C 438 570 420 610 400 650 C 386 674 362 694 342 706"></path>
-    <path class="m-trail-faint" d="M 330 714 C 320 726 312 738 306 750"></path>
-  </g>
-
-  <!-- Terrain labels -->
-  <g class="m-terrain-label">
-    <text transform="translate(30 400) rotate(-90)">The Sword Coast</text>
-    <text class="m-label-forest" transform="translate(400 150) rotate(-5)">Neverwinter Wood</text>
-    <text transform="translate(756 556) rotate(-37)">Sword Mountains</text>
-    <text transform="translate(500 352) rotate(-44)">Triboar Trail</text>
-    <text class="m-label-sm" transform="translate(212 310) rotate(76)">The High Road</text>
-    <text class="m-label-sm" transform="translate(312 740)">Mere of Dead Men</text>
-    <text class="m-label-forest" transform="translate(822 700) rotate(-34)">Kryptgarden Forest</text>
-  </g>
-
-  <!-- Map sheet border and title -->
-  <rect class="m-sheet" x="12" y="12" width="976" height="726" rx="6"></rect>
-  <g class="m-title" text-anchor="end">
-    <text class="m-title-main" x="896" y="52">The Phandalin Region</text>
-    <text class="m-title-sub" x="896" y="74">as charted by the party</text>
-  </g>
-
-  <!-- Compass, out over the open sea -->
-  <g class="m-compass" transform="translate(66 646)">
-    <circle r="22"></circle>
-    <line x1="0" y1="16" x2="0" y2="-12"></line>
-    <path class="m-compass-arrow" d="M0 -20 L6 -6 L0 -10 L-6 -6 Z"></path>
-    <text y="-30">N</text>
-  </g>
+  <rect class="sc-border" x="43" y="68" width="1258" height="1739" rx="4" />
+  <g class="sc-title"><text x="100" y="171">Sword Coast</text><text class="sc-subtitle" x="103" y="203">THE PARTY’S CHART · 1 HEX = 5 MILES</text></g>
+  <g class="m-compass" transform="translate(1163 198) scale(2)"><circle r="22" /><line x1="0" y1="16" x2="0" y2="-12" /><path class="m-compass-arrow" d="M0 -20 L6 -6 L0 -10 L-6 -6 Z" /><text y="-30">N</text></g>
+  <g class="sc-scale" transform="translate(108 1734)"><path d="M0 -6 V6 M0 0 H242.5 M121.25 -6 V6 M242.5 -6 V6" /><text x="0" y="28">0</text><text x="121.25" y="28">10</text><text x="242.5" y="28">20 miles</text></g>
 </g>

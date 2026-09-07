@@ -1,7 +1,7 @@
 ---
 name: 'Ruined Temple'
-x: 334
-y: 710
+x: 614
+y: 1631
 kind: dungeon
 status: rumored
 labelPlacement: left

@@ -5,12 +5,14 @@ import MapTerrain from '../../components/map/MapTerrain.astro';
 import { hasSubmapPage } from '../../components/map/submaps/registry';
 import { url } from '../../utils/url';
 
-// Undiscovered locations exist in the collection but render nowhere.
-const locations = (await getCollection('locations'))
-  .filter((loc) => loc.data.status !== 'unknown')
-  .sort((a, b) => a.data.name.localeCompare(b.data.name));
-const journey = (await getCollection('journey')).sort((a, b) => a.data.session - b.data.session);
-const sessions = await getCollection('sessions');
+import { publishedMapData } from '../../lib/map-publication';
+
+const sessions = await getCollection('sessions', ({ data }) => !data.draft);
+const { locations, journey } = publishedMapData(
+  (await getCollection('locations')).sort((a, b) => a.data.name.localeCompare(b.data.name)),
+  (await getCollection('journey')).sort((a, b) => a.data.session - b.data.session),
+  new Set(sessions.map(s => s.data.sessionNumber)),
+);
 const loreEntries = await getCollection('lore');
 const factionEntries = await getCollection('factions');
 
@@ -41,19 +43,16 @@ interface Traversal {
 
 const repCount = new Map<string, number>();
 const routeSessions = journey
-  .filter((leg) => leg.data.route.length > 1)
+  .filter((leg) => leg.segments.length > 0)
   .map((leg) => leg.data.session);
 const lastRouteSession = routeSessions[routeSessions.length - 1] ?? 0;
 const rankDenom = Math.max(1, routeSessions.length - 1);
 const traversals: Traversal[] = [];
 
 for (const leg of journey) {
-  const stops = leg.data.route.map((slug) =>
-    requireLoc(slug, `journey session ${leg.data.session} route`)
-  );
-  for (let i = 0; i < stops.length - 1; i++) {
-    const a = stops[i];
-    const b = stops[i + 1];
+  for (const [from, to] of leg.segments) {
+    const a = requireLoc(from, `journey session ${leg.data.session} route`);
+    const b = requireLoc(to, `journey session ${leg.data.session} route`);
     const key = [a.id, b.id].sort().join('|');
     const rep = repCount.get(key) ?? 0;
     repCount.set(key, rep + 1);
@@ -219,8 +218,7 @@ const journeySteps = journey
 const sessionTitle = new Map(sessions.map((s) => [s.data.sessionNumber, s.data.title]));
 
 // Earliest session each location enters the story, via a route stop or an
-// event. Places only ever heard about — never travelled or fought at — have no
-// journey session and stay on the map throughout, as ambient world context.
+// event. Only visited locations have reached this stage.
 const revealBySlug = new Map<string, number>();
 function markReveal(slug: string, session: number) {
   const cur = revealBySlug.get(slug);
@@ -271,9 +269,10 @@ for (const leg of journey) {
 const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
 ---
 
-<Base title="Campaign Map" description="The Phandalin region: where the party has gone and what happened there.">
+<Base title="Campaign Map" description="The Sword Coast: places visited by the party and their recorded journey.">
   <div class="kicker">The lands so far</div>
   <h1 class="page-title">Campaign Map</h1>
+  <p class="session-meta">Only places visited by the party are labelled.</p>
 
   <div class="map-layout">
     <div class="map-main">
@@ -302,9 +301,9 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
       <svg
         class="map-svg"
         id="map-svg"
-        viewBox="0 0 1000 750"
+        viewBox="0 0 1344 1872"
         role="group"
-        aria-label="Map of the Phandalin region with campaign locations"
+        aria-label="Sword Coast map with only locations visited by the party labelled"
       >
         <MapTerrain />
 
@@ -505,8 +504,6 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
         <div class="kicker">Legend</div>
         <ul class="map-legend">
           <li><span class="legend-dot visited"></span> Visited by the party</li>
-          <li><span class="legend-dot known"></span> Sighted, not entered</li>
-          <li><span class="legend-dot rumored"></span> Only rumors, so far</li>
           <li><span class="legend-dot danger"></span> Ember means danger</li>
           <li><span class="legend-pin"></span> Event — the number is the session</li>
           <li><span class="legend-pin battle"></span> Battle</li>
@@ -613,7 +610,7 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
   function applyCounterScale(scale: number) {
     lastScale = scale;
     const rect = svg.getBoundingClientRect();
-    const vbW = 1000 / scale; // current viewBox width, in map units
+    const vbW = 1344 / scale; // current viewBox width, in map units
     const pxPerUnit = rect.width / vbW || 1; // how big a map unit paints right now
     const k = Math.min(2.8, Math.max(0.14, TARGET_PX_PER_UNIT / pxPerUnit)).toFixed(3);
     for (const el of cscaleEls) {
@@ -625,8 +622,8 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
     svg,
     frame,
     tooltip,
-    width: 1000,
-    height: 750,
+    width: 1344,
+    height: 1872,
     zoomInBtn: document.getElementById('map-zoom-in'),
     zoomOutBtn: document.getElementById('map-zoom-out'),
     resetBtn: document.getElementById('map-zoom-reset'),
@@ -772,8 +769,7 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
       hideAfter(legs);
       hideAfter(tags);
       hideAfter(pins);
-      // Markers without a reveal session (ambient, only-rumored places) carry no
-      // data-reveal number and are simply never hidden.
+      // A visited place without a recorded reveal session stays visible.
       hideAfter(markers);
 
       // The newest visible leg reads boldest, so the frontier of the journey

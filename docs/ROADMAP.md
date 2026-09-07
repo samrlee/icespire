@@ -11,6 +11,35 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Done
 
+- **Sword Coast region redraw** — the full official reference sheet, with
+  traced coastline, forest boundaries, river branches, roads, and relief.
+  Five-mile hexes and location coordinates share a 1344×1872 space; terrain
+  is unnamed and only visited campaign locations receive markers. _(Sep 2026)_
+
+- **Visited-only region map** — unvisited places are absent from markers,
+  detail panels, event pins, replay data, location search documents, and
+  location auto-links. Draft journeys are excluded; regression checks cover
+  hidden waypoints and malformed references. _(Sep 2026)_
+
+- **Gnomengarde map redraw** — traced both cave wings, the river and islands,
+  bridge, stairs, and room connections from the official five-foot grid.
+  Corrected the ballista and blade-room positions; interiors and their key
+  entries share the discovery gate. _(Sep 2026)_
+
+- **Phandalin map redraw** — aligned roads, landmark footprints, houses,
+  orchard, fields, and eastern ravine with the official town map and its
+  500-foot scale bar. Retains the seven campaign landmarks. _(Sep 2026)_
+
+- **Umbrage Hill map redraw** — traced the official contour lines, windmill
+  footprint, yard fence, ruined outbuilding, and boulders at five-foot grid
+  scale. Labels the exterior as a record before the dragon destroyed it;
+  unseen floor plans remain withheld. _(Sep 2026)_
+
+- **Dwarven Excavation map redraw** — traced the official canyon, ruins, room
+  footprints, and passages at a consistent five-foot grid scale. Uses the
+  campaign palette and existing pan/zoom viewer; includes the chamber reached
+  in Session 7 and respects the interior gate. The other three published local maps now use the same approach. _(Sep 2026)_
+
 - **The handoff knows about the table.** Everything an agent needed but could
   only get by being told — the DM's name, which player runs which character, the
   house rules, the canonical spelling of every name a room mic garbles — is now

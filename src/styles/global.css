@@ -4161,3 +4161,95 @@ body {
 .prose li {
   margin-bottom: var(--space-1);
 }
+
+/* Dwarven Excavation: reference-scale geometry, with the campaign palette. */
+.submap-excavation .exc-cliff-face { fill: var(--map-peak-fill); stroke: var(--map-ridge); stroke-width: 2; stroke-linejoin: round; }
+.submap-excavation .exc-hachures { fill: none; stroke: var(--map-ridge); stroke-width: 1.7; opacity: .65; }
+.submap-excavation .exc-canyon { fill: var(--map-dig); stroke: var(--map-ridge); stroke-width: 2.5; stroke-linejoin: round; }
+.submap-excavation .exc-rooms { fill: var(--bg-inset); stroke: var(--map-ridge); stroke-width: 3; stroke-linejoin: round; }
+.submap-excavation .exc-grid-line { fill: none; stroke: var(--map-ridge); stroke-width: .8; opacity: .3; }
+.submap-excavation .exc-ruins { fill: none; stroke: var(--map-label); stroke-width: 7; stroke-linejoin: miter; opacity: .8; }
+.submap-excavation .exc-gates { fill: none; stroke: var(--map-label); stroke-width: 17; stroke-linecap: square; }
+.submap-excavation .exc-ruined-well { fill: none; stroke: var(--map-label); stroke-width: 3; stroke-dasharray: 12 5; }
+.submap-excavation .exc-steps { fill: none; stroke: var(--map-ridge); stroke-width: 2; }
+.submap-excavation .exc-rubble { fill: var(--map-peak-fill); stroke: var(--map-ridge); stroke-width: 1.5; }
+.submap-excavation .exc-openings { fill: none; stroke: var(--bg-inset); stroke-width: 5; }
+.submap-excavation .exc-pillars { fill: var(--map-peak-fill); stroke: var(--map-label); stroke-width: 2.5; }
+.submap-excavation .exc-statues { fill: var(--bg-inset); stroke: var(--map-label); stroke-width: 1.5; }
+.submap-excavation .exc-doors { fill: none; stroke: var(--accent-gold-muted); stroke-width: 7; }
+.submap-excavation .exc-found-doors { fill: none; stroke: var(--accent-gold-muted); stroke-width: 5; stroke-dasharray: 3 2; }
+.submap-excavation .exc-poi circle { stroke-width: 2; }
+.submap-excavation .exc-poi text { font-size: 19px; }
+.submap-excavation .exc-map-title { font-family: var(--font-display); font-size: 40px; fill: var(--text-primary); }
+.submap-excavation .exc-map-title .exc-subtitle { font-family: var(--font-mono); font-size: 13px; letter-spacing: 4px; fill: var(--map-label); }
+.submap-excavation .exc-scale { fill: var(--map-label); font-family: var(--font-mono); font-size: 18px; text-anchor: middle; }
+.submap-excavation .exc-scale path { fill: none; stroke: var(--map-label); stroke-width: 2; }
+
+/* Reference-scale local maps. All values inherit the region map's themes. */
+.ref-map .ref-grid { fill: none; stroke: var(--map-ridge); stroke-width: .8; opacity: .22; }
+.ref-map .ref-building { fill: var(--map-building); stroke: var(--map-label); stroke-width: 3; stroke-linejoin: miter; }
+.ref-map .ref-roof { fill: none; stroke: var(--map-ridge); stroke-width: 1.8; }
+.ref-map .ref-stone { fill: var(--map-peak-fill); stroke: var(--map-label); stroke-width: 2; stroke-linejoin: round; }
+.ref-map .ref-rubble { fill: var(--map-peak-fill); stroke: var(--map-ridge); stroke-width: 1.5; }
+.ref-map .ref-ruins { fill: none; stroke: var(--map-label); stroke-width: 6; stroke-linejoin: miter; stroke-dasharray: 9 2; }
+.ref-map .ref-fence { fill: none; stroke: var(--map-ridge); stroke-width: 3; stroke-linejoin: round; }
+.ref-map .ref-fence-posts { fill: var(--map-land); stroke: var(--map-label); stroke-width: 1.5; }
+.ref-map .ref-poi circle { stroke-width: 2; }
+.ref-map .ref-poi text { font-size: 19px; }
+.ref-map .ref-title { fill: var(--text-primary); font-family: var(--font-display); font-size: 40px; }
+.ref-map .ref-subtitle { fill: var(--map-label); font-family: var(--font-mono); font-size: 13px; letter-spacing: 3px; }
+.ref-map .ref-scale { fill: var(--map-label); font-family: var(--font-mono); font-size: 18px; text-anchor: middle; }
+.ref-map .ref-scale path { fill: none; stroke: var(--map-label); stroke-width: 2; }
+.ref-map .ref-elevation { fill: var(--map-label); font-family: var(--font-mono); font-size: 18px; text-anchor: middle; paint-order: stroke; stroke: var(--map-land); stroke-width: 6; }
+.submap-umbrage .uh-contours { fill: none; stroke: var(--map-ridge); stroke-width: 2; opacity: .8; }
+.submap-phandalin .ph-contours { fill: none; stroke: var(--map-ridge); stroke-width: 1.6; opacity: .45; }
+.submap-phandalin .ph-stream { fill: none; stroke: var(--map-river); stroke-width: 7; }
+.submap-phandalin .ph-fields { fill: none; stroke: var(--map-ridge); stroke-width: 2; opacity: .6; }
+.submap-phandalin .ph-ruin-walls { fill: none; stroke: var(--map-ridge); stroke-width: 5; stroke-dasharray: 8 6; }
+.submap-phandalin .ph-ravine { fill: none; stroke: var(--map-ridge); stroke-width: 2; }
+.submap-phandalin .ph-trees { fill: var(--map-forest-fill); stroke: var(--map-forest); stroke-width: 2; }
+.submap-phandalin .ph-tree-branch { fill: none; stroke-width: 1; }
+.submap-phandalin .ph-road-edge { fill: none; stroke: var(--map-ridge); stroke-width: 16; opacity: .5; }
+.submap-phandalin .ph-roads { fill: none; stroke: var(--map-path); stroke-width: 12; }
+.submap-phandalin .ph-square { fill: var(--map-path); }
+.submap-phandalin .ph-road-note { fill: var(--map-label); font-family: var(--font-body); font-size: 24px; font-style: italic; }
+.submap-gnomengarde .gn-rock { fill: var(--map-peak-fill); }
+.submap-gnomengarde .gn-rock-edge { fill: none; stroke: var(--map-ridge); stroke-width: 2; }
+.submap-gnomengarde .gn-cliff { fill: none; stroke: var(--map-ridge); stroke-width: 1.6; opacity: .75; }
+.submap-gnomengarde .gn-water { fill: var(--map-pool); stroke: var(--map-shore); stroke-width: 3; }
+.submap-gnomengarde .gn-ripples { fill: none; stroke: var(--map-river); stroke-width: 2; }
+.submap-gnomengarde .gn-island { fill: var(--map-dig); stroke: var(--map-ridge); stroke-width: 2; }
+.submap-gnomengarde .gn-mushrooms { fill: var(--map-forest-fill); stroke: var(--map-forest); stroke-width: 1.5; }
+.submap-gnomengarde .gn-room-walls { fill: none; stroke: var(--map-ridge); stroke-width: 6; stroke-linejoin: round; }
+.submap-gnomengarde .gn-corridor-walls { fill: none; stroke: var(--map-ridge); stroke-width: 31; stroke-linejoin: round; }
+.submap-gnomengarde .gn-room-floors { fill: var(--bg-inset); }
+.submap-gnomengarde .gn-corridor-floors { fill: none; stroke: var(--bg-inset); stroke-width: 25; stroke-linejoin: round; }
+.submap-gnomengarde .gn-room-grid { fill: url(#gn-grid); }
+.submap-gnomengarde .gn-corridor-grid { fill: none; stroke: url(#gn-grid); stroke-width: 25; stroke-linejoin: round; }
+.submap-gnomengarde .gn-steps { fill: none; stroke: var(--map-ridge); stroke-width: 1.5; }
+.submap-gnomengarde .gn-furniture { fill: none; stroke: var(--map-label); stroke-width: 2; }
+.submap-gnomengarde .gn-doors { fill: none; stroke: var(--accent-gold-muted); stroke-width: 6; }
+.submap-gnomengarde .gn-secret-doors { fill: none; stroke: var(--accent-gold-muted); stroke-width: 5; stroke-dasharray: 3 3; }
+.submap-gnomengarde .gn-bridge { fill: var(--map-building); stroke: var(--accent-gold-muted); stroke-width: 2; }
+
+/* Sword Coast reference sheet: geography only; visited labels are data-driven. */
+.sword-coast .sc-offshore { fill: none; stroke: var(--map-shore); stroke-width: 1.5; opacity: .3; }
+.sword-coast .sc-hex { fill: none; stroke: var(--map-ridge); stroke-width: .7; opacity: .23; }
+.sword-coast .sc-scrub { fill: none; stroke: var(--map-ridge); stroke-width: 1.3; opacity: .4; }
+.sword-coast .sc-forest { fill: var(--map-canopy); stroke: var(--map-forest); stroke-width: 2; stroke-linejoin: round; }
+.sword-coast .sc-tree { fill: var(--map-forest-fill); stroke: var(--map-forest); stroke-width: .8; opacity: .75; }
+.sword-coast .sc-hill { fill: none; stroke: var(--map-ridge); stroke-width: 1.5; opacity: .85; }
+.sword-coast .sc-mountain-face { fill: var(--map-peak-fill); stroke: var(--map-ridge); stroke-width: 1.2; }
+.sword-coast .sc-crest { fill: none; stroke: var(--map-label); stroke-width: 2; stroke-linejoin: round; }
+.sword-coast .sc-ridges { fill: none; stroke: var(--map-ridge); stroke-width: 1.3; }
+.sword-coast .sc-river-bank { fill: none; stroke: var(--map-shore); stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+.sword-coast .sc-river { fill: none; stroke: var(--map-river); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.sword-coast .sc-shore { fill: none; stroke: var(--map-shore); stroke-width: 2; }
+.sword-coast .sc-road { fill: none; stroke: var(--map-trail); stroke-width: 3.5; }
+.sword-coast .sc-trail { fill: none; stroke: var(--map-trail); stroke-width: 3; stroke-dasharray: 3 5; stroke-linecap: round; }
+.sword-coast .sc-marsh { fill: none; stroke: var(--map-forest); stroke-width: 1.5; opacity: .8; }
+.sword-coast .sc-border { fill: none; stroke: var(--accent-gold-muted); stroke-width: 1.5; opacity: .4; }
+.sword-coast .sc-title { fill: var(--text-primary); font-family: var(--font-display); font-size: 42px; paint-order: stroke; stroke: var(--map-land); stroke-width: 6; }
+.sword-coast .sc-subtitle { fill: var(--map-label); font-family: var(--font-mono); font-size: 12px; letter-spacing: 1.5px; }
+.sword-coast .sc-scale { fill: var(--map-label); font-family: var(--font-mono); font-size: 16px; text-anchor: middle; }
+.sword-coast .sc-scale path { fill: none; stroke: var(--map-label); stroke-width: 2; }

@@ -1,7 +1,7 @@
 ---
 name: 'Dwarven Excavation'
-x: 422
-y: 668
+x: 719
+y: 1598
 kind: dungeon
 status: visited
 interiorSeen: true

@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { getCollection } from 'astro:content';
+import { isMapLocationPublished } from './map-publication';
 import { url } from '../utils/url';
 
 // Build-time search index. Everything the site publishes becomes one document
@@ -131,10 +132,10 @@ export async function buildSearchIndex(): Promise<SearchDoc[]> {
     });
   }
 
-  // Places the party hasn't discovered render nowhere on the map and must not
-  // surface here either — the same `unknown` gate EntityLinks and the map use.
+  // Location documents inherit the map's visited-only gate. Published recaps
+  // remain searchable on their own, including things heard about in play.
   for (const loc of await getCollection('locations')) {
-    if (loc.data.status === 'unknown') continue;
+    if (!isMapLocationPublished(loc)) continue;
     docs.push({
       title: loc.data.name,
       kind: KIND.location,
