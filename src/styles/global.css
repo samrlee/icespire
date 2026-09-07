@@ -4184,3 +4184,21 @@ body {
 .submap-excavation .exc-map-title .exc-subtitle { font-family: var(--font-mono); font-size: 13px; letter-spacing: 4px; fill: var(--map-label); }
 .submap-excavation .exc-scale { fill: var(--map-label); font-family: var(--font-mono); font-size: 18px; text-anchor: middle; }
 .submap-excavation .exc-scale path { fill: none; stroke: var(--map-label); stroke-width: 2; }
+
+/* Reference-scale local maps. All values inherit the region map's themes. */
+.ref-map .ref-grid { fill: none; stroke: var(--map-ridge); stroke-width: .8; opacity: .22; }
+.ref-map .ref-building { fill: var(--map-building); stroke: var(--map-label); stroke-width: 3; stroke-linejoin: miter; }
+.ref-map .ref-roof { fill: none; stroke: var(--map-ridge); stroke-width: 1.8; }
+.ref-map .ref-stone { fill: var(--map-peak-fill); stroke: var(--map-label); stroke-width: 2; stroke-linejoin: round; }
+.ref-map .ref-rubble { fill: var(--map-peak-fill); stroke: var(--map-ridge); stroke-width: 1.5; }
+.ref-map .ref-ruins { fill: none; stroke: var(--map-label); stroke-width: 6; stroke-linejoin: miter; stroke-dasharray: 9 2; }
+.ref-map .ref-fence { fill: none; stroke: var(--map-ridge); stroke-width: 3; stroke-linejoin: round; }
+.ref-map .ref-fence-posts { fill: var(--map-land); stroke: var(--map-label); stroke-width: 1.5; }
+.ref-map .ref-poi circle { stroke-width: 2; }
+.ref-map .ref-poi text { font-size: 19px; }
+.ref-map .ref-title { fill: var(--text-primary); font-family: var(--font-display); font-size: 40px; }
+.ref-map .ref-subtitle { fill: var(--map-label); font-family: var(--font-mono); font-size: 13px; letter-spacing: 3px; }
+.ref-map .ref-scale { fill: var(--map-label); font-family: var(--font-mono); font-size: 18px; text-anchor: middle; }
+.ref-map .ref-scale path { fill: none; stroke: var(--map-label); stroke-width: 2; }
+.ref-map .ref-elevation { fill: var(--map-label); font-family: var(--font-mono); font-size: 18px; text-anchor: middle; paint-order: stroke; stroke: var(--map-land); stroke-width: 6; }
+.submap-umbrage .uh-contours { fill: none; stroke: var(--map-ridge); stroke-width: 2; opacity: .8; }

@@ -1,123 +1,52 @@
 ---
-// Local map of Umbrage Hill, drawn from the official map's layout
-// (offical-assets/Maps/map-13.02-umbrage-hill.jpg — reference only).
-// Adabra Gwynn's windmill on its knoll, the ruined outbuilding beside it,
-// and the boulder field on the high ground southeast. viewBox 900 × 570;
-// north is up.
-
-// Boulder clusters as [x, y].
-const boulders: [number, number][] = [
-  [640, 470], [700, 445], [755, 470], [690, 505], [745, 515],
-  [795, 495], [650, 530], [720, 545],
+// Official map-13.02, traced at 1960 × 1248; 29.4 units = five feet.
+// An exterior record of the site before its destruction in Session 7.
+// The location's interiorSeen gate is false: no floor plans or furnishings.
+const contours = [
+  'M566 1248 C536 1213 461 1190 412 1160 S299 1090 240 1047 S161 965 130 906 S99 839 77 791 S60 691 64 632 C66 601 82 576 100 551 S145 453 196 418 S263 350 326 321 S443 265 508 258 S586 255 626 249 S697 248 731 244 S799 255 837 266 S894 292 938 309 S1000 351 1017 394 S1058 469 1090 491 S1179 541 1234 545 S1320 539 1347 517 S1430 480 1472 483 S1546 503 1591 520 S1671 538 1736 532 S1885 508 1940 443',
+  'M733 1248 C691 1195 636 1177 590 1156 S512 1108 471 1080 S388 1014 356 974 S308 900 293 827 S242 760 240 697 S249 608 284 558 S361 480 431 451 S566 410 636 410 S735 427 779 442 S855 478 905 511 S986 602 1032 635 S1108 677 1162 683 S1261 680 1300 650 S1397 588 1455 584 S1571 602 1607 624 S1671 676 1700 710 S1790 760 1839 778 S1905 790 1940 790',
+  'M862 1248 C829 1184 773 1143 715 1118 S589 1085 550 1054 S478 997 454 947 S424 875 425 825 S444 721 463 683 S498 621 538 599 S601 570 639 570 S720 581 758 597 S824 638 858 668 S944 716 990 741 S1082 778 1139 786 S1233 780 1275 756 S1381 713 1432 712 S1534 733 1581 752 S1661 797 1692 832 S1778 879 1822 910 S1907 956 1940 991',
+  'M996 1248 C966 1201 972 1144 982 1111 S1002 1042 1020 1010 S1083 936 1130 920 S1196 872 1234 860 S1341 839 1389 833 S1487 849 1521 874 S1605 927 1651 967 S1737 1041 1772 1083 S1842 1181 1865 1248',
+  'M1101 1248 C1090 1197 1095 1132 1117 1090 S1193 995 1232 976 S1319 944 1360 936 S1442 945 1476 966 S1552 1011 1594 1049 S1668 1117 1681 1165 S1706 1228 1716 1248',
 ];
-
-// The fence ring around the windmill yard (dashed), with a gate gap east.
-const fencePoints: string = (() => {
-  const pts: string[] = [];
-  for (let a = 30; a <= 330; a += 15) {
-    const rad = (a * Math.PI) / 180;
-    const r = 78 + (a % 45 === 0 ? 5 : 0);
-    pts.push(`${(300 + Math.cos(rad) * r).toFixed(1)},${(390 + Math.sin(rad) * r).toFixed(1)}`);
-  }
-  return pts.join(' ');
-})();
+const fence = [
+ 'M537 643 L508 655 489 685 476 713 463 743 455 775 447 804 447 831 454 863 465 893 477 921 507 942 535 950 549 980 568 1009 597 1010 626 1027 656 1042 685 1055 715 1069 744 1070 774 1069 805 1093 834 1101 864 1089 892 1071 922 1072 935 1041',
+ 'M565 624 L596 605 626 597 655 597 684 610',
+ 'M717 624 L749 624 779 645 805 667 833 686 862 702 892 719 923 740 954 759 982 775 994 805 1004 835 1017 864 1021 892 1013 922 1013 951 1010 981 983 992 954 1010',
+];
+const boulders = [[1176,1114],[1238,1206],[1294,1056],[1414,1024],[1444,1142],[1533,1084],[1591,1175]];
+const markers = [
+ [670,700,1,"Adabra Gwynn's windmill",'The former windmill; destroyed by the dragon in Session 7'],
+ [820,889,2,'Ruined outbuilding','The old walls beside the windmill'],
+ [1337,1128,3,'The boulder field','High ground southeast of the windmill'],
+] as const;
 ---
+<g class="submap-umbrage ref-map" aria-hidden="true">
+  <defs>
+    <pattern id="uh-grid" width="29.4" height="29.4" x="7" y="7" patternUnits="userSpaceOnUse"><path class="ref-grid" d="M29.4 0 H0 V29.4" /></pattern>
+  </defs>
+  <rect class="sm-ground" width="1960" height="1248" />
+  <rect width="1960" height="1248" fill="url(#uh-grid)" />
+  <g class="uh-contours">{contours.map(d => <path d={d} />)}</g>
+  <g class="ref-fence">{fence.map(d => <path d={d} />)}</g>
+  <g class="ref-fence-posts">{fence.flatMap(d => [...d.matchAll(/(\d+) (\d+)/g)]).map(m => <circle cx={m[1]} cy={m[2]} r="3" />)}</g>
 
-<g class="submap-umbrage" aria-hidden="true">
-  <rect class="sm-ground" x="0" y="0" width="900" height="570"></rect>
-
-  <!-- Contours climbing toward the southeast heights -->
-  <g class="sm-contour">
-    <path d="M 80 60 C 300 120 600 130 880 170"></path>
-    <path d="M 60 200 C 300 262 620 250 885 300"></path>
-    <path d="M 40 360 C 150 430 240 505 420 486 C 600 462 740 428 890 430"></path>
-    <path d="M 60 528 C 300 560 560 502 895 520"></path>
-    <path d="M 560 570 C 580 480 700 430 810 460 C 880 480 892 530 872 570"></path>
-    <!-- The windmill's knoll -->
-    <path d="M 300 292 C 372 300 410 348 402 396 C 394 448 350 480 296 476 C 236 472 196 430 202 384 C 208 336 244 296 300 292 Z"></path>
+  <path class="ref-building" d="M588 735 H751 V899 H588 Z" />
+  <path class="ref-roof" d="M588 735 L669 817 751 735 M588 899 L669 817 751 899" />
+  <circle class="ref-stone" cx="669" cy="817" r="13" />
+  <g class="ref-ruins">
+    <path d="M757 834 H796 V808 H840 V834 H851 M872 834 H894 V863 M894 893 V921 H864 V950 M864 984 V1009 M846 1010 H822 M798 1010 H776 V958 M775 938 V916 L766 899" />
+    <path d="M807 834 V822 H827 V837" />
   </g>
-  <text class="sm-note" x="836" y="158">+0 ft.</text>
-  <text class="sm-note" x="840" y="288">+10 ft.</text>
-  <text class="sm-note" x="846" y="418">+20 ft.</text>
-  <text class="sm-note" x="842" y="506">+30 ft.</text>
-  <text class="sm-note" x="614" y="502">+40 ft.</text>
-
-  <!-- The trail up from Phandalin, arriving at the yard gate -->
-  <path class="sm-path" d="M 60 60 C 160 130 240 200 298 264 C 330 300 344 340 347 384"></path>
-
-  <!-- Grass tufts -->
-  <g class="sm-grass">
-    {[
-      [150, 160], [260, 110], [420, 90], [560, 140], [680, 100], [790, 230],
-      [130, 300], [190, 420], [120, 480], [480, 250], [590, 300], [700, 360],
-      [480, 540], [300, 530], [550, 430], [820, 380], [420, 170], [640, 220],
-    ].map(([x, y]) => (
-      <path d="M-5 0 L-3 -6 M0 0 L0 -7 M5 0 L3 -6" transform={`translate(${x} ${y})`} />
-    ))}
-  </g>
-
-  <!-- Fence around the yard -->
-  <polyline class="sm-fence" points={fencePoints}></polyline>
-
-  <!-- The windmill: walled yard, tower, sails -->
-  <rect class="sm-floor" x="262" y="352" width="76" height="76" rx="3"></rect>
-  <g class="sm-detail">
-    <line x1="274" y1="364" x2="326" y2="416"></line>
-    <line x1="326" y1="364" x2="274" y2="416"></line>
-  </g>
-  <circle class="sm-building" cx="300" cy="390" r="14"></circle>
-  <circle class="sm-detail-fill" cx="300" cy="390" r="2.5" style="stroke:none;"></circle>
-  <!-- Yard gate east -->
-  <rect class="sm-door" x="334" y="386" width="6" height="9"></rect>
-
-  <!-- Ruined outbuilding and old garden walls -->
-  <g class="sm-detail" style="stroke-width: 2.4;">
-    <path d="M 370 415 L 398 415 L 398 442"></path>
-    <path d="M 372 452 L 390 452"></path>
-    <path d="M 408 462 L 408 478"></path>
-  </g>
-  <rect class="sm-building" x="371" y="366" width="15" height="11" rx="1"></rect>
-  <g class="sm-detail">
-    <circle cx="404" cy="425" r="2.4"></circle>
-    <circle cx="382" cy="462" r="2.1"></circle>
-    <circle cx="414" cy="450" r="2.2"></circle>
-  </g>
-
-  <!-- The boulder field -->
-  <g>
-    {boulders.map(([x, y]) => (
-      <g class="sm-rock">
-        <circle cx={x} cy={y} r="5.5" />
-        <circle cx={x + 8} cy={y + 4} r="4" />
-        <circle cx={x - 6} cy={y + 6} r="3.4" />
-      </g>
-    ))}
-  </g>
-
-  <!-- Numbered points of interest -->
-  <g class="sm-poi" data-tip-title="Adabra Gwynn's windmill" data-tip-sub="The potions brew here and nowhere else">
-    <circle cx="266" cy="342" r="8"></circle><text x="266" y="342">1</text>
-  </g>
-  <g class="sm-poi" data-tip-title="Ruined outbuilding" data-tip-sub="Old garden walls; good cover in the fight">
-    <circle cx="422" cy="408" r="8"></circle><text x="422" y="408">2</text>
-  </g>
-  <g class="sm-poi danger" data-tip-title="The boulder field" data-tip-sub="Manticore country">
-    <circle cx="700" cy="478" r="8"></circle><text x="700" y="478">3</text>
-  </g>
-
-  <!-- Scale -->
-  <g class="sm-scale" transform="translate(430 545)">
-    <line x1="0" y1="0" x2="125" y2="0"></line>
-    <line x1="0" y1="-4" x2="0" y2="4"></line>
-    <line x1="125" y1="-4" x2="125" y2="4"></line>
-    <text x="62" y="-8">≈ 50 feet</text>
-  </g>
-
-  <!-- Compass -->
-  <g class="m-compass" transform="translate(70 502)">
-    <circle r="18"></circle>
-    <line x1="0" y1="13" x2="0" y2="-9"></line>
-    <path class="m-compass-arrow" d="M0 -16 L5 -5 L0 -8 L-5 -5 Z"></path>
-    <text y="-25">N</text>
-  </g>
+  <g class="ref-rubble">{[[764,808],[763,901],[819,798]].flatMap(([x,y]) => Array.from({length:15},(_,i) => <circle cx={x+Math.sin(i*2.4)*Math.sqrt(i)*4} cy={y+Math.cos(i*2.4)*Math.sqrt(i)*3} r={2+i%3} />))}</g>
+  <g class="ref-stone">{boulders.map(([x,y]) => <g transform={`translate(${x} ${y})`}>{Array.from({length:10},(_,i) => {
+    const a=i*2.4, r=Math.sqrt(i)*4.5;
+    return <path d={`M${Math.cos(a)*r-5} ${Math.sin(a)*r} l2 -6 7 -2 5 6 -4 7 -7 -1 Z`} />;
+  })}</g>)}</g>
+  {markers.map(([x,y,n,title,note]) => <g class="sm-poi ref-poi" data-tip-title={title} data-tip-sub={note}><circle cx={x} cy={y} r="17" /><text x={x} y={y}>{n}</text></g>)}
+  <g class="ref-elevation">{[[1490,491,0],[1472,586,10],[1457,713,20],[1410,834,30],[1380,938,40]].map(([x,y,h]) => <text x={x} y={y}>+{h} ft.</text>)}</g>
+  <text class="ref-title" x="87" y="126">Umbrage Hill</text>
+  <text class="ref-subtitle" x="90" y="162">BEFORE THE DRAGON · EXTERIOR</text>
+  <g class="ref-scale" transform="translate(1180 130)"><text x="147" y="-23">1 square = 5 feet</text><path d="M0 -6 V6 M0 0 H294 M147 -6 V6 M294 -6 V6" /><text x="0" y="29">0</text><text x="147" y="29">25</text><text x="294" y="29">50 ft</text></g>
+  <g class="m-compass" transform="translate(154 1074) scale(2)"><circle r="18" /><line x1="0" y1="13" x2="0" y2="-9" /><path class="m-compass-arrow" d="M0 -16 L5 -5 L0 -8 L-5 -5 Z" /><text y="-25">N</text></g>
 </g>

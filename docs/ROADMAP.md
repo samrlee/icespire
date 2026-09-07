@@ -11,6 +11,11 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Done
 
+- **Umbrage Hill map redraw** — traced the official contour lines, windmill
+  footprint, yard fence, ruined outbuilding, and boulders at five-foot grid
+  scale. Labels the exterior as a record before the dragon destroyed it;
+  unseen floor plans remain withheld. _(Sep 2026)_
+
 - **Dwarven Excavation map redraw** — traced the official canyon, ruins, room
   footprints, and passages at a consistent five-foot grid scale. Uses the
   campaign palette and existing pan/zoom viewer; includes the chamber reached

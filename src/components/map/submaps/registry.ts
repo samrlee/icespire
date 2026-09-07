@@ -130,11 +130,11 @@ export const submaps: Record<string, SubmapEntry> = {
   },
   'umbrage-hill': {
     Component: UmbrageHill,
-    width: 900,
-    height: 570,
-    scaleNote: 'The hilltop spans about 350 feet',
+    width: 1960,
+    height: 1248,
+    scaleNote: 'Before its destruction · Exterior · 1 square = 5 feet',
     legend: [
-      { label: "Adabra Gwynn's windmill", note: 'the potions brew here and nowhere else' },
+      { label: "Adabra Gwynn's windmill", note: 'former home and workshop; destroyed by the dragon in Session 7' },
       { label: 'Ruined outbuilding', note: 'old garden walls; cover during the manticore fight' },
       { label: 'The boulder field', note: 'manticore country' },
     ],
