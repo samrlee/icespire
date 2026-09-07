@@ -4161,3 +4161,26 @@ body {
 .prose li {
   margin-bottom: var(--space-1);
 }
+
+/* Dwarven Excavation: reference-scale geometry, with the campaign palette. */
+.submap-excavation .exc-cliff-face { fill: var(--map-peak-fill); stroke: var(--map-ridge); stroke-width: 2; stroke-linejoin: round; }
+.submap-excavation .exc-hachures { fill: none; stroke: var(--map-ridge); stroke-width: 1.7; opacity: .65; }
+.submap-excavation .exc-canyon { fill: var(--map-dig); stroke: var(--map-ridge); stroke-width: 2.5; stroke-linejoin: round; }
+.submap-excavation .exc-rooms { fill: var(--bg-inset); stroke: var(--map-ridge); stroke-width: 3; stroke-linejoin: round; }
+.submap-excavation .exc-grid-line { fill: none; stroke: var(--map-ridge); stroke-width: .8; opacity: .3; }
+.submap-excavation .exc-ruins { fill: none; stroke: var(--map-label); stroke-width: 7; stroke-linejoin: miter; opacity: .8; }
+.submap-excavation .exc-gates { fill: none; stroke: var(--map-label); stroke-width: 17; stroke-linecap: square; }
+.submap-excavation .exc-ruined-well { fill: none; stroke: var(--map-label); stroke-width: 3; stroke-dasharray: 12 5; }
+.submap-excavation .exc-steps { fill: none; stroke: var(--map-ridge); stroke-width: 2; }
+.submap-excavation .exc-rubble { fill: var(--map-peak-fill); stroke: var(--map-ridge); stroke-width: 1.5; }
+.submap-excavation .exc-openings { fill: none; stroke: var(--bg-inset); stroke-width: 5; }
+.submap-excavation .exc-pillars { fill: var(--map-peak-fill); stroke: var(--map-label); stroke-width: 2.5; }
+.submap-excavation .exc-statues { fill: var(--bg-inset); stroke: var(--map-label); stroke-width: 1.5; }
+.submap-excavation .exc-doors { fill: none; stroke: var(--accent-gold-muted); stroke-width: 7; }
+.submap-excavation .exc-found-doors { fill: none; stroke: var(--accent-gold-muted); stroke-width: 5; stroke-dasharray: 3 2; }
+.submap-excavation .exc-poi circle { stroke-width: 2; }
+.submap-excavation .exc-poi text { font-size: 19px; }
+.submap-excavation .exc-map-title { font-family: var(--font-display); font-size: 40px; fill: var(--text-primary); }
+.submap-excavation .exc-map-title .exc-subtitle { font-family: var(--font-mono); font-size: 13px; letter-spacing: 4px; fill: var(--map-label); }
+.submap-excavation .exc-scale { fill: var(--map-label); font-family: var(--font-mono); font-size: 18px; text-anchor: middle; }
+.submap-excavation .exc-scale path { fill: none; stroke: var(--map-label); stroke-width: 2; }

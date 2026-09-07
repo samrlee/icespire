@@ -11,6 +11,12 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Done
 
+- **Dwarven Excavation map redraw** — traced the official canyon, ruins, room
+  footprints, and passages at a consistent five-foot grid scale. Uses the
+  campaign palette and existing pan/zoom viewer; includes the chamber reached
+  in Session 7 and respects the interior gate. Other local maps still await
+  the same treatment. _(Sep 2026)_
+
 - **The handoff knows about the table.** Everything an agent needed but could
   only get by being told — the DM's name, which player runs which character, the
   house rules, the canonical spelling of every name a room mic garbles — is now
