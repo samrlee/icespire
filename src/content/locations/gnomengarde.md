@@ -1,7 +1,7 @@
 ---
 name: 'Gnomengarde'
-x: 585
-y: 614
+x: 909
+y: 1525
 kind: settlement
 status: visited
 interiorSeen: true

@@ -11,6 +11,11 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Done
 
+- **Sword Coast region redraw** — the full official reference sheet, with
+  traced coastline, forest boundaries, river branches, roads, and relief.
+  Five-mile hexes and location coordinates share a 1344×1872 space; terrain
+  is unnamed and only visited campaign locations receive markers. _(Sep 2026)_
+
 - **Visited-only region map** — unvisited places are absent from markers,
   detail panels, event pins, replay data, location search documents, and
   location auto-links. Draft journeys are excluded; regression checks cover

@@ -1,7 +1,7 @@
 ---
 name: 'Circle of Thunder'
-x: 643
-y: 21
+x: 978
+y: 830
 kind: landmark
 status: unknown
 labelPlacement: bottom

@@ -1,7 +1,7 @@
 ---
 name: 'Leilon'
-x: 288
-y: 682
+x: 563
+y: 1605
 kind: town
 status: unknown
 labelPlacement: left

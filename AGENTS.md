@@ -89,9 +89,9 @@ sketched with enough detail to pick up cold.
 ## The rules that are not obvious
 
 **The repo knows more than the site publishes, and that gap is deliberate.**
-Three gates hold it: `draft: true` on a session, `status: unknown` on a
-location, and `interiorSeen: false` on a place whose inside the party has not
-walked. Every undiscovered official site is already drawn and sitting in the
+The publication gates hold it: `draft: true` on a session, any location status
+other than `visited` on the map, and `interiorSeen: false` on a place whose inside
+the party has not walked. Every undiscovered official site is already drawn and sitting in the
 repo waiting for its status to be flipped. Publishing one early spoils the
 game.
 
@@ -136,7 +136,7 @@ and the graph grows on its own.
 **Prose links itself, and now casts itself too.** `src/lib/entities.ts` holds
 the cast of named things and the aliases each answers to;
 `src/components/EntityLinks.astro` ships it to the browser to turn the first
-mention of any character, NPC, faction, or known location inside `.prose` into a
+mention of any character, NPC, faction, or visited location inside `.prose` into a
 link with a hover card, and `src/components/DramatisPersonae.astro` matches the
 same table against a recap's Markdown at build time to work out who appears in
 it. Do not hand-write `[Adabra Gwynn](/npcs/adabra-gwynn)` in a recap — write

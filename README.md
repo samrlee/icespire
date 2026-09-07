@@ -68,7 +68,7 @@ process for adding a session.
 - **Factions**: `name`, `type`, `status`, `alignment`, `summary` (codex panel text).
 - **Lore**: `title`, `category` (places/history/items/…), `summary`.
 - **Locations** (`src/content/locations/`): places on the campaign map. `name`,
-  `x`/`y` (map coordinates in the SVG's 1000×750 space), `kind`
+  `x`/`y` (map coordinates in the SVG's 1344×1872 space), `kind`
   (town/settlement/landmark/dungeon/camp/lair), `status`
   (`visited`/`known`/`rumored`/`unknown` — only `visited` places get map
   markers, panels, location search results, or prose links), optional `danger` (ember marker,
@@ -87,12 +87,14 @@ process for adding a session.
 
 ### The maps
 
-`/map/` renders a custom SVG of the Phandalin region
+`/map/` renders a custom SVG of the Sword Coast
 (`src/components/map/MapTerrain.astro` — terrain only; markers, route, and
 event pins are generated from the content collections by
 `src/pages/map/index.astro`). The geography follows the official Sword Coast
 map in `offical-assets/Maps/` (reference only — the scans are never shipped
-to the built site). The map pans and zooms (drag/scroll/pinch), markers open
+to the built site). The full reference sheet uses a 1344×1872 coordinate space
+and five-mile hexes. Only visited places are labelled; all other terrain is unnamed.
+The map pans and zooms (drag/scroll/pinch), markers open
 a detail panel with links to recaps and codex entries, and
 `/map/#location-slug` deep-links to a location. Terrain colors live in the
 Campaign Map section of `src/styles/global.css` and follow both themes.

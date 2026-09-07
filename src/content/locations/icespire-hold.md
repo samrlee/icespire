@@ -1,7 +1,7 @@
 ---
 name: 'Icespire Hold'
-x: 765
-y: 439
+x: 1122
+y: 1319
 kind: lair
 status: unknown
 danger: true

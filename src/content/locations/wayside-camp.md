@@ -1,7 +1,7 @@
 ---
 name: 'Wayside Camp'
-x: 524
-y: 574
+x: 836
+y: 1472
 kind: camp
 status: visited
 firstVisited: 1

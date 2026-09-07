@@ -1,7 +1,7 @@
 ---
 name: 'Conyberry'
-x: 756
-y: 158
+x: 1112
+y: 990
 kind: settlement
 status: unknown
 labelPlacement: top

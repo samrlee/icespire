@@ -1,7 +1,7 @@
 ---
 name: 'Dragon Barrow'
-x: 250
-y: 226
+x: 520
+y: 1073
 kind: landmark
 status: unknown
 labelPlacement: bottom

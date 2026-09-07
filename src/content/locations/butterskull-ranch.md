@@ -1,7 +1,7 @@
 ---
 name: 'Butterskull Ranch'
-x: 815
-y: 154
+x: 1183
+y: 983
 kind: landmark
 status: unknown
 labelPlacement: bottom

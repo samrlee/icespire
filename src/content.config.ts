@@ -116,15 +116,15 @@ const locations = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/locations' }),
   schema: z.object({
     name: filled(),
-    // Position on the map SVG, in viewBox units (0–1000 wide, 0–750 tall).
-    x: z.number().min(0).max(1000),
-    y: z.number().min(0).max(750),
+    // Position on the map SVG, in viewBox units (0–1344 wide, 0–1872 tall).
+    x: z.number().min(0).max(1344),
+    y: z.number().min(0).max(1872),
     kind: z
       .enum(['town', 'settlement', 'landmark', 'dungeon', 'camp', 'lair'])
       .default('landmark'),
     // visited = the party has been there; known = seen/confirmed from afar;
-    // rumored = only heard about; unknown = not yet discovered — the location
-    // (and any sub-map) exists in the repo but renders nowhere on the site.
+    // rumored = only heard about; unknown = not yet discovered. Only visited
+    // locations receive map markers, local maps, search entries, and prose links.
     status: z.enum(['visited', 'known', 'rumored', 'unknown']).default('unknown'),
     // Renders the marker in ember (reserved for genuine danger).
     danger: z.boolean().default(false),
