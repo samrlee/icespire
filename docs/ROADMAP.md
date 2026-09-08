@@ -40,6 +40,15 @@ Priorities are a rough guide, not a contract — reorder freely.
   campaign palette and existing pan/zoom viewer; includes the chamber reached
   in Session 7 and respects the interior gate. The other three published local maps now use the same approach. _(Sep 2026)_
 
+- **The maps' hand is written down** — [`MAP-STYLE.md`](MAP-STYLE.md) records
+  what the five redraws established: trace the official scan and draw it in our
+  ink, the coordinate space per sheet (and the one every remaining local map
+  will use), what gets traced and in what order, the shared `.ref-map` classes,
+  and the gates that keep secret doors, traps, unreached rooms and unfound
+  threats off a player-facing map. Linked from `AGENTS.md`, `CLAUDE.md` and the
+  README's map section, so the next tool does not rediscover it — or, worse,
+  quietly go back to inventing geography. _(Sep 2026)_
+
 - **The handoff knows about the table.** Everything an agent needed but could
   only get by being told — the DM's name, which player runs which character, the
   house rules, the canonical spelling of every name a room mic garbles — is now
@@ -127,6 +136,19 @@ Ordered high → low by rough impact-per-effort.
 
 2. **Print stylesheet.** A `@media print` block so a recap or the campaign
    summary prints cleanly for players/DMs who want a hard copy.
+
+3. **Redraw the eleven hidden local maps, as they publish.** Axeholm,
+   Butterskull Ranch, Circle of Thunder, Dragon Barrow, Falcon's Hunting Lodge,
+   Icespire Hold, Loggers' Camp, Mountain's Toe Gold Mine, Shrine of Savras,
+   Tower of Storms and the Woodland Manse are still in the pre-redraw invented
+   style. They publish nowhere while their locations are `unknown`, so this is
+   not work to do in a batch — it is one map's work on the day the party finds
+   the place, before flipping its `status`.
+   [`MAP-STYLE.md`](MAP-STYLE.md) has the method and the numbers: every one of
+   those scans is 2888 × 1838, so every one of those maps is 1960 × 1248 at
+   29.4 units to the five-foot square, exactly like Gnomengarde, the Dwarven
+   Excavation and Umbrage Hill. When the last one is done, the "work in
+   progress" caveat comes off the sub-map pages and the region map.
 
 ## Considered and dropped
 

@@ -18,6 +18,9 @@ The short version:
   one self-contained prompt, for a chat with no access to this repo.
 - **[`docs/WRITING-STYLE.md`](docs/WRITING-STYLE.md)** — the chronicle's voice.
   Read before writing campaign prose.
+- **[`docs/MAP-STYLE.md`](docs/MAP-STYLE.md)** — the maps' hand. Read before
+  drawing or editing a map; they are traced from the official scans, not
+  invented.
 - **[`README.md`](README.md)** — the reference manual for every collection,
   field, and subsystem.
 - **[`docs/ROADMAP.md`](docs/ROADMAP.md)** — planned work.

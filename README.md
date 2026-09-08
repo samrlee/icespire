@@ -118,6 +118,11 @@ also exclude unvisited locations and draft sessions. Unvisited waypoints do
 not create shortcut route arcs. The published recaps remain the record of
 what the party heard or saw; the map does not label those places early.
 
+Every map here is a measured tracing of its official scan, redrawn in the site's
+palette — the coordinate spaces, the layer order, the publication gates, and the
+list of maps still to draw are in [`docs/MAP-STYLE.md`](docs/MAP-STYLE.md). Read
+it before drawing or editing one.
+
 Because the sub-maps are our own drawings and still being reworked, every
 sub-map page carries a "work in progress" caveat above the map, and the region
 map repeats it in one line under the local-map quick links (`.map-wip` /

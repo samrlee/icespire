@@ -32,7 +32,10 @@ in this one.
    packed into one self-contained prompt, for a chat with no repo access.
 5. **[`docs/WRITING-STYLE.md`](docs/WRITING-STYLE.md)** — the chronicle's voice.
    Read it before writing a word of campaign prose.
-6. **[`docs/ROADMAP.md`](docs/ROADMAP.md)** — what is done and what is planned.
+6. **[`docs/MAP-STYLE.md`](docs/MAP-STYLE.md)** — the maps' hand: how a map is
+   traced from its official scan, and what never gets drawn. Read it before
+   touching anything under `src/components/map/`.
+7. **[`docs/ROADMAP.md`](docs/ROADMAP.md)** — what is done and what is planned.
    Check it before starting feature work, and update it when you finish some.
 
 ## Running it
@@ -77,6 +80,7 @@ sketched with enough detail to pick up cold.
 | Places on the map | `src/content/locations/` |
 | Region map terrain | `src/components/map/MapTerrain.astro` |
 | Local site maps | `src/components/map/submaps/` + `registry.ts` |
+| How maps get drawn | [`docs/MAP-STYLE.md`](docs/MAP-STYLE.md) |
 | Content schemas (the source of truth for frontmatter) | `src/content.config.ts` |
 | Design tokens / component CSS | `src/styles/tokens/`, `src/styles/global.css` |
 | Search index + ranking | `src/lib/search-index.ts`, `src/lib/search-rank.ts` |
@@ -105,6 +109,13 @@ reaching for a bare `getCollection()` there is how a spoiler ships.
 what is inside Axeholm. The chronicle does not, until they walk in. This
 applies to prose, to lore entries, to map rooms, and to anything the Ask bot
 could retrieve.
+
+**The maps are traced, not invented.** Every map on this site is a measured
+tracing of its official scan in `offical-assets/Maps/`, redrawn in the design
+system's ink — the module's geometry, our palette, and only what the party has
+seen. The eleven undiscovered local maps are still in the old invented style and
+get redrawn to [`docs/MAP-STYLE.md`](docs/MAP-STYLE.md) on the day they publish.
+Do not compose map geometry by eye; the guide has the coordinate spaces.
 
 **The table's own facts are written down once, in
 [`docs/TABLE-FACTS.md`](docs/TABLE-FACTS.md).** Which player runs which
