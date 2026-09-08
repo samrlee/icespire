@@ -100,12 +100,14 @@ a detail panel with links to recaps and codex entries, and
 Campaign Map section of `src/styles/global.css` and follow both themes.
 
 **Local sub-maps** live in `src/components/map/submaps/` (one SVG component
-per site, registered in `registry.ts` with a numbered key). A sub-map page
+per site, registered in `registry.ts` with a numbered legend). A sub-map page
 (`/map/<slug>/`) is only built — and only linked from the region map's
 detail panel — while its location's status is `visited`. Every official site
-is already drawn, including the ones the party hasn't found: to reveal one
-after a session, flip its location's `status` (`unknown` → `visited` shows
-both the region marker and the local map). The full status ladder:
+has a component, including the places the party has not found, but eleven of
+those are old placeholders rather than publishable tracings. Before revealing
+one after a session, redraw and audit its component and registry entry, then
+flip its location's `status` (`unknown` → `visited` shows both the region
+marker and the local map). The full status ladder:
 
 - `unknown` — undiscovered, not published as a location
 - `rumored` — heard about, but not labelled or linked on the map
@@ -118,10 +120,10 @@ also exclude unvisited locations and draft sessions. Unvisited waypoints do
 not create shortcut route arcs. The published recaps remain the record of
 what the party heard or saw; the map does not label those places early.
 
-Every map here is a measured tracing of its official scan, redrawn in the site's
-palette — the coordinate spaces, the layer order, the publication gates, and the
-list of maps still to draw are in [`docs/MAP-STYLE.md`](docs/MAP-STYLE.md). Read
-it before drawing or editing one.
+Every published map here is a measured tracing of its official scan, redrawn in
+the site's palette. The coordinate spaces, working order, publication gates,
+pre-publish audit, and list of placeholder maps still to redraw are in
+[`docs/MAP-STYLE.md`](docs/MAP-STYLE.md). Read it before drawing or editing one.
 
 Because the sub-maps are our own drawings and still being reworked, every
 sub-map page carries a "work in progress" caveat above the map, and the region
