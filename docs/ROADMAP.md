@@ -11,6 +11,12 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Done
 
+- **Question-focused passages for Ask** — long entries now contribute ranked,
+  overlapping sentence windows with surrounding context, in source order.
+  Omission markers distinguish separate passages; headings and separators count
+  toward the context budget. Oversized entries no longer force an opening-only
+  fallback or block smaller sources. Regression tests run in CI. _(Sep 2026)_
+
 - **Sword Coast region redraw** — the full official reference sheet, with
   traced coastline, forest boundaries, river branches, roads, and relief.
   Five-mile hexes and location coordinates share a 1344×1872 space; terrain

@@ -9,7 +9,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test:map": "node --experimental-strip-types --test tests/map-publication.test.mjs"
+    "test:map": "node --experimental-strip-types --test tests/map-publication.test.mjs",
+    "test:ask": "node --experimental-strip-types --test tests/ask-context.test.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
