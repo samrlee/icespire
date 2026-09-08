@@ -1,13 +1,35 @@
 # The maps' hand
 
-How maps are drawn on this site. Four are the model — Phandalin, Gnomengarde,
-Dwarven Excavation, Umbrage Hill, plus the Sword Coast region sheet. Read one
-before drawing anything, ideally beside its scan in `offical-assets/Maps/`.
+How maps are drawn on this site. Five maps are the model: the Sword Coast
+region sheet and the local maps for Phandalin, Gnomengarde, Dwarven Excavation,
+and Umbrage Hill. Read the component closest to the map you are changing before
+drawing anything, beside its scan in `offical-assets/Maps/`.
 
 Eleven local maps are still in the repo in the old style, waiting for their
 locations to be discovered (see [The maps still to draw](#the-maps-still-to-draw)).
-When one of them publishes, it gets redrawn to this guide first. That is what
-this file is for.
+Before one of them publishes, its placeholder component **and registry entry**
+get replaced using this guide. Never reveal a placeholder by flipping a
+location to `visited` first: the old drawings are neither accurate nor audited
+for player knowledge.
+
+## Before drawing
+
+1. Read the location, journey, and session content that establishes exactly
+   what the party saw. Make two lists: visible exterior facts, and reached
+   interior facts. If the record is ambiguous, withhold the feature.
+2. Find the exact scan in [The maps still to draw](#the-maps-still-to-draw).
+   Treat it as DM reference material: inspect it to trace geometry, but do not
+   transfer its labels or encounter information into player-facing code.
+3. Open the nearest model component and its rules in the `.ref-map` section of
+   `src/styles/global.css`. Use Phandalin for a settlement, Umbrage Hill for an
+   exterior, and Gnomengarde or Dwarven Excavation for a gridded interior.
+4. Leave the location unpublished while working. Replace the component,
+   dimensions, scale note, and legend as one change; only then update `status`
+   or `interiorSeen`.
+
+The unpublished placeholders are inventory, not source material. Do not copy
+their invented geometry, approximate scale notes, tooltips, or legends into a
+redraw. Start from the official scan and the campaign record.
 
 ## The one rule
 
@@ -47,6 +69,13 @@ coincidence to rediscover each time — the module's local maps all ship at one
 size. Use those numbers and the new map lands on the same grid as the three
 that already exist.
 
+The conversion is uniform: multiply scan coordinates by `1960 / 2888`
+(approximately `0.67867`). That sends the scan height to approximately `1248`
+as well. Record coordinates in the component's final space, keep the full-sheet
+origin, and round only when SVG readability benefits; do not repeatedly scale
+already-rounded points. The `29.4`-unit grid is the reference grid after this
+conversion, not a number inferred from a placeholder component.
+
 **Name the scan and the scale in a comment at the top of the file**, the way
 the four do:
 
@@ -64,10 +93,11 @@ outright and it is the rule for all of them:
 If a room looks too small, it is the right size. Do not nudge a wall to improve
 a composition; the composition is the module's.
 
-**Where the module ships a player version (`map-13.01-…-player.jpg`), it is the
-same drawing with the room keys removed** — useful as a check, but the `.02` DM
-sheet is what to trace, because it carries the elevation labels and the marginal
-detail we keep. Strip the DM keys ourselves rather than losing the rest.
+**Where the module ships a player version** (currently Umbrage Hill's
+`map-13.01-umbrage-hill-player.jpg`), use it as a spoiler check. Trace the `.02`
+reference when it contains terrain facts absent from the player sheet, then
+remove DM keys and unrevealed information yourself. Do not assume future player
+and DM scans differ only by room keys; compare them.
 
 ## What gets traced
 
@@ -100,6 +130,14 @@ reads `0 / 100 / 200 / 500 feet` because the module's does. Umbrage Hill's says
 **Drop what belongs to the book, not the place**: parchment texture and the
 decorative border, the module's room codes (`G1`–`G15`, `U1`–`U5`), floor-plan
 insets, and any label naming something the party has not met.
+
+Prefer explicit SVG geometry (`path`, `polygon`, `rect`, `circle`) and small,
+deterministic data arrays. Generated marks may add texture, as the model maps
+do, but must be deterministic so builds and visual comparisons do not drift.
+Use unique SVG IDs prefixed for the map (`uh-grid`, `gn-water`, and so on),
+because inline definitions share a document with the viewer. Keep the root
+group `aria-hidden="true"`; the page supplies the map's accessible name and the
+registry supplies the readable Key.
 
 ## The ink is ours
 
@@ -142,8 +180,7 @@ site to spoil the game by accident. The full statement lives in the header
 comment of `src/components/map/submaps/registry.ts`; the short version:
 
 **A map carries only what the party could see standing in the place.** Off the
-drawing, off the tooltips, off the Key, and off the source comments — which
-ship to the browser — go:
+drawing, off the tooltips, off the Key, and off rendered HTML comments go:
 
 - secret doors (the module marks them `s`), hidden passages, concealed entrances;
 - traps, and any room nobody has reached;
@@ -178,6 +215,11 @@ waits for `interiorSeen` rather than publishing as a blank hillside.
 chronicle: you may well know what is in the vault. The map does not, until they
 open it.
 
+The old, unpublished registry entries predate this rule and contain speculative
+module-flavoured notes. Their safety comes only from the publication gate. They
+must be rewritten from campaign facts during the redraw; a status flip without
+that audit is not a valid publishing workflow.
+
 ## The registry entry
 
 Each map is registered in `src/components/map/submaps/registry.ts` under its
@@ -205,6 +247,10 @@ location slug, and the entry is as much of the work as the drawing:
   where that is what makes them worth reading: *"Guildmaster Thornton. A trap
   door in the floor, and stairs under the town."* Not module descriptions.
 - Anything inside gets `interior: true`.
+- Marker numbers in the component must match the legend's array positions.
+  Keep intentional gaps by retaining an interior legend entry and gating its
+  marker with the same `interior` prop; do not renumber visible markers merely
+  because a hidden entry is filtered out.
 
 **When the campaign contradicts the module, the campaign wins.** Gnomengarde's
 redraw moved the ballista and blade-room markers because the recaps put them
@@ -218,8 +264,14 @@ somewhere the official map did not.
 - **Look at it beside the scan.** Overlay if you can. Every landmark should sit
   where the module puts it; if one drifts, the coordinate space is off, not the
   landmark.
+- At minimum, compare the outer boundary, grid intersections, entrances,
+  building corners, elevation marks, and scale bar at several widely separated
+  points. A match in one corner does not prove uniform scale.
 - Confirm the gate: with `interiorSeen` false, no interior geometry and no
   interior Key lines in the built HTML in `dist/`.
+- Search the built page for room keys, secret-door labels, encounter names, and
+  other terms copied from the DM scan. Also inspect tooltips and the Key; a
+  visually hidden spoiler is still published content.
 - Move the map from [The maps still to draw](#the-maps-still-to-draw) here and
   add a line to [`ROADMAP.md`](ROADMAP.md)'s Done.
 - Commit in the house style — imperative subject, body grouped by area. The five
@@ -232,7 +284,7 @@ when the last map is redrawn and the set finally settles.
 ## The maps still to draw
 
 All eleven are drawn in the old invented style, publish nowhere, and are to be
-redrawn from their scans when their location's `status` flips to `visited`.
+redrawn from their scans before their location's `status` flips to `visited`.
 Every scan is 2888 × 1838 → **1960 × 1248, 29.4 units = 5 feet**.
 
 | Location | Scan |

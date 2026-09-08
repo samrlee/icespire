@@ -220,10 +220,14 @@ time, and skip an item deliberately rather than by forgetting it.
 - [ ] **`src/content/locations/*.md`** — `status` flips (`unknown` → `rumored` →
       `known` → `visited`), `interiorSeen` when they go inside, `danger`,
       `firstVisited`, and the body write-up. Flipping a location to `visited`
-      publishes its local sub-map page, so only do it when they were actually
-      there.
-- [ ] **`src/components/map/submaps/*.astro`** — reveal rooms and features the
-      party has now seen. Keep undiscovered secrets off the map.
+      can publish its local sub-map page, so only do it when they were actually
+      there and after the map audit below.
+- [ ] **`src/components/map/submaps/*.astro` and `registry.ts`** — before a new
+      local map publishes, follow [`MAP-STYLE.md`](MAP-STYLE.md) to replace its
+      old placeholder tracing, approximate scale note, and speculative legend.
+      Reveal only rooms and features the party has now seen; keep undiscovered
+      secrets off the component, tooltips, Key, and rendered comments. Do this
+      before flipping `status` or `interiorSeen`, not after.
 - [ ] **`docs/ROADMAP.md`** — if the session's work completed a roadmap item.
 - [ ] **Schema and design system**, only when the story demands it. Session 7
       needed a `deceased` NPC status that did not exist: that meant
