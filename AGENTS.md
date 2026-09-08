@@ -187,7 +187,9 @@ a `.env`.
 
 ## Git conventions
 
-Work on a branch, never commit to `main` directly, and open a PR — CI has to
+Before editing any file, create and switch to a new task branch, even when the
+chat starts with `main` selected. Never do implementation work or commit on
+`main` directly. Open a PR — CI has to
 build the site before anything deploys. The deploy itself is Cloudflare Pages
 watching `main`; there is no deploy workflow to run.
 

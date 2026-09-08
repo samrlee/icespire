@@ -20,6 +20,7 @@
 // documents that /search-index.json was allowed to contain, and that index is
 // built from published entries only (src/lib/search-index.ts).
 
+import { buildAskContext } from '../../src/lib/ask-context';
 import { contentTokens, index, pickAny } from '../../src/lib/search-rank';
 import type { Indexed, SearchDoc } from '../../src/lib/search-rank';
 
@@ -43,13 +44,6 @@ const MAX_ENTRIES = 5;
 const MIN_RELEVANCE = 12;
 
 const NOT_RECORDED = 'The chronicle does not record that.';
-
-/**
- * Token estimate, calibrated against what Cloudflare actually counted during
- * the probe (it read ~28,900 tokens where chars/3.6 predicted 32,000).
- * Deliberately used only to stay inside a budget with room to spare.
- */
-const estimateTokens = (s: string) => Math.ceil(s.length / 4);
 
 // Three failure modes pull against each other here, and the wording is tuned
 // for all of them. Too loose and the model answers from its knowledge of the
@@ -119,34 +113,6 @@ async function loadIndex(request: Request): Promise<Indexed[]> {
   return cachedIndex;
 }
 
-/**
- * The retrieved entries, formatted for the model and trimmed to the budget.
- * Entries are added whole while they fit — a half-truncated recap invites the
- * model to guess at the rest, which is the one thing it must not do.
- */
-function buildContext(hits: { doc: Indexed }[]) {
-  const used: Indexed[] = [];
-  let spent = 0;
-
-  for (const { doc } of hits) {
-    const block = `## ${doc.title} (${doc.kind})\n${doc.text}`;
-    const cost = estimateTokens(block);
-    if (spent + cost > CONTEXT_BUDGET) {
-      if (used.length > 0) break;
-      // A single entry larger than the whole budget: take the opening, which
-      // is where a recap's summary sits.
-      used.push({ ...doc, text: doc.text.slice(0, CONTEXT_BUDGET * 4) });
-      spent = CONTEXT_BUDGET;
-      break;
-    }
-    used.push(doc);
-    spent += cost;
-  }
-
-  const text = used.map((d) => `## ${d.title} (${d.kind})\n${d.text}`).join('\n\n');
-  return { text, used, tokens: spent };
-}
-
 export const onRequestPost = async (context: FunctionContext): Promise<Response> => {
   const { request, env } = context;
 
@@ -184,7 +150,8 @@ export const onRequestPost = async (context: FunctionContext): Promise<Response>
     return json({ error: 'The chronicle could not be read just now.' }, 502);
   }
 
-  const hits = pickAny(docs, contentTokens(question), MAX_ENTRIES, MIN_RELEVANCE);
+  const terms = contentTokens(question);
+  const hits = pickAny(docs, terms, MAX_ENTRIES, MIN_RELEVANCE);
 
   // Nothing relevant: say so rather than asking a model to confirm it. Honest,
   // instant, and it spends no Neurons on questions the chronicle can't answer.
@@ -192,7 +159,10 @@ export const onRequestPost = async (context: FunctionContext): Promise<Response>
     return json({ answer: NOT_RECORDED, sources: [], consulted: 0 });
   }
 
-  const { text, used, tokens } = buildContext(hits);
+  const { text, used, tokens } = buildAskContext(hits, terms, CONTEXT_BUDGET);
+  if (used.length === 0) {
+    return json({ answer: NOT_RECORDED, sources: [], consulted: 0 });
+  }
 
   let answer: string;
   try {

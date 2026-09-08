@@ -278,6 +278,15 @@ gates that protect search protect this too. A question that retrieves nothing
 is answered "The chronicle does not record that." without calling the model at
 all — honest, instant, and free.
 
+Long entries are narrowed to question-focused passages by `src/lib/ask-context.ts`.
+Overlapping sentence windows retain neighbouring context, merge without duplicate
+sentences, and appear in source order with explicit omission markers. Short
+entries stay whole. The prompt budget counts headings and separators too; an
+entry that cannot fit is skipped so later sources still have a chance. Source
+links name only entries actually included. This is lexical retrieval, so a
+question using entirely different vocabulary can still miss relevant evidence.
+`npm run test:ask` exercises late-recap evidence, ordering, overlap, and budgets.
+
 Ranking lives in `src/lib/search-rank.ts`, shared by the palette and the
 endpoint. They differ in strictness on purpose: `pickAll` (palette) needs every
 term to land, while `pickAny` (endpoint) drops question scaffolding and ranks
