@@ -286,8 +286,8 @@ the mouth going up — and what Dax read there was a woman extremely pleased wit
 herself.
 
 Then he paid his half of it. The band that came up the canyon at the
-excavation, seven of them, out of the east; all seven dead; and the tracks
-afterward showing a much larger body moving off west. She wanted to know
+excavation, seven of them, up from the encampment west of the ruin; all seven
+dead; and the tracks afterward showing a much larger body moving off west. She wanted to know
 exactly where, and exactly which way. He told her that too, and she had a small
 map out on the desk before he finished.
 

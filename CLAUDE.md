@@ -11,6 +11,9 @@ The short version:
 - **[`docs/TABLE-FACTS.md`](docs/TABLE-FACTS.md)** — who is at the table, who
   the DM is, the house rules, and the spellings the transcript mangles. The one
   thing the repo cannot tell you itself.
+- **[`docs/CAMPAIGN-CANON.md`](docs/CAMPAIGN-CANON.md)** — the established
+  facts through Session 8, with who witnessed what and what is only a report.
+  Read before asserting anything in-world.
 - **[`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md)** — the recording →
   whisperx → transcript → clarifying questions → published recap pipeline. This
   is the job most of the time.

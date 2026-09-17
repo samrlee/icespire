@@ -84,8 +84,10 @@ one dead and one grieving in Phandalin.
 ## Field notes
 
 - Slashing damage splits the jellies into more jellies — and so does
-  lightning. Barnaby's breath weapon made a second one out of the last.
-  Thrown weapons and bludgeoning work. Ask Dax's longsword.
+  lightning. Barnaby's breath weapon made a second one out of the last, and
+  Dax's thrown handaxe split one before his longsword follow-up did nothing.
+  Thrown or swung makes no difference. Nothing the party tried worked any other
+  way.
 - A gold necklace pulled from a dead jelly's remains bears an inscription in
   ancient Dwarvish over an illegible nameplate: *"This is what happens to
   those who displease me."* Rut carries it.

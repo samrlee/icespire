@@ -22,9 +22,9 @@ fighter, and says so freely.
 
 ## The road, and after (Session 7)
 
-The orc band caught the brothers on the road north — the same seven, he
-assumes, that went on to the temple. They killed **Dazlyn** before he could
-react. Norbus ran, lived, and had been sitting in the Phandalin inn ever since.
+The orc band caught the brothers on the road north — the same seven that went
+on to the temple. They killed **Dazlyn** before he could react. Norbus ran,
+lived, and had been sitting in the Phandalin inn ever since.
 
 The party reached him first through his brother's **sending stone** — Thom's
 message ran out of its twenty-five words one short of his name, so all Norbus

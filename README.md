@@ -11,7 +11,8 @@ to `main`).
 [`AGENTS.md`](AGENTS.md): how the repo works, what is generated, and what must
 never be published. Then [`docs/TABLE-FACTS.md`](docs/TABLE-FACTS.md) for who is
 at the table and the house rules they play by,
-[`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md) for turning a recorded
+[`docs/CAMPAIGN-CANON.md`](docs/CAMPAIGN-CANON.md) for what is established in
+play and who knows it, [`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md) for turning a recorded
 session into a published recap, and
 [`docs/WRITING-STYLE.md`](docs/WRITING-STYLE.md) for the chronicle's voice.
 [`docs/TRANSCRIPT-BRIEF.md`](docs/TRANSCRIPT-BRIEF.md) packs all of that into

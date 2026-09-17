@@ -26,9 +26,9 @@ frightened of the dragon. Harbin Wester has gone from hiding the rumor to
 needing the townspeople armed, and has asked the party to guard his house from
 his own neighbours. The Miner's Exchange keeps its shutters closed and its
 candle lit well after dark, and there is a **trap door in the floor behind the
-guildmaster's desk** that seals flush into the boards — the party know where it
-is only because they watched four people walk down through it. Two of them are
-underneath the town now.
+guildmaster's desk** that seals flush into the boards — Thom and Bean know
+where it is, and only because they watched four people walk down through it.
+Nobody else in the party does. The two of them are underneath the town now.
 
 Elsewhere on the map: the **Lionshield Coster** sells arms and armor and has
 never yet been open when anyone needed it, and several houses still stand

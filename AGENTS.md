@@ -21,21 +21,24 @@ in this one.
 2. **[`docs/TABLE-FACTS.md`](docs/TABLE-FACTS.md)** — who is at the table, who
    the DM is, the house rules, and the spellings the transcript mangles. Short,
    and it is the one thing you cannot work out by reading the repo.
-3. **[`README.md`](README.md)** — the reference manual. Every collection, every
+3. **[`docs/CAMPAIGN-CANON.md`](docs/CAMPAIGN-CANON.md)** — what is established
+   in play through Session 8, who witnessed it, what was paid, and what is only
+   somebody's report. Read it before asserting an in-world fact.
+4. **[`README.md`](README.md)** — the reference manual. Every collection, every
    frontmatter field, the map, the graph, search, the Ask endpoint, the CSP,
    the deploy. It is long and it is accurate. Never guess at a field name when
    it is written down there.
-4. **[`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md)** — the recording →
+5. **[`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md)** — the recording →
    whisperx → transcript → agent → published-site pipeline. This is the job
    most of the time. Its companion
    [`docs/TRANSCRIPT-BRIEF.md`](docs/TRANSCRIPT-BRIEF.md) is the same job
    packed into one self-contained prompt, for a chat with no repo access.
-5. **[`docs/WRITING-STYLE.md`](docs/WRITING-STYLE.md)** — the chronicle's voice.
+6. **[`docs/WRITING-STYLE.md`](docs/WRITING-STYLE.md)** — the chronicle's voice.
    Read it before writing a word of campaign prose.
-6. **[`docs/MAP-STYLE.md`](docs/MAP-STYLE.md)** — the maps' hand: how a map is
+7. **[`docs/MAP-STYLE.md`](docs/MAP-STYLE.md)** — the maps' hand: how a map is
    traced from its official scan, and what never gets drawn. Read it before
    touching anything under `src/components/map/`.
-7. **[`docs/ROADMAP.md`](docs/ROADMAP.md)** — what is done and what is planned.
+8. **[`docs/ROADMAP.md`](docs/ROADMAP.md)** — what is done and what is planned.
    Check it before starting feature work, and update it when you finish some.
 
 ## Running it
@@ -80,6 +83,7 @@ sketched with enough detail to pick up cold.
 | Places on the map | `src/content/locations/` |
 | Region map terrain | `src/components/map/MapTerrain.astro` |
 | Local site maps | `src/components/map/submaps/` + `registry.ts` |
+| What is established in play, and who knows it | [`docs/CAMPAIGN-CANON.md`](docs/CAMPAIGN-CANON.md) |
 | How maps get drawn | [`docs/MAP-STYLE.md`](docs/MAP-STYLE.md) |
 | Content schemas (the source of truth for frontmatter) | `src/content.config.ts` |
 | Design tokens / component CSS | `src/styles/tokens/`, `src/styles/global.css` |

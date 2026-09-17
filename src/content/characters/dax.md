@@ -95,12 +95,13 @@ anyway").
 - Was recognized by the orc war-leader — *"So you killed our men"* — and took
   a greataxe to the chest for it, dropping unconscious and bleeding out until
   Barnaby reached him (Session 6).
-- Got back up, used the Clockwork Amulet to steady a swing he no longer
-  trusted, and took the last orc's head off (Session 6).
+- Got back up and used the Clockwork Amulet to steady a swing he no longer
+  trusted; it bit deep. Two orcs later he stepped over the war-leader's corpse
+  and took the last one's head off (Session 6).
 - Stripped the orc leader's chain mail and identified it as **human work out
-  of a Neverwinter garrison** (Perception 23) — reading correctly that the band
-  had been raiding settlements close by. The second time his background has
-  produced usable intelligence (Session 7).
+  of a Neverwinter garrison** (Perception 23). His read — that the band had
+  been raiding settlements close by — has never been confirmed. The second time
+  his background has produced usable intelligence (Session 7).
 - Put his sword into the dead war-leader once, flicked the blood off the blade,
   and walked away without a word (Session 7).
 - Stayed out of the badger tunnel until the statue detonated, then went in with
@@ -171,6 +172,7 @@ advisable.
 the party does not know Dax is the source. These conversations are held between
 the two of them, out of everyone else's hearing.
 
-**Tactical note:** against ochre jellies, thrown handaxes and bludgeoning work;
-slashing just makes more jellies. His longsword follow-up after a
-jelly-splitting handaxe proved this the hard way. Lead with thrown weapons.
+**Tactical note:** slashing splits ochre jellies into more jellies whether it is
+thrown or swung — his handaxe split one on the way in, and the longsword
+follow-up did nothing. Lightning splits them too. The party has not found
+anything that works any other way.

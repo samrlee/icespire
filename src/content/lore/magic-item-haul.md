@@ -8,9 +8,9 @@ The running inventory:
 
 - **Wand of Pyrotechnics** — recovered from Gnomengarde; briefly held by
   Harbin, returned with the quest payout.
-- **Clockwork Amulet** — carried by Dax. Used to steady the swing that took
-  the last orc's head off when he no longer trusted his own hands
-  (Session 6).
+- **Clockwork Amulet** — carried by Dax. Used to steady the first swing after
+  Barnaby got him off the floor, when he no longer trusted his own hands; the
+  beheading, two orcs later, was his own (Session 6).
 - **Hat of Wizardry**
 - **Pole of Collapsing** — used to fish the Abbathor necklace out of a dead
   jelly's acidic remains.
@@ -53,8 +53,9 @@ The running inventory:
   way in, and most of what made that fight winnable (Session 6).
 - **The orc leader's chain mail** — stripped off the war-leader's body by Dax
   and identified as **human work out of a Neverwinter garrison**, battered and
-  blood-stained. Orcs do not make this; the band took it off somebody who could
-  not stop them, and not far from here (Session 7).
+  blood-stained. Orcs do not make this. Dax's read — never confirmed — is that
+  the band took it off somebody who could not stop them, and not far from here
+  (Session 7).
 - **A sheepskin map of the Sword Coast** — orcish scouting notation, read by
   Hamish. Raid targets marked along the **Triboar Trail** and the **High
   Road**, around **Leilon**, and near **Phandalin**, with a clear preference

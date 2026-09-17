@@ -60,8 +60,8 @@ a **longsword**. Whatever else had rotted in that place, the blade had not.
   <div class="callout-body">A jeweled dagger on a silver chain, its Dwarvish
   runes reading <em>"Greed is good"</em> — carried by Hamish. And a longsword
   found under a bed frame in the priests' sleeping chamber, still sound after
-  centuries in the dust — carried by Barnaby. Nothing about either has been
-  identified.</div>
+  centuries in the dust — carried by Barnaby. The sword was checked and is
+  plainly mundane; nothing about the holy symbol has been identified.</div>
 </div>
 
 Dax held the mouth of the passage while the others spread out, listening into

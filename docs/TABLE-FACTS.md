@@ -43,6 +43,11 @@ not.
 | Level cap 6 | Session 0 |
 | Bean can **appraise** valuables — an Intelligence check, always at disadvantage, because she is a thief with an eye for it and not an expert | Session 7 |
 
+**On Neverwinter:** the rule bars the *location* — the party will not travel
+there and it is not on the map. The name still exists in the world, and Owen
+allows it as background: the orc leader's chain mail is Neverwinter garrison
+work (Session 7). A reference is not a visit.
+
 New ones arrive mid-campaign. When one does, it gets a `callout house-rule` in
 the recap of the session it was ruled in, a line on the character page if it
 belongs to one character (see `bean-hootwhistle.md`), and a row here.
