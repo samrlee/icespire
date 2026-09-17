@@ -258,8 +258,9 @@ party walked Adabra out that morning and the hill was destroyed by evening, so
 she was paying with — gold, or information — and **got her to agree to a
 trade** before answering a single question of hers. His first purchase under
 that arrangement was Harbin. Only then did he pay his half: the band at the
-excavation came from the east, all seven died, and the tracks showed **a much
-larger force moving west**. She took the heading, put a map on the desk, and
+excavation came up from the encampment west of the ruin, all seven died, and
+the tracks showed **a much larger force moving west**. She took the heading,
+put a map on the desk, and
 **paid 50 gold** — which **Dax has not mentioned to the party**. Collecting the
 rest of what he was owed, he asked about Harbin again; she said he has been
 afraid of the dragon a long while, that the party had handed her *"a great
@@ -290,8 +291,9 @@ walked in**.
 
 The guard then found **Sage** in the lane and she talked her way out truthfully
 (she had been looking for her friend, and the weasel at her feet was the friend
-in question), before **throwing a knife at the weasel and missing**. The five regrouped, left visibly, and circled back to watch the
-Exchange: **Dax, Barnaby and the weasel near the shrine on the square, Sage in
+in question). Then he looked down at the weasel, said what people say about
+vermin, and **threw a knife at it. He missed.** The five regrouped, left
+visibly, and circled back to watch the Exchange: **Dax, Barnaby and the weasel near the shrine on the square, Sage in
 between, Hamish holed up in one of the burned-out houses.** Nobody knew where
 Thom and Bean had gone. **The sending stone was spent and will not work until
 tomorrow**, and `message` can only be answered, not initiated.

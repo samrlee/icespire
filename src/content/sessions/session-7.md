@@ -344,8 +344,8 @@ adventurers? We're just miners. I'm not going to fight you. Do I look like a
 fighter?*
 
 He told them how it had gone. The orcs had caught them on the road — the same
-band, he assumed, that had gone on to the temple. They killed Dazlyn before he
-could react. He ran, and lived, and had been in this room ever since.
+band that had gone on to the temple. They killed Dazlyn before he could react.
+He ran, and lived, and had been in this room ever since.
 
 Dax told him the orcs were dealt with. "If it gives you any peace, they're long
 dead."

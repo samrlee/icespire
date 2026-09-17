@@ -35,8 +35,10 @@ town master, and the foolish adventurers have brought her everything she needed.
 The Network's footprint in town is bigger than one guildmaster and one watcher
 at the inn:
 
-- **Four of them** in the Exchange that night, plus the man the party tailed
-  there. Thornton speaks of setting **"our entire troop"** on people.
+- **Thornton and three guards** in the Exchange that night. Whether the man the
+  party tailed there was one of those three or a fourth, nobody can say — they
+  dress alike and the party has never seen a face. Thornton speaks of setting
+  **"our entire troop"** on people.
 - A **trap door in the floor behind her desk**, which she and three guards went
   down and which then sealed flush — no seam, no handle, nothing to say it had
   ever been there. She calls what is down there their **recon point**, and said

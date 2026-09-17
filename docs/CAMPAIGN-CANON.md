@@ -20,6 +20,8 @@ not an independent source that overrides it.
   offered is not accepted, and a body returned for burial is not a witnessed burial.
 - Keep material source disagreements under **Canon questions / conflicts** for
   Samuel; do not silently choose a version or change existing content to fit.
+  When he rules on one, correct the sources it names and record the ruling there
+  so the question is not reopened.
 - [TABLE-FACTS.md](TABLE-FACTS.md) remains authoritative for players, character
   identities, the DM, house rules, names, and transcript interpretation.
   [The campaign summary](../src/pages/campaign.md) owns the living current state
@@ -37,9 +39,10 @@ about subsequent play.
 
 ## Player characters
 
-The original group met on the road to Phandalin; Dax joined near Gnomengarde,
-wounded among five orcs he had killed. His separate commission was to establish
-trade with Gnomengarde for the guildmaster. (Sessions 1–2)
+The original group met on the road to Phandalin; Dax joined the morning after
+the wayside camp, on the road to Gnomengarde, wounded among five orcs he had
+killed. His separate commission was to establish trade with Gnomengarde for the
+guildmaster. (Sessions 1–2)
 
 | Character | Durable facts established in play |
 | --- | --- |
@@ -47,7 +50,7 @@ trade with Gnomengarde for the guildmaster. (Sessions 1–2)
 | Thom | Wild magic triggered by Magic Missile aged him during the jelly fight. His [character entry](../src/content/characters/thom.md) specifies **three years, permanently, from nineteen to twenty-two**. Negotiated the dwarves' treasure split and keeps the party's treasure tally. (Sessions 5, 7) |
 | Hamish | Learned mushroom harvesting at Gnomengarde; recognized the Zhentarim pin; read the orcish scouting map. Scouts with Sage. (Sessions 2, 4–7) |
 | Bean Hootwhistle | Took Harbin's private notes on Thornton; paid the dwarves five gold from her own purse; opened the offering chest and the concealed Exchange hatch with thieves' tools. (Sessions 4, 6–8) |
-| Barnaby | Uses lightning breath and Lay on Hands; revived Dax during the temple orc fight. Carried Dazlyn's body back to Norbus. Collected orc blood in a waterskin without explaining its purpose. (Sessions 6–7) |
+| Barnaby | Uses lightning breath and Lay on Hands; revived Dax during the temple orc fight. Carried Dazlyn's body back to Norbus. Collected orc blood in a waterskin without explaining its purpose. (Sessions 1, 5–7) |
 | Sage | Reads the temple's older Dwarvish writing, carries its ledger, and has a panther companion, Phantom. Gathered flowers for Dazlyn; Rut opened their buds with Druidcraft. (Sessions 5–8) |
 | Dax | Has military experience, speaks Dwarvish, and works as a sellsword. Completed Thornton's original trade commission and continued trading intelligence with her. Made a separate, private offer of future service to Norbus. (Sessions 3–8) |
 
@@ -84,10 +87,11 @@ could not. These are observed capabilities, not an exhaustive spell list.
 - **Norbus Ithermel and Dazlyn Grayshard:** brothers, dwarf prospectors from
   Phandalin, and partners at the excavation. Their parents gave them a pair of
   sending stones for the venture. They left after the treasure dispute. Dazlyn
-  was found dead with an orc javelin in his back; Norbus said orcs killed his
-  brother and he escaped. Barnaby returned the body to him at Phandalin's inn.
-  Norbus said he would bury Dazlyn; the burial itself is not recorded.
-  (Sessions 5–7)
+  was found dead with an orc javelin in his back, reaching for his sending stone, killed by the same seven that later attacked the temple. Norbus said
+  orcs killed his brother and he escaped. The body was left in a bush outside
+  Harbin's house while the party collected their pay, then Barnaby carried it
+  into Phandalin's inn and set it at Norbus's feet. Norbus said he would bury
+  Dazlyn; the burial itself is not recorded. (Sessions 5–7)
 - **King Korboz and Queen Gnerkli:** co-rulers of Gnomengarde. The party saw the
   Queen bound while the King checked objects for mimics; two mimics were then
   defeated. Korboz received the trade contract and gave Dax a sealed reply.
@@ -183,7 +187,8 @@ inventory. Do not infer a curse, enchantment, appraisal, or later expenditure.
 | Clockwork Amulet | Carried by Dax, used during the temple orc fight; his character entry records recharge at dawn. Exact attack attribution differs below. (Session 6) |
 | Hat of Wizardry; Pole of Collapsing | Recorded in the haul. Rut used the pole; permanent individual ownership is not specified. |
 | Orc leader's chain mail and map | Dax stripped the mail and identified it as human-made Neverwinter garrison work. Nearby raids were his inference. Hamish read the sheepskin map's orcish scouting marks: raid targets around Leilon, Phandalin, the Triboar Trail and High Road, with a preference for mountains. A separate note's meaning was unclear at the table. The leader's exact rank was not identified. (Session 7) |
-| Rut's trophies | Manticore tail spike, mimic tentacle, and green orc eye supplied by Thom. No special powers or settled purpose recorded. (Sessions 5, 7) |
+| Rut's trophies | Manticore tail spike, mimic tentacle, and green orc eye supplied by Thom. No special powers or settled purpose recorded. (Sessions 5, 7; [haul](../src/content/lore/magic-item-haul.md) — the tentacle has no session of record) |
+| Orc packs | Hamish hauled the bodies apart and took rations, waterskins, **ten gold**, and a child's doll with its head torn off. The doll was not pursued and nothing explains it. (Session 7) |
 | Barnaby's supplies | Scattered a thousand ball bearings across the temple entrance; later collected orc blood in his waterskin. Retrieval of the bearings and a purpose for the blood are not established. (Sessions 6–7) |
 
 ## Established lore and discoveries
@@ -244,6 +249,9 @@ inventory. Do not infer a curse, enchantment, appraisal, or later expenditure.
   sharing the orc intelligence; she paid him **50 gp** for positions/movements
   and answered questions about Harbin. This payment is separate from the
   original trade commission. Dax has not reported it to the party.
+- **Split remainders are not tracked.** 19 gp each of 135 leaves 2 gp; 36 gp
+  each of 255 leaves 3 gp. Samuel confirms these are rounding at the table and
+  go nowhere. Do not assign them a holder.
 - **Harbin's investigation fee:** raised from **90 gp to 100 gp** for information
   about Thornton's plans. No delivery or payment yet. His request for overnight
   guards was declined by Bean; no guarding agreement was concluded. (Session 8)
@@ -256,7 +264,7 @@ Do not promote reader knowledge to party knowledge without a recorded telling.
 | Information | Established witnesses or limits |
 | --- | --- |
 | Rut's name | Readers know “Rut”; the other characters know “Friend.” |
-| Barnaby supposedly needing food to avoid eating people | A belief Dax induced in Rut privately, not a fact about Barnaby. Rut repeated it to Sage and raised feeding with Barnaby; Barnaby does not know the underlying belief. The rest do not know Dax originated it. The idea was also applied to Phantom. (Session 7) |
+| Barnaby supposedly needing food to avoid eating people | A belief Dax induced in Rut privately, not a fact about Barnaby. Rut repeated it to Sage as his own, raised feeding with Barnaby directly, and mentioned it to Adabra Gwynn, who called it advisable; Barnaby does not know the underlying belief. The rest do not know Dax originated it. The idea was also applied to Phantom. (Session 7) |
 | Chamber explosion | Rut, Thom, Bean and Barnaby were inside. Dax, Hamish and Sage were outside; Dax and Hamish entered afterward and Thom explained. Sage stayed with injured Rut. (Session 7) |
 | Norbus's extra 15 gp and job offer | Dax and Norbus only; the rest of the party did not witness it. Norbus also remains unaware of the gems and emerald. (Session 7) |
 | Dazlyn's death | Known to the party and Norbus; Harbin was not told. (Session 7) |
@@ -274,42 +282,35 @@ use [the campaign summary's Open threads](../src/pages/campaign.md#open-threads)
 
 ## Canon questions / conflicts
 
-For Samuel to review; existing sources are unchanged. Pending review, retain
-only the common facts above and preserve attribution where versions differ.
+None outstanding. New disagreements between sources go here, unresolved and
+attributed, rather than being settled in the prose.
 
-- **Orc approach:** [Session 7](../src/content/sessions/session-7.md) says tracks
-  placed the seven's approach **from the west**, from the large camp;
-  [Session 8](../src/content/sessions/session-8.md) has Dax report **from the
-  east**. Is the latter an in-character error or a recap error? The larger
-  body's later westward movement is consistent.
-- **Knife thrown at Rut:** Session 8 and the Rut/guard entries name **the guard**;
-  the [campaign summary](../src/pages/campaign.md)'s Session 8 paragraph names
-  **Sage**. Actor unresolved here.
-- **Which orcs killed Dazlyn:** Session 7 and
-  [Norbus's entry](../src/content/npcs/norbus-ithermel.md) expressly frame their
-  identity as the temple's seven as **Norbus's assumption**.
-  [Dazlyn's entry](../src/content/npcs/dazlyn-grayshard.md) asserts it as fact
-  and says he was trying to use the stone when killed, which the recap does
-  not establish. Was either detail independently confirmed?
-- **Exchange headcount:** Session 8 observes **Thornton and three guards**;
-  the [Zhentarim entry](../src/content/factions/the-zhentarim.md) says “Four of
-  them ... plus the man the party tailed.” Was that man an additional person
-  or one of the three guards? Do not count him twice without confirmation.
-- **Longsword and amulet:** Session 6 says neither the sword nor holy symbol has
-  been identified; the [haul](../src/content/lore/magic-item-haul.md) asserts
-  “Nothing magical” about the sword. Was identification later established?
-  The haul also attaches Dax's amulet use to his final decapitation, while
-  Session 6 places it earlier, immediately after his revival.
-- **Thrown handaxe advice:** [Dax's tactical note](../src/content/characters/dax.md)
-  and the [temple field notes](../src/content/lore/temple-of-abbathor.md) recommend
-  thrown weapons, despite Session 5 explicitly showing his thrown handaxe
-  splitting a jelly. Do not derive a safe thrown-weapon exception from these.
-- **Coin splits:** Session 4 reports **135 gp, 19 each**; the campaign summary
-  reports **255 gp, 36 each** after Session 7. Seven shares total 133 and 252
-  respectively. The remaining **2 gp** and **3 gp** are not assigned in those
-  accounts. Do not invent their disposition.
-- **Neverwinter reference:** [TABLE-FACTS.md](TABLE-FACTS.md) says the Neverwinter
-  location is not used; Session 7 and item/character entries identify the mail
-  as Neverwinter garrison work. Does the table rule permit that background
-  reference? Preserve Dax's recorded identification without inventing a visit
-  or changing the setting rule.
+### Rulings on record
+
+Samuel ruled on these on 2026-09-17. The sources named have been corrected to
+match; the rulings are kept so the same questions are not reopened.
+
+- **Orc approach: west.** The seven came up from the encampment west of the
+  ruin, as Session 7's tracks showed. Dax's "from the east" in Session 8 was
+  Samuel misremembering out of role, not an in-character error — Dax would have
+  known the ground — so Session 8 and the campaign summary now read west.
+- **Knife thrown at Rut: the guard.** The campaign summary's sentence made Sage
+  the thrower. Corrected there; Session 8 and the character entries were right.
+- **Dazlyn's death: confirmed, not assumed.** Owen confirmed both that the
+  temple's seven killed him and that he was reaching for the sending stone.
+  Session 7 and Norbus's entry no longer hedge it as Norbus's assumption.
+- **Exchange headcount: unresolved in world.** Thornton and three guards were in
+  the room. Whether the man the party tailed was one of the three or a fourth is
+  not knowable to the party, and the Zhentarim entry now says so instead of
+  counting him twice.
+- **Temple longsword: mundane.** It was checked at the table. Session 6's loot
+  callout now records that; the holy symbol remains unidentified.
+- **Ochre jellies: slashing and lightning only.** Bludgeoning was never tested
+  in play, and Dax's *thrown* handaxe split one — so there is no thrown-weapon
+  exception. Both tactical notes now record only what the party saw.
+- **Coin remainders: nowhere.** Rounding at the table; the 2 gp and 3 gp are not
+  held by anyone.
+- **Neverwinter: allowed as background.** The house rule means the party will not
+  travel there, not that the name is off limits. Dax's identification of the
+  chain mail as Neverwinter garrison work stands, as his unconfirmed read. Noted
+  in [TABLE-FACTS.md](TABLE-FACTS.md).
