@@ -142,11 +142,22 @@ registry supplies the readable Key.
 ## The ink is ours
 
 **Everything visual comes from the design system, nothing from the scan.** No
-parchment, no textures, no scanned colour. Dark "Night in the Wilds" first,
-both themes working, every value a token: `--map-land`, `--map-ridge`,
-`--map-label`, `--map-building`, `--map-pool`, `--map-forest`, `--bg-inset`.
-Gold is the only "pay attention" colour and ember red is reserved for danger —
-which on a map means it is almost never correct (see the next section).
+parchment, no textures, no scanned colour. Vellum first, both themes working,
+every value a token: `--map-land`, `--map-ridge`, `--map-label`, `--map-built`,
+`--map-pool`, `--map-forest`, `--ground-deep`.
+
+Strokes carry the drawing and terrain fills stay within a step of the ground, so
+the loudest mark on a map is a place the party has been: `--map-visited`, with a
+`--map-glow` halo. `--status-hostile` is reserved for danger — which on a map
+means it is almost never correct (see the next section). `copper` is the one
+interface accent allowed onto a map, and it has exactly two uses: doors, because
+a door is the one thing on a floor plan a player is looking for, and the rare
+terrain detail that has to read warm against foliage (the Woodland Manse's berry
+thickets). Nothing else on a map is copper.
+
+Place names take `--map-label` and **must** be stroked with `--map-land` via
+`paint-order: stroke` at about 6px. The stroke is what gets them to 3:1 over
+terrain; without it they fail over forest and peaks, in both themes.
 
 **Shared classes live in the `.ref-map` block at the bottom of
 `src/styles/global.css`.** Put `class="submap-<name> ref-map"` on the root `<g>`
@@ -186,11 +197,11 @@ drawing, off the tooltips, off the Key, and off rendered HTML comments go:
 - traps, and any room nobody has reached;
 - creatures, lairs, and hints that something is denned in, watching, or about
   to come through the floor;
-- the `danger` class on a point of interest, which paints it ember.
+- the `danger` class on a point of interest, which paints it `status-hostile`.
 
 **A secret earns its place on the day the party finds it in play, and not
 before.** Both Gnomengarde and Dwarven Excavation draw secret doors — the ones
-that were found, in dashed gold (`.gn-secret-doors`, `.exc-found-doors`), inside
+that were found, in dashed copper (`.gn-secret-doors`, `.exc-found-doors`), inside
 the interior gate. That is the pattern: found, then drawn.
 
 **Interiors are gated by `interiorSeen`, in the drawing and in the Key

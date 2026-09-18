@@ -7,8 +7,9 @@ import { url } from '../../utils/url';
 // The political web: the party at the centre, factions on an inner ring, and
 // every NPC on an outer ring clustered beside the faction they answer to.
 // Lines carry disposition — an NPC's stance toward the party (and the party's
-// standing with each faction) in ally green, hostile ember, unresolved gold,
-// or neutral frost. Membership lines (NPC → faction) are dashed and quiet.
+// standing with each faction) in the six disposition colours, which the status
+// pills and the map's danger markers share. Membership lines (NPC → faction)
+// are dashed and quiet.
 // Everything is laid out at build time; the page ships a single inline SVG.
 
 type Disposition = 'ally' | 'hostile' | 'unresolved' | 'at-large' | 'neutral' | 'deceased';

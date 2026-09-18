@@ -1,70 +1,95 @@
-:root{
---slate-950:#0d1114;--slate-900:#141a20;--slate-850:#181f26;--slate-800:#1e262e;--slate-700:#2a3540;--slate-600:#3c4a58;
---frost-500:#5e7182;--frost-400:#8b9caa;--frost-300:#aebac5;--frost-200:#ccd6dd;
---snow-100:#eef2f4;--snow-050:#f7f9fa;--snow-000:#ffffff;
---gold-700:#7a5f28;--gold-600:#9c7a35;--gold-500:#c9a35c;--gold-400:#dfba76;--gold-300:#eecf98;--gold-200:#f5e3bf;
---ember-700:#5c2018;--ember-600:#7a2a1f;--ember-500:#a13d2e;--ember-400:#c25640;--ember-300:#dd7e6a;
+/* Coldforge colour tokens. Vellum (light) is the primary theme — the chronicle
+ * is read in daylight more than in the dark — and Longnight is the night mode.
+ * Every text token clears 4.5:1 on the grounds its comment names, in BOTH
+ * themes; `rule-strong` is the only border token allowed to carry meaning and
+ * clears 3:1. `rule` and `rule-faint` are decoration and must never be the sole
+ * signal for a control. */
+:root {
+  /* Grounds */
+  --ground: #f4efe4;          /* the page */
+  --ground-deep: #e7dfcf;     /* inset wells: code, portrait mattes, the search field */
+  --surface: #fdfaf4;         /* cards, list rows, the header bar */
+  --surface-raised: #ffffff;  /* menus, the palette, faction panels, preview cards */
+  --scrim: rgba(32, 26, 16, 0.44);
 
---bg-page:var(--slate-950);
---bg-surface:var(--slate-900);
---bg-surface-raised:var(--slate-850);
---bg-inset:var(--slate-800);
---border-subtle:var(--slate-800);
---border-default:var(--slate-700);
---border-strong:var(--slate-600);
---text-primary:var(--snow-100);
---text-secondary:var(--frost-300);
---text-muted:var(--frost-500);
---text-on-gold:var(--slate-950);
---text-on-ember:var(--snow-100);
+  /* Ink — on ground, ground-deep, surface, surface-raised */
+  --ink: #161d22;
+  --ink-secondary: #3d4c55;
+  --ink-muted: #556670;       /* metadata only; never a sentence to follow */
+  --ink-on-glacier: #ffffff;  /* text on a solid glacier fill — inverts by theme */
+  --ink-on-copper: #fff8f1;
 
---accent-gold:var(--gold-500);
---accent-gold-strong:var(--gold-400);
---accent-gold-muted:var(--gold-600);
---accent-gold-wash:rgba(201,163,92,.12);
---accent-ember:var(--ember-500);
---accent-ember-strong:var(--ember-400);
---accent-ember-wash:rgba(161,61,46,.14);
+  /* Lines */
+  --rule-faint: #e2d9c7;      /* decorative hairlines */
+  --rule: #cdc2ac;            /* card and panel edges */
+  --rule-strong: #877a61;     /* meaningful borders: controls, inputs */
 
---link:var(--gold-400);
---link-hover:var(--gold-300);
+  /* Glacier — the structural primary: links, current page, spine, visited */
+  --glacier: #12607a;
+  --glacier-strong: #0d4c61;
+  --glacier-quiet: #4b8ba1;   /* non-text marks that must recede */
+  --glacier-wash: rgba(18, 96, 122, 0.1);
 
---status-ally:#5c8a6b;--status-ally-wash:rgba(92,138,107,.14);
---status-hostile:var(--ember-500);--status-hostile-wash:var(--accent-ember-wash);
---status-unresolved:var(--gold-500);--status-unresolved-wash:var(--accent-gold-wash);
---status-at-large:#b083c9;--status-at-large-wash:rgba(176,131,201,.14);
---status-neutral:var(--frost-400);--status-neutral-wash:rgba(139,156,170,.14);
---status-deceased:#8b7d86;--status-deceased-wash:rgba(139,125,134,.14);
+  /* Copper — the rare accent: loot, pull quotes, kickers, doors */
+  --copper: #9a4a1c;
+  --copper-strong: #7d3a13;
+  --copper-wash: rgba(154, 74, 28, 0.1);
+
+  --focus-ring: #0d4c61;
+
+  /* Dispositions. Every one of these is always paired with its word. */
+  --status-ally: #2e6b4f;
+  --status-ally-wash: rgba(46, 107, 79, 0.12);
+  --status-hostile: #a3321f;
+  --status-hostile-wash: rgba(163, 50, 31, 0.12);
+  --status-unresolved: #7e5a0d;
+  --status-unresolved-wash: rgba(126, 90, 13, 0.12);
+  --status-at-large: #6b4a95;
+  --status-at-large-wash: rgba(107, 74, 149, 0.12);
+  --status-neutral: #546973;
+  --status-neutral-wash: rgba(84, 105, 115, 0.12);
+  --status-deceased: #6d5f68;
+  --status-deceased-wash: rgba(109, 95, 104, 0.12);
 }
-[data-theme="light"]{
---bg-page:var(--snow-050);
---bg-surface:var(--snow-000);
---bg-surface-raised:var(--snow-000);
---bg-inset:#eef1f3;
---border-subtle:#e3e8ea;
---border-default:#d3dadd;
---border-strong:var(--frost-300);
---text-primary:#1b2229;
---text-secondary:#3f4c56;
---text-muted:#647079;
---text-on-gold:#1b2229;
---text-on-ember:var(--snow-000);
 
---accent-gold:#8f6a2c;
---accent-gold-strong:#7a5924;
---accent-gold-muted:#a6822f;
---accent-gold-wash:rgba(143,106,44,.10);
---accent-ember:#8f2f22;
---accent-ember-strong:#762418;
---accent-ember-wash:rgba(143,47,34,.10);
+[data-theme='longnight'] {
+  --ground: #0b1317;
+  --ground-deep: #070f12;
+  --surface: #121e24;
+  --surface-raised: #182730;
+  --scrim: rgba(2, 8, 10, 0.72);
 
---link:#8f6a2c;
---link-hover:#6f5220;
+  --ink: #eaf1f2;
+  --ink-secondary: #b3c4c8;
+  --ink-muted: #84999f;
+  --ink-on-glacier: #04161c;
+  --ink-on-copper: #231007;
 
---status-ally:#3c7350;--status-ally-wash:rgba(60,115,80,.12);
---status-hostile:#8f2f22;--status-hostile-wash:rgba(143,47,34,.10);
---status-unresolved:#8f6a2c;--status-unresolved-wash:rgba(143,106,44,.10);
---status-at-large:#71468f;--status-at-large-wash:rgba(113,70,143,.10);
---status-neutral:#5e7182;--status-neutral-wash:rgba(94,113,130,.12);
---status-deceased:#6b5a64;--status-deceased-wash:rgba(107,90,100,.12);
+  --rule-faint: #1b2a32;
+  --rule: #263943;
+  --rule-strong: #5a8093;
+
+  --glacier: #6fc9e4;
+  --glacier-strong: #9bdcef;
+  --glacier-quiet: #3f8ea8;
+  --glacier-wash: rgba(111, 201, 228, 0.14);
+
+  --copper: #e0a06a;
+  --copper-strong: #efbb8c;
+  --copper-wash: rgba(224, 160, 106, 0.14);
+
+  --focus-ring: #9bdcef;
+
+  --status-ally: #6fc296;
+  --status-ally-wash: rgba(111, 194, 150, 0.14);
+  --status-hostile: #f08a72;
+  --status-hostile-wash: rgba(240, 138, 114, 0.14);
+  --status-unresolved: #ddb04d;
+  --status-unresolved-wash: rgba(221, 176, 77, 0.14);
+  --status-at-large: #b79ae0;
+  --status-at-large-wash: rgba(183, 154, 224, 0.14);
+  --status-neutral: #93aab2;
+  --status-neutral-wash: rgba(147, 170, 178, 0.14);
+  --status-deceased: #a9979f;
+  --status-deceased-wash: rgba(169, 151, 159, 0.14);
 }

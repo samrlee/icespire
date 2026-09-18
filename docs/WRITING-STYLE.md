@@ -69,7 +69,7 @@ beat instead.
 
 ## Pull quotes and callouts
 
-A Markdown blockquote renders as a gold-bordered pull quote automatically. Give
+A Markdown blockquote renders as a copper-ruled pull quote automatically. Give
 it an attribution with a `<footer>` inside:
 
 ```markdown

@@ -1,10 +1,35 @@
-:root{
---space-0:0;--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;
---space-6:32px;--space-7:48px;--space-8:64px;--space-9:96px;--space-10:128px;
+/* A 4px base with a 2px optical half-step. Gaps between unrelated blocks come
+ * from space-7 and up. Shape is nearly square: only the pill and the portrait
+ * break the grid. */
+:root {
+  --space-0: 0;
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 8px;
+  --space-4: 12px;
+  --space-5: 16px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 48px;
+  --space-9: 72px;
+  --space-10: 112px;
 
---radius-sm:2px;--radius-md:4px;--radius-lg:8px;--radius-pill:999px;
+  --radius-none: 0;
+  --radius-xs: 3px;
+  --radius-sm: 5px;
+  --radius-md: 9px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
 
---measure-reading:68ch;--measure-narrow:48ch;
+  --border-hairline: 1px;
+  --border-medium: 2px;
+  --border-heavy: 3px;
 
---container-page:1120px;
+  --measure-reading: 40rem;
+  --measure-narrow: 28rem;
+  --container-page: 72rem;
+
+  --avatar-sm: 32px;
+  --avatar-md: 64px;
+  --avatar-lg: 112px;
 }

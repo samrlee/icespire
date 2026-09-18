@@ -23,7 +23,7 @@ const latest = sessions[0];
   <section class="home-hero">
     <div class="hero-body">
       <div class="kicker">A campaign journal</div>
-      <h1 class="page-title">Dragon of <span class="gold">Icespire Peak</span></h1>
+      <h1 class="page-title">Dragon of <span class="accent">Icespire Peak</span></h1>
       <div class="prose">
         <p>
           A white dragon has moved into the region, and the frontier town of Phandalin
@@ -40,9 +40,9 @@ const latest = sessions[0];
         <li><span class="stat-num">{placesVisited}</span> places visited</li>
       </ul>
       <div class="hero-actions">
-        {latest && <a class="btn-gold" href={url(`/sessions/${latest.id}/`)}>Read the latest recap</a>}
-        <a class="btn-ghost" href={url('/campaign/')}>The story so far</a>
-        <button class="btn-ghost" type="button" data-search-open aria-haspopup="dialog">
+        {latest && <a class="btn-primary" href={url(`/sessions/${latest.id}/`)}>Read the latest recap</a>}
+        <a class="btn-outline" href={url('/campaign/')}>The story so far</a>
+        <button class="btn-outline" type="button" data-search-open aria-haspopup="dialog">
           Ask the chronicle
         </button>
       </div>

@@ -15,14 +15,13 @@ export const OG_WIDTH = 1200;
 export const OG_HEIGHT = 630;
 
 // On-system palette (see src/styles/tokens/colors.css). Cards are always the
-// dark "Night in the Wilds" theme — that's the campaign's face.
+// Vellum theme — the primary one, and the campaign's face.
 const COLOR = {
-  bg: '#0d1114', // slate-950
-  gold: '#c9a35c', // gold-500
-  goldSoft: '#dfba76', // gold-400
-  title: '#eef2f4', // snow-100
-  date: '#aebac5', // frost-300
-  muted: '#5e7182', // frost-500
+  bg: '#f4efe4', // ground
+  copper: '#9a4a1c', // copper
+  title: '#161d22', // ink
+  date: '#3d4c55', // ink-secondary
+  muted: '#556670', // ink-muted
 } as const;
 
 // Resolved from the project root: at build time satori runs from a bundled
@@ -31,10 +30,10 @@ const COLOR = {
 const font = (name: string) => readFileSync(join(process.cwd(), 'src/assets/og-fonts', name));
 
 const fonts = [
-  { name: 'Cinzel', data: font('cinzel-600.woff'), weight: 600 as const, style: 'normal' as const },
-  { name: 'Cinzel', data: font('cinzel-700.woff'), weight: 700 as const, style: 'normal' as const },
-  { name: 'Crimson Pro', data: font('crimson-400.woff'), weight: 400 as const, style: 'normal' as const },
-  { name: 'Crimson Pro', data: font('crimson-600.woff'), weight: 600 as const, style: 'normal' as const },
+  { name: 'Fraunces', data: font('fraunces-600.woff'), weight: 600 as const, style: 'normal' as const },
+  { name: 'Literata', data: font('literata-400.woff'), weight: 400 as const, style: 'normal' as const },
+  { name: 'Literata', data: font('literata-600.woff'), weight: 600 as const, style: 'normal' as const },
+  { name: 'IBM Plex Mono', data: font('plexmono-500.woff'), weight: 500 as const, style: 'normal' as const },
 ];
 
 // satori takes a React-element-shaped tree; this keeps us in plain TS with no
@@ -73,11 +72,11 @@ export async function renderOgCard(card: OgCard): Promise<Buffer> {
       height: OG_HEIGHT,
       backgroundColor: COLOR.bg,
       color: COLOR.title,
-      fontFamily: 'Crimson Pro',
+      fontFamily: 'Literata',
     },
     [
-      // Thin gold rule along the top — gold is the campaign's one accent.
-      h('div', { display: 'flex', height: 8, width: '100%', backgroundColor: COLOR.gold }),
+      // A thin copper rule along the top — the chronicle's one warm accent.
+      h('div', { display: 'flex', height: 8, width: '100%', backgroundColor: COLOR.copper }),
       h(
         'div',
         {
@@ -96,21 +95,21 @@ export async function renderOgCard(card: OgCard): Promise<Buffer> {
               h(
                 'div',
                 {
-                  fontFamily: 'Cinzel',
-                  fontWeight: 600,
-                  fontSize: 30,
-                  letterSpacing: 5,
+                  fontFamily: 'IBM Plex Mono',
+                  fontWeight: 500,
+                  fontSize: 26,
+                  letterSpacing: 4,
                   textTransform: 'uppercase',
-                  color: COLOR.goldSoft,
+                  color: COLOR.copper,
                 },
                 card.kicker
               ),
               h(
                 'div',
                 {
-                  fontFamily: 'Cinzel',
-                  fontWeight: 600,
-                  fontSize: 20,
+                  fontFamily: 'IBM Plex Mono',
+                  fontWeight: 500,
+                  fontSize: 18,
                   letterSpacing: 4,
                   textTransform: 'uppercase',
                   color: COLOR.muted,
@@ -124,8 +123,8 @@ export async function renderOgCard(card: OgCard): Promise<Buffer> {
             h(
               'div',
               {
-                fontFamily: 'Cinzel',
-                fontWeight: 700,
+                fontFamily: 'Fraunces',
+                fontWeight: 600,
                 fontSize: titleSize(card.title),
                 lineHeight: 1.08,
                 color: COLOR.title,
@@ -133,7 +132,21 @@ export async function renderOgCard(card: OgCard): Promise<Buffer> {
               card.title
             ),
             ...(card.subtitle
-              ? [h('div', { display: 'flex', marginTop: 24, fontSize: 32, color: COLOR.date }, card.subtitle)]
+              ? [
+                  h(
+                    'div',
+                    {
+                      display: 'flex',
+                      marginTop: 24,
+                      fontFamily: 'IBM Plex Mono',
+                      fontWeight: 500,
+                      fontSize: 26,
+                      letterSpacing: 1,
+                      color: COLOR.date,
+                    },
+                    card.subtitle
+                  ),
+                ]
               : []),
           ]),
           // Footer wordmark.
@@ -141,10 +154,10 @@ export async function renderOgCard(card: OgCard): Promise<Buffer> {
             'div',
             {
               display: 'flex',
-              fontFamily: 'Cinzel',
-              fontWeight: 600,
-              fontSize: 26,
-              letterSpacing: 3,
+              fontFamily: 'IBM Plex Mono',
+              fontWeight: 500,
+              fontSize: 22,
+              letterSpacing: 4,
               textTransform: 'uppercase',
               color: COLOR.muted,
             },

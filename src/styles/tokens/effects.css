@@ -1,18 +1,22 @@
-:root{
---shadow-card:0 1px 2px rgba(0,0,0,.45),0 6px 20px rgba(0,0,0,.32);
---shadow-raised:0 2px 4px rgba(0,0,0,.5),0 12px 32px rgba(0,0,0,.4);
---shadow-gold-glow:0 0 0 1px rgba(201,163,92,.35),0 0 28px rgba(201,163,92,.16);
---shadow-ember-glow:0 0 0 1px rgba(161,61,46,.4),0 0 24px rgba(161,61,46,.18);
---gradient-frost-edge:radial-gradient(ellipse at top,rgba(139,156,170,.10),transparent 60%);
---duration-fast:120ms;
---duration-normal:200ms;
---duration-slow:360ms;
---ease-standard:cubic-bezier(.4,0,.2,1);
+/* This system draws rather than floats. A card's rule is what separates it from
+ * the page; the shadow is a whisper on top. Only three things truly float:
+ * the search palette, a nav menu, and the entity preview card. */
+:root {
+  --shadow-raise: 0 1px 1px rgba(58, 45, 26, 0.05), 0 6px 16px rgba(58, 45, 26, 0.06);
+  --shadow-float: 0 2px 4px rgba(58, 45, 26, 0.07), 0 18px 44px rgba(58, 45, 26, 0.14);
+  --shadow-glacier-glow: 0 0 0 1px rgba(18, 96, 122, 0.35), 0 0 24px rgba(18, 96, 122, 0.14);
+  /* A vellum page is warmest at its top edge, the way paper is under a lamp. */
+  --gradient-page-edge: radial-gradient(ellipse at top, rgba(154, 74, 28, 0.05), transparent 62%);
+
+  --duration-fast: 120ms;
+  --duration-normal: 200ms;
+  --duration-slow: 360ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
 }
-[data-theme="light"]{
---shadow-card:0 1px 2px rgba(30,38,46,.08),0 6px 20px rgba(30,38,46,.07);
---shadow-raised:0 2px 6px rgba(30,38,46,.10),0 16px 32px rgba(30,38,46,.10);
---shadow-gold-glow:0 0 0 1px rgba(143,106,44,.25),0 0 22px rgba(143,106,44,.10);
---shadow-ember-glow:0 0 0 1px rgba(143,47,34,.3),0 0 20px rgba(143,47,34,.12);
---gradient-frost-edge:radial-gradient(ellipse at top,rgba(94,113,130,.06),transparent 60%);
+
+[data-theme='longnight'] {
+  --shadow-raise: 0 1px 2px rgba(0, 0, 0, 0.5), 0 8px 22px rgba(0, 0, 0, 0.34);
+  --shadow-float: 0 2px 6px rgba(0, 0, 0, 0.55), 0 22px 52px rgba(0, 0, 0, 0.5);
+  --shadow-glacier-glow: 0 0 0 1px rgba(111, 201, 228, 0.4), 0 0 26px rgba(111, 201, 228, 0.18);
+  --gradient-page-edge: radial-gradient(ellipse at top, rgba(111, 201, 228, 0.07), transparent 62%);
 }

@@ -27,8 +27,8 @@ const lore = (await getCollection('lore')).sort((a, b) =>
               href={url(`/factions/${faction.id}/`)}
             >
               {faction.data.summary && <p>{faction.data.summary}</p>}
-              <p>
-                Status: {[faction.data.status, faction.data.alignment].filter(Boolean).join(', ')}.
+              <p class="panel-meta">
+                Status: {[faction.data.status, faction.data.alignment].filter(Boolean).join(', ')}
               </p>
             </FactionPanel>
           ))}

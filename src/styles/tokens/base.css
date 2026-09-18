@@ -1,6 +1,8 @@
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{background:var(--bg-page);color:var(--text-primary);font-family:var(--font-body);font-size:var(--text-base);line-height:var(--leading-relaxed);-webkit-font-smoothing:antialiased}
-a{color:var(--link);text-decoration:underline;text-underline-offset:2px}
-a:hover{color:var(--link-hover)}
-::selection{background:var(--accent-gold-wash);color:var(--text-primary)}
+body{background:var(--ground);color:var(--ink);font-family:var(--font-text);font-size:var(--body);line-height:var(--leading-relaxed);-webkit-font-smoothing:antialiased}
+a{color:var(--glacier);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--glacier-strong)}
+/* The focus ring is solid, 2px, offset 2px, and is never removed. */
+:focus-visible{outline:var(--border-medium) solid var(--focus-ring);outline-offset:2px}
+::selection{background:var(--glacier-wash);color:var(--ink)}

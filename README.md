@@ -56,7 +56,7 @@ process for adding a session.
   - `ally` — has given the party real, material aid, or is a committed
     friend/asset who'd take their side. **Not merely polite** — an NPC *earns*
     ally, they don't start there.
-  - `hostile` — actively opposed (renders in ember, "Hostile").
+  - `hostile` — actively opposed (renders in `status-hostile`, "Hostile").
   - `unresolved` — a relationship the story hasn't settled, owed a reckoning
     either way (renders as "Unresolved Thread").
   - `at-large` — a wildcard the party has lost track of: escaped, fled, or
@@ -72,7 +72,8 @@ process for adding a session.
   `x`/`y` (map coordinates in the SVG's 1344×1872 space), `kind`
   (town/settlement/landmark/dungeon/camp/lair), `status`
   (`visited`/`known`/`rumored`/`unknown` — only `visited` places get map
-  markers, panels, location search results, or prose links), optional `danger` (ember marker,
+  markers, panels, location search results, or prose links), optional `danger` (a
+  `status-hostile` marker,
   reserved for real threats), `firstVisited` (session number), `summary`
   (tooltip/panel one-liner), `labelPlacement` (top/bottom/left/right), and
   optional `lore`/`faction` slugs to link from the detail panel. The body is
@@ -83,7 +84,7 @@ process for adding a session.
   intermediate stops on return trips so the trail overlaps instead of cutting
   a new line). `events` pins notable moments to a location: `title`, `at`
   (location slug), optional `note`, and `kind`
-  (`battle`/`discovery`/`social`/`omen` — battles pin in ember). Unknown slugs
+  (`battle`/`discovery`/`social`/`omen` — battles pin in `status-hostile`). Unknown slugs
   fail the build.
 
 ### The maps
@@ -143,8 +144,8 @@ an outer ring clustered beside the faction they answer to
 the existing `npcs`, `factions`, and `characters` collections at build time.
 
 - **Lines carry disposition.** A solid line's colour is a figure's stance
-  toward the party — ally (green), hostile (ember), unresolved thread (gold),
-  or at-large/neutral (frost) — reusing the NPC `status` values and the same
+  toward the party — the same six disposition colours the status pills use,
+  reusing the NPC `status` values and the same
   status tokens as the pills. A faction's free-text `alignment` collapses onto
   the same four buckets.
 - **Dashed lines are membership** — an NPC's `faction` slug draws a quiet grey
@@ -159,7 +160,7 @@ to cluster it, and its `status` to colour its line.
 
 ### Design elements inside recaps
 
-Markdown blockquotes render as gold-bordered pull quotes automatically. Add an
+Markdown blockquotes render as copper-ruled pull quotes automatically. Add an
 attribution with a `<footer>` line inside the quote:
 
 ```markdown
@@ -296,20 +297,32 @@ and demanding every word would answer nothing.
 
 ## Design system
 
-The design is implemented from the **Icespire Peak Campaign Design System**
-(Claude Design). Key rules, so edits stay on-system:
+The design is implemented from the **Coldforge** design system. Key rules, so
+edits stay on-system:
 
-- Dark theme ("Night in the Wilds") is default; the nav button toggles the light
-  "Snowfield" theme via `data-theme="light"`.
-- Cold slate neutrals everywhere; **gold is the only "pay attention" color**;
-  **ember red is reserved for danger/hostility only**.
-- Cinzel for display/headings only, Crimson Pro for body, JetBrains Mono for
-  stat blocks/dice notation. No emoji, no parchment textures.
-- Tokens live in `src/styles/tokens/` (verbatim from the design project);
-  component classes in `src/styles/global.css`; Astro components in
-  `src/components/`.
-- Fonts load from Google Fonts (the design system's documented substitution —
-  swap `src/styles/tokens/fonts.css` if self-hosting later).
+- **The chronicle is printed; the interface is typed.** Anything a reader reads
+  for pleasure is serif — Fraunces for names and headlines, Literata for prose.
+  Anything that operates the site — nav, buttons, pills, dates, map labels,
+  kickers — is IBM Plex Mono, uppercase, tracked wide. A button set in Literata
+  is a mistake.
+- **Vellum (light) is the default theme**; the nav button toggles **Longnight**
+  via `data-theme="longnight"`. The button names the theme it switches *to*.
+- **Two accents and never a third.** `glacier` is cold and structural — links,
+  the current nav item, the timeline spine, visited places on the map.
+  `copper` is warm and rare — loot callouts, pull quotes, session kickers, map
+  doors. Never copper on a control, never glacier on treasure.
+- **Six dispositions are the whole semantic palette** (see below); the map's
+  danger markers borrow `status-hostile` rather than defining their own red.
+- **Every text colour clears 4.5:1** on the grounds its token comment names, in
+  both themes. `rule-strong` is the only border token allowed to carry meaning
+  and clears 3:1 — `rule` and `rule-faint` are decoration and must never be the
+  sole signal for a control.
+- Nearly square: `radius-md` on cards, `radius-sm` on controls, `radius-pill` on
+  status pills and cast chips only. No emoji, no parchment textures.
+- Tokens live in `src/styles/tokens/`; component classes in
+  `src/styles/global.css`; Astro components in `src/components/`.
+- Fonts load from Google Fonts (swap `src/styles/tokens/fonts.css` if
+  self-hosting later).
 
 ## Social preview cards
 
@@ -320,7 +333,8 @@ The images are generated at build time — no network needed — from
 rasterises it to PNG), served at `/og/sessions/<id>.png` via
 `src/pages/og/sessions/[id].png.ts`, and wired to a page through the `ogImage`
 prop on `Base.astro`. The card fonts are bundled under `src/assets/og-fonts/`
-(Cinzel + Crimson Pro, `.woff`); every other page falls back to the static
+(Fraunces, Literata and IBM Plex Mono, `.woff` — satori cannot read woff2);
+cards render in the Vellum theme. Every other page falls back to the static
 `/images/social-card.jpg`. To give another page type its own card, add an
 endpoint that calls `renderOgCard(...)` and point its `ogImage` at it.
 

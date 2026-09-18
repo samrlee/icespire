@@ -89,16 +89,19 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
     <script is:inline>
-      // Apply saved theme before first paint to avoid a flash. Dark
-      // ("Night in the Wilds") is the default; light is "Snowfield".
-      if (localStorage.getItem('icespire-theme') === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
+      // Apply the saved theme before first paint to avoid a flash. Vellum
+      // (light) is the default — the chronicle is read in daylight more than
+      // in the dark — and Longnight is the night mode. 'dark' is the value the
+      // old two-theme toggle stored, so it is still honoured.
+      var saved = localStorage.getItem('icespire-theme');
+      if (saved === 'longnight' || saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'longnight');
       }
     </script>
   </head>
   <body>
     <header class="site-header">
-      <a class="site-title" href={url('/')}>Dragon of <span class="gold">Icespire Peak</span></a>
+      <a class="site-title" href={url('/')}>Dragon of <span class="accent">Icespire Peak</span></a>
       <nav class="site-nav" aria-label="Primary">
         <a href={url(homeItem.href)} aria-current={isActive(homeItem) ? 'page' : undefined}>
           {homeItem.label}
@@ -136,7 +139,7 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
           <span class="search-trigger-label">Search or ask</span>
           <kbd class="search-trigger-key">⌘K</kbd>
         </button>
-        <button class="theme-toggle" id="theme-toggle" type="button">Snowfield</button>
+        <button class="theme-toggle" id="theme-toggle" type="button">Longnight</button>
       </div>
     </header>
     <main class="page">
@@ -154,18 +157,18 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
       (() => {
         const root = document.documentElement;
         const button = document.getElementById('theme-toggle');
-        // The button names the theme it switches TO.
-        const label = () =>
-          root.getAttribute('data-theme') === 'light' ? 'Night in the Wilds' : 'Snowfield';
+        const isNight = () => root.getAttribute('data-theme') === 'longnight';
+        // The button names the theme it switches TO, not the one you are in.
+        const label = () => (isNight() ? 'Vellum' : 'Longnight');
         button.textContent = label();
         button.addEventListener('click', () => {
-          const toLight = root.getAttribute('data-theme') !== 'light';
-          if (toLight) {
-            root.setAttribute('data-theme', 'light');
+          const toNight = !isNight();
+          if (toNight) {
+            root.setAttribute('data-theme', 'longnight');
           } else {
             root.removeAttribute('data-theme');
           }
-          localStorage.setItem('icespire-theme', toLight ? 'light' : 'dark');
+          localStorage.setItem('icespire-theme', toNight ? 'longnight' : 'vellum');
           button.textContent = label();
         });
       })();
