@@ -197,6 +197,14 @@ chat starts with `main` selected. Never do implementation work or commit on
 build the site before anything deploys. The deploy itself is Cloudflare Pages
 watching `main`; there is no deploy workflow to run.
 
+If Git authentication over SSH times out at a 1Password approval prompt, assume
+Samuel is away from his computer and cannot approve it. Do not keep retrying or
+wait for the prompt: use the repository's HTTPS URL for that fetch or push so
+the operation bypasses 1Password SSH authentication. Prefer a command-scoped
+HTTPS URL or restore the configured remote afterward; do not rewrite the saved
+SSH remote permanently. If HTTPS credentials are unavailable, report the
+blocker instead of attempting to extract or expose credentials.
+
 Commit messages here do a real job, because the campaign's history *is* the
 project's history. The pattern in `git log` is worth matching: an imperative
 subject line saying what changed in plain language ("Add Session 7: the hidden
