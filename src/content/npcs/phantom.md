@@ -5,6 +5,8 @@ affiliation: 'The Party'
 status: ally
 note: 'Found Thom''s pack by scent and warned Sage about figures searching town. Rut still worries about being eaten.'
 firstAppearance: 7
+portrait: '/images/npcs/phantom.webp'
+portraitCredit: 'AI-generated campaign portrait, based on Sage’s portrait'
 ---
 
 A black panther who walked out of the underbrush on the road north in Session

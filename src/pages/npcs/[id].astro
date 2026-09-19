@@ -47,9 +47,11 @@ const faction = npc.data.faction
       npc.data.portrait && (
         <figure class="creature-card npc-portrait-card">
           <div class="creature-art">
-            <img src={url(npc.data.portrait)} alt={`Official art of ${npc.data.name}`} />
+            <img src={url(npc.data.portrait)} alt={`Portrait of ${npc.data.name}`} />
           </div>
-          <figcaption class="creature-note">Official art</figcaption>
+          {npc.data.portraitCredit && (
+            <figcaption class="creature-note">{npc.data.portraitCredit}</figcaption>
+          )}
         </figure>
       )
     }
