@@ -5,6 +5,8 @@ affiliation: 'Phandalin'
 status: neutral
 note: 'Brews Phandalin''s healing potions. Refused to leave her windmill twice — the orcs moved her where the dragon could not, hours before it burned.'
 firstAppearance: 4
+portrait: '/images/npcs/adabra-gwynn.webp'
+portraitCredit: 'AI-generated campaign portrait'
 ---
 
 A Colletite of Chauntea who lived and worked in the stone windmill at Umbrage

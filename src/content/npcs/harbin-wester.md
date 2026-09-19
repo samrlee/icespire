@@ -5,6 +5,8 @@ affiliation: 'Phandalin'
 status: ally
 note: 'Paid for the tunnel intelligence. Still townmaster, with three more jobs and Thornton after his office.'
 firstAppearance: 4
+portrait: '/images/npcs/harbin-wester.webp'
+portraitCredit: 'AI-generated campaign portrait'
 ---
 
 Phandalin's townmaster and the party's main quest-giver. Unlocks his door

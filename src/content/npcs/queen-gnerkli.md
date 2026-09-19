@@ -6,6 +6,8 @@ faction: 'gnomengarde'
 status: ally
 note: 'Co-ruler of Gnomengarde. Freed by the King once his mimic panic was resolved.'
 firstAppearance: 3
+portrait: '/images/npcs/queen-gnerkli.webp'
+portraitCredit: 'AI-generated campaign portrait'
 ---
 
 Co-ruler of Gnomengarde with King Korboz. The party first saw her through a

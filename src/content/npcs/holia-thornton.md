@@ -6,6 +6,8 @@ faction: 'the-zhentarim'
 status: hostile
 note: 'Means to be townmaster. Has standing orders that the party dies if caught around her building again.'
 firstAppearance: 4
+portrait: '/images/npcs/holia-thornton.webp'
+portraitCredit: 'AI-generated campaign portrait'
 ---
 
 Guildmaster of Phandalin's Miner's Exchange — and, as her dragon-symbol pin
