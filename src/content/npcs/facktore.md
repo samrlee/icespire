@@ -5,6 +5,8 @@ affiliation: 'Gnomengarde (formerly)'
 status: at-large
 note: 'Shot Thom with a crossbow ballista. Freed by Rut. Screeched. Ran. Still out there.'
 firstAppearance: 2
+portrait: '/images/npcs/facktore.webp'
+portraitCredit: 'AI-generated campaign portrait'
 ---
 
 A crazed Gnomengarde gnome, eager to test her heavy crossbow ballista on new

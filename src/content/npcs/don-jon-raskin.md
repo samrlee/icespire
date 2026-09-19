@@ -5,6 +5,8 @@ affiliation: 'Employers unnamed'
 status: unresolved
 note: 'Wants safety inside the mine before signing off the escort. His employers remain unnamed.'
 firstAppearance: 9
+portrait: '/images/creatures/don-jon-raskin.webp'
+portraitCredit: 'Official D&D Essentials Kit art · Olga Drebas'
 ---
 
 A human in a leather jacket and an upturned-brim hat, waiting at the Phandalin

@@ -98,6 +98,7 @@ const npcs = defineCollection({
     note: z.string().optional(),
     firstAppearance: z.number().int().optional(), // session number
     portrait: sitePath().optional(),
+    portraitCredit: filled().optional(),
   }),
 });
 

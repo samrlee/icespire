@@ -1611,9 +1611,7 @@ body {
   padding: 3px;
 }
 
-/* No NPC or faction carries a portrait today, so the monogram is the common
-   case rather than a rare fallback — it has to hold the row's height on its
-   own. */
+/* NPCs and factions without portraits retain a monogram at the same height. */
 .dp-monogram {
   display: flex;
   align-items: center;

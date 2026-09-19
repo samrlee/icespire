@@ -5,6 +5,8 @@ affiliation: 'Phandalin'
 status: unresolved
 note: 'Lost his brother and his dig in the same week. Was paid a fraction of what he is owed and thanked the party for it.'
 firstAppearance: 5
+portrait: '/images/npcs/norbus-ithermel.webp'
+portraitCredit: 'AI-generated campaign portrait'
 ---
 
 One of two dwarf prospectors from Phandalin who hired the party to clear the

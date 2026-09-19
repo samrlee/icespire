@@ -189,6 +189,13 @@ ones are collected in [`docs/TABLE-FACTS.md`](docs/TABLE-FACTS.md).
 Character portraits go in `public/images/characters/` and are referenced as
 `portrait: /images/characters/sage.webp`.
 
+NPCs also accept `portrait`, plus optional `portraitCredit` for the profile
+caption. Generated campaign portraits live in `public/images/npcs/`; existing
+official artwork can use `public/images/creatures/`. Credits must distinguish
+generated art from official illustrations. Portraits feed recap casts and
+entity hover cards automatically. See [the NPC art inventory](docs/NPC-ART.md)
+for sources and remaining gaps.
+
 ## Search
 
 Every page is searchable from the header button, `⌘K`/`Ctrl-K`, or `/`. There

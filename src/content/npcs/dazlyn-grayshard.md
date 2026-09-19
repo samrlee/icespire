@@ -5,6 +5,8 @@ affiliation: 'Phandalin'
 status: deceased
 note: 'Killed on the road by the orc band the party would fight hours later. Found with a sending stone in his fist.'
 firstAppearance: 5
+portrait: '/images/npcs/dazlyn-grayshard.webp'
+portraitCredit: 'AI-generated campaign portrait'
 ---
 
 The other half of the dwarf prospecting pair at the **Temple of Abbathor** —

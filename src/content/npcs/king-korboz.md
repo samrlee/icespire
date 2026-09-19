@@ -6,6 +6,8 @@ faction: 'gnomengarde'
 status: ally
 note: 'Paranoid about mimics. Was, to be fair, correct that there were mimics.'
 firstAppearance: 3
+portrait: '/images/npcs/king-korboz.webp'
+portraitCredit: 'AI-generated campaign portrait'
 ---
 
 Co-ruler of Gnomengarde with Queen Gnerkli. When the party found him he was

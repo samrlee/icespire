@@ -11,6 +11,11 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Done
 
+- **NPC portraits** — Phantom has a standalone portrait based on Sage's image;
+  Don-Jon uses the existing official illustration, and all ten remaining humanoid
+  NPCs have generated campaign portraits. Profile captions carry explicit art
+  credits; sources and prompts are in `NPC-ART.md`. _(Sep 2026)_
+
 - **Calendar dates keep their day** — recap headers, cards, timeline, search
   and social previews format date-only session values in UTC, so builds in
   Central time no longer display the previous day. _(Sep 2026)_

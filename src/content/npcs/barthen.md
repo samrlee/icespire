@@ -5,6 +5,8 @@ affiliation: 'Phandalin'
 status: neutral
 note: 'Sold Thom supplies at a discount for a recommendation. Bought the gems before the party left town.'
 firstAppearance: 9
+portrait: '/images/npcs/barthen.webp'
+portraitCredit: 'AI-generated campaign portrait'
 ---
 
 The proprietor of Barthen's Provisions. Thom bought scroll-making supplies and

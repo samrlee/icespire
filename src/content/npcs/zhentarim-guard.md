@@ -6,6 +6,8 @@ faction: 'the-zhentarim'
 status: unresolved
 note: 'The strange figure from the inn in Session 1. One of several, and the party cannot tell them apart.'
 firstAppearance: 1
+portrait: '/images/npcs/zhentarim-guard.webp'
+portraitCredit: 'AI-generated campaign portrait'
 ---
 
 The strange person the party noticed watching them at the Phandalin inn on
