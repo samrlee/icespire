@@ -1,0 +1,21 @@
+session: 9
+route:
+  - phandalin
+  - mountains-toe-gold-mine
+events:
+  - title: 'A story and an alibi'
+    at: phandalin
+    kind: social
+    note: 'Thom and Bean return and share their underground escape. The innkeeper honors Thom''s paid alibi when three hooded figures search the inn.'
+  - title: 'A name over breakfast'
+    at: phandalin
+    kind: social
+    note: 'Sage learns Rut''s name and has his permission to tell their friends. She has not told them yet.'
+  - title: 'The townmaster pays'
+    at: phandalin
+    kind: social
+    note: 'Harbin pays 300 gp for intelligence and entrance information. Barthen buys the gems for 500 gp; the combined proceeds are shared at 114 gp each.'
+  - title: 'The price of an escort'
+    at: mountains-toe-gold-mine
+    kind: social
+    note: 'Don-Jon demands safety inside before a completion note. He offers loose gold found inside as extra compensation and leads the party into the entrance; the escort reward remains unpaid.'

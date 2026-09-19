@@ -3,7 +3,7 @@ name: 'Phantom'
 role: "Sage's Animal Companion"
 affiliation: 'The Party'
 status: ally
-note: 'Asked every animal on the road until he found her. Named in Session 8. Would still quite like to eat the weasel.'
+note: 'Found Thom''s pack by scent and warned Sage about figures searching town. Rut still worries about being eaten.'
 firstAppearance: 7
 ---
 
@@ -30,7 +30,8 @@ and the road north was open.
   called him off Hamish, whom he had just knocked flat.
 
 **Rut has been told the panther must be kept fed so he does not eat anyone.**
-He believes this. He has not been told where the idea came from.
+This is Rut's concern, not established predatory behavior toward the party.
+Sage reassured him in Session 9 that Phantom would not eat him.
 
 ## Session 8
 
@@ -46,3 +47,13 @@ He did exactly that. He also seemed a little disappointed about the eating.
 
 He understands what Sage says to him without a spell. **Speak with Animals** is
 only needed for him to answer.
+
+## Session 9
+
+Sniffed out Thom's hidden backpack, then watched outside the inn at Sage's
+request. He saw hooded figures searching town, avoided them, and hurried back
+to warn her. He did not know whom they were looking for; Sage relayed her
+suspicion to the party.
+
+Spent the night with Sage and Bean and had a raw steak at breakfast. Rut's
+feeding warnings continued; Sage later reassured Rut on the road.

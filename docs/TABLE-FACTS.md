@@ -15,7 +15,7 @@ and that is the file to read for current state.
 *Dragon of Icespire Peak*, D&D 5e on the **2014 rules**, Forgotten Realms, the
 Phandalin region. **Level cap 6**; the party hit level 3 before Session 8.
 
-Sessions 0 through 8 were played between 27 April and 4 September 2026 —
+Sessions 0 through 9 were played between 27 April and 18 September 2026 —
 roughly monthly, occasionally twice in a month, and Session 0 and Session 1 ran
 the same evening. A session's `date` frontmatter is the **real-world date it was
 played**, never an in-fiction date. The chronicle does not track a calendar.
@@ -85,21 +85,22 @@ worse. Correct every proper noun against this list before writing; anything not
 on it that sounds like a name is a question for the clarifying round, not a
 guess.
 
-**People:** Abbathor · Adabra Gwynn · Barnaby · Bean Hootwhistle · Dax · Dazlyn
-Grayshard · Facktoré (with the é) · Hamish · Harbin Wester · Holia Thornton ·
-King Korboz · Norbus Ithermel · Phantom · Queen Gnerkli · Rut · Sage · Savras ·
-Thom
+**People:** Abbathor · Adabra Gwynn · Barnaby · Barthen · Bean Hootwhistle ·
+Dax · Dazlyn Grayshard · Don-Jon Raskin · Facktoré (with the é) · Hamish ·
+Harbin Wester · Holia Thornton · King Korboz · Norbus Ithermel · Phantom ·
+Queen Gnerkli · Rut · Sage · Savras · Thom
 
-**Places and groups:** Axeholm · Conyberry · Gnomengarde · Icespire Peak ·
-Leilon · Miner's Exchange · Phandalin · Umbrage Hill · The Zhentarim
+**Places and groups:** Axeholm · Barthen's Provisions · Butterskull Ranch ·
+Conyberry · Gnomengarde · Icespire Peak · Leilon · Loggers' Camp · Miner's Exchange ·
+Mountain's Toe Gold Mine · Phandalin · Umbrage Hill · The Zhentarim
 
 ## Table shorthand
 
 What the table says out loud, and what it means on the site:
 
 - **"Friend"** is what the party calls Rut, because that is how he introduced
-  himself. They have never learned his real name. The site knows it and the
-  prose uses it.
+  himself. Sage learned his real name in Session 9 and has permission to share
+  it, but has not yet told the others. The site knows it and the prose uses it.
 - **"The weasel"** is almost always Rut wild-shaped. **"The panther"** is
   Phantom, who had no name until Sage used it in Session 8 — in Session 7 he is
   only the panther, and the recap keeps him that way.

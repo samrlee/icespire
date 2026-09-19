@@ -3,7 +3,7 @@ name: 'The Zhentarim'
 type: 'Shadow network'
 status: active
 alignment: 'complicated'
-summary: 'The Black Network. Thornton wears their pin, works out of something under the Miner''s Exchange, and intends to run Phandalin.'
+summary: 'The Black Network. Thornton wears their pin, works from an occupied hideout beneath Phandalin, and intends to replace Harbin.'
 ---
 
 An unscrupulous shadow network expanding its influence across Faerûn —
@@ -20,8 +20,9 @@ protection outfit; secretly running smuggling, extortion, and worse.
 - At crossbow-point, Thornton pressed the party into an **information-sharing
   pact**: all dragon intelligence flows to her, and she pays for updates
   (Session 4).
-- Dax, whose original contract was with Thornton, remains pragmatically
-  willing to keep working with her so long as coin is on the table.
+- Dax completed his original contract and traded further intelligence with
+  Thornton. After her threats and the infiltration, the party chose to keep
+  away from her and warn Harbin (Session 9).
 - Bean holds Harbin's stolen private notes on Thornton — contents so far
   unexamined at the table.
 
@@ -48,3 +49,23 @@ at the inn:
 
 Dax sold her the orc band's position and heading for 50 gold the same night.
 What she wants with a large orc force moving west is not clear.
+
+## The returned infiltrators (Session 9)
+
+Thom and Bean shared their account with the whole party: traps along the old
+mining passage, an occupied hall with roughly **twenty to thirty people**, and
+Thornton's private office. The chests and loose gold were left untouched.
+They escaped through a second ladder and hatch, whose surface position is not
+recorded. These are two known routes, not a complete map of the tunnels.
+
+Bean saw what looked like orc movements on a map. Thom glimpsed document
+headings and inferred plans for a foothold along the Sword Coast and a base
+in Phandalin; he also suggested smuggling. Their impressions do not establish
+an orc alliance or the purpose of every operation underground.
+
+Dax disclosed and shared Thornton's **50 gp**. Harbin received the party's
+intelligence and entrance information for **300 gp**. Three hooded figures
+searched the inn that night, but whom they sought was not established.
+
+Thom later accused Don-Jon Raskin of being Zhentarim. Don-Jon did not confirm
+it; his employers remain unidentified.

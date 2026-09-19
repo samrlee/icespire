@@ -22,7 +22,7 @@ in this one.
    the DM is, the house rules, and the spellings the transcript mangles. Short,
    and it is the one thing you cannot work out by reading the repo.
 3. **[`docs/CAMPAIGN-CANON.md`](docs/CAMPAIGN-CANON.md)** — what is established
-   in play through Session 8, who witnessed it, what was paid, and what is only
+   in play through Session 9, who witnessed it, what was paid, and what is only
    somebody's report. Read it before asserting an in-world fact.
 4. **[`README.md`](README.md)** — the reference manual. Every collection, every
    frontmatter field, the map, the graph, search, the Ask endpoint, the CSP,

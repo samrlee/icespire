@@ -3,7 +3,7 @@ name: 'Harbin Wester'
 role: 'Townmaster'
 affiliation: 'Phandalin'
 status: ally
-note: 'Nervous, portly, dragon-paranoid. Has been hunting a weapon this whole time, and is about to lose his job over it.'
+note: 'Paid for the tunnel intelligence. Still townmaster, with three more jobs and Thornton after his office.'
 firstAppearance: 4
 ---
 
@@ -65,9 +65,27 @@ once:
 He asked the party to spend the night guarding his house from angry
 townspeople. Bean turned him down and mentioned that a fee might help. Then he
 offered **90 gold for anything about what Thornton is planning** and was told
-he was not in a position to negotiate, and the price settled at **100**. Nothing
-has been brought to him and nothing has been paid.
+he was not in a position to negotiate, and the price settled at **100**. At the end of that night
+nothing had been brought to him and nothing had been paid.
 
-He does not know that Thornton has already said out loud that he will be out
-and she will have his job. Two of the people he is paying were standing in the
-room when she said it.
+At that point he did not know Thornton had declared her intention aloud;
+Thom and Bean were the witnesses.
+
+## The information delivered (Session 9)
+
+The party told him Thornton was Zhentarim, wanted his office, and was using
+mining tunnels he had thought decommissioned. Thom's explanation of her wider
+plans remained his interpretation. Harbin paid **200 gp** for the information
+and another **100 gp** for entrance information: **300 gp total**, settling the
+investigation job. Exactly which entrance information was disclosed is unrecorded.
+
+He suggested Barthen as an alternative gem buyer, while noting the stones might
+still pass on to Thornton. Thom told him where the emerald came from and asked
+him not to mention it to Norbus. Dazlyn's death was not disclosed.
+
+He gave the party three notices, **150 gp each**: escort Don-Jon Raskin to
+Mountain's Toe Gold Mine, deliver a cart of provisions to his unnamed
+half-brother at the Loggers' Camp, and investigate the reported orc attack at
+Butterskull Ranch. He described the mine job as part of an arrangement with
+Neverwinter that he wished he did not have to trouble them with. None of these
+three rewards has been paid; the party took the mine job first.

@@ -81,7 +81,8 @@ it an attribution with a `<footer>` inside:
 
 Use them for the line the session will be remembered for, or for a document the
 party found. One or two per recap; a page of pull quotes is a page with no
-emphasis at all.
+emphasis at all. Choose outstanding lines across the party; do not default
+to Dax when selecting the highlighted quotation.
 
 **Game mechanics live in callouts, not in narrative prose** — that rule comes
 from the design system. `loot`, `magic-item`, and `house-rule`:

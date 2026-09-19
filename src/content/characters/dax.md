@@ -134,7 +134,7 @@ anyway").
   purchase on Harbin before paying anything of his own — then paid with the orc
   band's origin, its death, and the larger force's heading west, and collected
   the rest of the bargain afterward (Session 8).
-- **Took 50 gold for it and has not mentioned it to the party** (Session 8).
+- **Took 50 gold for it**, initially without mentioning it to the party (Session 8).
 - Read her reaction to the news about Harbin: a twinkle, a curl of the lip, and
   a woman very pleased with herself (Session 8).
 - **Answered Holia and Thom in the same spoken sentence** — "things are fine
@@ -142,8 +142,18 @@ anyway").
   report to him (Session 8).
 - Walked out slowly on purpose, knowing Thom and Bean were closing on the
   building behind him (Session 8).
-- Wants better armor. The Lionshield Coster has never been open when he has
-  been free to visit it (Session 8).
+- Wanted better armor, but had not found time to shop at the Lionshield
+  Coster (Session 8).
+- Disclosed Thornton's **50 gp** and shared it at **7 gp each**, briefing the
+  party and warning Thom of her specific threat. Bought the party drinks
+  for **30 cp** (Session 9).
+- Stretched and exercised in his room before bed; received **+1 to Dexterity
+  checks for the following day**, a temporary benefit (Session 9).
+- Bought a shield for **8 gp**; left its optional decoration for another day
+  (Session 9).
+- Urged the warning to Harbin and asked for another gem buyer. At the mine,
+  negotiated a separate payment for taking Don-Jon safely inside: whatever
+  loose gold they found there, still unrecovered (Session 9).
 
 **Standing with the dwarves:** the goodwill he earned in Dwarvish in Session 5
 was spent by his failed lie in Session 6 — and in Session 7 he squared it
@@ -152,7 +162,7 @@ privately with the survivor, on his own terms and out of his own purse.
 ## Dax and Rut
 
 Since Session 7, Dax has been quietly telling Rut things that are not true,
-with a completely straight face, and Rut believes all of them.
+with a completely straight face. Rut took the feeding warnings seriously.
 
 It started on the road down from the temple, out of everyone else's hearing,
 when the talk came round to whether dragons eat people. Dax said they do. Rut
@@ -168,9 +178,12 @@ Rut has taken all of it entirely seriously. He has raised the feeding question
 with Barnaby directly, and mentioned it to Adabra Gwynn, who said it sounded
 advisable.
 
-**Barnaby does not know Rut believes he is a man-eating dragon.** The rest of
-the party does not know Dax is the source. These conversations are held between
-the two of them, out of everyone else's hearing.
+In Session 9 Barnaby told Rut he was a fake dragon and would not eat them.
+Rut reported that to Dax, who suggested that real dragons fly and Barnaby does
+not. Dax raised the panther again and asked whether Rut could become one;
+Rut did not try. Sage heard enough to reassure him that Phantom would not eat
+him. None of this establishes that the others learned Dax originated the
+feeding story.
 
 **Tactical note:** slashing splits ochre jellies into more jellies whether it is
 thrown or swung — his handaxe split one on the way in, and the longsword

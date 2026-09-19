@@ -6,12 +6,13 @@ class: 'Druid'
 level: 3
 status: active
 portrait: '/images/characters/rut.webp'
-tagline: 'The party knows him only as "Friend." That is not his name.'
+tagline: 'Only Sage knows his name. To the others, he is still "Friend."'
 traits: ['Goes by "Friend"', 'Wild Shaper', 'Frees Prisoners', 'Carries a Cursed-Looking Necklace', 'Struggles to Change Back']
 ---
 
 Rut introduced himself to Thom on the road to Phandalin as "Friend," and the
-party has never learned anything better. His real name remains a mystery.
+others kept calling him that. In Session 9 he told Sage his real name and
+allowed her to share it. She has not yet done so.
 
 ## Notable deeds
 
@@ -57,7 +58,7 @@ party has never learned anything better. His real name remains a mystery.
   (Session 7).
 - Opened the flower buds Sage gathered for Dazlyn's body with Druidcraft
   (Session 7).
-- Believes, on Dax's authority, that Barnaby must be kept well fed or he will
+- Came to believe, on Dax's authority, that Barnaby must be kept well fed or he will
   eat the party, and that the same now goes for Sage's panther (Session 7).
 - Took the shape of a **weasel** outside the Miner's Exchange and went at the
   gap under the front door head first. His head and shoulders went through. The
@@ -71,3 +72,12 @@ party has never learned anything better. His real name remains a mystery.
   missed and went into the dirt beside him (Session 8).
 - Ended the session still a weasel, riding on Dax's shoulder — Sage had told
   Dax whose weasel it was (Session 8).
+- Gave Thom ten Goodberries for his injury and slept on the floor behind their
+  bedroom door after the searchers came to the inn (Session 9).
+- Told **Sage alone** his name over breakfast, with permission to tell their
+  friends. He was happy to keep being called Friend too (Session 9).
+- Told Dax that Barnaby had called himself a fake dragon and promised not to
+  eat them. Dax asked whether Rut could become a panther; he did not try. Sage
+  reassured him that Phantom would not eat him (Session 9).
+- Examined the six dead orcs with Bean and Hamish; their cold injuries looked
+  like the white dragon's work (Session 9).

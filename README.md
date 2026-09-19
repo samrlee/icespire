@@ -36,7 +36,7 @@ This README stays the reference manual for the collections and subsystems below.
 ## Adding content
 
 All content lives as Markdown files — one file per entry. Copy an existing file,
-rename it, and edit. Everything here is the real campaign — Sessions 0–8 as
+rename it, and edit. Everything here is the real campaign — Sessions 0–9 as
 played, with the roster, NPCs, factions, lore and places they turned up in. The
 design system's original sample data is gone; match what is already written
 rather than the shape of a fresh install. [`docs/WRITING-STYLE.md`](docs/WRITING-STYLE.md)

@@ -58,3 +58,10 @@ that if he ever came across another job that needed a sword, to come find him.
 *What was your name again, sir?*
 
 Norbus has the name. The rest of the party has no idea any of this happened.
+
+## Session 9
+
+Barnaby noticed he was no longer at the inn's bar. That does not establish
+that he left Phandalin or that Dazlyn's burial had taken place. The party sold
+the undeclared gemstones and emerald to Barthen; no further payment to Norbus
+was recorded.

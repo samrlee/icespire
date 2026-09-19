@@ -45,6 +45,7 @@ const nodes = sessions.map((session) => {
     title: session.data.title,
     date: session.data.date,
     dateStr: session.data.date.toLocaleDateString('en-US', {
+      timeZone: 'UTC',
       month: 'long',
       day: 'numeric',
       year: 'numeric',

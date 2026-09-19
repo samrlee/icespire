@@ -177,6 +177,14 @@ ask. An honest "I could not tell what happened between the chest and the tunnel
 Expect a second, smaller round after a draft exists. That is normal and it is
 how the last several sessions went.
 
+After every transcript review, assess WhisperX quality and settings. Separate
+word accuracy from speaker attribution; labels can merge several voices and
+observers count acoustically without becoming player characters. Do not rerun
+a whole recording or change settings from label counts alone. If comparison is
+needed, test short difficult excerpts against audio, one setting at a time,
+and retain timestamps and the settings used. Carry the assessment into an
+approved-package handoff.
+
 ## 6. Write the recap
 
 `src/content/sessions/session-N.md`. Frontmatter per `src/content.config.ts`:

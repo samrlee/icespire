@@ -65,3 +65,7 @@ tracking, and — when the longbow isn't enough — the leaping-in-with-a-shorts
   (Session 8).
 - Took up a watch on the Exchange from inside one of Phandalin's burned-out
   houses, and rested as much as anyone rests sitting up in a ruin (Session 8).
+- Asked what Thornton wanted with the orcs; Thom could offer only his
+  interpretation of the papers he had glimpsed (Session 9).
+- Bought a whip for **2 gp** and helped Bean and Rut examine the six dead orcs
+  on the mine road. The cold damage looked like white-dragon work (Session 9).
