@@ -152,7 +152,9 @@ might suspect them anyway. Thom thought they would be all right.
 
 Dax let out a long sigh.
 
-"I've never met people who are so eager to get themselves killed."
+> "I've never met people who are so eager to get themselves killed."
+>
+> <footer>— Dax</footer>
 
 They had a back way into the hideout now, Thom said. And they knew Holia
 wanted Harbin out, though whether that meant removing him from office or
