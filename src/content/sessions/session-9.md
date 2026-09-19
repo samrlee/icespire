@@ -150,9 +150,7 @@ They had heard the hatch close. But they had never seen their faces.
 Rut asked whether the people who already knew they had been sneaking around
 might suspect them anyway. Thom thought they would be all right.
 
-Dax let out a long sigh.
-
-> "I've never met people who are so eager to get themselves killed."
+> “I’ve done so many odd jobs…” Dax sighed heavily. “…but I’ve never met people who are so eager to get themselves killed.”
 >
 > <footer>— Dax</footer>
 
