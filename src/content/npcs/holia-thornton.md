@@ -71,3 +71,25 @@ work to do that evening.
   she trusted, in a room with two of them in it.
 - Her ledgers record what she has paid out, **Dax's fee among them** — ordinary
   business, plainly kept, nothing illegal in any of it.
+
+## Beneath the town (reported in Session 9)
+
+Thom and Bean returned and told the whole party what they had found: a long
+mining passage with a bear trap, an arrow pressure plate they triggered, and
+a tripwire Bean kept Thom from crossing. Beyond it was an occupied hall with
+roughly **twenty to thirty people**, maps that appeared to track orc movements,
+gold and unopened chests. Their headcount was an estimate.
+
+They followed her into a private office and glimpsed paper headings while she
+moved to a dresser. Thom interpreted them as shipping business, orc information
+and plans for a new foothold along the Sword Coast. A Phandalin base and
+smuggling were his theories; no orc alliance was established.
+
+After a cook tripped over Bean, they escaped by another ladder and hatch before
+invisibility ended. They reported that nobody saw their faces, though the hatch
+was heard closing. Three hooded figures later searched the inn; their target
+was not confirmed. The innkeeper upheld Thom's paid alibi.
+
+Dax shared her fifty gold and warning with the party. The next morning the
+party sold Harbin the tunnel intelligence and entrance information. Thornton
+has not become townmaster, and her standing threats remain.

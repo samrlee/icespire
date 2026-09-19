@@ -59,6 +59,11 @@ it — but when it comes to it, she doesn't miss.
   rest of the night riding on a fighter's shoulder (Session 8).
 - Circled back closer to the Exchange than anyone else and held the middle,
   watching the building and Dax at the same time (Session 8).
+- Sent Phantom to watch outside the inn and passed his warning about searching
+  figures to the party. Their target remained uncertain (Session 9).
+- Learned Rut's name privately over breakfast. He gave her permission to tell
+  the others; she has not told them yet. Reassured him on the road that Phantom
+  would not eat him (Session 9).
 
 ## The panther
 

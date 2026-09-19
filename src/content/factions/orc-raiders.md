@@ -23,6 +23,11 @@ something they called a *dragon*.
   base."* All seven died in the entrance hall, but three of the party went
   down first (Session 6).
 
+- Six dead orcs lay on the approach to Mountain's Toe Gold Mine. Bean, Hamish
+  and Rut examined them together and read the cold injuries as apparent
+  white-dragon work. The party did not see the attack or the dragon; no tie
+  to a particular band was established (Session 9).
+
 ## What they know about the party
 
 The war-leader of the seven stopped dead when it saw Dax and asked whether he

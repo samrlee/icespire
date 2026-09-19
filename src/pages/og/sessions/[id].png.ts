@@ -13,6 +13,7 @@ export async function getStaticPaths() {
 export const GET: APIRoute = async ({ props }) => {
   const { session } = props as { session: Awaited<ReturnType<typeof getCollection<'sessions'>>>[number] };
   const date = session.data.date.toLocaleDateString('en-US', {
+    timeZone: 'UTC',
     month: 'short',
     day: 'numeric',
     year: 'numeric',

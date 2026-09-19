@@ -6,7 +6,7 @@ kind: town
 status: visited
 firstVisited: 1
 labelPlacement: top
-summary: 'Frontier home base. Quest board, a townmaster about to be unseated, and something under the Miner''s Exchange.'
+summary: 'Frontier home base. Harbin has paid for the tunnel intelligence; the party has left for Mountain''s Toe.'
 lore: 'phandalin'
 ---
 
@@ -21,15 +21,21 @@ midwife evacuated in from Umbrage Hill, a dead dwarf carried through the door
 to his brother, and — before the night is out — word that a dragon has levelled
 the hill she came from.
 
-By Session 8 the whole town knows, and it is angry at the townmaster rather than
-frightened of the dragon. Harbin Wester has gone from hiding the rumor to
-needing the townspeople armed, and has asked the party to guard his house from
-his own neighbours. The Miner's Exchange keeps its shutters closed and its
-candle lit well after dark, and there is a **trap door in the floor behind the
-guildmaster's desk** that seals flush into the boards — Thom and Bean know
-where it is, and only because they watched four people walk down through it.
-Nobody else in the party does. The two of them are underneath the town now.
+The dragon news brought anger at Harbin in Session 8. By the next morning the
+party had reunited, rested and told him about the Zhentarim below the town.
+Thom and Bean described the long trapped mining passage, occupied hall and
+Thornton's office, and their escape through another hatch. The whole party
+heard their account; no exact tunnel plan or escape-hatch position is recorded.
 
-Elsewhere on the map: the **Lionshield Coster** sells arms and armor and has
-never yet been open when anyone needed it, and several houses still stand
-burned open to the weather from the last time something came through here.
+Three hooded figures searched the inn that night. The innkeeper honored the
+alibi Thom bought for **3 gp**, and nobody disturbed the party's sleep.
+
+The **Lionshield Coster** was locked at night but open for the morning's bow,
+shield and whip purchases. **Barthen's Provisions** supplied Thom's scroll
+materials and component pouch, then bought the party's gems. Several houses
+still stand burned open to the weather.
+
+Harbin paid **300 gp** for the intelligence and entrance information, and
+issued three jobs at **150 gp each**. The party left with Don-Jon Raskin for
+Mountain's Toe Gold Mine first, planning to return for the logging supplies
+before continuing to the Loggers' Camp and Butterskull Ranch (Session 9).

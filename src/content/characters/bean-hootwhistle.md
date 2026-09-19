@@ -52,8 +52,15 @@ acquiring other people's valuables.
   pressure plate, or a book that pulled out of a shelf (Session 8).
 - Climbed down the ladder behind Thom into total darkness, which she cannot see
   through at all (Session 8).
+- Recounted the underground escape with Thom: pulled him back from a tripwire,
+  nearly collided with one man and was tripped over by the cook. Left the hall's
+  gold and chests untouched, and escaped by another ladder (Session 9).
+- Helped Hamish and Rut examine six dead orcs on the road to the mine; the cold
+  damage looked like the white dragon's work (Session 9).
+- Called Don-Jon Raskin stupid in Halfling during the dispute over his escort.
+  He appeared not to understand her (Session 9).
 
 **House rule:** Owen ruled in Session 7 that Bean can **appraise** valuables —
 an Intelligence check, at disadvantage, always, because she is a thief with an
-eye for it and not an expert. The gemstone coffer and the emerald are both
-still waiting on that.
+eye for it and not an expert. The gemstones and emerald were sold to Barthen in Session 9 without
+a recorded appraisal by Bean.

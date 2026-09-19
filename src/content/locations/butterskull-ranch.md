@@ -3,10 +3,11 @@ name: 'Butterskull Ranch'
 x: 1183
 y: 983
 kind: landmark
-status: unknown
+status: rumored
 labelPlacement: bottom
-summary: 'A prize cattle ranch east of Conyberry, famous for its butter — and its stubborn owner.'
+summary: 'A reported orc attack and a 150 gp job. The party has not visited.'
 ---
 
-A working ranch in the hill country east of Conyberry, run by a retired
-adventurer who makes, by all accounts, exceptional butter.
+Harbin offered **150 gp** to investigate a reported orc attack at the ranch.
+The party took the notice and planned to go after the mine escort and logging
+delivery. The attack and its aftermath have not been inspected (Session 9).

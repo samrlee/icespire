@@ -1,7 +1,7 @@
 # Campaign canon
 
 A concise reference for humans and AI tools: durable in-world facts established
-through play, checked against Sessions 0–8. This is a reference to the repository,
+through play, checked against Sessions 0–9. This is a reference to the repository,
 not an independent source that overrides it.
 
 ## Using and maintaining this file
@@ -34,7 +34,7 @@ not an independent source that overrides it.
 Session references below mean the corresponding files in
 [the session collection](../src/content/sessions/). Supplemental facts that are
 more specific than the recaps cite their entity source explicitly. Knowledge
-and possession statements are last verified through Session 8, not guarantees
+and possession statements are last verified through Session 9, not guarantees
 about subsequent play.
 
 ## Player characters
@@ -46,7 +46,7 @@ guildmaster. (Sessions 1–2)
 
 | Character | Durable facts established in play |
 | --- | --- |
-| Rut | Introduced himself as **Friend**; the other characters have not learned his real name. Has taken boar, rat, wolf, giant badger, and weasel forms. Freed Facktoré and later burrowed through the temple rubble as a giant badger. (Sessions 1–2, 5–8) |
+| Rut | Introduced himself as **Friend**; only Sage has learned his real name (Session 9), with permission to tell the others but no telling yet. Has taken boar, rat, wolf, giant badger, and weasel forms. Freed Facktoré and later burrowed through the temple rubble as a giant badger. (Sessions 1–2, 5–8) |
 | Thom | Wild magic triggered by Magic Missile aged him during the jelly fight. His [character entry](../src/content/characters/thom.md) specifies **three years, permanently, from nineteen to twenty-two**. Negotiated the dwarves' treasure split and keeps the party's treasure tally. (Sessions 5, 7) |
 | Hamish | Learned mushroom harvesting at Gnomengarde; recognized the Zhentarim pin; read the orcish scouting map. Scouts with Sage. (Sessions 2, 4–7) |
 | Bean Hootwhistle | Took Harbin's private notes on Thornton; paid the dwarves five gold from her own purse; opened the offering chest and the concealed Exchange hatch with thieves' tools. (Sessions 4, 6–8) |
@@ -115,7 +115,9 @@ could not. These are observed capabilities, not an exhaustive spell list.
 
 - **Phandalin:** the party's base, with a quest board, inn, Harbin's house,
   Miner's Exchange, Lionshield Coster, town-square shrine, and unrepaired burned
-  houses. The Coster sells arms and armor; its nighttime hours are unestablished.
+  houses. The Coster sells arms and armor; Barnaby found it locked at night, and the
+  party shopped there the next morning. Barthen's Provisions supplied Thom
+  and bought the party's gems. (Session 9)
   Do not equate the town-square shrine with the undiscovered Shrine of Savras.
   (Sessions 1, 4, 7–8; [Phandalin](../src/content/lore/phandalin.md))
 - **Wayside camp:** the overnight stop on the Gnomengarde road where the party
@@ -153,19 +155,49 @@ could not. These are observed capabilities, not an exhaustive spell list.
   (Sessions 1–2, 4, 7–8; [dragon entry](../src/content/npcs/the-white-dragon.md))
 - **The Zhentarim:** Thornton and her guards belong to the network whose dragon
   pin Hamish recognized. Thornton coerced the intelligence pact with crossbows
-  trained on the party. Her later reference to an “entire troop” establishes
-  her claim, not a troop count or a confirmed alliance with the orcs.
-  (Sessions 4, 8)
+  trained on the party. Her reference to an “entire troop” was followed by Thom and Bean
+  reporting roughly twenty to thirty people in the underground hall. This is
+  their estimate, not a roster or a confirmed alliance with the orcs.
+  (Sessions 4, 8–9)
 - **The Miner's Exchange:** has a hidden hatch behind Thornton's desk that seals
   flush. Thom and Bean watched Thornton and three guards descend, then Bean
   opened its catch with thieves' tools. They reached stone below by ladder.
-  Thornton called their destination a **recon point**; the extent and purpose
-  of the underground space remain unestablished. (Session 8)
+  Thornton called their destination a **recon point**. In Session 9 they told
+  the party of a long mining passage, bear trap, arrow pressure plate that hit
+  both of them, tripwire Bean kept Thom from crossing, occupied hall, maps,
+  untouched gold and chests, and Thornton's private office. They escaped via
+  another ladder before invisibility ended; the hatch was heard closing.
+  Its surface position and the full tunnel layout are unrecorded. Smuggling,
+  a foothold along the Sword Coast and Phandalin as a base remain Thom's
+  interpretations of overheard fragments and document headings. (Sessions 8–9)
 - **Trivial Trail temple:** Thornton reported a ruined temple south along that
   trail where locals stash gold. This remains an unvisited lead, not verified
   treasure or another name for the Temple of Abbathor. **Leilon**, the **Triboar
   Trail**, and the **High Road** also appeared on the orc map; a map reference
   is not a visit. (Sessions 4, 7)
+
+## Session 9 arrivals and discoveries
+
+- **Barthen:** proprietor of Barthen's Provisions, a neutral merchant. Discounted
+  Thom's supplies and component pouch to **35 gp** for recommendations, then
+  bought both lots of gems. Harbin suggested he might resell them to Thornton;
+  no such resale was observed.
+- **Don-Jon Raskin:** human escort client in a leather jacket and upturned-brim
+  hat. His travel and mimic-fighting stories are boasts. He said he paid for
+  the mine and answers to employers; they remain unnamed. Thom's Zhentarim
+  accusation was not confirmed. No faction is assigned.
+- **Mountain's Toe Gold Mine:** reached after about half a day's travel from
+  Phandalin. A signed tunnel entrance among bushes at a snow-capped mountain's
+  foot. Don-Jon led the party in at the close; no interior features or occupants
+  were established. Keep the local interior map withheld.
+- **Six dead orcs:** on the approach, not assigned an exact mapped position.
+  Bean, Hamish and Rut examined them after Thom's inconclusive attempt. Cold
+  injuries looked like white-dragon work. No attack, dragon or direction of
+  travel was witnessed.
+- **Loggers' Camp and Butterskull Ranch:** heard of in Harbin's job notices,
+  neither visited. Harbin's unnamed half-brother needs provisions at the camp;
+  the ranch was reportedly attacked by orcs. The withdrawn Woodland Manse and
+  Falcon briefing establishes no discoveries.
 
 ## Important items and documents
 
@@ -175,16 +207,16 @@ inventory. Do not infer a curse, enchantment, appraisal, or later expenditure.
 | Item | Established provenance and disposition |
 | --- | --- |
 | Sending stones | **Both are with the party.** Hamish recovered one from Dazlyn; Thom used it to contact Norbus, who later surrendered the other. Thom took one; the second was initially unassigned and Dax tried using a stone in Session 8. That does not establish permanent ownership by Dax. The recorded limits are 25 words, one message a day, any distance. (Sessions 7–8; [haul](../src/content/lore/magic-item-haul.md)) |
-| Gemstone coffer contents | Rubies, emeralds and topaz found by Dax in a pillar base; gems went to Thom and the empty coffer was returned to its hiding place. Later references call the holdings “the coffer.” Undeclared to the dwarves and unappraised. (Sessions 5, 7) |
-| Great emerald | Diamond-cut, about eight pounds and the size of two fists. Thom's Mage Hand removed it from a statue, triggering an explosion; the gem survived. Carrying it slowed him although he could lift it one-handed. Not appraised or examined with Detect Magic. Last explicitly placed in Thom's backpack in a bush outside the Exchange. (Sessions 7–8; haul) |
+| Gemstone coffer contents | Rubies, emeralds and topaz found by Dax in a pillar base; gems went to Thom and the empty coffer was returned to its hiding place. Later references call the holdings “the coffer.” Undeclared to the dwarves; sold by Thom to Barthen for **150 gp** in Session 9. (Sessions 5, 7, 9) |
+| Great emerald | Diamond-cut, about eight pounds and the size of two fists. Thom's Mage Hand removed it from a statue, triggering an explosion; the gem survived. Carrying it slowed him although he could lift it one-handed. Phantom helped recover Thom's hidden backpack; Thom then sold the emerald to Barthen for **350 gp** without identifying its properties. (Sessions 7–9; haul) |
 | Abbathor necklace | Gold, original nameplate illegible, overwritten in ancient Dwarvish: “This is what happens to those who displease me.” Rut retrieved it from jelly remains with the Pole of Collapsing; Sage read it aloud. Rut carries it. No curse is confirmed. (Session 5) |
 | Abbathor holy symbol | Small jeweled dagger on a silver chain, taken by Hamish from a skeleton. Sage read its Dwarvish runes: “Greed is good.” Hamish carries it; no magical property identified. (Session 6) |
-| Temple longsword | Barnaby found it under a bed frame in the priests' sleeping chamber, sound despite the surrounding decay. Magical status disputed between sources below. (Session 6) |
+| Temple longsword | Barnaby found it under a bed frame in the priests' sleeping chamber, sound despite the surrounding decay. **+1 longsword**, no additional special properties. Barnaby retained it and sold his ordinary longsword for **7 gp** in Session 9; see the superseding September 19 ruling below. (Sessions 6, 9) |
 | Temple ledger | Found by Thom, Sage and Bean beside a dead dwarf; carried and read by Sage. Contents summarized below. (Session 6; [ledger](../src/content/lore/abbathor-ledger.md)) |
 | Final offering note | In Common, inside the alcove chest. Orders offerings to Abbathor to cease, permits survivors to take what remains, and asks that the god be forgotten. Thom showed it around. Author and reason for the language are unknown. (Session 7) |
 | Harbin's notes on Thornton | Taken by Bean during an unauthorized visit to his house. Contents remain unexamined; Harbin does not know they were stolen. Dax and Rut did not participate. (Session 4; [Harbin](../src/content/npcs/harbin-wester.md), [Zhentarim](../src/content/factions/the-zhentarim.md)) |
 | Wand of Pyrotechnics | Recovered from Gnomengarde; briefly held by Harbin, returned with his payout. No individual holder specified. (Session 4; haul) |
-| Clockwork Amulet | Carried by Dax, used during the temple orc fight; his character entry records recharge at dawn. Exact attack attribution differs below. (Session 6) |
+| Clockwork Amulet | Carried by Dax, used during the temple orc fight; his character entry records recharge at dawn. It steadied his first swing after revival, not the later beheading. (Session 6) |
 | Hat of Wizardry; Pole of Collapsing | Recorded in the haul. Rut used the pole; permanent individual ownership is not specified. |
 | Orc leader's chain mail and map | Dax stripped the mail and identified it as human-made Neverwinter garrison work. Nearby raids were his inference. Hamish read the sheepskin map's orcish scouting marks: raid targets around Leilon, Phandalin, the Triboar Trail and High Road, with a preference for mountains. A separate note's meaning was unclear at the table. The leader's exact rank was not identified. (Session 7) |
 | Rut's trophies | Manticore tail spike, mimic tentacle, and green orc eye supplied by Thom. No special powers or settled purpose recorded. (Sessions 5, 7; [haul](../src/content/lore/magic-item-haul.md) — the tentacle has no session of record) |
@@ -248,13 +280,34 @@ inventory. Do not infer a curse, enchantment, appraisal, or later expenditure.
   exchange for payment. In Session 8 Dax negotiated an information trade before
   sharing the orc intelligence; she paid him **50 gp** for positions/movements
   and answered questions about Harbin. This payment is separate from the
-  original trade commission. Dax has not reported it to the party.
+  original trade commission. Dax disclosed the negotiation, specific threat against Thom and payment in
+  Session 9; the fifty gold was shared at **7 gp each**.
 - **Split remainders are not tracked.** 19 gp each of 135 leaves 2 gp; 36 gp
   each of 255 leaves 3 gp. Samuel confirms these are rounding at the table and
   go nowhere. Do not assign them a holder.
 - **Harbin's investigation fee:** raised from **90 gp to 100 gp** for information
-  about Thornton's plans. No delivery or payment yet. His request for overnight
-  guards was declined by Bean; no guarding agreement was concluded. (Session 8)
+  about Thornton's plans in Session 8. In Session 9 he paid **200 gp** for the
+  intelligence and **100 gp** for entrance information, **300 gp total**,
+  settling this job. No separate additional hundred remains due. His request for overnight
+  guards was declined by Bean; no guarding agreement was concluded. (Sessions 8–9)
+
+- **Session 9 sales and division:** Barthen's **150 gp** for small gems and
+  **350 gp** for the emerald joined Harbin's **300 gp**, making **800 gp** shared
+  at **114 gp each**. No new payment to Norbus; the sale did not settle his
+  uninformed share. Remainders go nowhere, as before.
+- **Three new jobs:** **150 gp each** for the mine escort, logging provisions
+  and ranch investigation. Mine first, then a planned return for the cart;
+  the other two journeys and collection of supplies have not happened. Harbin
+  called the mine work part of his Neverwinter arrangement. No reward paid yet.
+- **Mine-entry dispute:** Don-Jon demanded safety inside before a completion
+  note, threatening consequences for Harbin through his employers. Dax secured
+  an offer of loose gold found inside; Thom's broader claim to anything not
+  bolted down was not explicitly accepted. No treasure or note received.
+- **Alibi and rest:** Thom paid the innkeeper **3 gp**. Three hooded figures
+  searched the inn; the innkeeper supported the alibi. Phantom reported the
+  search to Sage without knowing its target. The whole party slept undisturbed
+  and received a long rest. Dax exercised in his room, not outside; Samuel
+  confirms a temporary **+1 to Dexterity checks the next day**. No level-up.
 
 ## Character knowledge and private information
 
@@ -263,18 +316,18 @@ Do not promote reader knowledge to party knowledge without a recorded telling.
 
 | Information | Established witnesses or limits |
 | --- | --- |
-| Rut's name | Readers know “Rut”; the other characters know “Friend.” |
-| Barnaby supposedly needing food to avoid eating people | A belief Dax induced in Rut privately, not a fact about Barnaby. Rut repeated it to Sage as his own, raised feeding with Barnaby directly, and mentioned it to Adabra Gwynn, who called it advisable; Barnaby does not know the underlying belief. The rest do not know Dax originated it. The idea was also applied to Phantom. (Session 7) |
+| Rut's name | Sage learned it privately in Session 9 and may share it, but has not. The others still know “Friend.” |
+| Barnaby supposedly needing food to avoid eating people | A belief Dax induced in Rut privately, not a fact about Barnaby. Rut repeated it to Sage as his own, raised feeding with Barnaby directly, and mentioned it to Adabra Gwynn, who called it advisable. In Session 9 Barnaby told Rut he was a fake dragon and would not eat them; Rut reported this to Dax. Dax suggested real dragons fly and asked about a panther form, which Rut did not try. Sage reassured him about Phantom. The rest have not learned that Dax originated the belief. The idea was also applied to Phantom. (Sessions 7, 9) |
 | Chamber explosion | Rut, Thom, Bean and Barnaby were inside. Dax, Hamish and Sage were outside; Dax and Hamish entered afterward and Thom explained. Sage stayed with injured Rut. (Session 7) |
 | Norbus's extra 15 gp and job offer | Dax and Norbus only; the rest of the party did not witness it. Norbus also remains unaware of the gems and emerald. (Session 7) |
 | Dazlyn's death | Known to the party and Norbus; Harbin was not told. (Session 7) |
 | Harbin's admissions and suspicions | Thom, Bean, Sage and Rut went to his door while Dax, Hamish and Barnaby followed the dark-clad man. Thom later messaged Dax about the 100 gp offer and Harbin's suspicion that Thornton wanted his job. Do not assume every admission reached everyone. (Session 8) |
 | Town's anger | Hamish alone initially understood the inn crowd, then told the others outside. (Session 8) |
-| Dax's negotiation and 50 gp | Dax participated; Rut heard the entire negotiation with his head under the door. Dax's silence about payment does not make Rut ignorant of the meeting. Do not assume others overheard through Thom's Message exchanges. (Session 8) |
+| Dax's negotiation and 50 gp | Dax participated; Rut heard the entire negotiation with his head under the door. Dax's silence about payment does not make Rut ignorant of the meeting. The whole party heard Dax's account and shared the payment in Session 9. That later telling does not expand the original witnesses. (Sessions 8–9) |
 | Rut as the weasel | Sage watched him transform and later told Dax. The guard treated him as vermin. (Session 8) |
-| Thornton's threats | She threatened Dax's group and singled out the “gangly wizard” to Dax; Rut heard the negotiation. Dax relayed a group threat to the companions outside. **Only Thom and Bean** heard her subsequent explicit orders to kill them all with her entire troop if caught snooping again. (Session 8) |
-| Thornton's declared bid for townmaster | **Only Thom and Bean** heard her explicit declaration after Dax left. Rut did not hear that speech. Harbin had suspected the ambition; suspicion is not knowledge of the declaration. No successful takeover or proof she spread the rumor is established. (Session 8) |
-| Hatch and descent | Thom and Bean saw its location, opened it and descended. The other five do not know where they went. The location entry's broad “party know” must not expand those witnesses. (Session 8) |
+| Thornton's threats | She threatened Dax's group and singled out the “gangly wizard” to Dax; Rut heard the negotiation. Dax relayed a group threat to the companions outside. **Only Thom and Bean** originally heard her subsequent explicit orders to kill them all with her entire troop if caught snooping again. They shared their account in Session 9, and Dax warned Thom directly. (Sessions 8–9) |
+| Thornton's declared bid for townmaster | **Only Thom and Bean** heard her explicit declaration after Dax left. Rut did not hear that speech. Harbin had suspected the ambition; suspicion is not knowledge of the declaration. They told the party in Session 9, and Harbin was warned the next morning. No successful takeover or proof she spread the rumor is established. (Sessions 8–9) |
+| Hatch and descent | Thom and Bean saw its location, opened it and descended. The other five learned of the descent and escape in their Session 9 account. Harbin received entrance information; exactly which entrance(s) they disclosed is unrecorded. (Sessions 8–9) |
 | Thornton's payment records | Bean explicitly read a line recording payment to Dax for work for Holia while searching with Thom. No amount or identifying job is given; do not equate the line with the new 50 gp. Dax was absent; no later telling is recorded. (Session 8) |
 
 For the precise continuation point, spell duration, rest status, and positions,
@@ -282,8 +335,12 @@ use [the campaign summary's Open threads](../src/pages/campaign.md#open-threads)
 
 ## Canon questions / conflicts
 
-None outstanding. New disagreements between sources go here, unresolved and
-attributed, rather than being settled in the prose.
+No blocking contradictions remain after Samuel's September 19 clarifications.
+The escape hatch's surface position, exact entrance information sold to Harbin,
+and the identity/holder of the transcript's “priest's medallion” remain unknown.
+The medallion reference does not establish a transfer or sale of either known
+religious necklace. Don-Jon's employers and acceptance of Thom's broader loot
+claim also remain unconfirmed. Preserve these limits rather than guessing.
 
 ### Rulings on record
 
@@ -303,8 +360,13 @@ match; the rulings are kept so the same questions are not reopened.
   the room. Whether the man the party tailed was one of the three or a fourth is
   not knowable to the party, and the Zhentarim entry now says so instead of
   counting him twice.
-- **Temple longsword: mundane.** It was checked at the table. Session 6's loot
-  callout now records that; the holy symbol remains unidentified.
+- **Temple longsword: September 17 ruling superseded.** The earlier ruling
+  called it mundane. On **September 19**, reviewing Session 9, Samuel explicitly
+  corrected it to a **+1 longsword with no additional special properties**.
+  Barnaby sold his ordinary sword and retained the temple blade. Session 6's
+  loot callout, the haul and his character entry now reflect the correction;
+  it was not a newly performed identification in Session 9. The holy symbol
+  remains unidentified.
 - **Ochre jellies: slashing and lightning only.** Bludgeoning was never tested
   in play, and Dax's *thrown* handaxe split one — so there is no thrown-weapon
   exception. Both tactical notes now record only what the party saw.

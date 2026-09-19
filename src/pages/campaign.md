@@ -7,7 +7,7 @@ kicker: The story so far
 
 # Campaign Summary
 
-_A living reference for Owen's campaign. Last updated: Session 8 (9/4/26)._
+_A living reference for Owen's campaign. Last updated: Session 9 (9/18/26)._
 
 **Setting:** Forgotten Realms, Phandalin region — *Dragon of Icespire Peak*,
 D&D 5e (2014 rules), level cap 6.
@@ -319,67 +319,112 @@ stone at the bottom. The session ended there.
 
 **No rest has been taken since the temple. All characters remain Level 3.**
 
+### Session 9 — An Alibi, a Name, and the Price of an Escort (9/18/26)
+
+An hour later, **Thom and Bean returned** from another direction. Phantom
+found Thom's hidden pack, and they rejoined everyone at the inn. Thom paid the
+innkeeper **3 gp for an alibi**. Dax disclosed Thornton's **50 gp**, briefed the
+party on their negotiation and her threat against Thom, and shared the payment
+at **7 gp each**.
+
+**Thom and Bean told their story:** tied together while invisible, they had
+followed the mining passage through traps to a hall with roughly **twenty to
+thirty people**, maps, gold and untouched chests. Bean saved Thom from a
+tripwire; an arrow pressure plate caught them both. They slipped into
+Thornton's private office and glimpsed document headings. A new foothold,
+Phandalin as a base, and smuggling were **Thom's interpretations**, not
+confirmed plans. When the cook tripped over Bean, they escaped up another
+ladder before invisibility ended. Nobody had seen their faces, they said,
+though the hatch was heard closing.
+
+Phantom warned Sage of searching figures. **Three hooded people searched the
+inn**, their target unconfirmed; the innkeeper kept the alibi. The party slept
+undisturbed. Over breakfast, **Sage alone learned Rut's name**, with permission
+to share it. She has not yet done so.
+
+Morning brought shopping: Thom's scroll supplies and component pouch for
+**35 gp**, Barnaby's bow, arrows and healer's kit, Dax's **8 gp shield**, and
+Hamish's **2 gp whip**. Barnaby sold his ordinary longsword and retained the
+temple's **+1 longsword**. No scroll or shield decoration was completed.
+
+The party warned **Harbin** about Thornton, the Zhentarim and the active
+mining tunnels. He paid **200 gp** for the intelligence and **100 gp** for
+entrance information, **300 gp total**, settling the investigation job.
+Barthen then bought the small gems for **150 gp** and the great emerald for
+**350 gp**. The combined **800 gp** was divided at **114 gp each**. No further
+payment to Norbus was recorded; the emerald's properties remain unidentified.
+
+Harbin supplied three jobs at **150 gp each**: escort **Don-Jon Raskin** to
+**Mountain's Toe Gold Mine**, take provisions to his unnamed half-brother at
+**Loggers' Camp**, and investigate the reported orc attack at **Butterskull
+Ranch**. They chose the mine first, planning to return for the cart afterward.
+Harbin called the mine job part of an arrangement with Neverwinter.
+
+On the road, Barnaby told Rut he was a fake dragon and would not eat them.
+Rut told Dax; Dax suggested that real dragons fly and asked whether Rut could
+become a panther. He did not try. Sage reassured him about Phantom. Don-Jon
+boasted of his travels until they found **six dead orcs**. Bean, Hamish and Rut
+examined them after Thom's inconclusive attempt: the cold damage looked like
+**white-dragon work**. No dragon or direction of travel was seen.
+
+At the signed mine entrance, Don-Jon demanded safety inside before he would
+provide Harbin's completion note, threatening consequences through his
+employers. **Thom's suspicion that he was Zhentarim remained unconfirmed.**
+Dax negotiated an extra arrangement: Don-Jon offered loose gold found inside;
+Thom replied that they would take anything not bolted down. The broader claim
+was not explicitly accepted. Don-Jon led the way in, and the party followed.
+
+**All seven remain Level 3 and received a long rest before leaving Phandalin.
+No mine interior features, treasure, completion note or escort payment have
+been established.**
+
 ## Open threads
-- **Thom and Bean are under the Miner's Exchange.** Alone, invisible for
-  roughly fifty more minutes, at the bottom of a ladder in the dark, with
-  Guildmaster Thornton, three guards and "our entire troop" somewhere ahead of
-  them. Nobody else in the party knows where they are, and neither the sending
-  stone nor the `message` cantrip can reach them from the outside.
-- **The trap door seals flush.** It took thieves' tools and a lucky angle to
-  open it from above once. If it shuts behind them, nothing on that floor says
-  a door was ever there.
-- **Thornton means to be townmaster.** *"Soon Harbin will be out and I will be
-  town master."* Only Thom and Bean heard her say it — Rut, wedged under the
-  door, heard the negotiation but not the speech that followed, and nobody has
-  told the rest of the party anything.
-- **Harbin's hundred gold**, offered for anything on what Thornton is planning.
-  Thom and Bean are currently standing in the answer. It has not been paid, and
-  it has not occurred to anyone that Harbin would be paying for his own
-  survival.
-- **Standing orders on the party.** If anyone is caught around the Exchange at
-  night again, Thornton's instruction to her guards is that they all die, and
-  her stated preference is to **start with Thom**. She knows where Harbin sends
-  them.
-- **Dax's fifty gold**, paid by Thornton for the orc band's position and
-  heading, and not mentioned to anyone. The party also does not know she keeps
-  a written record of what she has paid him — Bean read the line and Dax was
-  not there.
-- **The recon point.** *"Let's head on back to our recon point. We have a lot
-  of work to do this evening."* Whatever is down that ladder is somewhere the
-  Zhentarim work out of, and it is not empty at night.
-- **Every job has been a weapon hunt.** Harbin admitted the gnomes, the
-  midwife, and the dwarves were all him looking for something that would kill
-  the dragon. It has found nothing, he has field reports still to hand over,
-  and he says Phandalin cannot defend itself.
-- **The town knows, and it is angry at Harbin** — not at the dragon. He has
-  gone from hiding the rumor to needing the townspeople ready, in one evening,
-  and he asked the party to guard his house from his own neighbours.
-- **The emerald is in a bush** outside the Miner's Exchange, in Thom's
-  backpack, where he left it before going invisible. Its properties are still
-  unexamined, and neither it nor the coffer of gemstones has been appraised.
-- **The white dragon.** It destroyed Umbrage Hill within hours of the party
-  walking Adabra Gwynn out of it — close enough, by Thornton's reckoning and
-  Dax's, to be a short flight from Phandalin. Phandalin's only source of
-  healing potions went with the windmill.
-- Where the temple's wealth actually went. The ledger says **invested**, not
-  stored, and the alcove chest was a final offering, not a treasury.
-- **The rest of what the party owes Norbus.** He was paid 25 gp and 70 silver
-  against a 60/40 split of a haul that includes the gemstone coffer and the
-  emerald. He accepted it and believes it was fair. He was never told about the
-  gems.
-- **Dax's private arrangement with Norbus** — 15 gp of his own and a standing
-  offer of his sword, unknown to the rest of the party.
-- **The offering note is in Common.** Nobody has asked why a dwarven temple's
-  final message was left in a language its priests would not have used among
-  themselves.
-- **The party has not rested since the temple.** A rest was raised in town and
-  again while posting up outside the Exchange, and has still not been taken;
-  whatever the statue left on them, they are carrying it.
-- The **cursed-seeming necklace** Rut carries blind, now joined by the holy
-  symbol Hamish took off Abbathor's dead priest.
-- The **orc bands.** Seven dead at the temple; the main body has moved west,
-  away from the road north — and Thornton has now bought its heading and
-  written it on a map. What she wants it for is not clear.
-- The **Zhentarim** intel pact with Thornton, plus **Harbin's stolen notes** on
-  her, which nobody has read.
-- **Rut's true name** — the party still only knows him as "Friend."
+
+- **Inside Mountain's Toe's entrance.** Don-Jon has just led the party in.
+  No rooms or occupants have been observed yet. He wants the interior made
+  safe before providing his completion note; the **150 gp escort reward**
+  remains unpaid. His extra offer covers loose gold found inside, while Thom
+  claimed anything not bolted down. Nothing has been recovered.
+- **Don-Jon's employers.** He threatened trouble for Harbin through them but
+  never named them. Thom's Zhentarim accusation was not confirmed.
+- **The logging delivery and ranch.** Return to Phandalin for the cart, take
+  provisions to Harbin's unnamed half-brother at Loggers' Camp, then investigate
+  the reported orc attack at Butterskull Ranch. **150 gp each**, unpaid; neither
+  site visited and the supplies not yet collected.
+- **Thornton means to be townmaster.** Thom and Bean have told the party, and
+  Harbin has been warned. Her takeover remains an intention. The hall beneath
+  town is occupied; its maps and headings do not establish an orc alliance or
+  confirm Thom's theories about smuggling and a new foothold.
+- **Standing threats and a heard hatch.** Thornton ordered the party killed if
+  caught snooping again and singled out Thom. The infiltrators say their faces
+  were unseen, but the escape hatch was heard. The three inn searchers' target
+  remains unconfirmed. Their two known routes are not a complete tunnel map.
+- **The white dragon.** A messenger reported Umbrage Hill destroyed; the six
+  cold-damaged orcs on the mine road look like further evidence. The party has
+  still not seen the dragon or located its lair. No replacement for Adabra's
+  potion workshop has been established.
+- **Harbin's defence of Phandalin.** His earlier jobs found no weapon to kill
+  the dragon, and the town has learned he kept its danger secret. No successful
+  defence or change of government has been recorded.
+- **The temple's wealth.** The ledger says **invested**, not stored, and the
+  alcove chest was a final offering, not a treasury.
+- **Norbus's uninformed settlement.** He accepted **25 gp and 70 silver**
+  without knowing about the gems and emerald. Their **500 gp sale** did not
+  settle his agreed share; no additional payment was recorded. He is no longer
+  at the inn's bar, but his whereabouts and Dazlyn's burial are unconfirmed.
+- **Dax's private arrangement with Norbus** — another **15 gp** of his own and
+  a standing offer of his sword, still unknown to the rest of the party.
+- **The offering note is in Common.** Nobody has explained why the dwarven
+  temple's final message uses that language, or who wrote it.
+- **The two religious necklaces.** Rut still has the inscribed gold necklace;
+  Hamish is the last confirmed holder of the jeweled holy symbol. Their
+  properties remain unidentified. The sold emerald was never identified either.
+- **The orc bands.** The main force moved west after the temple fight;
+  Thornton bought its heading and had maps that appeared to track movements.
+  What she wants with that information remains unclear.
+- **The Zhentarim intelligence pact and Harbin's stolen notes.** The party
+  chose to avoid Thornton for now. Bean's stolen notes remain unread; the
+  payment-ledger line she saw has no identified amount or job.
+- **Rut's name and feeding fears.** Sage may share his name but has not.
+  Barnaby has promised not to eat them and Sage has reassured Rut about Phantom;
+  the others have not been told that Dax originated the feeding story.

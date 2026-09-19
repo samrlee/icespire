@@ -29,7 +29,7 @@ one who ends up carrying people (and tied-up gnomes) when things go sideways.
   them apart the same way a blade does (Session 6).
 - Searched the vestry off the eastern passage: two dwarves in red vestments, a
   dry stone font, and a secret door onto the priests' sleeping chamber, where
-  he pulled a **longsword** out of the dust. It hadn't rotted (Session 6).
+  he pulled a **+1 longsword** out of the dust. It hadn't rotted (Session 6).
 - Scattered a bag of a thousand ball bearings across the orcs' only way in —
   most of what kept that fight winnable (Session 6).
 - Went down twice against the orcs, and in between crossed the room to pour
@@ -44,8 +44,8 @@ one who ends up carrying people (and tied-up gnomes) when things go sideways.
 - Carried **Dazlyn Grayshard's body** north from the trail to Umbrage Hill, to
   Phandalin, and into the inn, where he set it down at the dwarf's brother's
   feet (Session 7).
-- Does not know that Rut believes he is a man-eating dragon who must be kept
-  fed (Session 7).
+- Was unaware of Rut's belief that he must be fed to prevent him eating the
+  party (Session 7); Rut raised the concern openly in Session 9.
 - Hoisted Hamish onto his shoulders at the Miner's Exchange's high back window
   three times — the third left the ranger sitting rather than standing and
   stuck there, and the pair of them made enough noise doing it that the room
@@ -53,3 +53,10 @@ one who ends up carrying people (and tied-up gnomes) when things go sideways.
 - Got away from the second guard cleanly and was never seen at all (Session 8).
 - Fell in with Dax on the walk back up the lane and kept the watch near the
   shrine on the square with him (Session 8).
+- Found the Coster locked at night and waited at the inn, where he noticed
+  Norbus was no longer at the bar (Session 9).
+- Bought a shortbow (**25 gp**), arrows (**1 gp**) and a healer's kit (**5 gp**).
+  Sold his ordinary longsword for **7 gp** and kept the temple's **+1 longsword**,
+  which has no additional special properties (Session 9).
+- Told Rut he was a fake dragon and would not eat the party. No telling of Dax's
+  part in the original belief is recorded (Session 9).

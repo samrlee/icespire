@@ -37,7 +37,7 @@ front of his life; the peach fuzz is new, and so is being asked how old he is.
 - Cast Magic Missile at an ochre jelly and triggered a Wild Magic Surge that
   **aged him three years** — nineteen going on twenty-two, and permanent.
   Actual stubble now (Session 5).
-- Current holder of the hidden gemstone coffer the dwarves don't know about
+- Took charge of the hidden gemstones the dwarves were not told about
   (Session 5).
 - Talked over the top of Dax's collapsing lie to the dwarves — loud, fast, and
   generous with detail — and was the only member of the party they believed
@@ -50,7 +50,7 @@ front of his life; the peach fuzz is new, and so is being asked how old he is.
 - Lifted the hidden chamber's emerald with a **Mage Hand** after Bean had
   cleared the room for traps, and set off the statue holding it. The gem was
   fine; Rut and Barnaby were not (Session 7).
-- Carries the **great emerald**, which he can throw one-handed and can barely
+- Carried the **great emerald**, which he could throw one-handed and could barely
   walk with. By the time the party reached Phandalin he was down to half speed
   (Session 7).
 - Identified the runed stone from Dazlyn's hand as a **sending stone** —
@@ -72,7 +72,8 @@ front of his life; the peach fuzz is new, and so is being asked how old he is.
   all night: 120 feet, through walls, no word limit, and the target can answer
   under their breath without spending anything (Session 8).
 - **Stashed his backpack, and the great emerald with it, in a bush** a good
-  distance from the Miner's Exchange. He has not gone back for it (Session 8).
+  distance from the Miner's Exchange, leaving it there during the infiltration
+  (Session 8).
 - Spent two sorcery points to **twin Invisibility** on himself and Bean — one
   hour on concentration — and kept a hand on her, because invisibility does not
   let two people find each other (Session 8).
@@ -82,3 +83,19 @@ front of his life; the peach fuzz is new, and so is being asked how old he is.
 - Got a dagger into the trap door's seam, found the catch, and could not shift
   it. Bean could (Session 8).
 - Went first down the ladder into the dark — he can see in it (Session 8).
+- Recovered his backpack with Phantom's help and paid the innkeeper **3 gp**
+  for an alibi. Recounted the underground infiltration with Bean; his readings
+  of Thornton's plans remained interpretations (Session 9).
+- Bought scroll-making supplies and a component pouch from Barthen for **35 gp**,
+  promising to recommend the shop. No scroll has been completed (Session 9).
+- Brought Harbin the tunnel intelligence and entrance information for **300 gp**.
+  Sold the small gems for **150 gp** and the emerald for **350 gp** to Barthen,
+  then divided the **800 gp** at **114 gp each**. He no longer carries either
+  lot of gems; the emerald's properties remain unidentified (Session 9).
+- Distributed Rut's remaining Goodberries on the road. Disputed Don-Jon's demand
+  for safety inside the mine and voiced an unconfirmed suspicion that he was
+  Zhentarim (Session 9).
+
+**Scroll work:** Owen allows the required work to accumulate during downtime
+and suitable travel, such as riding in a cart. Buying supplies did not complete
+a scroll (Session 9).

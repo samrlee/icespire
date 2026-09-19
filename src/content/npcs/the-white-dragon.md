@@ -18,3 +18,12 @@ The threat hanging over the whole region. The party has never laid eyes on it
   (Session 4).
 
 Sooner or later, the warnings run out and the dragon shows up.
+
+## Signs on the mine road (Session 9)
+
+On the way to Mountain's Toe Gold Mine, the party found six dead orcs. After
+Thom's inconclusive examination, Bean, Hamish and Rut examined them together.
+The cold damage reminded them of the reports from Umbrage Hill and looked like
+the white dragon's work. They did not witness the attack, see the dragon, or
+find which direction the attacker had come or gone. Its name and lair remain
+unknown.

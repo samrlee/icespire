@@ -85,8 +85,8 @@ export const submaps: Record<string, SubmapEntry> = {
     scaleNote: 'Official town layout · Scale in feet',
     legend: [
       { label: 'Stonehill Inn', note: 'rooms, stew, and the stranger who watched the party in Session 1' },
-      { label: "Barthen's Provisions", note: 'general goods' },
-      { label: 'Lionshield Coster', note: 'arms and armor; never open when the party has time to shop' },
+      { label: "Barthen's Provisions", note: 'general goods; Barthen bought the party’s gems in Session 9' },
+      { label: 'Lionshield Coster', note: 'arms and armor; the party bought a bow, shield and whip here in Session 9' },
       { label: "Phandalin Miner's Exchange", note: 'Guildmaster Thornton. A trap door in the floor, and stairs under the town.' },
       { label: "Townmaster's Hall", note: "Harbin's office, behind several bolts" },
       { label: "Harbin Wester's home", note: "site of Bean's unauthorized visit" },
@@ -232,16 +232,14 @@ export const submaps: Record<string, SubmapEntry> = {
     ],
   },
   'mountains-toe-gold-mine': {
+    // Session 9 ends at entry; no interior features are established. Keep the
+    // old component unbuilt until its measured redraw and discovery audit.
     Component: MountainsToeGoldMine,
     width: 900,
     height: 560,
-    scaleNote: 'Galleries with west and east entrances',
-    legend: [
-      { label: 'West entrance', note: "the miners' way in" },
-      { label: 'The great gallery', note: 'heart of the diggings', interior: true },
-      { label: 'Deep galleries', note: 'the east workings, unlit', interior: true },
-      { label: 'East entrance', note: 'the far way in' },
-    ],
+    interiorOnly: true,
+    scaleNote: 'Interior map withheld pending exploration and redraw',
+    legend: [],
   },
   'shrine-of-savras': {
     Component: ShrineOfSavras,

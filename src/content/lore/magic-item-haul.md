@@ -20,35 +20,25 @@ The running inventory:
   Norbus, who had no use for half a pair. **Thom carries one; the other travels
   with the party** and has not been assigned to anyone. The word limit is
   strict: Thom's first message was cut off one word short of his own name.
+- **The temple +1 longsword** — found by Barnaby under a bed frame in the
+  priests' sleeping chamber (Session 6). No additional special properties.
+  He kept it when he sold his ordinary longsword in Session 9.
 
 ## Suspicious acquisitions (not yet identified)
 
 - **The Abbathor necklace** — gold, nameplate illegible, overwritten in
   ancient Dwarvish: *"This is what happens to those who displease me."*
   Carried by Rut. Nobody in-game has flagged the risk.
-- **The gemstone coffer's contents** — rubies, emeralds, topaz, held by Thom.
-  Not magical as far as anyone knows; definitely not declared to the dwarves.
-  **Still unappraised** — the party has never taken it to the Miner's Exchange,
-  though they have talked about it twice.
 - **Abbathor's holy symbol** — a small jeweled dagger on a silver chain,
   lifted from a skeleton in the temple crypt by Hamish. The Dwarvish runes cut
   into it read *"Greed is good."* Two members of the party now carry jewellery
   taken off this god's dead (Session 6).
-- **The great emerald** — taken off a statue in the temple's hidden chamber with a Mage Hand,
-  which set the statue off. Diamond-cut, roughly **8 lbs**, and very large.
-  Thom can lift it out of his pack one-handed and throw it without trouble, but
-  carrying it wears on him: by the end of a day's walk to Phandalin he was down
-  to **half speed**. Unappraised, and nobody has cast Detect Magic on it yet.
 - **A manticore tail spike** — pulled from a corpse by Rut, who kept it
   without saying why. Now filed alongside a mimic tentacle and a green orc
   eyeball, optic nerve attached (Session 7).
 
 ## Notable mundane gear
 
-- **The temple longsword** — pulled out of the dust under a bed frame in the
-  priests' sleeping chamber by Barnaby. Nothing magical about it, but
-  everything else in that room had rotted and it hadn't. The orc war-leader's
-  last threat was to take it (Session 6).
 - **A thousand ball bearings** — Barnaby's, scattered across the orcs' only
   way in, and most of what made that fight winnable (Session 6).
 - **The orc leader's chain mail** — stripped off the war-leader's body by Dax
@@ -64,3 +54,27 @@ The running inventory:
   hidden chamber's alcove, taken with written permission. The silver went to Norbus (Session 7).
 - **Thom's shovel** — currently the party's primary tool against several
   hundred tons of cave-in.
+
+## Sold in Phandalin (Session 9)
+
+- **The gemstone coffer's contents** — rubies, emeralds and topaz, carried by
+  Thom and never declared to the dwarves. Barthen bought them for **150 gp**.
+  The empty coffer was left in its original hiding place at the temple.
+- **The great emerald** — diamond-cut, roughly **8 lbs**, removed from the
+  statue that exploded in the hidden chamber. Thom recovered his backpack
+  with Phantom's help and sold the emerald to Barthen for **350 gp**. Its
+  burden ended with the sale; its properties were never identified.
+
+Those **500 gp** and Harbin's **300 gp** investigation payment made **800 gp**,
+shared at **114 gp each**. Thornton's earlier **50 gp** was separately disclosed
+and shared at **7 gp each**. Split remainders go nowhere under the table's
+standing ruling. No further payment to Norbus was recorded.
+
+## Morning purchases (Session 9)
+
+Thom bought scroll-making supplies and a component pouch for **35 gp**; no
+scroll was completed. Barnaby bought a shortbow (**25 gp**), arrows (**1 gp**)
+and a healer's kit (**5 gp**), selling his ordinary longsword for **7 gp**.
+Dax bought a shield for **8 gp**, without commissioning its optional emblem.
+Hamish bought a whip for **2 gp**. The two religious necklaces retain their
+last recorded holders; no sale or transfer was established.

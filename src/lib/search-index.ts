@@ -83,7 +83,7 @@ export async function buildSearchIndex(): Promise<SearchDoc[]> {
       kind: KIND.session,
       sub: sub(
         `Session ${s.data.sessionNumber}`,
-        s.data.date.toLocaleDateString('en-US', { dateStyle: 'medium' })
+        s.data.date.toLocaleDateString('en-US', { dateStyle: 'medium', timeZone: 'UTC' })
       ),
       href: url(`/sessions/${s.id}/`),
       text: [s.data.summary, toPlainText(s.body ?? '')].filter(Boolean).join(' '),

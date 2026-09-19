@@ -11,6 +11,10 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Done
 
+- **Calendar dates keep their day** — recap headers, cards, timeline, search
+  and social previews format date-only session values in UTC, so builds in
+  Central time no longer display the previous day. _(Sep 2026)_
+
 - **Question-focused passages for Ask** — long entries now contribute ranked,
   overlapping sentence windows with surrounding context, in source order.
   Omission markers distinguish separate passages; headings and separators count
@@ -147,9 +151,11 @@ Ordered high → low by rough impact-per-effort.
    Butterskull Ranch, Circle of Thunder, Dragon Barrow, Falcon's Hunting Lodge,
    Icespire Hold, Loggers' Camp, Mountain's Toe Gold Mine, Shrine of Savras,
    Tower of Storms and the Woodland Manse are still in the pre-redraw invented
-   style. They publish nowhere while their locations are `unknown`, so this is
-   not work to do in a batch — it is one map's work on the day the party finds
-   the place, before flipping its `status`.
+   style. Their publication gates keep them unbuilt, so this is
+   not work to do in a batch — it is one map's work before its local map
+   publishes. Mountain's Toe was reached in Session 9, but no interior features
+   are established; `interiorOnly: true` and `interiorSeen: false` keep its
+   placeholder unbuilt until exploration and redraw.
    [`MAP-STYLE.md`](MAP-STYLE.md) has the method and the numbers: every one of
    those scans is 2888 × 1838, so every one of those maps is 1960 × 1248 at
    29.4 units to the five-foot square, exactly like Gnomengarde, the Dwarven

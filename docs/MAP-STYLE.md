@@ -5,11 +5,11 @@ region sheet and the local maps for Phandalin, Gnomengarde, Dwarven Excavation,
 and Umbrage Hill. Read the component closest to the map you are changing before
 drawing anything, beside its scan in `offical-assets/Maps/`.
 
-Eleven local maps are still in the repo in the old style, waiting for their
-locations to be discovered (see [The maps still to draw](#the-maps-still-to-draw)).
-Before one of them publishes, its placeholder component **and registry entry**
+Eleven local maps are still in the repo in the old style, waiting for enough
+of their locations to be explored (see [The maps still to draw](#the-maps-still-to-draw)).
+Before one of their local maps publishes, its placeholder component **and registry entry**
 get replaced using this guide. Never reveal a placeholder by flipping a
-location to `visited` first: the old drawings are neither accurate nor audited
+publication gate: the old drawings are neither accurate nor audited
 for player knowledge.
 
 ## Before drawing
@@ -284,7 +284,10 @@ when the last map is redrawn and the set finally settles.
 ## The maps still to draw
 
 All eleven are drawn in the old invented style, publish nowhere, and are to be
-redrawn from their scans before their location's `status` flips to `visited`.
+redrawn from their scans before their local map publishes. Mountain's Toe is
+visited as of Session 9, but its signed entrance is the only established
+feature: `interiorOnly: true` and `interiorSeen: false` keep its old local map
+unbuilt. Redraw and audit it before changing that interior gate.
 Every scan is 2888 × 1838 → **1960 × 1248, 29.4 units = 5 feet**.
 
 | Location | Scan |
