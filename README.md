@@ -275,6 +275,14 @@ Nothing about this changes the CSP — the palette's script bundles to an
 external file under `/_astro/` (already covered by `script-src 'self'`), and
 the index fetch is same-origin, which `connect-src 'self'` already allows.
 
+Search initially shows eight ranked matches, with **Show more results** adding
+eight at a time until all matches are accessible. Type buttons use the kinds in
+the published index and filter before the display limit. Query edits and type
+changes reset the batch; closing resets the query, filter and expansion.
+Arrow keys select only visible results, and Enter without a selection keeps the
+palette open. Filters affect search only: Ask continues to use the published
+chronicle and still requires its own explicit button press.
+
 ## Ask the Chronicle
 
 The endpoint accepts same-origin browser requests and clients without an Origin

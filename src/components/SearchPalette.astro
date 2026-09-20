@@ -41,7 +41,10 @@ import { url } from '../utils/url';
         <li><button type="button" data-search-example>Who is Facktoré?</button></li>
       </ul>
     </div>
+    <div id="search-filters" class="search-filters" role="group" aria-label="Filter search results by type" hidden></div>
     <div id="search-results" class="search-results" role="listbox" aria-label="Results"></div>
+    <button class="search-close search-more" type="button" data-search-more hidden>Show more results</button>
+    <p id="search-filter-note" class="search-status" hidden>Type filters apply to search results. Ask uses the published chronicle.</p>
     <div id="search-ask" class="search-ask" aria-live="polite" hidden></div>
     <p id="search-status" class="search-status" role="status" aria-live="polite"></p>
     <button class="search-close search-retry" type="button" data-search-retry hidden>Try again</button>
