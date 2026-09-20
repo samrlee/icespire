@@ -450,6 +450,8 @@ loads, retry, and explicit Ask success/error/cancellation with mocked responses.
 No model calls are made. This server does not emulate Cloudflare Functions or
 apply `_headers`; deployment behavior still needs a separate smoke test.
 Failure traces are saved under ignored `test-results/`.
+Navigation cases also cover the first-focus skip link, disclosure Tab order,
+Escape focus return, focus-leave dismissal, and mouse/touch link activation.
 Enter after typing preserves the query and results; arrow keys must select a
 result before Enter navigates. Form submission also keeps the dialog open.
 Ask still requires its explicit button. WebKit emulation is not a physical

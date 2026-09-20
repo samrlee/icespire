@@ -11,11 +11,10 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Dependency and CI maintenance** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  update devalue 5.8.1 → 5.9.4 within Astro's existing range to resolve
-  its moderate advisory; refresh checkout to 7.0.1 and setup-node to 7.0.0.
-  Keep Node 22 for the project, read-only permissions, disabled checkout
-  credentials, and all checks in the required Build site job.
+- **Navigation accessibility** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  first-focus skip link to main content; ordinary disclosure navigation links
+  with explicit controls/expanded state, Escape focus return, and dismissal when
+  focus leaves a group. Browser coverage includes keyboard and touch navigation.
 
 ## Phased backlog from issue #75
 
@@ -23,8 +22,8 @@ These are intended follow-ups, not blanket implementation or editorial approval.
 Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 
 1. **Reliability:** search reset/retry, browser regressions, Ask body limits and
-   controlled origin errors are merged. Dependency/action maintenance is in the current PR. Remaining
-   navigation accessibility includes disclosure semantics and a skip link.
+   controlled origin errors and dependency/action maintenance are merged.
+   Navigation disclosure semantics and a skip link are in the current PR.
    Future integrity work includes build-time relationship/reference validation;
    retain existing CI gates.
 2. **First player-facing release:** shared “Where we left off” data with source/as-of
@@ -49,6 +48,10 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Dependency and CI maintenance** — [PR #79](https://github.com/samrlee/icespire/pull/79)
+  merged: compatible devalue 5.9.4 patch and current checkout/setup-node actions;
+  audit reports zero vulnerabilities. _(Sep 2026)_
 
 - **Ask request validation** — [PR #78](https://github.com/samrlee/icespire/pull/78)
   merged: controlled origin errors, 4 KiB streamed body limit before parsing,

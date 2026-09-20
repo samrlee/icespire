@@ -20,6 +20,22 @@ body {
 
 /* ---------- Site shell ---------- */
 
+.skip-link {
+  position: fixed;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 100;
+  transform: translateY(calc(-100% - var(--space-4)));
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-surface);
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
 .site-header {
   display: flex;
   align-items: center;
@@ -124,7 +140,7 @@ body {
   color: var(--link-hover);
 }
 
-.nav-trigger[aria-current='page'] {
+.nav-trigger[data-current-group] {
   color: var(--accent-gold);
   border-bottom-color: var(--accent-gold);
 }
