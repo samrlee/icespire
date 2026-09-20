@@ -52,3 +52,9 @@ jobs:
 
       - name: Production publication regression
         run: npm run test:publication
+
+      - name: Install browser for regression tests
+        run: npx playwright install --with-deps chromium
+
+      - name: Search and Ask browser regressions
+        run: npm run test:browser

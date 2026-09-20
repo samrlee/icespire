@@ -11,7 +11,8 @@
     "astro": "astro",
     "test:map": "node --experimental-strip-types --test tests/map-publication.test.mjs",
     "test:ask": "node --experimental-strip-types --test tests/ask-context.test.mjs",
-    "test:publication": "node --test tests/publication-build.test.mjs"
+    "test:publication": "node --test tests/publication-build.test.mjs",
+    "test:browser": "playwright test"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "@playwright/test": "^1.63.0",
     "@types/node": "^26.1.1",
     "typescript": "^6.0.3"
   }

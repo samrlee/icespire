@@ -418,7 +418,7 @@ npm run build    # production build (also validates all content)
 ```
 
 Before committing, run `npm run check`, `npm run test:map`, `npm run test:ask`,
-`npm run build`, and `npm run test:publication`. All run in the required **Build
+`npm run build`, `npm run test:publication`, and `npm run test:browser`. All run in the required **Build
 site** CI job, alongside the shipped-dependency audit.
 
 `test:publication` uses Node's test runner and builds a fresh disposable copy in
@@ -431,6 +431,16 @@ removes its copy even after an assertion/build failure. If the process is forcib
 killed, an `icespire-publication-*` directory may remain in the system temporary
 directory; it is never deployable output. The checks inspect generated headers,
 not actual Cloudflare response headers.
+
+`test:browser` runs Playwright against the existing production build; run
+`npm run build` first and install Chromium once with `npx playwright install chromium`
+(`--with-deps chromium` on Linux CI). It starts and stops its own local static
+server on port 4322 and refuses to reuse an existing server. Desktop and phone
+viewports cover search reset/focus, keyboard navigation, delayed/failed index
+loads, retry, and explicit Ask success/error/cancellation with mocked responses.
+No model calls are made. This server does not emulate Cloudflare Functions or
+apply `_headers`; deployment behavior still needs a separate smoke test.
+Failure traces are saved under ignored `test-results/`.
 
 ## Response headers
 
