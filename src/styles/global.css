@@ -752,14 +752,22 @@ body {
 }
 
 .entity-pop {
-  position: absolute;
+  position: fixed;
   z-index: 20;
   width: min(320px, calc(100vw - 16px));
+  max-height: calc(100dvh - 16px);
+  overflow: auto;
   background: var(--bg-surface-raised);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-raised);
   padding: var(--space-4);
+}
+
+.entity-pop .pop-name,
+.entity-pop .pop-sub,
+.entity-pop .pop-note {
+  display: block;
 }
 
 .entity-pop .pop-head {
@@ -784,7 +792,7 @@ body {
   align-items: flex-start;
 }
 
-.entity-pop .pop-body > div {
+.entity-pop .pop-body > span {
   flex: 1;
   min-width: 0;
 }
