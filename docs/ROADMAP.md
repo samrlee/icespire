@@ -11,9 +11,9 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Publication review report** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  changed campaign files, publication-gate transitions, reference findings and
-  snapshot freshness in an ignored local report and the read-only CI job summary.
+- **Replacement-safe recap casts** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  optional explicit character IDs, with build failures for ambiguous player
+  mappings and invalid IDs. Existing casts remain unchanged.
 
 ## Phased backlog from issue #75
 
@@ -39,8 +39,8 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
    merged, as is expanded/type-filtered search. Detected mentions are not confirmed
    appearances or proof of character knowledge. Retrieved documents do not prove
    every answer claim; construct citation links from validated records.
-4. **Editorial tools and options:** post-session publication reports are in this PR;
-   review freshness/provenance, and character-replacement-safe attendance.
+4. **Editorial tools and options:** post-session publication reports are merged;
+   character-replacement-safe casting is in this PR. Review freshness/provenance remains.
    Reading-position/Q&A retention needs explicit reset, cancellation and stale
    corpus handling; never retain an answer under a different question. A historical
    session selector cannot promise spoiler safety while previews show current
@@ -49,6 +49,10 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Publication review report** — [PR #89](https://github.com/samrlee/icespire/pull/89)
+  merged: changed campaign files, gate transitions, reference findings and
+  snapshot freshness in local output and the CI job summary. _(Sep 2026)_
 
 - **Search filters and more results** — [PR #88](https://github.com/samrlee/icespire/pull/88)
   merged: type filters, complete counts and batches beyond eight results;

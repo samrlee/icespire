@@ -44,7 +44,8 @@ covers the voice, and [`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md) the
 process for adding a session.
 
 - **Sessions**: `session-8.md` etc. Frontmatter: `title`, `sessionNumber`, `date`,
-  `summary` (the card excerpt), `playersPresent`, optional `draft: true` to omit
+  `summary` (the card excerpt), `playersPresent`, optional `charactersPresent`
+  (explicit character IDs for the recap cast), optional `draft: true` to omit
   the recap and its social image from the website entirely.
 - **Characters**: `name`, `player`, `ancestry`, `class`, optional `level`,
   `status` (active/retired/dead/missing), `tagline` (one-line bio on the card),
@@ -428,8 +429,18 @@ they do not replace physical iPhone or screen-reader testing.
 Each recap opens with its cast: the party who were at the table, then the NPCs
 and factions the session involves, as chips linking to their pages.
 
-Nothing about this is hand-maintained. Party membership comes from
-`playersPresent` — attendance is recorded, so it is never guessed. The rest is
+Party membership uses optional `charactersPresent` character IDs when supplied.
+An explicit empty array selects no party characters. Otherwise `playersPresent`
+selects each attendee's sole roster character, preserving existing recap casts.
+If an attendee has multiple roster characters, including retired/dead ones,
+the build requires an explicit list: it never chooses by current status or
+includes both automatically. When adding a replacement, set explicit IDs in
+affected historical recaps as well as new ones. Unknown/repeated IDs fail the
+build, including in drafts, and appear in the publication review report.
+
+Player attendance and character casting remain separate: a recorded character
+can be included without asserting that their usual player attended. Neither
+field establishes presence at every scene or character knowledge. The rest is
 matched against the recap's Markdown using the same alias table that
 auto-links entity mentions in prose, which now lives in `src/lib/entities.ts`
 and is shared by both features (`components/EntityLinks.astro` ships it to the

@@ -210,6 +210,11 @@ from what the Session 6 and Session 7 commits actually touched — walk it every
 time, and skip an item deliberately rather than by forgetting it.
 
 - [ ] **`src/content/sessions/session-N.md`** — the recap.
+      Use `charactersPresent` for an explicit character cast when needed,
+      especially after a player changes characters. Keep `playersPresent` as
+      actual player attendance. Adding a replacement requires explicit IDs in
+      any old recaps whose player mapping becomes ambiguous; do not change old
+      casts to the player's current character. Neither field proves knowledge.
 - [ ] **`src/content/current-state/current.yaml`** — update the continuation
       point and `sourceSession` to the published recap. Each group has a label,
       character slugs, a plain-text summary, and an optional location slug.

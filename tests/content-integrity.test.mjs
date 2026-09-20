@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { contentReferenceErrors, contentImages } from '../src/lib/content-integrity.ts';
+import { resolveSessionParty } from '../src/lib/session-party.ts';
 
 const entry = (id, data) => ({ id, data });
 function fixture() {
@@ -52,4 +53,31 @@ test('image inventory includes draft encounters and both portrait collections', 
   content.sessions[0].data.encounters = [{ name: 'Creature', image: '/images/creature.webp' }];
   assert.equal(contentImages(content).length, 3);
   assert.ok(contentImages(content).some(image => image.source.includes('nested/session-zero') && image.path === '/images/creature.webp'));
+});
+
+test('replacement characters require explicit selection even for retired originals and draft recaps', () => {
+  const content = fixture();
+  content.characters[0].data.status = 'retired';
+  content.characters.push(entry('replacement', { player: 'Player', status: 'active' }));
+  assert.match(contentReferenceErrors(content).join('\n'), /playersPresent is ambiguous.*charactersPresent/);
+  content.sessions[0].data.charactersPresent = ['hero'];
+  assert.deepEqual(contentReferenceErrors(content), []);
+  assert.deepEqual(resolveSessionParty(content.sessions[0], content.characters).party.map(c => c.id), ['hero']);
+  content.sessions[0].data.charactersPresent = ['replacement'];
+  assert.deepEqual(resolveSessionParty(content.sessions[0], content.characters).party.map(c => c.id), ['replacement']);
+  content.sessions[0].data.charactersPresent = [];
+  assert.deepEqual(resolveSessionParty(content.sessions[0], content.characters).party, []);
+});
+
+test('explicit cast rejects missing/duplicate IDs and remains separate from player attendance', () => {
+  const content = fixture();
+  content.sessions[0].data.charactersPresent = ['hero', 'hero', 'missing'];
+  const errors = contentReferenceErrors(content);
+  assert.equal(errors.length, 2);
+  assert.ok(errors.some(error => error.includes('repeats character')));
+  assert.ok(errors.some(error => error.includes('missing character')));
+  content.sessions[0].data.charactersPresent = ['hero'];
+  content.sessions[0].data.playersPresent = [];
+  assert.deepEqual(contentReferenceErrors(content), []);
+  assert.equal(resolveSessionParty(content.sessions[0], content.characters).party.length, 1);
 });
