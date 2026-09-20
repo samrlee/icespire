@@ -11,9 +11,9 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Profile recap links** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  character and NPC profiles list published recaps that mention their names,
-  using the existing shared aliases and explicit mention-only labels.
+- **Theme switch reliability** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  functional Light mode / Dark mode labels and switching even when saved
+  preferences are blocked. Browser regressions cover persistence and blocked storage.
 
 ## Phased backlog from issue #75
 
@@ -36,7 +36,7 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 3. **Connected references:** one shared scene representation with stable IDs
    through title/prose changes and insertions, reused for jump navigation,
    scene-level profile backlinks, timeline and validated passage citations.
-   Whole-recap mention links are in this PR. NPC filters are
+   Whole-recap mention links are merged. NPC filters are
    merged, as is expanded/type-filtered search. Detected mentions are not confirmed
    appearances or proof of character knowledge. Retrieved documents do not prove
    every answer claim; construct citation links from validated records.
@@ -50,6 +50,10 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Profile recap links** ([PR #91](https://github.com/samrlee/icespire/pull/91)):
+  character and NPC profiles list published recaps that mention their names,
+  using the existing shared aliases and explicit mention-only labels.
 
 - **Replacement-safe recap casts** — [PR #90](https://github.com/samrlee/icespire/pull/90)
   merged: explicit character IDs and rejection of ambiguous player mappings;

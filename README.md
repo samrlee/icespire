@@ -377,7 +377,10 @@ The design is implemented from the **Icespire Peak Campaign Design System**
 (Claude Design). Key rules, so edits stay on-system:
 
 - Dark theme ("Night in the Wilds") is default; the nav button toggles the light
-  "Snowfield" theme via `data-theme="light"`.
+  "Snowfield" theme via `data-theme="light"`. The button names its destination
+  (Light mode / Dark mode). Preferences persist when browser storage is available;
+  blocked storage still permits switching on the current page. Without JavaScript,
+  the default theme remains usable and the inactive control is hidden.
 - Cold slate neutrals everywhere; **gold is the only "pay attention" color**;
   **ember red is reserved for danger/hostility only**.
 - Cinzel for display/headings only, Crimson Pro for body, JetBrains Mono for

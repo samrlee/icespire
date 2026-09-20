@@ -100,9 +100,11 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
     <script is:inline>
       // Apply saved theme before first paint to avoid a flash. Dark
       // ("Night in the Wilds") is the default; light is "Snowfield".
-      if (localStorage.getItem('icespire-theme') === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
-      }
+      try {
+        if (localStorage.getItem('icespire-theme') === 'light') {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch { /* Storage may be unavailable; keep the default theme. */ }
     </script>
   </head>
   <body class:list={{ 'print-document': printable }}>
@@ -146,7 +148,7 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
           <span class="search-trigger-label">Search or ask</span>
           <kbd class="search-trigger-key">⌘K</kbd>
         </button>
-        <button class="theme-toggle" id="theme-toggle" type="button">Snowfield</button>
+        <button class="theme-toggle" id="theme-toggle" type="button" hidden>Light mode</button>
       </div>
     </header>
     <main class="page" id="main-content" tabindex="-1">
@@ -166,8 +168,9 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
         const button = document.getElementById('theme-toggle');
         // The button names the theme it switches TO.
         const label = () =>
-          root.getAttribute('data-theme') === 'light' ? 'Night in the Wilds' : 'Snowfield';
+          root.getAttribute('data-theme') === 'light' ? 'Dark mode' : 'Light mode';
         button.textContent = label();
+        button.hidden = false;
         button.addEventListener('click', () => {
           const toLight = root.getAttribute('data-theme') !== 'light';
           if (toLight) {
@@ -175,8 +178,10 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
           } else {
             root.removeAttribute('data-theme');
           }
-          localStorage.setItem('icespire-theme', toLight ? 'light' : 'dark');
           button.textContent = label();
+          try {
+            localStorage.setItem('icespire-theme', toLight ? 'light' : 'dark');
+          } catch { /* Switching still works for this page without storage. */ }
         });
       })();
     </script>
