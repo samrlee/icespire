@@ -44,7 +44,7 @@ jobs:
       - name: Map publication gates
         run: npm run test:map
 
-      - name: Content reference integrity
+      - name: Content references and generated-link rules
         run: npm run test:integrity
 
       - name: Ask retrieval and request validation

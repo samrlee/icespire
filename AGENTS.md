@@ -68,6 +68,9 @@ The shared layout validates references across all parsed collections, including
 drafts/hidden locations, and checks portrait/encounter image files during builds.
 Fix the source field named by a validation error; never change discovery flags
 to bypass it. Session attendance names must match a character roster player.
+The final build also checks generated HTML links, fragments, and asset URLs.
+Map fragments must identify rendered markers. Fix source links rather than
+adding checker exceptions or publishing hidden destinations; see README for scope.
 
 Note `npm run preview` serves the built site but does **not** apply
 `dist/_headers`, so it will not show you CSP problems.

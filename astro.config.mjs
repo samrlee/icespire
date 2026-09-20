@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import securityHeaders from './integrations/security-headers.mjs';
+import generatedLinks from './integrations/generated-links.mjs';
 
 // Deployed to Cloudflare Pages at https://icespire.ghostbloods.net
 // Served from the root of its own subdomain, so no `base` prefix is needed.
@@ -29,5 +30,6 @@ export default defineConfig({
     // Writes dist/_headers, with the CSP's script-src pinned to this build's
     // inline scripts.
     securityHeaders(),
+    generatedLinks(),
   ],
 });

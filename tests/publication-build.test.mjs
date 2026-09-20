@@ -259,6 +259,20 @@ test('production publication across assembled routes, indexes, maps and navigati
       assert.match(headers, /script-src 'self' 'sha256-/);
       assert.doesNotMatch(headers, /script-src[^;]*'unsafe-inline'/);
     });
+    await t.test('the assembled build rejects missing pages, images and fragments', async () => {
+      await put(site, 'src/pages/link-fixture.astro', `<a href="/missing-fixture/">Missing</a>
+<a href="/campaign/#missing-fixture-anchor">Missing anchor</a>
+<img src="/missing-fixture-image.png" alt="Fixture" />`);
+      await assert.rejects(build(site), error => {
+        for (const diagnostic of ['Generated link validation failed', 'missing target /missing-fixture/',
+          'missing fragment #missing-fixture-anchor', 'missing target /missing-fixture-image.png']) {
+          assert.ok(error.message.includes(diagnostic), `missing diagnostic: ${diagnostic}\n${error.message}`);
+        }
+        return true;
+      });
+      await unlink(path.join(site, 'src/pages/link-fixture.astro'));
+    });
+
     await t.test('the assembled build rejects broken references even in draft content', async () => {
       await put(site, 'src/content/sessions/integrity-broken.md', `---
 title: Integrity fixture

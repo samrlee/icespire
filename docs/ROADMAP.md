@@ -11,11 +11,10 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Content reference integrity** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  reject duplicate session/journey numbers, missing collection references,
-  attendance names outside the roster, and missing portrait/encounter images.
-  Validate parsed collections including drafts/hidden entries; retain publication
-  gates and campaign prose. Unit and disposable build-failure checks run in CI.
+- **Generated link validation** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  parse generated HTML and reject missing local pages/assets/fragments, including
+  links to absent map markers. Correct the 404 canonical route; cover URL rules
+  and actual build failures in existing required CI suites.
 
 ## Phased backlog from issue #75
 
@@ -25,8 +24,8 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 1. **Reliability:** search reset/retry, browser regressions, Ask body limits and
    controlled origin errors and dependency/action maintenance are merged.
    Navigation disclosure semantics and a skip link are merged. Collection and
-   image reference validation is in the current PR. General link/fragment checks
-   and entity-popover accessibility review remain follow-ups;
+   image reference validation is merged. Generated HTML link/fragment checks
+   are in the current PR; entity-popover accessibility review remains a follow-up;
    retain existing CI gates.
 2. **First player-facing release:** shared “Where we left off” data with source/as-of
    session and split-party support; current-first campaign layout; mobile actions
@@ -50,6 +49,11 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Content reference integrity** — [PR #81](https://github.com/samrlee/icespire/pull/81)
+  merged: parsed collection references, duplicate session/journey assignments,
+  roster attendance names, and portrait/encounter images are validated in builds.
+  Drafts and hidden entries share the checks without changing gates. _(Sep 2026)_
 
 - **Navigation accessibility** — [PR #80](https://github.com/samrlee/icespire/pull/80)
   merged: skip-to-content, disclosure semantics, Escape focus return and
