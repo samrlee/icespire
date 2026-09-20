@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { url } from '../../utils/url';
+import { isSessionPublished } from '../../lib/session-publication';
+import { isMapLocationPublished } from '../../lib/map-publication';
 
 // The timeline threads every session — and every event pinned to a location —
 // into a single chronological spine. The map paints where the story went; this
@@ -11,7 +13,7 @@ import { url } from '../../utils/url';
 // Session-driven (not journey-driven like the map's list), so a session with no
 // recorded travel — a session zero, a downtime session — still takes its place
 // on the spine.
-const sessions = (await getCollection('sessions', ({ data }) => !data.draft)).sort(
+const sessions = (await getCollection('sessions', isSessionPublished)).sort(
   (a, b) => a.data.sessionNumber - b.data.sessionNumber
 );
 const journey = await getCollection('journey');
@@ -21,14 +23,14 @@ const journeyByNumber = new Map(journey.map((leg) => [leg.data.session, leg]));
 const locBySlug = new Map(locations.map((loc) => [loc.id, loc]));
 
 // A place link resolves to the region map's deep link, but only for places that
-// are actually on the map (status !== unknown). Undiscovered slugs render as
+// are actually on the map (visited). Other reported places render as
 // plain text so we never link to a marker the map won't draw.
 function placeName(slug: string) {
   return locBySlug.get(slug)?.data.name ?? slug;
 }
 function placeHref(slug: string) {
   const loc = locBySlug.get(slug);
-  return loc && loc.data.status !== 'unknown' ? url(`/map/#${slug}`) : undefined;
+  return loc && isMapLocationPublished(loc) ? url(`/map/#${slug}`) : undefined;
 }
 
 const eventKindLabels: Record<string, string> = {

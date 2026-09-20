@@ -56,6 +56,11 @@ journey file fails the build. **Always run `npm run check && npm run build`
 before committing** — CI (`.github/workflows/ci.yml`) runs both on every PR, plus
 `npm audit --omit=dev --audit-level=high`.
 
+Also run `npm run test:map`, `npm run test:ask`, and `npm run test:publication`.
+The latter builds synthetic fixtures in a disposable copy; never put test-only
+campaign entries into the working content or deployable output. All three suites
+run in the same required **Build site** job.
+
 Note `npm run preview` serves the built site but does **not** apply
 `dist/_headers`, so it will not show you CSP problems.
 
@@ -102,6 +107,12 @@ other than `visited` on the map, and `interiorSeen: false` on a place whose insi
 the party has not walked. Every undiscovered official site is already drawn and sitting in the
 repo waiting for its status to be flipped. Publishing one early spoils the
 game.
+
+Draft sessions generate no recap HTML or social image, even in development.
+Use the parsed-data helper in `src/lib/session-publication.ts` in every session
+consumer. The sitemap inherits generated routes; do not scan raw Markdown for
+draft flags. These gates govern the website, not source/history confidentiality
+in this public repository.
 
 **Search and the Ask bot inherit those gates rather than re-implementing them.**
 `src/lib/search-index.ts` filters each collection exactly as its page filters,

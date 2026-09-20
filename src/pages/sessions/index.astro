@@ -1,10 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
+import { isSessionPublished } from '../../lib/session-publication';
 import Base from '../../layouts/Base.astro';
 import SessionRecapCard from '../../components/SessionRecapCard.astro';
 import { url } from '../../utils/url';
 
-const sessions = (await getCollection('sessions', ({ data }) => !data.draft)).sort(
+const sessions = (await getCollection('sessions', isSessionPublished)).sort(
   (a, b) => b.data.sessionNumber - a.data.sessionNumber
 );
 ---

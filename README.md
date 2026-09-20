@@ -44,7 +44,8 @@ covers the voice, and [`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md) the
 process for adding a session.
 
 - **Sessions**: `session-8.md` etc. Frontmatter: `title`, `sessionNumber`, `date`,
-  `summary` (the card excerpt), `playersPresent`, optional `draft: true` to hide.
+  `summary` (the card excerpt), `playersPresent`, optional `draft: true` to omit
+  the recap and its social image from the website entirely.
 - **Characters**: `name`, `player`, `ancestry`, `class`, optional `level`,
   `status` (active/retired/dead/missing), `tagline` (one-line bio on the card),
   `traits` (short pill labels), optional `portrait`.
@@ -116,9 +117,13 @@ marker and the local map). The full status ladder:
 - `visited` — labelled on the region map; local map published when its interior gate allows
 
 The visited-only rule lives in `src/lib/map-publication.ts` and is shared by
-map data, location search documents, and prose links. Map events and replay
+map data, recap/timeline/lore map links, encounter destinations, location search
+documents, and prose links.
+The same module owns local-map and interior eligibility. Map events and replay
 also exclude unvisited locations and draft sessions. Unvisited waypoints do
-not create shortcut route arcs. The published recaps remain the record of
+not create shortcut route arcs or arrows in the journey list/replay text;
+an ellipsis separates visible stops when the route between them is withheld.
+The published recaps remain the record of
 what the party heard or saw; the map does not label those places early.
 
 Every published map here is a measured tracing of its official scan, redrawn in
@@ -320,12 +325,12 @@ The design is implemented from the **Icespire Peak Campaign Design System**
 
 ## Social preview cards
 
-Each session gets its own Open Graph image, so a recap link shared in Discord
+Each published session gets its own Open Graph image, so a recap link shared in Discord
 or elsewhere shows that session's title and date rather than one shared card.
 The images are generated at build time — no network needed — from
 `src/lib/og.ts` (satori lays the card out with the campaign's fonts; sharp
 rasterises it to PNG), served at `/og/sessions/<id>.png` via
-`src/pages/og/sessions/[id].png.ts`, and wired to a page through the `ogImage`
+`src/pages/og/sessions/[...id].png.ts`, and wired to a page through the `ogImage`
 prop on `Base.astro`. The card fonts are bundled under `src/assets/og-fonts/`
 (Cinzel + Crimson Pro, `.woff`); every other page falls back to the static
 `/images/social-card.jpg`. To give another page type its own card, add an
@@ -369,15 +374,17 @@ anyone else.
 `public/robots.txt` allows crawling and points at the sitemap; the sitemap
 itself is `@astrojs/sitemap`, configured in `astro.config.mjs`.
 
-The filter there is the part worth reading before touching it. Draft recaps
-build to a page but are deliberately unlinked — off `/sessions/`, out of the
-prev/next chain, out of the search index — and a sitemap that listed them
-would be the back door that hands search engines the one thing the site
-withholds. So the filter reads `draft:` straight from the session frontmatter
-(astro.config runs before content collections exist) and drops those URLs,
-along with the generated OG images and the search index, which are machinery
-rather than destinations. Undiscovered locations need no filter: their pages
-are never built in the first place.
+Draft recaps and their OG images have no generated route. All session consumers
+use `isSessionPublished` in `src/lib/session-publication.ts` on Astro's parsed
+collection data, including nested Markdown files and YAML comments. Drafts are
+also absent from navigation, previous/next links, timeline, search/Ask input,
+and map journeys/replay. The sitemap inherits the generated routes and only
+filters out machinery such as OG images and JSON endpoints; it does not scan
+Markdown a second time. Local maps likewise inherit their publication gates.
+
+The same rules apply in development: there is no draft-preview switch. Review
+draft Markdown in an editor before publishing. These are website publication
+rules; this public repository's source files and Git history remain public.
 
 To finish getting indexed, the site has to be verified in Google Search
 Console and `https://icespire.ghostbloods.net/sitemap-index.xml` submitted
@@ -409,6 +416,21 @@ npm install
 npm run dev      # local dev server at localhost:4321
 npm run build    # production build (also validates all content)
 ```
+
+Before committing, run `npm run check`, `npm run test:map`, `npm run test:ask`,
+`npm run build`, and `npm run test:publication`. All run in the required **Build
+site** CI job, alongside the shipped-dependency audit.
+
+`test:publication` uses Node's test runner and builds a fresh disposable copy in
+the system temporary directory, with synthetic content and maps. It checks draft
+HTML/OG/index/sitemap/navigation exclusions, nested files, YAML comments, readable
+reported places, map links, unseen interiors, original route adjacency and
+previous/next navigation. It links the installed `node_modules`; run `npm ci`
+first. It never inserts fixtures into the working campaign or real `dist/` and
+removes its copy even after an assertion/build failure. If the process is forcibly
+killed, an `icespire-publication-*` directory may remain in the system temporary
+directory; it is never deployable output. The checks inspect generated headers,
+not actual Cloudflare response headers.
 
 ## Response headers
 

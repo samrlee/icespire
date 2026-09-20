@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { submaps, hasSubmapPage } from '../../components/map/submaps/registry';
 import { url } from '../../utils/url';
+import { isMapInteriorPublished } from '../../lib/map-publication';
 
 // Local maps are published only for places the party has actually visited.
 // A location whose status is anything else keeps its sub-map in the repo,
@@ -22,7 +23,7 @@ const { Content } = await render(location);
 // A place the party has only stood outside of publishes as its approach:
 // the interior is withheld from the drawing and from the Key, which keeps
 // its original numbering so the two always agree.
-const interiorSeen = location.data.interiorSeen;
+const interiorSeen = isMapInteriorPublished(location);
 const keyItems = legend
   .map((item, i) => ({ item, n: i + 1 }))
   .filter(({ item }) => interiorSeen || !item.interior);

@@ -9,6 +9,46 @@ back around as a fresh idea.
 
 Priorities are a rough guide, not a contract — reorder freely.
 
+## Implementation in this PR — not yet merged or deployed
+
+- **Publication consistency** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  shared parsed-session gates omit draft HTML and OG routes; sitemap inherits
+  those routes. Recap/timeline/lore and encounter map links require a visit. Local maps share the
+  interior gate, and region journey/replay text preserves gaps between visible
+  stops. Isolated build-output regressions run in the required Build site job.
+  Campaign prose, dispositions, and discovery flags are unchanged.
+
+## Phased backlog from issue #75
+
+These are intended follow-ups, not blanket implementation or editorial approval.
+Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
+
+1. **Reliability:** repair search introduction/reset/retry behavior with explicit
+   loading/error states, then keyboard/dialog accessibility and mocked browser
+   regressions. Separate focused PRs should bound Ask request bodies and return
+   controlled errors for malformed origins. Recheck current dependency advisories
+   and compatible action releases in a maintenance PR; retain existing CI gates.
+2. **First player-facing release:** shared “Where we left off” data with source/as-of
+   session and split-party support; current-first campaign layout; mobile actions
+   before cover art; portrait variants; reading time and print styles. Reuse the
+   existing `MarkdownPage.astro` contents rail. Author current state once, without
+   inferring current resources from an earlier rest. Rendering and search must
+   change together if `src/pages/campaign.md` moves; keep `/campaign/` and anchors.
+3. **Connected references:** one shared scene representation with stable IDs
+   through title/prose changes and insertions, reused for jump navigation,
+   profile backlinks, timeline and validated passage citations. Add NPC filters
+   and expanded/type-filtered search. Detected mentions are not confirmed
+   appearances or proof of character knowledge. Retrieved documents do not prove
+   every answer claim; construct citation links from validated records.
+4. **Editorial tools and options:** post-session publication reports,
+   review freshness/provenance, and character-replacement-safe attendance.
+   Reading-position/Q&A retention needs explicit reset, cancellation and stale
+   corpus handling; never retain an answer under a different question. A historical
+   session selector cannot promise spoiler safety while previews show current
+   entity data. Character knowledge briefings require a separate reviewed pilot.
+
+The existing rejected quest board, treasury index and RSS feed remain rejected.
+
 ## Done
 
 - **NPC portraits** — Phantom has a standalone portrait based on Sage's image;
@@ -95,9 +135,9 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 - **Sitemap + `robots.txt`** — the site is crawlable and lists its own pages
   for Search Console (`@astrojs/sitemap` in `astro.config.mjs`,
-  `public/robots.txt`). The filter reuses the site's publish gates: a draft
-  recap builds a page but stays out of the sitemap, exactly as it stays out of
-  `/sessions/` and the search index. **One dashboard step left** — verify the
+  `public/robots.txt`). The original draft exclusion is superseded by the
+  route-level gates described above; draft recaps no longer build pages.
+  **One dashboard step left** — verify the
   domain in Google Search Console and submit the sitemap. _(Sep 2026)_
 
 - **The sample data is gone.** The design system's placeholder content was
@@ -129,14 +169,14 @@ Priorities are a rough guide, not a contract — reorder freely.
   `src/lib/search-index.ts`); ranking, snippets, and highlighting all happen in
   the browser (`src/scripts/search.ts`), so search adds no server, no runtime
   dependency, and nothing that can be rate-limited or run up a bill. It reuses
-  the site's publish gates — a `draft` recap and an `unknown` location are
-  unsearchable for exactly as long as they are unlinked. _(Sep 2026)_
+  the site's publish gates — draft recaps and unvisited location documents
+  remain unsearchable. _(Sep 2026)_
 
 - **Per-session social-preview cards** — each session gets its own Open Graph
   image so a shared recap link shows that session's title/date instead of one
-  static card. Generated at build time (`src/pages/og/sessions/[id].png.ts` →
+  static card. Generated at build time (`src/pages/og/sessions/[...id].png.ts` →
   `src/lib/og.ts`, satori + sharp, fonts bundled in `src/assets/og-fonts/`).
-  Wired via the `ogImage` prop on `src/pages/sessions/[id].astro`. _(Jul 2026)_
+  Wired via the `ogImage` prop on `src/pages/sessions/[...id].astro`. _(Jul 2026)_
 
 ## Ideas
 

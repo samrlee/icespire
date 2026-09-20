@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { getCollection } from 'astro:content';
+import { isSessionPublished } from './session-publication';
 import { isMapLocationPublished } from './map-publication';
 import { url } from '../utils/url';
 
@@ -76,8 +77,8 @@ const sub = (...parts: (string | undefined)[]) => {
 export async function buildSearchIndex(): Promise<SearchDoc[]> {
   const docs: SearchDoc[] = [];
 
-  // Recaps — drafts are hidden on /sessions/, so they stay unsearchable too.
-  for (const s of await getCollection('sessions', ({ data }) => !data.draft)) {
+  // Recaps — drafts have no public route or search/Ask document.
+  for (const s of await getCollection('sessions', isSessionPublished)) {
     docs.push({
       title: s.data.title,
       kind: KIND.session,

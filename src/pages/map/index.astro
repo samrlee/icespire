@@ -6,8 +6,9 @@ import { hasSubmapPage } from '../../components/map/submaps/registry';
 import { url } from '../../utils/url';
 
 import { publishedMapData } from '../../lib/map-publication';
+import { isSessionPublished } from '../../lib/session-publication';
 
-const sessions = await getCollection('sessions', ({ data }) => !data.draft);
+const sessions = await getCollection('sessions', isSessionPublished);
 const { locations, journey } = publishedMapData(
   (await getCollection('locations')).sort((a, b) => a.data.name.localeCompare(b.data.name)),
   (await getCollection('journey')).sort((a, b) => a.data.session - b.data.session),
@@ -199,8 +200,9 @@ const journeySteps = journey
   .map((leg) => ({
     session: leg.data.session,
     sessionId: sessionIdByNumber.get(leg.data.session),
-    stops: leg.data.route.map((slug) => ({
+    stops: leg.stops.map(({ slug, connected }) => ({
       slug,
+      connected,
       name: locBySlug.get(slug)?.data.name ?? slug,
     })),
     events: leg.data.events.map((ev) => ({
@@ -255,7 +257,9 @@ for (const leg of journey) {
     scrubSessions.push({
       session: leg.data.session,
       title: sessionTitle.get(leg.data.session),
-      route: leg.data.route.map((slug) => locBySlug.get(slug)?.data.name ?? slug).join(' → '),
+      route: leg.stops.map(({ slug, connected }, i) =>
+        (i === 0 ? '' : connected ? ' → ' : ' … ') + (locBySlug.get(slug)?.data.name ?? slug)
+      ).join(''),
       hereX: runningHere?.x,
       hereY: runningHere?.y,
     });
@@ -472,7 +476,7 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
               <p class="mj-route">
                 {step.stops.map((s, i) => (
                   <>
-                    {i > 0 && <span class="mj-arrow" aria-hidden="true">→</span>}
+                    {i > 0 && <span class="mj-arrow" aria-label={s.connected ? undefined : 'Route omitted'} aria-hidden={s.connected ? 'true' : undefined}>{s.connected ? '→' : '…'}</span>}
                     <button type="button" class="mj-place" data-goto={s.slug}>
                       {s.name}
                     </button>

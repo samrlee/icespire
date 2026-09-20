@@ -49,3 +49,6 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Production publication regression
+        run: npm run test:publication

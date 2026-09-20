@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { publishedMapData } from '../src/lib/map-publication.ts';
+import { publishedMapData, isLocalMapPublished, isMapInteriorPublished, isMapLinkPublished } from '../src/lib/map-publication.ts';
 
 const locations = ['visited', 'known', 'rumored', 'unknown'].map(status => ({
   id: status, data: { status },
@@ -21,7 +21,34 @@ test('hidden waypoints neither serialize nor create shortcut route arcs', () => 
   const result = publishedMapData(all, [leg(1, ['visited', 'known', 'second'])], new Set([1]));
   assert.deepEqual(result.journey[0].segments, []);
   assert.deepEqual(result.journey[0].data.route, ['visited', 'second']);
+  assert.deepEqual(result.journey[0].stops, [
+    { slug: 'visited', connected: false }, { slug: 'second', connected: false },
+  ]);
   assert.ok(!JSON.stringify(result).includes('known'));
+});
+
+test('registered local maps and interior geometry share discovery gates', () => {
+  for (const status of ['unknown', 'rumored', 'known', 'visited']) {
+    for (const interiorSeen of [false, true]) {
+      const location = { data: { status, interiorSeen } };
+      assert.equal(isMapInteriorPublished(location), status === 'visited' && interiorSeen);
+      assert.equal(isLocalMapPublished(location, undefined), false);
+      assert.equal(isLocalMapPublished(location, {}), status === 'visited');
+      assert.equal(isLocalMapPublished(location, { interiorOnly: true }), status === 'visited' && interiorSeen);
+    }
+  }
+});
+
+test('authored encounter destinations cannot bypass marker or interior gates', () => {
+  const all = [...locations, { id: 'shut', data: { status: 'visited', interiorSeen: false } }];
+  const maps = { visited: {}, shut: { interiorOnly: true } };
+  for (const href of ['/map/', '/map/#visited', '/map/visited/', '/npcs/phantom/']) {
+    assert.equal(isMapLinkPublished(href, all, maps), true, href);
+  }
+  for (const href of ['/map/#known', '/map/#rumored', '/map/#unknown', '/map/shut/', '/map/missing/', '/map/#%']) {
+    assert.equal(isMapLinkPublished(href, all, maps), false, href);
+  }
+  assert.equal(isMapLinkPublished('/map/#shut', all, maps), true);
 });
 
 test('normal out-and-back travel remains ordered', () => {
