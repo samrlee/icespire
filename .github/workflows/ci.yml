@@ -23,6 +23,7 @@ jobs:
           # Nothing here pushes, so don't leave the job's token sitting in
           # .git/config while the build runs a pull request's dependencies.
           persist-credentials: false
+          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v7.0.0
@@ -32,6 +33,14 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Publication review report
+        env:
+          REVIEW_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: npm run review:publication -- "$REVIEW_BASE"
+
+      - name: Publication review rules
+        run: npm run test:review
 
       # Dependabot opens its PRs weekly; this says the same thing on the day
       # an advisory lands, and only for what the site actually ships.

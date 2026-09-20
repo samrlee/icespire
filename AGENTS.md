@@ -56,12 +56,16 @@ journey file fails the build. **Always run `npm run check && npm run build`
 before committing** — CI (`.github/workflows/ci.yml`) runs both on every PR, plus
 `npm audit --omit=dev --audit-level=high`.
 
+Also run `npm run test:review` for publication review report semantics.
+Generate a local comparison with `npm run review:publication -- <base-commit>`;
+CI includes it in the Build site summary. This is not editorial approval.
+
 Also run `npm run test:integrity`, `npm run test:map`, `npm run test:ask`, and `npm run test:publication`.
 The latter builds synthetic fixtures in a disposable copy; never put test-only
 campaign entries into the working content or deployable output. After building,
 also run `npm run test:browser` (install Chromium once with
 `npx playwright install chromium webkit`). It tests desktop/phone search and mocked Ask
-against the built site, without paid model requests. All five suites run in the
+against the built site, without paid model requests. All six suites run in the
 same required **Build site** job. See README for browser setup and server limits.
 
 The shared layout validates references across all parsed collections, including

@@ -496,6 +496,28 @@ To do the writing in a chat that cannot read this repo, paste
 transcript. It carries the roster, the voice, and the questions the tool has to
 ask, and hands back a recap plus the list of pages the session changes.
 
+## Publication review report
+
+Run `npm run review:publication -- <base-commit>` to compare that revision with
+the working tree, including untracked campaign records. With no argument the
+base is `HEAD`. The ignored `.review/publication-review.md` lists changed
+campaign files, recap/region-marker/interior-gate transitions, snapshot freshness
+and collection-reference findings. Deleted files are included; renames appear
+as deletion plus addition. Parsed YAML and the site's publication/reference
+helpers handle commented flags and nested records.
+
+CI compares its checked-out PR merge result with the PR base SHA (or a main push
+with its previous SHA) and appends the report to the **Build site** job summary.
+It runs before the build so reference findings remain visible if validation
+later fails. Missing base revisions or malformed records fail explicitly; local
+failures remove an older report so it cannot be mistaken for a fresh result.
+
+The report stays outside `dist`. Repository filenames and findings may include
+unpublished records; public repository/CI access is not a confidential preview.
+The report does not certify canon, knowledge, map geometry, image existence,
+schema validity or generated links. Existing build checks and human review
+remain authoritative. `npm run test:review` covers report semantics in CI.
+
 ## Development
 
 ```sh
