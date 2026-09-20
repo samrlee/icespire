@@ -11,9 +11,9 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Replacement-safe recap casts** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  optional explicit character IDs, with build failures for ambiguous player
-  mappings and invalid IDs. Existing casts remain unchanged.
+- **Profile recap links** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  character and NPC profiles list published recaps that mention their names,
+  using the existing shared aliases and explicit mention-only labels.
 
 ## Phased backlog from issue #75
 
@@ -35,12 +35,13 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
    change together if `src/pages/campaign.md` moves; keep `/campaign/` and anchors.
 3. **Connected references:** one shared scene representation with stable IDs
    through title/prose changes and insertions, reused for jump navigation,
-   profile backlinks, timeline and validated passage citations. NPC filters are
+   scene-level profile backlinks, timeline and validated passage citations.
+   Whole-recap mention links are in this PR. NPC filters are
    merged, as is expanded/type-filtered search. Detected mentions are not confirmed
    appearances or proof of character knowledge. Retrieved documents do not prove
    every answer claim; construct citation links from validated records.
 4. **Editorial tools and options:** post-session publication reports are merged;
-   character-replacement-safe casting is in this PR. Review freshness/provenance remains.
+   character-replacement-safe casting is merged. Review freshness/provenance remains.
    Reading-position/Q&A retention needs explicit reset, cancellation and stale
    corpus handling; never retain an answer under a different question. A historical
    session selector cannot promise spoiler safety while previews show current
@@ -49,6 +50,10 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Replacement-safe recap casts** — [PR #90](https://github.com/samrlee/icespire/pull/90)
+  merged: explicit character IDs and rejection of ambiguous player mappings;
+  all existing recap casts preserved. _(Sep 2026)_
 
 - **Publication review report** — [PR #89](https://github.com/samrlee/icespire/pull/89)
   merged: changed campaign files, gate transitions, reference findings and

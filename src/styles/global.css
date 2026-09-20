@@ -1936,6 +1936,13 @@ body {
 
 /* ---------- NpcEntry ---------- */
 
+.recap-mentions { max-width: 75ch; margin-top: var(--space-7); padding-top: var(--space-5); border-top: 1px solid var(--border-subtle); }
+.recap-mentions h2 { font-family: var(--font-display); font-size: var(--text-xl); margin: 0 0 var(--space-4); }
+.recap-mentions ul { list-style: none; margin: 0; padding: 0; }
+.recap-mentions li { margin-bottom: var(--space-4); }
+.recap-mentions a { display: inline-block; padding: var(--space-2) 0; }
+.recap-mention-date { display: block; color: var(--text-muted); font-size: var(--text-sm); }
+
 .npc-list {
   margin: 0;
   padding: 0;

@@ -1,0 +1,18 @@
+---
+import { recapMentions } from '../lib/recap-mentions';
+interface Props { href: string }
+const recaps = await recapMentions(Astro.props.href);
+---
+{recaps.length > 0 && (
+  <section class="recap-mentions" aria-labelledby="recap-mentions-heading">
+    <h2 id="recap-mentions-heading">Mentioned in recaps</h2>
+    <ul>
+      {recaps.map(recap => (
+        <li>
+          <a href={recap.href}>Session {recap.number} — {recap.title}</a>
+          <span class="recap-mention-date">{recap.date}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}

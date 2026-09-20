@@ -58,6 +58,7 @@ ${session.flag ? `draft: ${session.flag}\n` : ''}---
 ${body}
 
 The report mentioned ${known.name} and ${rumored.name}.
+${session.number === 1006 ? 'Only the queen was mentioned.' : 'Dax heard about Thornton. Dax discussed Thornton again.'}
 `);
     const route = session.number === 1002
       ? [a.id, known.id, b.id, rumored.id, unknown.id]
@@ -176,6 +177,19 @@ test('production publication across assembled routes, indexes, maps and navigati
       }
     });
 
+    await t.test('profile mentions include published body aliases once and exclude draft or unnamed recaps', async () => {
+      for (const profile of ['characters/dax', 'npcs/holia-thornton']) {
+        const page = await html(`${profile}/index.html`);
+        const links = page.match(/<section class="recap-mentions"[\s\S]*?<\/section>/)?.[0] ?? '';
+        assert.ok(links.includes('Mentioned in recaps'));
+        for (const session of published.slice(0, 2)) {
+          assert.equal(links.split(`href="/sessions/${session.id}/"`).length - 1, 1);
+        }
+        assert.ok(links.indexOf(`/sessions/${published[1].id}/`) < links.indexOf(`/sessions/${published[0].id}/`));
+        assert.ok(!links.includes(`/sessions/${published[2].id}/`));
+        for (const session of drafts) assert.ok(!links.includes(`/sessions/${session.id}/`));
+      }
+    });
     await t.test('body draft text and nested published recaps build and preserve previous/next ordering', async () => {
       assert.ok(recap.includes('draft: true'));
       for (const [i, session] of published.entries()) {
