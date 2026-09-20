@@ -346,6 +346,29 @@ groups:
         }
       } finally { await put(site, statePath, original); }
     });
+    await t.test('replacement characters cannot retroactively enter a recap cast', async () => {
+      const recapPath = `src/content/sessions/${published[0].id}.md`;
+      const original = await readFile(path.join(site, recapPath), 'utf8');
+      try {
+        for (const id of ['fixture-original', 'fixture-replacement']) {
+          await put(site, `src/content/characters/${id}.md`, `---\nname: ${id}\nplayer: FixturePlayer\nancestry: Human\nclass: Fighter\n---\nFixture.\n`);
+        }
+        await put(site, recapPath, original.replace('---', '---\nplayersPresent: [FixturePlayer]'));
+        await assert.rejects(build(site), error => error.message.includes('playersPresent is ambiguous'));
+        for (const chosen of ['fixture-original', 'fixture-replacement']) {
+          await put(site, recapPath, original.replace('---', `---\nplayersPresent: [FixturePlayer]\ncharactersPresent: [${chosen}]`));
+          await build(site);
+          const page = await html(`sessions/${published[0].id}/index.html`);
+          const cast = page.match(/<section class="dramatis"[\s\S]*?<\/section>/)?.[0] ?? '';
+          assert.ok(cast.includes(`/characters/${chosen}/`));
+          const other = chosen === 'fixture-original' ? 'fixture-replacement' : 'fixture-original';
+          assert.ok(!cast.includes(`/characters/${other}/`));
+        }
+      } finally {
+        await put(site, recapPath, original);
+        for (const id of ['fixture-original', 'fixture-replacement']) await unlink(path.join(site, `src/content/characters/${id}.md`));
+      }
+    });
     await t.test('the assembled build rejects missing pages, images and fragments', async () => {
       await put(site, 'src/pages/link-fixture.astro', `<a href="/missing-fixture/">Missing</a>
 <a href="/campaign/#missing-fixture-anchor">Missing anchor</a>

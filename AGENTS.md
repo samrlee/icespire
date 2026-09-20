@@ -72,6 +72,9 @@ The shared layout validates references across all parsed collections, including
 drafts/hidden locations, and checks portrait/encounter image files during builds.
 Fix the source field named by a validation error; never change discovery flags
 to bypass it. Session attendance names must match a character roster player.
+Sessions can specify `charactersPresent` IDs independently of player attendance.
+When an attending player has multiple roster characters, explicit IDs are
+required, including in historical recaps; current status never selects a replacement.
 The final build also checks generated HTML links, fragments, and asset URLs.
 Map fragments must identify rendered markers. Fix source links rather than
 adding checker exceptions or publishing hidden destinations; see README for scope.

@@ -30,6 +30,9 @@ const sessions = defineCollection({
     summary: z.string().optional(),
     // Which players were at the table (handy with a 7-player roster).
     playersPresent: z.array(z.string()).default([]),
+    // Optional explicit cast, required when a player's roster has replacements.
+    // Omitted uses unambiguous player attendance; [] deliberately selects nobody.
+    charactersPresent: z.array(filled()).optional(),
     // Creatures and characters met this session, rendered as an art gallery
     // at the end of the recap (and as thumbnails on the recap card).
     // Official art lives under /images/creatures/.

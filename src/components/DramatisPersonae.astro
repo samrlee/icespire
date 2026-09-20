@@ -1,13 +1,14 @@
 ---
 // The cast of one session: who was at the table, and which NPCs and factions
-// the recap names. Party membership comes from `playersPresent` (attendance is
-// recorded, not inferred); the rest is matched against the recap's Markdown
+// the recap names. Party membership uses explicit character IDs when supplied,
+// otherwise unambiguous player attendance; the rest matches recap Markdown
 // with the same alias table that auto-links entity mentions in prose, so a
 // name written into a recap enrolls its owner here with no extra tagging.
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { buildEntities, matchEntities, type Entity } from '../lib/entities';
 import { url } from '../utils/url';
 import Portrait from './Portrait.astro';
+import { resolveSessionParty } from '../lib/session-party';
 
 interface Props {
   session: CollectionEntry<'sessions'>;
@@ -18,18 +19,10 @@ const { session } = Astro.props;
 const entities = await buildEntities();
 const mentioned = matchEntities(session.body ?? '', entities);
 
-// Attendance beats prose: a player at the table brings their character, even
-// in a session where the recap never writes the name out. This also handles
-// arrivals for free — Samuel first appears in Session 2's `playersPresent`,
-// so Dax stays out of Sessions 0 and 1 without anyone recording a join date.
-//
-// It assumes one character per player, which holds today (seven of each).
-// If someone's character dies and they roll a replacement, both would show up
-// in every session that player attended, and telling them apart needs a
-// "played from session N" field that no schema has yet.
-const present = new Set(session.data.playersPresent);
-const party = (await getCollection('characters'))
-  .filter((c) => present.has(c.data.player))
+// Never choose a replacement from current status or infer the cast from prose.
+const resolved = resolveSessionParty(session, await getCollection('characters'));
+if (resolved.errors.length) throw new Error(`Session ${session.id}: ${resolved.errors.join('; ')}`);
+const party = resolved.party
   .map((c) => ({
     name: c.data.name,
     sub: `played by ${c.data.player}`,

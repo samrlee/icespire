@@ -1,4 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
+import { resolveSessionParty } from './session-party.ts';
 
 type Collections = 'sessions' | 'characters' | 'npcs' | 'factions' | 'lore' | 'locations' | 'journey';
 export type CampaignCollections = { [K in Collections]: CollectionEntry<K>[] };
@@ -25,6 +26,7 @@ export function contentReferenceErrors(content: CampaignCollections): string[] {
     const source = `sessions/${entry.id}`;
     duplicate(sessions, entry.data.sessionNumber, source, 'sessionNumber');
     for (const player of entry.data.playersPresent) reference(players, player, source, 'playersPresent');
+    errors.push(...resolveSessionParty(entry, content.characters).errors.map(error => `${source}: ${error}`));
   }
   for (const entry of content.journey) {
     const source = `journey/${entry.id}`;
