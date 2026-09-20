@@ -6,6 +6,8 @@ summary: 'Characters finalized, house rules set: no Neverwinter, no ammo or weig
 playersPresent: ['Nolan', 'Nate', 'Jay', 'Christa', 'Joseph', 'Brittany']
 ---
 
+<span id="scene-s9767c43460" data-scene-label="Part 1" class="recap-scene-anchor" tabindex="-1"></span>
+
 The table gathered to get the campaign off the ground.
 
 - Answered group-relevant questions regarding gameplay, scheduling, etc.

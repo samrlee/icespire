@@ -14,6 +14,8 @@ encounters:
     href: '/map/#orc-encampment'
 ---
 
+<span id="scene-s3b523e72cc" data-scene-label="Part 1" class="recap-scene-anchor" tabindex="-1"></span>
+
 The session picked up in the immediate aftermath of the manticore fight at the
 Umbrage Hill windmill, with most of the party badly wounded. Rut spent his
 last spell slot on Goodberry and Barnaby used Lay on Hands to get everyone

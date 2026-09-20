@@ -5,6 +5,7 @@ import { isSessionPublished } from './session-publication';
 import { isMapLocationPublished } from './map-publication';
 import { url } from '../utils/url';
 import { getCurrentState } from './current-state';
+import { recapScenes } from './recap-scenes';
 
 // Build-time search index. Everything the site publishes becomes one document
 // here; the browser fetches the whole thing once and searches it locally, so
@@ -90,6 +91,10 @@ export async function buildSearchIndex(): Promise<SearchDoc[]> {
       href: url(`/sessions/${s.id}/`),
       text: [s.data.summary, toPlainText(s.body ?? '')].filter(Boolean).join(' '),
     });
+    for (const scene of recapScenes(s.body ?? '')) {
+      docs.push({ title: `${s.data.title} — ${scene.label}`, kind: 'Recap part',
+        sub: `Session ${s.data.sessionNumber}`, href: url(`/sessions/${s.id}/#${scene.id}`), text: toPlainText(scene.body) });
+    }
   }
 
   for (const c of await getCollection('characters')) {

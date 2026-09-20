@@ -152,7 +152,7 @@ test('Ask requires a click, shows errors, and resets for a different question', 
   await expect(page.getByRole('option')).toHaveCount(2);
   expect(calls).toBe(0);
   await page.locator('.ask-trigger').click();
-  await expect(page.locator('#search-ask')).toHaveText('Test chronicler unavailable.');
+  await expect(page.locator('#search-ask .ask-status')).toHaveText('Test chronicler unavailable.');
   expect(calls).toBe(1);
   await input(page).fill('report');
   await expect(page.locator('.ask-trigger')).toContainText('report');
@@ -174,7 +174,7 @@ for (const cancel of ['query', 'close']) {
     await input(page).fill('dragon');
     await page.locator('.ask-trigger').click();
     await expect.poll(() => started).toBe(true);
-    await expect(page.locator('#search-ask')).toHaveText('Consulting the chronicle…');
+    await expect(page.locator('#search-ask .ask-status')).toHaveText('Consulting the chronicle…');
     if (cancel === 'close') {
       await input(page).press('Escape');
       await open(page);

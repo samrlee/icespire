@@ -696,3 +696,45 @@ Closing the tab normally ends the storage lifetime (browser session restoration 
 restore it). A changed recap body or frontmatter invalidates its prior position.
 Blocked storage reports the limitation while leaving the recap readable. Controls
 are hidden without JavaScript and when printing. This is separate from Q&A retention.
+
+## Stable recap parts and source links
+
+Recaps can contain explicit, stable scene anchors at existing narrative breaks:
+
+```html
+<span id="scene-fixed-name" data-scene-label="Part 1" class="recap-scene-anchor" tabindex="-1"></span>
+```
+
+Put the first anchor before the prose. Keep IDs when editing prose or renaming a
+label; new insertions get new IDs. IDs start with `scene-`, then a lowercase letter
+and lowercase letters/digits/hyphens. Labels are plain text without HTML, quotes
+or ampersands. Do not reuse an ID within a recap. Existing thematic breaks remain.
+The initial migration uses neutral part labels, not newly asserted scene summaries.
+`recapScenes` is the shared representation for jump links, profile mention links,
+timeline part lists and search documents. Draft parts inherit the recap gate.
+The build checks IDs and all rendered navigation targets. Profiles say “mentioned
+in”; neither matching a part nor attending a session proves character knowledge.
+
+Search keeps whole recap results and adds Recap part results. Ask uses the part
+records in place of duplicated whole recaps when parts exist. Source links come
+from those supplied records, never model-authored URLs. Sources are labelled
+“Sources consulted,” not a claim that every answer sentence has been verified.
+
+## Saved Q&A and request limits
+
+Completed answers can be explicitly saved in the current tab when their server
+corpus version matches the search index. Search still reopens with an empty query.
+Restore saved answer restores its matching question and answer together; Forget
+saved answer removes it. One answer is stored per tab. The index is revalidated
+when search opens; changed content, invalid records or unmatched source records
+invalidate the saved answer. Storage failures do not prevent ordinary search/Ask.
+Nothing automatically repeats a model request. Cancel question, editing the query,
+and closing search discard the in-flight response; retries require a click.
+
+The index request has a five-second timeout, the model wait twenty seconds and the
+browser request twenty-five seconds. A timeout/cancel stops waiting and prevents
+stale UI updates; the Workers AI binding does not expose cancellation here, so it
+must not be described as cancelling provider computation or guaranteeing no charge.
+Existing body limits, relevance thresholds, five-entry retrieval and output/token
+budgets remain. No paid service or account-level rate-limit setting was changed.
+Cloudflare dashboard quotas/rate controls remain an account-owner review item.

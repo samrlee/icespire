@@ -7,7 +7,7 @@ for (const profile of ['/characters/dax/', '/npcs/holia-thornton/']) {
     await page.goto(profile);
     const section = page.getByRole('region', { name: 'Mentioned in recaps' });
     await expect(section).toBeVisible();
-    const links = section.getByRole('link');
+    const links = section.locator('ul > li > a');
     await expect(links.first()).toHaveAttribute('href', '/sessions/session-9/');
     await expect(section).toContainText('Sep 18, 2026');
     const texts = await links.allTextContents();

@@ -338,3 +338,13 @@ Do not stamp unrelated profiles as reviewed. The publication report lists missin
 or older checkpoints to guide the next review; they are not build failures.
 Missing/draft checkpoint references are build failures. This field does not
 establish what a character knows or provide claim-level provenance.
+
+### Preserve recap part IDs
+
+For new recaps, use the stable scene-anchor format documented in README.md at
+existing narrative boundaries, starting before the prose. Keep IDs unchanged when
+correcting prose, changing labels or inserting another part. Use new non-ordinal
+IDs for inserted parts. Neutral part labels are acceptable until descriptive
+labels receive editorial review. All jump navigation, profile mentions, timeline
+part links and search/Ask passage URLs are derived from these same markers;
+do not maintain separate excerpt or link lists. Run all required checks.

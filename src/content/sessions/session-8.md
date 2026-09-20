@@ -6,6 +6,8 @@ summary: 'The dragon news gets out, Harbin puts a hundred gold on learning what 
 playersPresent: ['Nolan', 'Nate', 'Jay', 'Christa', 'Joseph', 'Brittany', 'Samuel']
 ---
 
+<span id="scene-s1677dc719e" data-scene-label="Part 1" class="recap-scene-anchor" tabindex="-1"></span>
+
 The man who brought the news about Umbrage Hill did not stay to answer
 questions. He shouted it into the common room and went back out the door, and
 the inn came apart behind him.
@@ -43,6 +45,9 @@ rest of the town did.
 
 ---
 
+<span id="scene-seeb00737c2" data-scene-label="Part 2" class="recap-scene-anchor" tabindex="-1"></span>
+
+
 Halfway there, three of them saw the figure.
 
 It was dark out and the man was dressed for it, moving up the lane away from
@@ -56,6 +61,9 @@ The party split on the spot. Dax, Hamish and Barnaby peeled off after the man.
 The rest went on to Harbin's door.
 
 ---
+
+<span id="scene-s19f716e801" data-scene-label="Part 3" class="recap-scene-anchor" tabindex="-1"></span>
+
 
 He darted in and out of the alleys the whole way, keeping off the open lane,
 and ducked around the back of the Miner's Exchange. A door opened and closed.
@@ -77,6 +85,9 @@ the day.
 Dax kept the yard. There was nothing in it but owls and rats.
 
 ---
+
+<span id="scene-s655721627f" data-scene-label="Part 4" class="recap-scene-anchor" tabindex="-1"></span>
+
 
 Thom banged on the door of Harbin Wester's house and told him to get off the
 toilet.
@@ -153,6 +164,9 @@ been paid.
 
 ---
 
+<span id="scene-sfd3c8ac0f3" data-scene-label="Part 5" class="recap-scene-anchor" tabindex="-1"></span>
+
+
 Barnaby put Hamish up a second time.
 
 The two inside were still talking, and the candle had come round far enough to
@@ -191,6 +205,9 @@ Hamish and Barnaby he never saw at all.
 
 ---
 
+<span id="scene-s2afd62fe4b" data-scene-label="Part 6" class="recap-scene-anchor" tabindex="-1"></span>
+
+
 Thom had a cantrip nobody had seen him use: a whisper he could put directly into
 somebody's ear from a hundred and twenty feet away, through walls, around
 corners, with no limit on the words and nothing to spend. It did not need line
@@ -224,6 +241,9 @@ by walking into Hamish hard enough to put him flat.
 It was the first time she had called him anything.
 
 ---
+
+<span id="scene-s2aa70599ef" data-scene-label="Part 7" class="recap-scene-anchor" tabindex="-1"></span>
+
 
 Inside there was one candle and four people, and only one of them was sitting
 down.
@@ -346,6 +366,9 @@ go now.*
 
 ---
 
+<span id="scene-s86eb54229a" data-scene-label="Part 8" class="recap-scene-anchor" tabindex="-1"></span>
+
+
 Rut had found the gap under the front door and gone at it head first.
 
 He got his head through. He got his shoulders through. The rest of the weasel
@@ -369,6 +392,9 @@ about the eating.
 
 ---
 
+<span id="scene-s52e62f9e6b" data-scene-label="Part 9" class="recap-scene-anchor" tabindex="-1"></span>
+
+
 Thom found a bush a good distance from the building, far enough that walking
 over to it later would look like nothing, and put his backpack in it. The
 emerald went in the bush with the backpack.
@@ -389,6 +415,9 @@ They waited by the door for it to open.
 
 ---
 
+<span id="scene-s8d4edca676" data-scene-label="Part 10" class="recap-scene-anchor" tabindex="-1"></span>
+
+
 Barnaby and Hamish went back to the window. If Dax came out of that building at
 a run, they wanted to be looking at it when he did.
 
@@ -407,6 +436,9 @@ They came down and went, and did not stop until there was a good distance
 between them and the building.
 
 ---
+
+<span id="scene-sfe24fe67e9" data-scene-label="Part 11" class="recap-scene-anchor" tabindex="-1"></span>
+
 
 It opened for Dax.
 
@@ -439,6 +471,9 @@ It missed. It went into the dirt beside him. The weasel held still and stayed a
 weasel, and the party walked away up the lane.
 
 ---
+
+<span id="scene-s689dc0dbb5" data-scene-label="Part 12" class="recap-scene-anchor" tabindex="-1"></span>
+
 
 Five of them, and no idea where the other two had gone.
 
@@ -478,6 +513,9 @@ daylight. Nobody could say what hours it kept, and it was not a night for
 finding out.
 
 ---
+
+<span id="scene-sb893d2e8ff" data-scene-label="Part 13" class="recap-scene-anchor" tabindex="-1"></span>
+
 
 Inside, Thom and Bean stood in the middle of the room and let their eyes adjust.
 
@@ -523,6 +561,9 @@ had not watched four people walk down through it they would not have known
 where to stand.
 
 ---
+
+<span id="scene-s4fb47213c9" data-scene-label="Part 14" class="recap-scene-anchor" tabindex="-1"></span>
+
 
 They searched the office anyway.
 

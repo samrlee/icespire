@@ -24,6 +24,7 @@ import { buildAskContext } from '../../src/lib/ask-context.ts';
 import { contentTokens, index, pickAny } from '../../src/lib/search-rank.ts';
 import { acceptsAskOrigin, AskBodyTooLarge, readAskBody } from '../../src/lib/ask-request.ts';
 import type { Indexed, SearchDoc } from '../../src/lib/search-rank';
+import { corpusVersion, EVIDENCE_RULES, safeSourceHref, withDeadline } from '../../src/lib/ask-safety.ts';
 
 const MODEL = '@cf/meta/llama-3.3-70b-instruct-fp8-fast';
 
@@ -56,6 +57,7 @@ const NOT_RECORDED = 'The chronicle does not record that.';
 // its own next sentence contradicts, which reads as evasion on a page whose
 // whole job is to be the record.
 const SYSTEM_RULES = [
+  EVIDENCE_RULES,
   'You are the chronicler of a Dungeons & Dragons campaign website.',
   'Answer using ONLY the chronicle entries given below.',
   'Never invent names, events, places, or details, and never use knowledge of the',
@@ -103,14 +105,21 @@ const json = (body: unknown, status = 200) =>
 // Kept warm across requests on the same isolate; the index only changes on a
 // deploy, which starts a new one.
 let cachedIndex: Indexed[] | null = null;
+let cachedVersion = '';
 
 async function loadIndex(request: Request): Promise<Indexed[]> {
   if (cachedIndex) return cachedIndex;
   const res = await fetch(new URL('/search-index.json', request.url).toString(), {
     headers: { Accept: 'application/json' },
+    signal: AbortSignal.timeout(5_000),
   });
   if (!res.ok) throw new Error(`index fetch failed: ${res.status}`);
-  cachedIndex = index((await res.json()) as SearchDoc[]);
+  const raw = (await res.json()) as SearchDoc[];
+  if (!Array.isArray(raw) || raw.some(doc => !safeSourceHref(doc.href) || typeof doc.text !== 'string' || typeof doc.title !== 'string' || typeof doc.kind !== 'string')) throw new Error('Invalid source index');
+  cachedVersion = await corpusVersion(raw);
+  // Prefer the shared, linked recap parts over duplicate whole-recap context.
+  const partParents = new Set(raw.filter(doc => doc.kind === 'Recap part').map(doc => doc.href.split('#')[0]));
+  cachedIndex = index(raw.filter(doc => doc.kind !== 'Recap' || !partParents.has(doc.href)));
   return cachedIndex;
 }
 
@@ -161,23 +170,23 @@ export const onRequestPost = async (context: FunctionContext): Promise<Response>
   // Nothing relevant: say so rather than asking a model to confirm it. Honest,
   // instant, and it spends no Neurons on questions the chronicle can't answer.
   if (hits.length === 0) {
-    return json({ answer: NOT_RECORDED, sources: [], consulted: 0 });
+    return json({ answer: NOT_RECORDED, sources: [], consulted: 0, corpusVersion: cachedVersion });
   }
 
   const { text, used, tokens } = buildAskContext(hits, terms, CONTEXT_BUDGET);
   if (used.length === 0) {
-    return json({ answer: NOT_RECORDED, sources: [], consulted: 0 });
+    return json({ answer: NOT_RECORDED, sources: [], consulted: 0, corpusVersion: cachedVersion });
   }
 
   let answer: string;
   try {
-    const result = await env.AI.run(MODEL, {
+    const result = await withDeadline(env.AI.run(MODEL, {
       messages: [
         { role: 'system', content: `${SYSTEM_RULES}\n\nCHRONICLE ENTRIES:\n\n${text}` },
         { role: 'user', content: question },
       ],
       max_tokens: MAX_OUTPUT,
-    });
+    }), 20_000);
     answer = (result.response ?? '').trim();
   } catch {
     // Out of Neurons for the day, or the model is briefly unavailable. The
@@ -194,6 +203,7 @@ export const onRequestPost = async (context: FunctionContext): Promise<Response>
 
   return json({
     answer,
+    corpusVersion: cachedVersion,
     // Only the entries the model actually read, so a citation can't point at
     // something it never saw.
     sources: used.map((d) => ({ title: d.title, kind: d.kind, href: d.href })),

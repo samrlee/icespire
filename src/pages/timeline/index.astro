@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import { url } from '../../utils/url';
 import { isSessionPublished } from '../../lib/session-publication';
 import { isMapLocationPublished } from '../../lib/map-publication';
+import { recapScenes } from '../../lib/recap-scenes';
 
 // The timeline threads every session — and every event pinned to a location —
 // into a single chronological spine. The map paints where the story went; this
@@ -54,6 +55,7 @@ const nodes = sessions.map((session) => {
     }),
     summary: session.data.summary,
     recapHref: url(`/sessions/${session.id}/`),
+    scenes: recapScenes(session.body ?? '').map(scene => ({ label: scene.label, href: url(`/sessions/${session.id}/#${scene.id}`) })),
     encounters: session.data.encounters.map((e) => ({ name: e.name, image: url(e.image) })),
     stops: (leg?.data.route ?? []).map((slug) => ({
       slug,
@@ -103,6 +105,7 @@ const latestNumber = nodes.length ? nodes[nodes.length - 1].number : 0;
               </a>
             </h2>
             {node.summary && <p class="tl-summary">{node.summary}</p>}
+            {node.scenes.length > 1 && <details><summary>Recap parts</summary><nav class="recap-scenes" aria-label={`Parts of Session ${node.number}`}>{node.scenes.map(scene => <a href={scene.href}>{scene.label}</a>)}</nav></details>}
 
             {node.stops.length > 0 && (
               <p class="tl-route" aria-label="Route this session">

@@ -69,6 +69,8 @@ test('valid origin or absent origin preserves bounded questions and model behavi
   const AI = { async run(_model, input) {
     calls++;
     assert.equal(input.messages.at(-1).content, 'dragon');
+    assert.match(input.messages[0].content, /agreement or price is not a completed action or payment/);
+    assert.match(input.messages[0].content, /Do not infer a character knew/);
     return { response: 'A recorded dragon.' };
   } };
   const small = JSON.stringify({ question: ' dragon ' });

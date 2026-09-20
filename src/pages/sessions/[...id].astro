@@ -9,6 +9,7 @@ import { isMapLocationPublished, isMapLinkPublished } from '../../lib/map-public
 import { submaps } from '../../components/map/submaps/registry';
 import { readingMinutes } from '../../lib/reading-time';
 import ReadingPosition from '../../components/ReadingPosition.astro';
+import { recapScenes } from '../../lib/recap-scenes';
 
 export async function getStaticPaths() {
   const published = (await getCollection('sessions', isSessionPublished)).sort(
@@ -27,6 +28,7 @@ export async function getStaticPaths() {
 }
 
 const { session, prev, next } = Astro.props;
+const scenes = recapScenes(session.body ?? '');
 const { Content } = await render(session);
 const minutes = readingMinutes(session.rendered?.html ?? '');
 const dateStr = session.data.date.toLocaleDateString('en-US', {
@@ -68,6 +70,7 @@ const hasAside = hasEncounters || hasJourney;
     )
   }
   <DramatisPersonae session={session} />
+  {scenes.length > 1 && <nav class="recap-scenes" aria-label="Jump within this recap"><span>Jump to:</span> {scenes.map(scene => <a href={`#${scene.id}`}>{scene.label}</a>)}</nav>}
   {minutes && <ReadingPosition content={JSON.stringify([session.data, session.body])} />}
   <div class={`session-layout${hasAside ? '' : ' no-aside'}`}>
     <div class="prose" tabindex="-1">
