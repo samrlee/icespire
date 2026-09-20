@@ -11,10 +11,10 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Shared continuation point** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  one sourced snapshot for homepage, campaign and search, with split-party
-  groups, freshness notices and validated references. Open threads precede
-  campaign history; the current snapshot reuses the existing published account.
+- **NPC directory filters** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  responsive portrait thumbnails, combined disposition/faction filters, result
+  count and reset. The alphabetical list works without JavaScript; faction
+  membership is drawn only from existing explicit references.
 
 ## Phased backlog from issue #75
 
@@ -30,13 +30,13 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 2. **First player-facing release:** shared “Where we left off” data with source/as-of
    session and split-party support; current-first campaign layout; mobile actions
    before cover art and portrait variants are merged; reading time and print
-   styles are merged; shared current state and current-first layout are in this PR. Reuse the
+   styles, shared current state and current-first layout are merged. Reuse the
    existing `MarkdownPage.astro` contents rail. Author current state once, without
    inferring current resources from an earlier rest. Rendering and search must
    change together if `src/pages/campaign.md` moves; keep `/campaign/` and anchors.
 3. **Connected references:** one shared scene representation with stable IDs
    through title/prose changes and insertions, reused for jump navigation,
-   profile backlinks, timeline and validated passage citations. Add NPC filters
+   profile backlinks, timeline and validated passage citations. NPC filters are in this PR; add
    and expanded/type-filtered search. Detected mentions are not confirmed
    appearances or proof of character knowledge. Retrieved documents do not prove
    every answer claim; construct citation links from validated records.
@@ -50,6 +50,11 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Shared continuation point** — [PR #86](https://github.com/samrlee/icespire/pull/86)
+  merged: sourced snapshot shared by homepage, campaign and search, with
+  split-party support and freshness notices; open threads precede history.
+  _(Sep 2026)_
 
 - **Reading time and print styles** — [PR #85](https://github.com/samrlee/icespire/pull/85)
   merged: reading estimates for longer recaps and readable, single-column

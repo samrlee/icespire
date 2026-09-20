@@ -1,5 +1,6 @@
 ---
 import StatusPill from './StatusPill.astro';
+import Portrait from './Portrait.astro';
 
 interface Props {
   name: string;
@@ -8,13 +9,16 @@ interface Props {
   status?: 'ally' | 'hostile' | 'unresolved' | 'at-large' | 'neutral' | 'deceased';
   note?: string;
   href?: string;
+  faction?: string;
+  portrait?: string;
 }
 
-const { name, role, affiliation, status = 'neutral', note, href } = Astro.props;
+const { name, role, affiliation, status = 'neutral', note, href, faction, portrait } = Astro.props;
 const roleLine = [role, affiliation].filter(Boolean).join(' · ');
 ---
 
-<li class="npc-entry">
+<li class="npc-entry" data-status={status} data-faction={faction ?? ''}>
+  {portrait && <Portrait src={portrait} alt="" class="npc-directory-portrait" width={64} height={80} sizes="64px" maximum={128} />}
   <div class="npc-entry-body">
     <div class="npc-entry-head">
       <div class="npc-name">
