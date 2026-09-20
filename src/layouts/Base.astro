@@ -97,6 +97,7 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
     </script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content" tabindex="0">Skip to content</a>
     <header class="site-header">
       <a class="site-title" href={url('/')}>Dragon of <span class="gold">Icespire Peak</span></a>
       <nav class="site-nav" aria-label="Primary">
@@ -104,23 +105,23 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
           {homeItem.label}
         </a>
         {
-          navGroups.map((group) => (
+          navGroups.map((group, i) => (
             <div class="nav-group" data-nav-group>
               <button
                 type="button"
                 class="nav-trigger"
-                aria-haspopup="true"
+                aria-controls={`nav-links-${i}`}
                 aria-expanded="false"
-                aria-current={groupActive(group) ? 'page' : undefined}
+                data-current-group={groupActive(group) ? '' : undefined}
               >
                 {group.label}
                 <span class="nav-caret" aria-hidden="true">▾</span>
               </button>
-              <div class="nav-menu" role="menu">
+              <div class="nav-menu" id={`nav-links-${i}`}>
                 {group.items.map((item) => (
                   <a
                     href={url(item.href)}
-                    role="menuitem"
+                    tabindex="0"
                     aria-current={isActive(item) ? 'page' : undefined}
                   >
                     {item.label}
@@ -139,7 +140,7 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
         <button class="theme-toggle" id="theme-toggle" type="button">Snowfield</button>
       </div>
     </header>
-    <main class="page">
+    <main class="page" id="main-content" tabindex="-1">
       <slot />
     </main>
     <footer class="site-footer">
@@ -192,11 +193,17 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
             trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
             closeAll(group);
           });
+          group.addEventListener('focusout', (e) => {
+            if (!group.contains(e.relatedTarget)) closeAll(null);
+          });
+          group.addEventListener('keydown', (e) => {
+            if (e.key !== 'Escape' || !group.classList.contains('open')) return;
+            e.preventDefault();
+            closeAll(null);
+            trigger.focus();
+          });
         }
         document.addEventListener('click', () => closeAll(null));
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') closeAll(null);
-        });
       })();
     </script>
   </body>
