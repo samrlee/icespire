@@ -5,6 +5,8 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
+import sharp from 'sharp';
+import { parse } from 'parse5';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const prefix = 'publication-fixture';
@@ -258,6 +260,45 @@ test('production publication across assembled routes, indexes, maps and navigati
       const headers = await html('_headers');
       assert.match(headers, /script-src 'self' 'sha256-/);
       assert.doesNotMatch(headers, /script-src[^;]*'unsafe-inline'/);
+    });
+    await t.test('portrait candidates exist at advertised widths and retain original art', async () => {
+      assert.ok(!sitemap.includes('/portraits/'));
+      const sources = new Map();
+      const walk = node => {
+        const attrs = Object.fromEntries((node.attrs ?? []).map(attr => [attr.name, attr.value]));
+        if (node.tagName === 'img' && attrs.src?.startsWith('/portraits/')) {
+          assert.ok(attrs.width && attrs.height && attrs.sizes, 'reserve dimensions and declare display size');
+          for (const candidate of attrs.srcset.split(', ')) {
+            const [href, descriptor] = candidate.split(' ');
+            sources.set(href, Number(descriptor.slice(0, -1)));
+          }
+        }
+        for (const child of node.childNodes ?? []) walk(child);
+      };
+      for (const page of ['index.html', 'characters/index.html', 'sessions/session-9/index.html']) walk(parse(await html(page)));
+      let originalBytes = 0;
+      let thumbnailBytes = 0;
+      for (const entity of jsonIsland(recap, 'entity-link-data').filter(entity => entity.portrait)) {
+        const original = await readFile(path.join(site, 'public', entity.portrait));
+        assert.deepEqual(await readFile(path.join(dist, entity.portrait)), original);
+        const originalMetadata = await sharp(original).metadata();
+        const thumbnail = await readFile(path.join(dist, entity.previewPortrait.src));
+        const metadata = await sharp(thumbnail).metadata();
+        assert.ok(Math.abs(metadata.height - metadata.width * originalMetadata.height / originalMetadata.width) <= 1);
+        originalBytes += original.length;
+        thumbnailBytes += thumbnail.length;
+        for (const candidate of entity.previewPortrait.srcset.split(', ')) {
+          const [href, descriptor] = candidate.split(' ');
+          sources.set(href, Number(descriptor.slice(0, -1)));
+        }
+      }
+      assert.ok(sources.size > 0);
+      for (const [href, width] of sources) {
+        const metadata = await sharp(await readFile(path.join(dist, href))).metadata();
+        assert.equal(metadata.width, width, href);
+        assert.equal(metadata.format, 'webp');
+      }
+      assert.ok(thumbnailBytes < originalBytes / 2, 'small portraits should substantially reduce image bytes');
     });
     await t.test('the assembled build rejects missing pages, images and fragments', async () => {
       await put(site, 'src/pages/link-fixture.astro', `<a href="/missing-fixture/">Missing</a>

@@ -1,4 +1,5 @@
 ---
+import Portrait from './Portrait.astro';
 interface Props {
   name: string;
   player: string;
@@ -17,14 +18,17 @@ const { name, player, classRace, portrait, bio, traits = [], href, variant = 'ro
 // doesn't help: a ")" in the value would close url() early and let the rest of
 // the string become CSS declarations of its own. Quote it and percent-encode
 // the quote so the value can only ever be read as one URL.
-const portraitCss = portrait
+const portraitCss = portrait && variant === 'page'
   ? `background-image:url("${encodeURI(portrait).replaceAll('"', '%22')}")`
   : undefined;
 ---
 
 <article class:list={['card', 'character-card', { page: variant === 'page' }]}>
   <div class="portrait" style={portraitCss}>
-    {!portrait && 'Portrait'}
+    {portrait && variant === 'roster' ? (
+      <Portrait src={portrait} alt={`Portrait of ${name}`} width={300} height={400}
+        sizes="(max-width: 520px) calc(100vw - 64px), 300px" />
+    ) : !portrait && 'Portrait'}
   </div>
   <div class="char-body">
     <div class="char-name">

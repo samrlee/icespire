@@ -201,6 +201,17 @@ generated art from official illustrations. Portraits feed recap casts and
 entity hover cards automatically. See [the NPC art inventory](docs/NPC-ART.md)
 for sources and remaining gaps.
 
+Keep those original portrait paths in frontmatter. `src/lib/portraits.ts` and
+the static `/portraits/[image].webp` endpoint generate 64, 128, 256, 512, and
+768-pixel-wide WebP variants (capped at source width) from character/NPC portraits.
+Content hashes in their filenames change when the art changes. No new source
+art or manual thumbnail files are needed. The shared `Portrait.astro` component
+supplies responsive sources and dimensions to recap avatars, the homepage party
+strip, and roster cards; entity previews use the same variants. Existing CSS
+keeps each display crop, while profile pages retain original images and credits.
+The generated images stay out of the sitemap. The publication suite validates
+the candidates, source proportions, original bytes, and reduced thumbnail size.
+
 ## Search
 
 Every page is searchable from the header button, `⌘K`/`Ctrl-K`, or `/`. There

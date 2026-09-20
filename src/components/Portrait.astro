@@ -1,0 +1,16 @@
+---
+import { portraitSources } from '../lib/portraits';
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  width: number;
+  height: number;
+  sizes: string;
+  maximum?: number;
+  loading?: 'eager' | 'lazy';
+}
+const { src, maximum, loading = 'lazy', ...attributes } = Astro.props;
+const sources = await portraitSources(src, maximum);
+---
+<img {...attributes} {...sources} loading={loading} decoding="async" />

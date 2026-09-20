@@ -21,6 +21,7 @@ export default defineConfig({
       filter: (page) => {
         const path = new URL(page).pathname;
         if (path.startsWith('/og/')) return false;
+        if (path.startsWith('/portraits/')) return false;
         if (path.endsWith('.json')) return false;
         // Draft recap routes are never generated. Inherit the authoritative
         // route list rather than parsing the content a second time here.

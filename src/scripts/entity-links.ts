@@ -9,6 +9,7 @@ type Entity = {
   sub?: string;
   note?: string;
   portrait?: string;
+  previewPortrait?: { src: string; srcset: string };
   status?: string;
   statusLabel?: string;
   aliases: string[];
@@ -147,7 +148,14 @@ function setupPopover(entities: Entity[]) {
     if (entity.portrait) {
       const img = document.createElement('img');
       img.className = 'pop-portrait';
-      img.src = entity.portrait;
+      img.src = entity.previewPortrait?.src ?? entity.portrait;
+      if (entity.previewPortrait) {
+        img.srcset = entity.previewPortrait.srcset;
+        img.sizes = '72px';
+      }
+      img.width = 72;
+      img.height = 96;
+      img.decoding = 'async';
       img.alt = '';
       body.appendChild(img);
     }

@@ -4,6 +4,7 @@ import { isSessionPublished } from '../lib/session-publication';
 import { isMapLocationPublished } from '../lib/map-publication';
 import Base from '../layouts/Base.astro';
 import SessionRecapCard from '../components/SessionRecapCard.astro';
+import Portrait from '../components/Portrait.astro';
 import { url } from '../utils/url';
 
 const sessions = (await getCollection('sessions', isSessionPublished)).sort(
@@ -112,10 +113,14 @@ const latest = sessions[0];
           {characters.map((character) => (
             <a class="party-member" href={url(`/characters/${character.id}/`)}>
               {character.data.portrait ? (
-                <img
+                <Portrait
                   class="party-portrait"
                   src={url(character.data.portrait)}
                   alt={`Portrait of ${character.data.name}`}
+                  width={110}
+                  height={147}
+                  sizes="110px"
+                  maximum={512}
                   loading="lazy"
                 />
               ) : (
