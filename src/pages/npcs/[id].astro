@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import StatusPill from '../../components/StatusPill.astro';
 import RecapMentions from '../../components/RecapMentions.astro';
+import ProfileReview from '../../components/ProfileReview.astro';
 import { url } from '../../utils/url';
 
 export async function getStaticPaths() {
@@ -58,4 +59,5 @@ const faction = npc.data.faction
     }
   </div>
   <RecapMentions href={url(`/npcs/${npc.id}/`)} />
+  <ProfileReview sessionId={npc.data.reviewedThrough} />
 </Base>

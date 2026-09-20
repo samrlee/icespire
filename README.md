@@ -470,6 +470,21 @@ her "the panther" and has no name to match on. `firstAppearance: 7` puts her in
 that session's cast anyway, and Session 8 picks her up from the prose like
 anyone else.
 
+## Profile review checkpoints
+
+Character and NPC frontmatter accepts optional `reviewedThrough: session-9`
+(a published recap ID, including nested IDs). Set it only after an explicit
+editorial review of the complete profile through that session. A review can
+confirm unchanged prose; neither a file edit nor a detected mention establishes
+review. Do not bulk-fill checkpoints from the latest session or modification date.
+
+Profiles with a checkpoint display a linked “Reviewed through Session N” note,
+with a notice when newer published recaps exist. Omitted metadata displays no
+review claim. The publication review report lists missing, older, current and
+invalid checkpoints. Builds reject missing or draft sources. This is an editorial
+checkpoint, not evidence for each assertion, attendance, whereabouts, or character
+knowledge. It does not change search/Ask content or create a historical view.
+
 ## Profile recap links
 
 Character and NPC profiles end with **Mentioned in recaps**, newest first,

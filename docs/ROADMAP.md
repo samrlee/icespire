@@ -11,9 +11,10 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Clear navigation labels** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  Story so far, Party and Relationships name their destinations in the header
-  and footer. Existing routes, active-page markers and disclosure behavior remain.
+- **Profile review freshness** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  explicit published-session checkpoints on character/NPC profiles, linked review
+  labels and freshness notices, plus report findings and build validation.
+  No existing profiles are automatically marked reviewed.
 
 ## Phased backlog from issue #75
 
@@ -41,7 +42,7 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
    appearances or proof of character knowledge. Retrieved documents do not prove
    every answer claim; construct citation links from validated records.
 4. **Editorial tools and options:** post-session publication reports are merged;
-   character-replacement-safe casting is merged. Review freshness/provenance remains.
+   character-replacement-safe casting is merged. Profile review freshness is in this PR; claim-level provenance remains.
    Reading-position/Q&A retention needs explicit reset, cancellation and stale
    corpus handling; never retain an answer under a different question. A historical
    session selector cannot promise spoiler safety while previews show current
@@ -50,6 +51,10 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Clear navigation labels** — [PR #93](https://github.com/samrlee/icespire/pull/93)
+  merged: Story so far, Party and Relationships in the header and footer.
+  _(Sep 2026)_
 
 - **Theme switch reliability** — [PR #92](https://github.com/samrlee/icespire/pull/92)
   merged: functional mode labels and switching with blocked preference storage.

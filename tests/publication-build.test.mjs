@@ -153,6 +153,12 @@ test('production publication across assembled routes, indexes, maps and navigati
     }
     await symlink(path.join(root, 'node_modules'), path.join(site, 'node_modules'), process.platform === 'win32' ? 'junction' : 'dir');
     await fixtures(site);
+    // Review metadata is authored only in this disposable fixture, never inferred.
+    for (const [profile, checkpoint] of [['characters/dax', published[1].id], ['npcs/holia-thornton', published[2].id]]) {
+      const file = `src/content/${profile}.md`;
+      const original = await readFile(path.join(site, file), 'utf8');
+      await put(site, file, original.replace('---', `---\nreviewedThrough: ${checkpoint}`));
+    }
     await build(site);
     const dist = path.join(site, 'dist');
     const files = await filesIn(dist);
@@ -177,6 +183,17 @@ test('production publication across assembled routes, indexes, maps and navigati
       }
     });
 
+    await t.test('explicit profile reviews link published checkpoints, distinguish freshness and omit missing claims', async () => {
+      const review = page => page.match(/<aside[^>]*aria-label="Profile review"[\s\S]*?<\/aside>/)?.[0] ?? '';
+      const older = review(await html('characters/dax/index.html'));
+      assert.ok(older.includes(`href="/sessions/${published[1].id}/"`));
+      assert.ok(older.includes('Session 1004'));
+      assert.ok(older.includes('newer recap'));
+      const current = review(await html('npcs/holia-thornton/index.html'));
+      assert.ok(current.includes('Session 1006'));
+      assert.ok(!current.includes('newer recap'));
+      assert.equal(review(await html('characters/rut/index.html')), '');
+    });
     await t.test('profile mentions include published body aliases once and exclude draft or unnamed recaps', async () => {
       for (const profile of ['characters/dax', 'npcs/holia-thornton']) {
         const page = await html(`${profile}/index.html`);
@@ -359,6 +376,16 @@ groups:
           await assert.rejects(build(site), error => error.message.includes(expected));
         }
       } finally { await put(site, statePath, original); }
+    });
+    await t.test('profile reviews reject draft and missing checkpoints in assembled builds', async () => {
+      const file = 'src/content/characters/dax.md';
+      const original = await readFile(path.join(site, file), 'utf8');
+      try {
+        for (const checkpoint of [drafts[0].id, 'missing-review-source']) {
+          await put(site, file, original.replace(/^reviewedThrough:.*$/m, `reviewedThrough: ${checkpoint}`));
+          await assert.rejects(build(site), error => error.message.includes('reviewedThrough must reference a published session ID'));
+        }
+      } finally { await put(site, file, original); }
     });
     await t.test('replacement characters cannot retroactively enter a recap cast', async () => {
       const recapPath = `src/content/sessions/${published[0].id}.md`;
