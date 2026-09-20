@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import { url } from '../utils/url';
 ---
 
-<Base title="Page Not Found" description="This page doesn't exist — or hasn't been discovered yet.">
+<Base title="Page Not Found" canonicalPath={url('/404')} description="This page doesn't exist — or hasn't been discovered yet.">
   <section class="notfound">
     <img
       class="notfound-art"

@@ -473,7 +473,18 @@ Roster membership is only a spelling/reference check; it does not prove attendan
 participation, or character knowledge. A referenced session may be a draft.
 `test:integrity` covers the reference rules; `test:publication` also proves a real
 build rejects broken draft references and missing images in its disposable copy.
-General authored links and URL fragments remain a separate validation task.
+After rendering, `integrations/generated-links.mjs` parses every generated HTML
+page and checks same-origin `href`, `src`, object `data`, and video `poster`
+references against output files. HTML fragments must resolve to an ID, legacy
+named anchor, or a rendered region-map marker. Relative URLs, percent encoding,
+HTML entities, directory routes, and Cloudflare's extensionless `.html` aliases
+are supported. Errors identify the source HTML file, line, attribute and target.
+
+This static check never fetches external URLs or treats the custom 404 fallback
+as a valid missing target. It does not inspect CSS URLs, `srcset`, URLs embedded
+in scripts/JSON, dynamic Function routes, or browser-created links. Keep browser
+and publication tests for those behaviors. Parser fixtures run in `test:integrity`;
+the disposable publication suite proves actual builds reject broken links.
 
 ## Response headers
 

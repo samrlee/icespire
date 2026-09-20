@@ -12,17 +12,20 @@ interface Props {
   description?: string;
   // Path under /public for the social preview image, overridable per page.
   ogImage?: string;
+  // Exceptional flat-file routes, such as Cloudflare's 404.html.
+  canonicalPath?: string;
 }
 
 const {
   title,
   description = 'A chronicle of our Dragon of Icespire Peak campaign.',
   ogImage = '/images/social-card.jpg',
+  canonicalPath = Astro.url.pathname,
 } = Astro.props;
 
 const fullTitle = `${title} · Dragon of Icespire Peak`;
 // Astro.url.pathname already includes the configured base at build time.
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const canonicalUrl = new URL(canonicalPath, Astro.site);
 const ogImageUrl = new URL(url(ogImage), Astro.site);
 
 // The nav is grouped so the top bar stays short: Home stands alone, and the
