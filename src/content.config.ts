@@ -176,4 +176,17 @@ const lore = defineCollection({
   }),
 });
 
-export const collections = { sessions, characters, npcs, factions, lore, locations, journey };
+const currentState = defineCollection({
+  loader: glob({ pattern: '*.yaml', base: './src/content/current-state' }),
+  schema: z.object({
+    sourceSession: filled(),
+    groups: z.array(z.object({
+      label: filled(),
+      characters: z.array(filled()).min(1),
+      location: filled().optional(),
+      summary: filled(),
+    })).min(1),
+  }),
+});
+
+export const collections = { sessions, characters, npcs, factions, lore, locations, journey, currentState };

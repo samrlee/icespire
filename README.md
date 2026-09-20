@@ -212,6 +212,32 @@ keeps each display crop, while profile pages retain original images and credits.
 The generated images stay out of the sitemap. The publication suite validates
 the candidates, source proportions, original bytes, and reduced thumbnail size.
 
+## Current campaign state
+
+`src/content/current-state/current.yaml` supplies **Where we left off** on the
+homepage and campaign page, and its own search/Ask document. Edit it once after
+publishing a recap; do not duplicate the snapshot in campaign prose.
+
+| Field | Meaning |
+| --- | --- |
+| `sourceSession` | Published recap ID, such as `session-9`; supplies the as-of number and date |
+| `groups` | One or more groups at the continuation point; separate them when the party splits |
+| `groups[].label` | Short heading for the group's situation |
+| `groups[].characters` | Nonempty list of character IDs; no character may repeat across groups |
+| `groups[].summary` | Plain text grounded in the cited recap, preserving knowledge and payment distinctions |
+| `groups[].location` | Optional location ID; only visited locations receive region-map links |
+
+The build rejects missing/draft source recaps, unknown characters or locations,
+and repeated members. A newer published recap produces a visible freshness
+notice; the old snapshot never silently claims to describe that newer session.
+Do not infer present spell slots, health or resources from an earlier rest.
+
+`CurrentState.astro` renders both copies through `getCurrentState()`; search uses
+the same helper. The campaign Markdown retains its history and open threads,
+with open threads first. Its `showCurrentState: true` frontmatter makes
+`MarkdownPage.astro` render the page title and snapshot ahead of the contents rail.
+Existing campaign routes and heading anchors remain available.
+
 ## Search
 
 Every page is searchable from the header button, `⌘K`/`Ctrl-K`, or `/`. There

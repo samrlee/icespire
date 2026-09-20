@@ -5,6 +5,7 @@ import { isMapLocationPublished } from '../lib/map-publication';
 import Base from '../layouts/Base.astro';
 import SessionRecapCard from '../components/SessionRecapCard.astro';
 import Portrait from '../components/Portrait.astro';
+import CurrentState from '../components/CurrentState.astro';
 import { url } from '../utils/url';
 
 const sessions = (await getCollection('sessions', isSessionPublished)).sort(
@@ -27,6 +28,7 @@ const latest = sessions[0];
     <div class="hero-body">
       <div class="kicker">A campaign journal</div>
       <h1 class="page-title">Dragon of <span class="gold">Icespire Peak</span></h1>
+      <CurrentState />
       <div class="prose">
         <p>
           A white dragon has moved into the region, and the frontier town of Phandalin

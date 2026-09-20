@@ -1,0 +1,20 @@
+---
+import { getCurrentState } from '../lib/current-state';
+import { url } from '../utils/url';
+const { source, groups, newerRecap } = await getCurrentState();
+const date = source.data.date.toLocaleDateString('en-US', { dateStyle: 'medium', timeZone: 'UTC' });
+---
+<section class="current-state" aria-labelledby="where-we-left-off">
+  <h2 id="where-we-left-off">Where we left off</h2>
+  <p class="current-state-source">As of <a href={url(`/sessions/${source.id}/`)}>Session {source.data.sessionNumber}</a> · {date}</p>
+  {newerRecap && <p class="current-state-freshness">A <a href={url(`/sessions/${newerRecap.id}/`)}>newer recap is available</a>; this snapshot is still recorded through Session {source.data.sessionNumber}.</p>}
+  {groups.map(group => (
+    <div class="current-state-group">
+      <h3>{group.label}</h3>
+      <p class="current-state-members">{group.members.map((member, i) => <>{i > 0 && ', '}<a href={url(`/characters/${member.id}/`)}>{member.data.name}</a></>)}</p>
+      <p>{group.summary}</p>
+      {group.mapLocation && <a class="current-state-map" href={url(`/map/#${group.mapLocation.id}`)}>View location on the map →</a>}
+    </div>
+  ))}
+  <a href={url('/campaign/#open-threads')}>Open threads →</a>
+</section>

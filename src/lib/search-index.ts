@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import { isSessionPublished } from './session-publication';
 import { isMapLocationPublished } from './map-publication';
 import { url } from '../utils/url';
+import { getCurrentState } from './current-state';
 
 // Build-time search index. Everything the site publishes becomes one document
 // here; the browser fetches the whole thing once and searches it locally, so
@@ -158,5 +159,15 @@ export async function buildSearchIndex(): Promise<SearchDoc[]> {
     text: toPlainText(campaign),
   });
 
+  const state = await getCurrentState();
+  const asOf = `As of Session ${state.source.data.sessionNumber}, ${state.source.data.date.toLocaleDateString('en-US', { dateStyle: 'medium', timeZone: 'UTC' })}`;
+  docs.push({
+    title: 'Where we left off',
+    kind: KIND.page,
+    sub: asOf,
+    href: url('/campaign/#where-we-left-off'),
+    text: [asOf, state.newerRecap ? 'A newer recap is available; this snapshot has not yet been updated.' : '',
+      ...state.groups.map(group => `${group.label}. ${group.members.map(member => member.data.name).join(', ')}. ${group.summary}`)].filter(Boolean).join(' '),
+  });
   return docs;
 }

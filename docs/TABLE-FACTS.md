@@ -6,9 +6,10 @@ not know who the DM is, what the house rules are, or which two characters a
 transcript line about "the ranger" might mean.
 
 This is the ground truth. It changes slowly. Everything that changes weekly —
-who is where, who knows what, what is unresolved — lives in
-[`../src/pages/campaign.md`](../src/pages/campaign.md) under **Open threads**,
-and that is the file to read for current state.
+who is where, who knows what, what is unresolved — lives in the shared
+[current snapshot](../src/content/current-state/current.yaml) and
+[`../src/pages/campaign.md`](../src/pages/campaign.md) under **Open threads**.
+Read both for current state.
 
 ## The game
 

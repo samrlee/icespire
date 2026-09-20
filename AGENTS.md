@@ -93,6 +93,7 @@ sketched with enough detail to pick up cold.
 | Session recaps | `src/content/sessions/session-N.md` |
 | Where the party went, and what happened where | `src/content/journey/session-N.yaml` |
 | Running campaign summary | `src/pages/campaign.md` (one page, edited in place) |
+| Shared continuation point | `src/content/current-state/current.yaml` (homepage, campaign, search) |
 | Party | `src/content/characters/` |
 | NPCs | `src/content/npcs/` |
 | Factions / lore | `src/content/factions/`, `src/content/lore/` |
