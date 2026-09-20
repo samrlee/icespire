@@ -1,0 +1,59 @@
+/* Opt-in document pages only: recaps and the campaign summary. */
+@media print {
+  @page chronicle { margin: 16mm; }
+
+  body.print-document,
+  body.print-document * {
+    color: #111 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    border-color: #999 !important;
+  }
+  body.print-document {
+    page: chronicle;
+    background: white !important;
+    min-height: 0;
+    overflow: visible !important;
+  }
+  body.print-document .site-header,
+  body.print-document .site-footer,
+  body.print-document .skip-link,
+  body.print-document .backlink,
+  body.print-document .session-pager,
+  body.print-document .doc-toc,
+  body.print-document .entity-pop,
+  body.print-document dialog,
+  body.print-document .journey-map-link,
+  body.print-document .creature-art,
+  body.print-document .dp-avatar { display: none !important; }
+
+  body.print-document .page,
+  body.print-document .prose {
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+  body.print-document .session-layout,
+  body.print-document .doc-layout,
+  body.print-document .session-aside,
+  body.print-document .aside-encounters { display: block; }
+  body.print-document .prose { font-size: 11pt; line-height: 1.45; }
+  body.print-document .session-title,
+  body.print-document .prose h1 { font-size: 24pt; }
+  body.print-document h1,
+  body.print-document h2,
+  body.print-document h3,
+  body.print-document .kicker { break-after: avoid; }
+  body.print-document p { orphans: 3; widows: 3; }
+  body.print-document .prose a { text-decoration: underline; border: 0; }
+  body.print-document .dp-chip { border: 0; padding: 0; }
+  body.print-document .dramatis-list { gap: 4pt 12pt; }
+  body.print-document .dp-sub { display: block; }
+  body.print-document .aside-block { margin-top: 16pt; }
+  body.print-document .creature-card { margin: 0 0 8pt; break-inside: avoid; }
+  body.print-document .journey-card { padding: 0; border: 0; }
+  body.print-document .callout { break-inside: avoid; }
+  body.print-document .prose img { max-width: 100%; height: auto; }
+}

@@ -1112,6 +1112,7 @@ body {
 
 .recap-kicker {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   gap: var(--space-3);
   font-family: var(--font-body);
@@ -1122,7 +1123,8 @@ body {
   margin-bottom: var(--space-2);
 }
 
-.recap-kicker .date {
+.recap-kicker .date,
+.recap-kicker .reading-time {
   color: var(--text-muted);
 }
 

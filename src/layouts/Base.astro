@@ -3,6 +3,7 @@ import EntityLinks from '../components/EntityLinks.astro';
 import SearchPalette from '../components/SearchPalette.astro';
 import { url } from '../utils/url';
 import '../styles/global.css';
+import '../styles/print.css';
 import { validateContent } from '../lib/validate-content';
 
 await validateContent();
@@ -14,6 +15,7 @@ interface Props {
   ogImage?: string;
   // Exceptional flat-file routes, such as Cloudflare's 404.html.
   canonicalPath?: string;
+  printable?: boolean;
 }
 
 const {
@@ -21,6 +23,7 @@ const {
   description = 'A chronicle of our Dragon of Icespire Peak campaign.',
   ogImage = '/images/social-card.jpg',
   canonicalPath = Astro.url.pathname,
+  printable = false,
 } = Astro.props;
 
 const fullTitle = `${title} · Dragon of Icespire Peak`;
@@ -102,7 +105,7 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
       }
     </script>
   </head>
-  <body>
+  <body class:list={{ 'print-document': printable }}>
     <a class="skip-link" href="#main-content" tabindex="0">Skip to content</a>
     <header class="site-header">
       <a class="site-title" href={url('/')}>Dragon of <span class="gold">Icespire Peak</span></a>

@@ -356,6 +356,21 @@ prop on `Base.astro`. The card fonts are bundled under `src/assets/og-fonts/`
 `/images/social-card.jpg`. To give another page type its own card, add an
 endpoint that calls `renderOgCard(...)` and point its `ogImage` at it.
 
+## Reading and printing
+
+Recap headers show an approximate reading time only at 500 words or more.
+`src/lib/reading-time.ts` counts rendered recap prose (including headings and
+callouts), excluding HTML attributes, comments, images, code, and hidden text.
+The estimate rounds up at 200 words per minute; short recaps show no label.
+It is generated from the body, with no new frontmatter to maintain.
+
+Use the browser's Print command on a recap or the campaign summary for a
+single-column, dark-on-white document. Print styles remove navigation, search,
+preview cards, cast thumbnails, and encounter art, while retaining prose,
+cast names, encounter notes, and journey text. Profile and map printing are
+outside this document layout. Page breaks can vary with browser, paper, and
+font availability; Chromium Letter PDF output is checked during development.
+
 ## Dramatis personae
 
 Entity links in prose show a preview on hover or keyboard focus. On touch,
