@@ -350,6 +350,11 @@ body {
   border-color: var(--border-strong);
 }
 
+.search-retry {
+  align-self: flex-start;
+  margin: 0 var(--space-4) var(--space-3);
+}
+
 .search-results {
   overflow-y: auto;
   overscroll-behavior: contain;

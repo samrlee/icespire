@@ -11,21 +11,22 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Publication consistency** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  shared parsed-session gates omit draft HTML and OG routes; sitemap inherits
-  those routes. Recap/timeline/lore and encounter map links require a visit. Local maps share the
-  interior gate, and region journey/replay text preserves gaps between visible
-  stops. Isolated build-output regressions run in the required Build site job.
-  Campaign prose, dispositions, and discovery flags are unchanged.
+- **Search reliability** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  explicit loading/error/ready states and retry; consistent close/reopen reset;
+  Escape closes and restores focus; Enter after typing stays open unless arrow
+  keys deliberately selected a result. Form submission cannot dismiss search.
+  The dialog has an accessible name. Desktop/phone browser regressions cover
+  delayed and failed loads, keyboard navigation (including phone-sized WebKit), and mocked Ask success, error,
+  and cancellation in the required Build site job.
 
 ## Phased backlog from issue #75
 
 These are intended follow-ups, not blanket implementation or editorial approval.
 Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 
-1. **Reliability:** repair search introduction/reset/retry behavior with explicit
-   loading/error states, then keyboard/dialog accessibility and mocked browser
-   regressions. Separate focused PRs should bound Ask request bodies and return
+1. **Reliability:** search reset/retry and browser regressions are in the current
+   PR. Remaining navigation accessibility includes disclosure semantics and a
+   skip link. Separate focused PRs should bound Ask request bodies and return
    controlled errors for malformed origins. Recheck current dependency advisories
    and compatible action releases in a maintenance PR; retain existing CI gates.
 2. **First player-facing release:** shared “Where we left off” data with source/as-of
@@ -50,6 +51,11 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Publication consistency** — [PR #76](https://github.com/samrlee/icespire/pull/76)
+  merged: draft HTML/OG routes are omitted, map links share visit/interior gates,
+  region routes preserve hidden gaps, and isolated build-output regressions run
+  in required CI. Campaign prose and discovery flags unchanged. _(Sep 2026)_
 
 - **NPC portraits** — Phantom has a standalone portrait based on Sage's image;
   Don-Jon uses the existing official illustration, and all ten remaining humanoid

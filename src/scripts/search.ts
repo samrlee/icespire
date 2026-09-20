@@ -38,35 +38,57 @@ function wire(
     askBox && dialog.dataset.ask ? createAsk(askBox, dialog.dataset.ask) : null;
   let docs: Indexed[] | null = null;
   let loading: Promise<void> | null = null;
+  let state: 'idle' | 'loading' | 'ready' | 'error' = 'idle';
+  const retry = dialog.querySelector<HTMLButtonElement>('[data-search-retry]');
   let hits: Hit[] = [];
   let active = -1;
+  let returnFocus: HTMLElement | null = null;
 
   const load = () => {
     if (loading) return loading;
+    if (state === 'ready') return Promise.resolve();
+    state = 'loading';
+    render();
     loading = fetch(indexUrl)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
-      .then((raw: SearchDoc[]) => {
+      .then((raw: unknown) => {
+        if (!Array.isArray(raw) || !raw.every(isSearchDoc)) {
+          throw new Error('Invalid search index');
+        }
         docs = index(raw);
+        state = 'ready';
       })
       .catch(() => {
-        docs = [];
-        statusLine.textContent = "The index didn't load. Try reloading the page.";
+        state = 'error';
+      })
+      .finally(() => {
+        loading = null;
+        if (dialog.open) render();
       });
     return loading;
   };
 
-  const open = () => {
+  const open = (opener?: HTMLElement) => {
     if (dialog.open) return;
+    returnFocus = opener ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
     dialog.showModal();
     input.select();
-    void load().then(() => {
-      // The reader may have typed while the index was still in flight.
-      if (dialog.open && input.value.trim()) render();
-    });
+    render();
+    if (state === 'idle') void load();
   };
 
+  retry?.addEventListener('click', () => {
+    input.focus();
+    void load();
+  });
+
+  // Virtual keyboards can submit without the input's Enter keydown. Submitting
+  // a query must never dismiss the dialog or implicitly run a model request.
+  dialog.querySelector('form')?.addEventListener('submit', (e) => e.preventDefault());
+  dialog.querySelector('[data-search-close]')?.addEventListener('click', () => dialog.close());
+
   for (const button of openers) {
-    button.addEventListener('click', open);
+    button.addEventListener('click', () => open(button));
   }
 
   // ⌘K / Ctrl-K anywhere, and a bare "/" when the reader isn't already typing.
@@ -96,6 +118,12 @@ function wire(
     ask?.clear();
     hits = [];
     active = -1;
+    input.removeAttribute('aria-activedescendant');
+    if (intro) intro.hidden = false;
+    if (retry) retry.hidden = true;
+    // WebKit does not necessarily focus a clicked button before showModal().
+    returnFocus?.focus({ preventScroll: true });
+    returnFocus = null;
   });
 
   for (const example of document.querySelectorAll<HTMLButtonElement>('[data-search-example]')) {
@@ -109,14 +137,19 @@ function wire(
   input.addEventListener('input', render);
 
   input.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      dialog.close();
+    } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       if (hits.length === 0) return;
       e.preventDefault();
       const step = e.key === 'ArrowDown' ? 1 : -1;
-      setActive((active + step + hits.length) % hits.length);
-    } else if (e.key === 'Enter' && active >= 0) {
+      setActive(active < 0
+        ? (step > 0 ? 0 : hits.length - 1)
+        : (active + step + hits.length) % hits.length);
+    } else if (e.key === 'Enter') {
       e.preventDefault();
-      list.children[active]?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      if (active >= 0) (list.children[active] as HTMLAnchorElement)?.click();
     }
   });
 
@@ -139,10 +172,20 @@ function wire(
     const tokens = tokenize(input.value);
     list.replaceChildren();
     active = -1;
+    hits = [];
     input.removeAttribute('aria-activedescendant');
 
     const query = input.value.trim();
     if (intro) intro.hidden = tokens.length > 0;
+    if (retry) retry.hidden = state !== 'error';
+
+    if (state !== 'ready') {
+      ask?.clear();
+      statusLine.textContent = state === 'error'
+        ? "The chronicle couldn't load. Try again."
+        : 'Loading the chronicle…';
+      return;
+    }
 
     if (tokens.length === 0) {
       statusLine.textContent = '';
@@ -150,13 +193,7 @@ function wire(
       hits = [];
       return;
     }
-    if (!docs) {
-      statusLine.textContent = 'Loading the chronicle…';
-      hits = [];
-      return;
-    }
-
-    hits = pickAll(docs, tokens, MAX_HITS);
+    hits = pickAll(docs ?? [], tokens, MAX_HITS);
     // Match on everything the reader typed, but only mark the words that
     // carry meaning — highlighting every "the" in a typed-out question is
     // noise, and the Ask box invites exactly those questions.
@@ -172,8 +209,15 @@ function wire(
 
     statusLine.textContent = `${hits.length} result${hits.length === 1 ? '' : 's'}.`;
     hits.forEach((hit, i) => list.append(row(hit, marks, i)));
-    setActive(0);
+    // Typing is not a choice to navigate. Only arrow keys select a result.
   }
+}
+
+function isSearchDoc(value: unknown): value is SearchDoc {
+  if (!value || typeof value !== 'object') return false;
+  const doc = value as Record<string, unknown>;
+  return ['title', 'kind', 'href', 'text'].every((key) => typeof doc[key] === 'string')
+    && (doc.sub === undefined || typeof doc.sub === 'string');
 }
 
 function row(hit: Hit, tokens: string[], i: number): HTMLAnchorElement {

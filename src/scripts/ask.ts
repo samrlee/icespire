@@ -80,7 +80,7 @@ export function createAsk(container: HTMLElement, endpoint: string): Ask {
 
       container.replaceChildren(wrap);
     } catch (e) {
-      if ((e as Error)?.name === 'AbortError') return;
+      if (controller.signal.aborted || (e as Error)?.name === 'AbortError') return;
       container.replaceChildren(say('ask-status', 'The chronicler could not be reached.'));
     } finally {
       if (inFlight === controller) inFlight = null;

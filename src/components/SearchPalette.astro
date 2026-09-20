@@ -8,10 +8,11 @@ import { url } from '../utils/url';
 <dialog
   id="search-dialog"
   class="search-dialog"
+  aria-label="Search the chronicle"
   data-index={url('/search-index.json')}
   data-ask={url('/api/ask')}
 >
-  <form class="search-panel" method="dialog" role="search">
+  <form class="search-panel" role="search">
     <div class="search-field">
       <label class="visually-hidden" for="search-input">Search the chronicle</label>
       <input
@@ -26,7 +27,7 @@ import { url } from '../utils/url';
         aria-controls="search-results"
         aria-autocomplete="list"
       />
-      <button class="search-close" type="submit" aria-label="Close search">Esc</button>
+      <button class="search-close" type="button" data-search-close aria-label="Close search">Esc</button>
     </div>
     <div id="search-intro" class="search-intro">
       <p class="search-intro-lead">
@@ -43,8 +44,9 @@ import { url } from '../utils/url';
     <div id="search-results" class="search-results" role="listbox" aria-label="Results"></div>
     <div id="search-ask" class="search-ask" aria-live="polite" hidden></div>
     <p id="search-status" class="search-status" role="status" aria-live="polite"></p>
+    <button class="search-close search-retry" type="button" data-search-retry hidden>Try again</button>
     <p class="search-hint">
-      <kbd>↑</kbd><kbd>↓</kbd> to move · <kbd>↵</kbd> to open · <kbd>Esc</kbd> to close
+      <kbd>↑</kbd><kbd>↓</kbd> to select · <kbd>↵</kbd> to open selection · <kbd>Esc</kbd> to close
     </p>
   </form>
 </dialog>
