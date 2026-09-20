@@ -327,3 +327,14 @@ Paste this into a fresh agent, with the transcript attached or pasted below it.
 >
 > Then write the recap and propagate it across the site using the checklist,
 > run `npm run check && npm run build`, and open a PR.
+
+### Record explicit profile reviews
+
+After reviewing a complete character or NPC profile through a published recap,
+set its optional `reviewedThrough` to that recap ID (for example `session-9`).
+Record a review even when it confirms that no prose needs changing. Never infer
+review from attendance, detected mentions, a file edit or the latest session.
+Do not stamp unrelated profiles as reviewed. The publication report lists missing
+or older checkpoints to guide the next review; they are not build failures.
+Missing/draft checkpoint references are build failures. This field does not
+establish what a character knows or provide claim-level provenance.

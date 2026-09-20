@@ -10,6 +10,21 @@ const initial = () => new Map([
   ['src/content/current-state/current.yaml', 'sourceSession: session-1\ngroups:\n  - characters: [dax]\n    location: mine'],
 ]);
 
+test('profile freshness distinguishes absent, older, current and invalid explicit reviews', () => {
+  const after = initial();
+  after.set('src/content/sessions/nested/latest.md', md('sessionNumber: 2'));
+  after.set('src/content/sessions/draft.md', md('sessionNumber: 3\ndraft: true'));
+  after.set('src/content/npcs/older.md', md('reviewedThrough: session-1'));
+  after.set('src/content/npcs/current.md', md('reviewedThrough: nested/latest'));
+  after.set('src/content/npcs/invalid.md', md('reviewedThrough: draft'));
+  const report = reviewReport(initial(), after, 'base');
+  assert.match(report, /characters\/dax: No review checkpoint recorded/);
+  assert.match(report, /npcs\/older: Reviewed through Session 1\. Newer recap available/);
+  assert.match(report, /npcs\/current: Reviewed through Session 2\. Matches latest/);
+  assert.match(report, /npcs\/invalid: Invalid checkpoint/);
+  assert.match(report, /reviewedThrough must reference a published session ID/);
+});
+
 test('unchanged records report no transitions and current snapshot', () => {
   const windows = new Map([...initial()].map(([file, text]) => [file, text.replaceAll('\n', '\r\n')]));
   const report = reviewReport(initial(), windows, 'base');

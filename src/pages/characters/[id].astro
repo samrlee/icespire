@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import CharacterCard from '../../components/CharacterCard.astro';
 import RecapMentions from '../../components/RecapMentions.astro';
+import ProfileReview from '../../components/ProfileReview.astro';
 import { url } from '../../utils/url';
 
 export async function getStaticPaths() {
@@ -34,4 +35,5 @@ const statusNote =
     <Content />
   </div>
   <RecapMentions href={url(`/characters/${character.id}/`)} />
+  <ProfileReview sessionId={character.data.reviewedThrough} />
 </Base>

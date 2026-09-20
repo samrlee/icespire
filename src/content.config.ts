@@ -56,6 +56,8 @@ const characters = defineCollection({
   schema: z.object({
     name: filled(),
     player: filled(),
+    // Explicit editorial review checkpoint, not an appearance or knowledge claim.
+    reviewedThrough: filled().optional(), // published session ID
     ancestry: filled(), // race/species
     class: filled(),
     level: z.number().int().positive().optional(),
@@ -74,6 +76,7 @@ const npcs = defineCollection({
   schema: z.object({
     name: filled(),
     role: z.string().optional(), // e.g. "Innkeeper", "White Dragon"
+    reviewedThrough: filled().optional(), // explicit review through a published session ID
     affiliation: z.string().optional(), // shown next to role: place, group, or faction name
     faction: z.string().optional(), // slug of a faction entry, for linking
     // Disposition toward the party (drives the status pill AND the colour of

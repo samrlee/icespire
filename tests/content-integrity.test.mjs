@@ -18,6 +18,16 @@ function fixture() {
 test('valid hidden/draft references, nested IDs, and session zero are accepted', () => {
   assert.deepEqual(contentReferenceErrors(fixture()), []);
 });
+
+test('profile review checkpoints require published session IDs, including nested session zero', () => {
+  const content = fixture();
+  content.characters[0].data.reviewedThrough = 'nested/session-zero';
+  content.npcs[0].data.reviewedThrough = 'missing';
+  assert.equal(contentReferenceErrors(content).length, 2);
+  content.sessions[0].data.draft = false;
+  content.npcs[0].data.reviewedThrough = 'nested/session-zero';
+  assert.deepEqual(contentReferenceErrors(content), []);
+});
 test('duplicate session numbers and journey assignments name both sources', () => {
   const content = fixture();
   content.sessions.push(entry('duplicate', { ...content.sessions[0].data }));

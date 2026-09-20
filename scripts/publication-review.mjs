@@ -73,6 +73,16 @@ export function reviewReport(beforeFiles, afterFiles, base) {
   const source = published.find(entry => entry.id === after.current?.sourceSession);
   if (!source) out.push('Needs attention: current snapshot is missing or does not reference a published recap.');
   else out.push(`Recorded through Session ${escape(source.data.sessionNumber)}; latest published recap is Session ${escape(published[0].data.sessionNumber)}. ${source.data.sessionNumber < published[0].data.sessionNumber ? 'Snapshot is behind: review it.' : 'Snapshot is current by source session number.'}`);
+  out.push('', '## Profile review freshness', '', 'Explicit editorial checkpoints only; mentions, attendance and unchanged prose do not establish review or character knowledge.', '');
+  for (const collection of ['characters', 'npcs']) {
+    for (const entry of [...after.content[collection]].sort((a, b) => a.id.localeCompare(b.id))) {
+      const checkpoint = published.find(session => session.id === entry.data.reviewedThrough);
+      const state = entry.data.reviewedThrough === undefined ? 'No review checkpoint recorded.'
+        : !checkpoint ? 'Invalid checkpoint: must reference a published session.'
+        : `Reviewed through Session ${checkpoint.data.sessionNumber}. ${checkpoint.data.sessionNumber < published[0].data.sessionNumber ? 'Newer recap available: review may be needed.' : 'Matches latest published recap.'}`;
+      out.push(`- ${escape(collection)}/${escape(entry.id)}: ${escape(state)}`);
+    }
+  }
   out.push('', '## Reference findings', '');
   const errors = contentReferenceErrors(after.content);
   const members = new Set();

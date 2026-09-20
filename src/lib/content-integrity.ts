@@ -1,5 +1,6 @@
 import type { CollectionEntry } from 'astro:content';
 import { resolveSessionParty } from './session-party.ts';
+import { isSessionPublished } from './session-publication.ts';
 
 type Collections = 'sessions' | 'characters' | 'npcs' | 'factions' | 'lore' | 'locations' | 'journey';
 export type CampaignCollections = { [K in Collections]: CollectionEntry<K>[] };
@@ -13,6 +14,14 @@ export function contentReferenceErrors(content: CampaignCollections): string[] {
   const factions = new Set(content.factions.map(entry => entry.id));
   const lore = new Set(content.lore.map(entry => entry.id));
   const locations = new Set(content.locations.map(entry => entry.id));
+  const publishedSessions = new Set(content.sessions.filter(isSessionPublished).map(entry => entry.id));
+  for (const collection of ['characters', 'npcs'] as const) {
+    for (const entry of content[collection]) {
+      if (entry.data.reviewedThrough !== undefined && !publishedSessions.has(entry.data.reviewedThrough)) {
+        errors.push(`${collection}/${entry.id}: reviewedThrough must reference a published session ID (${JSON.stringify(entry.data.reviewedThrough)})`);
+      }
+    }
+  }
   const duplicate = (seen: Map<number, string>, number: number, source: string, field: string) => {
     const previous = seen.get(number);
     if (previous !== undefined) errors.push(`${source}: duplicate ${field} ${number} (also ${previous})`);

@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import { isSessionPublished } from '../lib/session-publication';
+import { url } from '../utils/url';
+
+interface Props { sessionId?: string }
+const { sessionId } = Astro.props;
+const sessions = (await getCollection('sessions')).filter(isSessionPublished);
+const source = sessionId === undefined ? undefined : sessions.find(session => session.id === sessionId);
+if (sessionId !== undefined && !source) throw new Error(`Profile review references unavailable session: ${sessionId}`);
+const behind = source && sessions.some(session => session.data.sessionNumber > source.data.sessionNumber);
+---
+
+{source && (
+  <aside class="session-meta" aria-label="Profile review">
+    Reviewed through <a href={url(`/sessions/${source.id}/`)}>Session {source.data.sessionNumber}</a>.
+    {behind && <span> A newer recap is available; this profile may need review.</span>}
+  </aside>
+)}
