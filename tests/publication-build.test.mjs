@@ -300,6 +300,52 @@ test('production publication across assembled routes, indexes, maps and navigati
       }
       assert.ok(thumbnailBytes < originalBytes / 2, 'small portraits should substantially reduce image bytes');
     });
+    await t.test('shared current state supports split groups, source freshness and gated map links', async () => {
+      const statePath = 'src/content/current-state/current.yaml';
+      const original = await readFile(path.join(site, statePath), 'utf8');
+      try {
+        await put(site, statePath, `sourceSession: ${published[1].id}
+groups:
+  - label: CURRENT_GROUP_A
+    characters: [dax]
+    location: phandalin
+    summary: CURRENT_STATE_A
+  - label: CURRENT_GROUP_B
+    characters: [sage, hamish]
+    location: ${known.id}
+    summary: CURRENT_STATE_B
+`);
+        await build(site);
+        for (const route of ['index.html', 'campaign/index.html']) {
+          const page = await html(route);
+          for (const sentinel of ['CURRENT_STATE_A', 'CURRENT_STATE_B', 'newer recap is available']) assert.ok(page.includes(sentinel));
+          assert.ok(page.includes(`/sessions/${published[1].id}/`));
+          assert.ok(page.includes('href="/map/#phandalin"'));
+          assert.ok(!page.includes(`/map/#${known.id}`));
+        }
+        const campaignPage = await html('campaign/index.html');
+        assert.ok(campaignPage.indexOf('id="open-threads"') < campaignPage.indexOf('id="the-story-so-far"'));
+        const snapshot = JSON.parse(await html('search-index.json')).find(doc => doc.href === '/campaign/#where-we-left-off');
+        assert.match(snapshot.text, /As of Session 1004/);
+        assert.match(snapshot.text, /CURRENT_STATE_A/);
+        assert.match(snapshot.text, /CURRENT_STATE_B/);
+      } finally { await put(site, statePath, original); }
+    });
+    await t.test('current state refuses draft sources and invalid character/location references', async () => {
+      const statePath = 'src/content/current-state/current.yaml';
+      const original = await readFile(path.join(site, statePath), 'utf8');
+      try {
+        for (const [source, characters, location, expected] of [
+          [drafts[0].id, '[dax]', 'phandalin', 'must reference a published recap'],
+          ['session-9', '[missing-person]', 'phandalin', 'unknown or repeated character'],
+          ['session-9', '[dax, dax]', 'phandalin', 'unknown or repeated character'],
+          ['session-9', '[dax]', 'missing-place', 'unknown location'],
+        ]) {
+          await put(site, statePath, `sourceSession: ${source}\ngroups:\n  - label: Fixture\n    characters: ${characters}\n    location: ${location}\n    summary: Fixture\n`);
+          await assert.rejects(build(site), error => error.message.includes(expected));
+        }
+      } finally { await put(site, statePath, original); }
+    });
     await t.test('the assembled build rejects missing pages, images and fragments', async () => {
       await put(site, 'src/pages/link-fixture.astro', `<a href="/missing-fixture/">Missing</a>
 <a href="/campaign/#missing-fixture-anchor">Missing anchor</a>

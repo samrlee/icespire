@@ -3,9 +3,8 @@ layout: ../layouts/MarkdownPage.astro
 title: Campaign Summary
 description: The running story so far, kept up to date as sessions unfold.
 kicker: The story so far
+showCurrentState: true
 ---
-
-# Campaign Summary
 
 _A living reference for Owen's campaign. Last updated: Session 9 (9/18/26)._
 
@@ -13,6 +12,52 @@ _A living reference for Owen's campaign. Last updated: Session 9 (9/18/26)._
 D&D 5e (2014 rules), level cap 6.
 **House rules:** no Neverwinter location; no tracking of ammunition or weight
 except special ammunition or absurd loads.
+
+## Open threads
+
+- **Don-Jon's employers.** He threatened trouble for Harbin through them but
+  never named them. Thom's Zhentarim accusation was not confirmed.
+- **The logging delivery and ranch.** Return to Phandalin for the cart, take
+  provisions to Harbin's unnamed half-brother at Loggers' Camp, then investigate
+  the reported orc attack at Butterskull Ranch. **150 gp each**, unpaid; neither
+  site visited and the supplies not yet collected.
+- **Thornton means to be townmaster.** Thom and Bean have told the party, and
+  Harbin has been warned. Her takeover remains an intention. The hall beneath
+  town is occupied; its maps and headings do not establish an orc alliance or
+  confirm Thom's theories about smuggling and a new foothold.
+- **Standing threats and a heard hatch.** Thornton ordered the party killed if
+  caught snooping again and singled out Thom. The infiltrators say their faces
+  were unseen, but the escape hatch was heard. The three inn searchers' target
+  remains unconfirmed. Their two known routes are not a complete tunnel map.
+- **The white dragon.** A messenger reported Umbrage Hill destroyed; the six
+  cold-damaged orcs on the mine road look like further evidence. The party has
+  still not seen the dragon or located its lair. No replacement for Adabra's
+  potion workshop has been established.
+- **Harbin's defence of Phandalin.** His earlier jobs found no weapon to kill
+  the dragon, and the town has learned he kept its danger secret. No successful
+  defence or change of government has been recorded.
+- **The temple's wealth.** The ledger says **invested**, not stored, and the
+  alcove chest was a final offering, not a treasury.
+- **Norbus's uninformed settlement.** He accepted **25 gp and 70 silver**
+  without knowing about the gems and emerald. Their **500 gp sale** did not
+  settle his agreed share; no additional payment was recorded. He is no longer
+  at the inn's bar, but his whereabouts and Dazlyn's burial are unconfirmed.
+- **Dax's private arrangement with Norbus** — another **15 gp** of his own and
+  a standing offer of his sword, still unknown to the rest of the party.
+- **The offering note is in Common.** Nobody has explained why the dwarven
+  temple's final message uses that language, or who wrote it.
+- **The two religious necklaces.** Rut still has the inscribed gold necklace;
+  Hamish is the last confirmed holder of the jeweled holy symbol. Their
+  properties remain unidentified. The sold emerald was never identified either.
+- **The orc bands.** The main force moved west after the temple fight;
+  Thornton bought its heading and had maps that appeared to track movements.
+  What she wants with that information remains unclear.
+- **The Zhentarim intelligence pact and Harbin's stolen notes.** The party
+  chose to avoid Thornton for now. Bean's stolen notes remain unread; the
+  payment-ledger line she saw has no identified amount or job.
+- **Rut's name and feeding fears.** Sage may share his name but has not.
+  Barnaby has promised not to eat them and Sage has reassured Rut about Phantom;
+  the others have not been told that Dax originated the feeding story.
 
 ## The story so far
 
@@ -377,54 +422,3 @@ was not explicitly accepted. Don-Jon led the way in, and the party followed.
 **All seven remain Level 3 and received a long rest before leaving Phandalin.
 No mine interior features, treasure, completion note or escort payment have
 been established.**
-
-## Open threads
-
-- **Inside Mountain's Toe's entrance.** Don-Jon has just led the party in.
-  No rooms or occupants have been observed yet. He wants the interior made
-  safe before providing his completion note; the **150 gp escort reward**
-  remains unpaid. His extra offer covers loose gold found inside, while Thom
-  claimed anything not bolted down. Nothing has been recovered.
-- **Don-Jon's employers.** He threatened trouble for Harbin through them but
-  never named them. Thom's Zhentarim accusation was not confirmed.
-- **The logging delivery and ranch.** Return to Phandalin for the cart, take
-  provisions to Harbin's unnamed half-brother at Loggers' Camp, then investigate
-  the reported orc attack at Butterskull Ranch. **150 gp each**, unpaid; neither
-  site visited and the supplies not yet collected.
-- **Thornton means to be townmaster.** Thom and Bean have told the party, and
-  Harbin has been warned. Her takeover remains an intention. The hall beneath
-  town is occupied; its maps and headings do not establish an orc alliance or
-  confirm Thom's theories about smuggling and a new foothold.
-- **Standing threats and a heard hatch.** Thornton ordered the party killed if
-  caught snooping again and singled out Thom. The infiltrators say their faces
-  were unseen, but the escape hatch was heard. The three inn searchers' target
-  remains unconfirmed. Their two known routes are not a complete tunnel map.
-- **The white dragon.** A messenger reported Umbrage Hill destroyed; the six
-  cold-damaged orcs on the mine road look like further evidence. The party has
-  still not seen the dragon or located its lair. No replacement for Adabra's
-  potion workshop has been established.
-- **Harbin's defence of Phandalin.** His earlier jobs found no weapon to kill
-  the dragon, and the town has learned he kept its danger secret. No successful
-  defence or change of government has been recorded.
-- **The temple's wealth.** The ledger says **invested**, not stored, and the
-  alcove chest was a final offering, not a treasury.
-- **Norbus's uninformed settlement.** He accepted **25 gp and 70 silver**
-  without knowing about the gems and emerald. Their **500 gp sale** did not
-  settle his agreed share; no additional payment was recorded. He is no longer
-  at the inn's bar, but his whereabouts and Dazlyn's burial are unconfirmed.
-- **Dax's private arrangement with Norbus** — another **15 gp** of his own and
-  a standing offer of his sword, still unknown to the rest of the party.
-- **The offering note is in Common.** Nobody has explained why the dwarven
-  temple's final message uses that language, or who wrote it.
-- **The two religious necklaces.** Rut still has the inscribed gold necklace;
-  Hamish is the last confirmed holder of the jeweled holy symbol. Their
-  properties remain unidentified. The sold emerald was never identified either.
-- **The orc bands.** The main force moved west after the temple fight;
-  Thornton bought its heading and had maps that appeared to track movements.
-  What she wants with that information remains unclear.
-- **The Zhentarim intelligence pact and Harbin's stolen notes.** The party
-  chose to avoid Thornton for now. Bean's stolen notes remain unread; the
-  payment-ledger line she saw has no identified amount or job.
-- **Rut's name and feeding fears.** Sage may share his name but has not.
-  Barnaby has promised not to eat them and Sage has reassured Rut about Phantom;
-  the others have not been told that Dax originated the feeding story.

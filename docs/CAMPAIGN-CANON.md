@@ -24,8 +24,9 @@ not an independent source that overrides it.
   so the question is not reopened.
 - [TABLE-FACTS.md](TABLE-FACTS.md) remains authoritative for players, character
   identities, the DM, house rules, names, and transcript interpretation.
-  [The campaign summary](../src/pages/campaign.md) owns the living current state
-  and open threads. This file retains accumulated facts and consequential
+  [The shared snapshot](../src/content/current-state/current.yaml) owns the
+  continuation point; [the campaign summary](../src/pages/campaign.md) owns
+  open threads. This file retains accumulated facts and consequential
   knowledge boundaries, rather than duplicating that session-by-session summary.
 - Apply [WRITING-STYLE.md](WRITING-STYLE.md)'s distinction between events and
   interpretation, and [SESSION-WORKFLOW.md](SESSION-WORKFLOW.md)'s knowledge and
@@ -330,8 +331,11 @@ Do not promote reader knowledge to party knowledge without a recorded telling.
 | Hatch and descent | Thom and Bean saw its location, opened it and descended. The other five learned of the descent and escape in their Session 9 account. Harbin received entrance information; exactly which entrance(s) they disclosed is unrecorded. (Sessions 8–9) |
 | Thornton's payment records | Bean explicitly read a line recording payment to Dax for work for Holia while searching with Thom. No amount or identifying job is given; do not equate the line with the new 50 gp. Dax was absent; no later telling is recorded. (Session 8) |
 
-For the precise continuation point, spell duration, rest status, and positions,
-use [the campaign summary's Open threads](../src/pages/campaign.md#open-threads).
+For the precise continuation point and positions, use the
+[shared snapshot](../src/content/current-state/current.yaml), alongside
+[the campaign summary's Open threads](../src/pages/campaign.md#open-threads).
+Only record spell duration or resources when established; an earlier rest does
+not establish present resources.
 
 ## Canon questions / conflicts
 

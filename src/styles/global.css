@@ -847,6 +847,29 @@ body {
 
 /* ---------- Homepage ---------- */
 
+.current-state {
+  border-left: 2px solid var(--accent-gold-muted);
+  padding: var(--space-4);
+  margin: var(--space-5) 0;
+  background: var(--bg-surface);
+  max-width: 75ch;
+}
+.current-state h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  margin: 0 0 var(--space-2);
+}
+.current-state h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  margin: var(--space-4) 0 var(--space-2);
+}
+.current-state p { margin: 0 0 var(--space-3); line-height: var(--leading-normal); }
+.current-state-source,
+.current-state-members { color: var(--text-muted); font-size: var(--text-sm); }
+.current-state-freshness { border-left: 2px solid var(--accent-gold); padding-left: var(--space-3); }
+.current-state-map { display: inline-block; margin-bottom: var(--space-3); }
+
 .home-hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 300px;

@@ -56,4 +56,6 @@
   body.print-document .journey-card { padding: 0; border: 0; }
   body.print-document .callout { break-inside: avoid; }
   body.print-document .prose img { max-width: 100%; height: auto; }
+  body.print-document .current-state { max-width: none; padding: 0; border: 0; }
+  body.print-document .current-state-map { display: none; }
 }

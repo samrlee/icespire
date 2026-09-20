@@ -210,6 +210,14 @@ from what the Session 6 and Session 7 commits actually touched — walk it every
 time, and skip an item deliberately rather than by forgetting it.
 
 - [ ] **`src/content/sessions/session-N.md`** — the recap.
+- [ ] **`src/content/current-state/current.yaml`** — update the continuation
+      point and `sourceSession` to the published recap. Each group has a label,
+      character slugs, a plain-text summary, and an optional location slug.
+      Use separate groups when the party splits. Preserve knowledge boundaries
+      and unpaid promises; do not infer resources from an earlier rest.
+      Homepage, campaign and search share this record. A newer published recap
+      displays a freshness notice until the snapshot is updated; draft sources
+      and invalid references fail the build.
 - [ ] **`src/content/journey/session-N.yaml`** — the ordered `route` of location
       slugs and the `events` pinned to them. Include intermediate stops on a
       return trip so the trail overlaps instead of cutting a new line. Unknown

@@ -1,11 +1,13 @@
 ---
 import Base from './Base.astro';
+import CurrentState from '../components/CurrentState.astro';
 
 interface Props {
   frontmatter: {
     title: string;
     description?: string;
     kicker?: string;
+    showCurrentState?: boolean;
   };
   headings?: { depth: number; slug: string; text: string }[];
 }
@@ -16,11 +18,13 @@ const { frontmatter, headings = [] } = Astro.props;
 // space beside the reading column on long pages and doubles as in-page
 // navigation. Skip it on short pages that don't have enough sections.
 const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+if (frontmatter.showCurrentState) toc.unshift({ depth: 2, slug: 'where-we-left-off', text: 'Where we left off' });
 const showToc = toc.length >= 3;
 ---
 
 <Base title={frontmatter.title} description={frontmatter.description} printable>
   {frontmatter.kicker && <div class="kicker">{frontmatter.kicker}</div>}
+  {frontmatter.showCurrentState && <><h1 class="page-title" id="campaign-summary">{frontmatter.title}</h1><CurrentState /></>}
   <div class={`doc-layout${showToc ? '' : ' no-aside'}`}>
     <div class="prose">
       <slot />

@@ -11,10 +11,10 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Reading time and print styles** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  estimated reading time for recaps with at least 500 words; single-column,
-  dark-on-white printing for recaps and the campaign summary. Preserve prose,
-  cast names and sidebar notes; omit navigation, preview cards and decorative art.
+- **Shared continuation point** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  one sourced snapshot for homepage, campaign and search, with split-party
+  groups, freshness notices and validated references. Open threads precede
+  campaign history; the current snapshot reuses the existing published account.
 
 ## Phased backlog from issue #75
 
@@ -30,7 +30,7 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 2. **First player-facing release:** shared “Where we left off” data with source/as-of
    session and split-party support; current-first campaign layout; mobile actions
    before cover art and portrait variants are merged; reading time and print
-   styles are in the current PR. Reuse the
+   styles are merged; shared current state and current-first layout are in this PR. Reuse the
    existing `MarkdownPage.astro` contents rail. Author current state once, without
    inferring current resources from an earlier rest. Rendering and search must
    change together if `src/pages/campaign.md` moves; keep `/campaign/` and anchors.
@@ -50,6 +50,10 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Reading time and print styles** — [PR #85](https://github.com/samrlee/icespire/pull/85)
+  merged: reading estimates for longer recaps and readable, single-column
+  print layouts for recaps and the campaign summary. _(Sep 2026)_
 
 - **Mobile homepage and portrait sizing** — [PR #84](https://github.com/samrlee/icespire/pull/84)
   merged: phone actions precede the cover; responsive portraits serve avatars,
