@@ -11,23 +11,21 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Search reliability** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  explicit loading/error/ready states and retry; consistent close/reopen reset;
-  Escape closes and restores focus; Enter after typing stays open unless arrow
-  keys deliberately selected a result. Form submission cannot dismiss search.
-  The dialog has an accessible name. Desktop/phone browser regressions cover
-  delayed and failed loads, keyboard navigation (including phone-sized WebKit), and mocked Ask success, error,
-  and cancellation in the required Build site job.
+- **Ask request validation** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  malformed/opaque and cross-origin Origin headers return controlled 403 JSON;
+  bodies are bounded to 4 KiB before parsing, including streamed requests without
+  reliable Content-Length. Oversized bodies return 413; invalid JSON/questions
+  return 400. Request regressions run alongside retrieval tests in required CI.
 
 ## Phased backlog from issue #75
 
 These are intended follow-ups, not blanket implementation or editorial approval.
 Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 
-1. **Reliability:** search reset/retry and browser regressions are in the current
-   PR. Remaining navigation accessibility includes disclosure semantics and a
-   skip link. Separate focused PRs should bound Ask request bodies and return
-   controlled errors for malformed origins. Recheck current dependency advisories
+1. **Reliability:** search reset/retry and browser regressions are merged. Ask
+   body limits and controlled origin errors are in the current PR. Remaining
+   navigation accessibility includes disclosure semantics and a skip link.
+   Recheck current dependency advisories
    and compatible action releases in a maintenance PR; retain existing CI gates.
 2. **First player-facing release:** shared “Where we left off” data with source/as-of
    session and split-party support; current-first campaign layout; mobile actions
@@ -51,6 +49,11 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Search reliability** — [PR #77](https://github.com/samrlee/icespire/pull/77)
+  merged: reset/reopen/retry, explicit index states, named dialog, deliberate
+  keyboard result selection, and focus restoration. Enter after typing preserves
+  questions. Required CI includes 51 Chromium/WebKit browser cases. _(Sep 2026)_
 
 - **Publication consistency** — [PR #76](https://github.com/samrlee/icespire/pull/76)
   merged: draft HTML/OG routes are omitted, map links share visit/interior gates,

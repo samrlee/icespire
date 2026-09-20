@@ -20,8 +20,9 @@
 // documents that /search-index.json was allowed to contain, and that index is
 // built from published entries only (src/lib/search-index.ts).
 
-import { buildAskContext } from '../../src/lib/ask-context';
-import { contentTokens, index, pickAny } from '../../src/lib/search-rank';
+import { buildAskContext } from '../../src/lib/ask-context.ts';
+import { contentTokens, index, pickAny } from '../../src/lib/search-rank.ts';
+import { acceptsAskOrigin, AskBodyTooLarge, readAskBody } from '../../src/lib/ask-request.ts';
 import type { Indexed, SearchDoc } from '../../src/lib/search-rank';
 
 const MODEL = '@cf/meta/llama-3.3-70b-instruct-fp8-fast';
@@ -118,8 +119,7 @@ export const onRequestPost = async (context: FunctionContext): Promise<Response>
 
   // Same-origin only. Not a security boundary on its own — it just keeps the
   // endpoint from being trivially embedded in someone else's page.
-  const origin = request.headers.get('Origin');
-  if (origin && new URL(origin).host !== new URL(request.url).host) {
+  if (!acceptsAskOrigin(request)) {
     return json({ error: 'Cross-origin requests are not accepted.' }, 403);
   }
 
@@ -132,9 +132,14 @@ export const onRequestPost = async (context: FunctionContext): Promise<Response>
 
   let question = '';
   try {
-    const body = (await request.json()) as { question?: unknown };
-    question = typeof body.question === 'string' ? body.question.trim() : '';
-  } catch {
+    const body = await readAskBody(request);
+    if (body && typeof body === 'object' && !Array.isArray(body) && 'question' in body) {
+      question = typeof body.question === 'string' ? body.question.trim() : '';
+    }
+  } catch (error) {
+    if (error instanceof AskBodyTooLarge) {
+      return json({ error: 'The question request is too large.' }, 413);
+    }
     return json({ error: 'Expected a JSON body.' }, 400);
   }
 

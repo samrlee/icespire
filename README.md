@@ -230,6 +230,15 @@ the index fetch is same-origin, which `connect-src 'self'` already allows.
 
 ## Ask the Chronicle
 
+The endpoint accepts same-origin browser requests and clients without an Origin
+header. Invalid, opaque (`null`), and different origins return JSON 403 responses;
+origin checks are not authentication or rate limiting. Request bodies are capped
+at 4 KiB of UTF-8 bytes before JSON parsing, independently of Content-Length,
+and oversized streams are cancelled with a JSON 413 response. The existing
+400-character trimmed question limit remains. Invalid JSON, invalid UTF-8, or
+missing/invalid questions return JSON 400. `npm run test:ask` tests these request
+paths with mocked retrieval/model calls as well as the passage-selection logic.
+
 Three ways in, because a feature nobody finds may as well not exist: the
 header button (**Search or ask**), an **Ask the chronicle** button in the
 homepage hero, and `⌘K`/`/` as before — all opening the same palette. Opening

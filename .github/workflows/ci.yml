@@ -44,7 +44,7 @@ jobs:
       - name: Map publication gates
         run: npm run test:map
 
-      - name: Ask passage retrieval
+      - name: Ask retrieval and request validation
         run: npm run test:ask
 
       - name: Build
