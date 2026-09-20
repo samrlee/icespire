@@ -241,6 +241,12 @@ body {
 
 /* ---------- Search: header trigger + ⌘K palette ---------- */
 
+.search-filters { display: flex; flex-wrap: wrap; gap: var(--space-2); padding: var(--space-3) var(--space-4); }
+.search-filters[hidden], .search-more[hidden] { display: none; }
+.search-filters button, .search-more { min-height: 44px; min-width: 44px; }
+.search-filters button[aria-pressed='true'] { color: var(--accent-gold); border-color: var(--accent-gold); }
+.search-more { margin: var(--space-3) var(--space-4); }
+
 .header-tools {
   display: flex;
   align-items: center;

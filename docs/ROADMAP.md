@@ -11,10 +11,10 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **NPC directory filters** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  responsive portrait thumbnails, combined disposition/faction filters, result
-  count and reset. The alphabetical list works without JavaScript; faction
-  membership is drawn only from existing explicit references.
+- **Search filters and more results** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  type filters and batches of eight with complete match counts. Filtering does
+  not narrow Ask's sources or trigger a model call; query edits and reopening
+  reset the expanded list.
 
 ## Phased backlog from issue #75
 
@@ -36,8 +36,8 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
    change together if `src/pages/campaign.md` moves; keep `/campaign/` and anchors.
 3. **Connected references:** one shared scene representation with stable IDs
    through title/prose changes and insertions, reused for jump navigation,
-   profile backlinks, timeline and validated passage citations. NPC filters are in this PR; add
-   and expanded/type-filtered search. Detected mentions are not confirmed
+   profile backlinks, timeline and validated passage citations. NPC filters are
+   merged; expanded/type-filtered search is in this PR. Detected mentions are not confirmed
    appearances or proof of character knowledge. Retrieved documents do not prove
    every answer claim; construct citation links from validated records.
 4. **Editorial tools and options:** post-session publication reports,
@@ -50,6 +50,10 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **NPC directory filters** — [PR #87](https://github.com/samrlee/icespire/pull/87)
+  merged: responsive thumbnails, combined disposition/faction filtering, live
+  counts and reset, with an alphabetical no-JavaScript fallback. _(Sep 2026)_
 
 - **Shared continuation point** — [PR #86](https://github.com/samrlee/icespire/pull/86)
   merged: sourced snapshot shared by homepage, campaign and search, with

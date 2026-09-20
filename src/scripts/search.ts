@@ -40,6 +40,11 @@ function wire(
   let loading: Promise<void> | null = null;
   let state: 'idle' | 'loading' | 'ready' | 'error' = 'idle';
   const retry = dialog.querySelector<HTMLButtonElement>('[data-search-retry]');
+  const filters = dialog.querySelector<HTMLElement>('#search-filters');
+  const filterNote = dialog.querySelector<HTMLElement>('#search-filter-note');
+  const more = dialog.querySelector<HTMLButtonElement>('[data-search-more]');
+  let kind = '';
+  let limit = MAX_HITS;
   let hits: Hit[] = [];
   let active = -1;
   let returnFocus: HTMLElement | null = null;
@@ -56,6 +61,21 @@ function wire(
           throw new Error('Invalid search index');
         }
         docs = index(raw);
+        filters?.replaceChildren();
+        for (const value of ['', ...new Set(raw.map(doc => doc.kind).sort())]) {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'search-close';
+          button.textContent = value || 'All types';
+          button.dataset.kind = value;
+          button.setAttribute('aria-controls', 'search-results');
+          button.addEventListener('click', () => {
+            kind = value;
+            limit = MAX_HITS;
+            render();
+          });
+          filters?.append(button);
+        }
         state = 'ready';
       })
       .catch(() => {
@@ -80,6 +100,12 @@ function wire(
   retry?.addEventListener('click', () => {
     input.focus();
     void load();
+  });
+  more?.addEventListener('click', () => {
+    limit += MAX_HITS;
+    render();
+    // Keep focus available even when the final batch hides this button.
+    input.focus();
   });
 
   // Virtual keyboards can submit without the input's Enter keydown. Submitting
@@ -113,6 +139,11 @@ function wire(
 
   dialog.addEventListener('close', () => {
     input.value = '';
+    kind = '';
+    limit = MAX_HITS;
+    if (filters) filters.hidden = true;
+    if (filterNote) filterNote.hidden = true;
+    if (more) more.hidden = true;
     list.replaceChildren();
     statusLine.textContent = '';
     ask?.clear();
@@ -129,12 +160,16 @@ function wire(
   for (const example of document.querySelectorAll<HTMLButtonElement>('[data-search-example]')) {
     example.addEventListener('click', () => {
       input.value = example.textContent?.trim() ?? '';
+      limit = MAX_HITS;
       input.focus();
       render();
     });
   }
 
-  input.addEventListener('input', render);
+  input.addEventListener('input', () => {
+    limit = MAX_HITS;
+    render();
+  });
 
   input.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
@@ -176,6 +211,14 @@ function wire(
     input.removeAttribute('aria-activedescendant');
 
     const query = input.value.trim();
+    if (more) more.hidden = true;
+    if (filters) {
+      filters.hidden = state !== 'ready' || tokens.length === 0;
+      for (const button of filters.querySelectorAll('button')) {
+        button.setAttribute('aria-pressed', String(button.dataset.kind === kind));
+      }
+    }
+    if (filterNote) filterNote.hidden = state !== 'ready' || tokens.length === 0 || !kind;
     if (intro) intro.hidden = tokens.length > 0;
     if (retry) retry.hidden = state !== 'error';
 
@@ -193,7 +236,9 @@ function wire(
       hits = [];
       return;
     }
-    hits = pickAll(docs ?? [], tokens, MAX_HITS);
+    const eligible = (docs ?? []).filter(doc => !kind || doc.kind === kind);
+    const matches = pickAll(eligible, tokens, eligible.length);
+    hits = matches.slice(0, limit);
     // Match on everything the reader typed, but only mark the words that
     // carry meaning — highlighting every "the" in a typed-out question is
     // noise, and the Ask box invites exactly those questions.
@@ -203,11 +248,16 @@ function wire(
     ask?.offer(query);
 
     if (hits.length === 0) {
-      statusLine.textContent = `Nothing in the chronicle matches “${query}”.`;
+      statusLine.textContent = kind
+        ? `No ${kind} results match “${query}”. Try All types.`
+        : `Nothing in the chronicle matches “${query}”.`;
       return;
     }
 
-    statusLine.textContent = `${hits.length} result${hits.length === 1 ? '' : 's'}.`;
+    statusLine.textContent = hits.length < matches.length
+      ? `Showing ${hits.length} of ${matches.length} results.`
+      : `${hits.length} result${hits.length === 1 ? '' : 's'}.`;
+    if (more) more.hidden = hits.length >= matches.length;
     hits.forEach((hit, i) => list.append(row(hit, marks, i)));
     // Typing is not a choice to navigate. Only arrow keys select a result.
   }
