@@ -12,7 +12,8 @@
     "test:map": "node --experimental-strip-types --test tests/map-publication.test.mjs",
     "test:ask": "node --experimental-strip-types --test tests/ask-context.test.mjs tests/ask-request.test.mjs",
     "test:publication": "node --test tests/publication-build.test.mjs",
-    "test:browser": "playwright test"
+    "test:browser": "playwright test",
+    "test:integrity": "node --experimental-strip-types --test tests/content-integrity.test.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

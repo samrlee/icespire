@@ -259,6 +259,36 @@ test('production publication across assembled routes, indexes, maps and navigati
       assert.match(headers, /script-src 'self' 'sha256-/);
       assert.doesNotMatch(headers, /script-src[^;]*'unsafe-inline'/);
     });
+    await t.test('the assembled build rejects broken references even in draft content', async () => {
+      await put(site, 'src/content/sessions/integrity-broken.md', `---
+title: Integrity fixture
+sessionNumber: 1001
+date: 2026-09-19
+draft: true
+playersPresent: [UnknownPlayer]
+encounters:
+  - name: Missing creature
+    image: /images/integrity-missing.webp
+---
+Disposable draft.
+`);
+      await put(site, 'src/content/npcs/integrity-broken.md', `---
+name: Integrity witness
+faction: integrity-missing
+firstAppearance: 99999
+portrait: /images/integrity-missing-npc.webp
+---
+Disposable witness.
+`);
+      await assert.rejects(build(site), error => {
+        for (const diagnostic of ['Content reference validation failed', 'duplicate sessionNumber 1001',
+          'UnknownPlayer', 'npcs/integrity-broken: faction', 'firstAppearance',
+          'encounters.image (Missing creature): missing public image', 'portrait: missing public image']) {
+          assert.ok(error.message.includes(diagnostic), `missing diagnostic: ${diagnostic}\n${error.message}`);
+        }
+        return true;
+      });
+    });
   } finally {
     assert.equal(path.dirname(path.resolve(site)), path.resolve(tmpdir()));
     assert.ok(path.basename(site).startsWith('icespire-publication-'));
