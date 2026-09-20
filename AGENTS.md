@@ -60,7 +60,7 @@ Also run `npm run test:map`, `npm run test:ask`, and `npm run test:publication`.
 The latter builds synthetic fixtures in a disposable copy; never put test-only
 campaign entries into the working content or deployable output. After building,
 also run `npm run test:browser` (install Chromium once with
-`npx playwright install chromium`). It tests desktop/phone search and mocked Ask
+`npx playwright install chromium webkit`). It tests desktop/phone search and mocked Ask
 against the built site, without paid model requests. All four suites run in the
 same required **Build site** job. See README for browser setup and server limits.
 

@@ -105,9 +105,40 @@ test('arrow keys select results and Enter follows the selected link', async ({ p
   await input(page).fill('dragon');
   await expect(page.getByRole('option')).toHaveCount(2);
   await input(page).press('ArrowDown');
+  await expect(input(page)).toHaveAttribute('aria-activedescendant', 'search-hit-0');
+  await input(page).press('ArrowDown');
   await expect(input(page)).toHaveAttribute('aria-activedescendant', 'search-hit-1');
   await input(page).press('Enter');
   await expect(page).toHaveURL('/timeline/');
+});
+
+test('finishing a query with Enter preserves results without navigating or asking', async ({ page }) => {
+  let calls = 0;
+  await page.route('**/api/ask', route => { calls++; return route.abort(); });
+  await open(page);
+  await input(page).fill('dragon');
+  await expect(page.getByRole('option')).toHaveCount(2);
+  await input(page).press('Enter');
+  await expect(page).toHaveURL('/');
+  await expect(page.getByRole('dialog')).toBeVisible();
+  await expect(input(page)).toHaveValue('dragon');
+  await expect(page.getByRole('option')).toHaveCount(2);
+  await expect(page.locator('.ask-trigger')).toBeVisible();
+  expect(calls).toBe(0);
+  // A changed query must discard even a deliberate keyboard selection.
+  await input(page).press('ArrowDown');
+  await input(page).fill('report');
+  await input(page).press('Enter');
+  await expect(page).toHaveURL('/');
+  await expect(page.getByRole('dialog')).toBeVisible();
+});
+
+test('form submission without a keydown cannot dismiss search', async ({ page }) => {
+  await open(page);
+  await input(page).fill('a question with no matching result');
+  await page.locator('form.search-panel').evaluate((form: HTMLFormElement) => form.requestSubmit());
+  await expect(page.getByRole('dialog')).toBeVisible();
+  await expect(input(page)).toHaveValue('a question with no matching result');
 });
 
 test('Ask requires a click, shows errors, and resets for a different question', async ({ page }) => {

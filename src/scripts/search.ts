@@ -42,6 +42,7 @@ function wire(
   const retry = dialog.querySelector<HTMLButtonElement>('[data-search-retry]');
   let hits: Hit[] = [];
   let active = -1;
+  let returnFocus: HTMLElement | null = null;
 
   const load = () => {
     if (loading) return loading;
@@ -67,8 +68,9 @@ function wire(
     return loading;
   };
 
-  const open = () => {
+  const open = (opener?: HTMLElement) => {
     if (dialog.open) return;
+    returnFocus = opener ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
     dialog.showModal();
     input.select();
     render();
@@ -80,8 +82,13 @@ function wire(
     void load();
   });
 
+  // Virtual keyboards can submit without the input's Enter keydown. Submitting
+  // a query must never dismiss the dialog or implicitly run a model request.
+  dialog.querySelector('form')?.addEventListener('submit', (e) => e.preventDefault());
+  dialog.querySelector('[data-search-close]')?.addEventListener('click', () => dialog.close());
+
   for (const button of openers) {
-    button.addEventListener('click', open);
+    button.addEventListener('click', () => open(button));
   }
 
   // ⌘K / Ctrl-K anywhere, and a bare "/" when the reader isn't already typing.
@@ -114,6 +121,9 @@ function wire(
     input.removeAttribute('aria-activedescendant');
     if (intro) intro.hidden = false;
     if (retry) retry.hidden = true;
+    // WebKit does not necessarily focus a clicked button before showModal().
+    returnFocus?.focus({ preventScroll: true });
+    returnFocus = null;
   });
 
   for (const example of document.querySelectorAll<HTMLButtonElement>('[data-search-example]')) {
@@ -134,7 +144,9 @@ function wire(
       if (hits.length === 0) return;
       e.preventDefault();
       const step = e.key === 'ArrowDown' ? 1 : -1;
-      setActive((active + step + hits.length) % hits.length);
+      setActive(active < 0
+        ? (step > 0 ? 0 : hits.length - 1)
+        : (active + step + hits.length) % hits.length);
     } else if (e.key === 'Enter') {
       e.preventDefault();
       if (active >= 0) (list.children[active] as HTMLAnchorElement)?.click();
@@ -197,7 +209,7 @@ function wire(
 
     statusLine.textContent = `${hits.length} result${hits.length === 1 ? '' : 's'}.`;
     hits.forEach((hit, i) => list.append(row(hit, marks, i)));
-    setActive(0);
+    // Typing is not a choice to navigate. Only arrow keys select a result.
   }
 }
 

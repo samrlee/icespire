@@ -13,9 +13,10 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 - **Search reliability** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
   explicit loading/error/ready states and retry; consistent close/reopen reset;
-  Escape closes and restores focus, while Enter without a result stays open.
+  Escape closes and restores focus; Enter after typing stays open unless arrow
+  keys deliberately selected a result. Form submission cannot dismiss search.
   The dialog has an accessible name. Desktop/phone browser regressions cover
-  delayed and failed loads, keyboard navigation, and mocked Ask success, error,
+  delayed and failed loads, keyboard navigation (including phone-sized WebKit), and mocked Ask success, error,
   and cancellation in the required Build site job.
 
 ## Phased backlog from issue #75
