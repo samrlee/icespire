@@ -1,0 +1,88 @@
+---
+import { createHash } from 'node:crypto';
+interface Props { content: string }
+const version = createHash('sha256').update(Astro.props.content).digest('hex');
+---
+<section class="reading-position" data-version={version} aria-label="Reading position" hidden>
+  <label><input type="checkbox" data-remember /> Remember my place in this tab</label>
+  <button type="button" data-resume hidden>Resume reading</button>
+  <button type="button" data-clear hidden>Forget saved place</button>
+  <p role="status" data-reading-status></p>
+</section>
+<script>
+  const controls = document.querySelector<HTMLElement>('.reading-position');
+  const prose = document.querySelector<HTMLElement>('.session-layout > .prose');
+  if (controls && prose) {
+    const remember = controls.querySelector<HTMLInputElement>('[data-remember]')!;
+    const resume = controls.querySelector<HTMLButtonElement>('[data-resume]')!;
+    const clear = controls.querySelector<HTMLButtonElement>('[data-clear]')!;
+    const status = controls.querySelector<HTMLElement>('[data-reading-status]')!;
+    const key = `icespire-reading:${location.pathname}`;
+    const version = controls.dataset.version!;
+    let saved: number | undefined;
+    let tracking = false;
+    const fail = () => {
+      tracking = false;
+      remember.checked = false;
+      remember.disabled = true;
+      resume.hidden = true;
+      clear.hidden = true;
+      status.textContent = 'Reading-position storage is unavailable in this tab.';
+    };
+    controls.hidden = false;
+    try {
+      const raw = sessionStorage.getItem(key);
+      if (raw) {
+        let record;
+        try { record = JSON.parse(raw); } catch { record = null; }
+        if (record?.version === version && typeof record.position === 'number' && Number.isFinite(record.position) && record.position >= 0 && record.position <= 1) {
+          saved = record.position;
+          resume.hidden = clear.hidden = false;
+          status.textContent = 'A place is saved. Resume when you are ready.';
+        } else {
+          sessionStorage.removeItem(key);
+          status.textContent = 'The saved place was cleared because it is outdated or invalid.';
+        }
+      }
+    } catch { fail(); }
+    const save = () => {
+      if (!tracking) return;
+      const rect = prose.getBoundingClientRect();
+      const position = Math.max(0, Math.min(1, (100 - rect.top) / rect.height));
+      try {
+        sessionStorage.setItem(key, JSON.stringify({ version, position }));
+        saved = position;
+        clear.hidden = false;
+      } catch { fail(); }
+    };
+    const forget = () => {
+      tracking = false;
+      remember.checked = false;
+      saved = undefined;
+      resume.hidden = clear.hidden = true;
+      try {
+        sessionStorage.removeItem(key);
+        status.textContent = 'Saved place forgotten. Your reading position is no longer remembered.';
+      } catch { fail(); }
+    };
+    remember.addEventListener('change', () => {
+      if (!remember.checked) { forget(); return; }
+      tracking = true;
+      resume.hidden = true;
+      status.textContent = 'Your place will be remembered in this tab. Uncheck to stop and forget it.';
+      save();
+    });
+    resume.addEventListener('click', () => {
+      if (saved === undefined) return;
+      const top = scrollY + prose.getBoundingClientRect().top + saved * prose.getBoundingClientRect().height - 100;
+      prose.focus({ preventScroll: true });
+      window.scrollTo({ top, behavior: 'instant' });
+      remember.checked = tracking = true;
+      resume.hidden = true;
+      status.textContent = 'Resumed near your saved place. Uncheck to stop and forget it.';
+    });
+    clear.addEventListener('click', () => { forget(); remember.focus(); });
+    window.addEventListener('scroll', save, { passive: true });
+    window.addEventListener('pagehide', save);
+  }
+</script>

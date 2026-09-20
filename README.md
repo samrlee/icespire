@@ -684,3 +684,15 @@ can express them:
   `https://icespire.ghostbloods.net/sitemap-index.xml`. The repo ships the
   sitemap and a crawler-friendly `robots.txt`, but only this step actually
   asks Google to come and look.
+
+## Optional recap reading position
+
+Longer recaps offer “Remember my place in this tab.” It is off until selected.
+While enabled, scrolling records an approximate position within that recap in
+per-tab session storage. Returning shows Resume reading; the site never resumes
+automatically. Resume also enables tracking again. Uncheck or choose Forget saved
+place to stop tracking and delete the saved position. No account or server stores it.
+Closing the tab normally ends the storage lifetime (browser session restoration may
+restore it). A changed recap body or frontmatter invalidates its prior position.
+Blocked storage reports the limitation while leaving the recap readable. Controls
+are hidden without JavaScript and when printing. This is separate from Q&A retention.

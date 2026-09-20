@@ -4340,3 +4340,23 @@ body {
 .sword-coast .sc-subtitle { fill: var(--map-label); font-family: var(--font-mono); font-size: 12px; letter-spacing: 1.5px; }
 .sword-coast .sc-scale { fill: var(--map-label); font-family: var(--font-mono); font-size: 16px; text-anchor: middle; }
 .sword-coast .sc-scale path { fill: none; stroke: var(--map-label); stroke-width: 2; }
+
+.reading-position {
+  margin-block: var(--space-4);
+  max-width: 75ch;
+  color: var(--text-secondary);
+}
+.reading-position label { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; }
+.reading-position button {
+  min-height: 44px;
+  margin: 0.25rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  cursor: pointer;
+}
+.reading-position p { margin: 0.25rem 0; }
+@media print { .reading-position { display: none; } }
