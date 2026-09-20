@@ -15,7 +15,11 @@ for (const profile of ['/characters/dax/', '/npcs/holia-thornton/']) {
     expect(numbers).toEqual([...numbers].sort((a, b) => b - a));
     expect(new Set(numbers).size).toBe(numbers.length);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await links.first().click();
+    // Exercise native no-script navigation without pointer stability polling
+    // on a below-the-fold, wrapping link in mobile browser emulation.
+    await links.first().focus();
+    await expect(links.first()).toBeFocused();
+    await links.first().press('Enter');
     await expect(page).toHaveURL(/\/sessions\/session-9\/$/);
     await expect(page.locator('h1')).toContainText('An Alibi');
   });
