@@ -8,6 +8,7 @@ import { isSessionPublished } from '../../lib/session-publication';
 import { isMapLocationPublished, isMapLinkPublished } from '../../lib/map-publication';
 import { submaps } from '../../components/map/submaps/registry';
 import { readingMinutes } from '../../lib/reading-time';
+import ReadingPosition from '../../components/ReadingPosition.astro';
 
 export async function getStaticPaths() {
   const published = (await getCollection('sessions', isSessionPublished)).sort(
@@ -67,8 +68,9 @@ const hasAside = hasEncounters || hasJourney;
     )
   }
   <DramatisPersonae session={session} />
+  {minutes && <ReadingPosition content={JSON.stringify([session.data, session.body])} />}
   <div class={`session-layout${hasAside ? '' : ' no-aside'}`}>
-    <div class="prose">
+    <div class="prose" tabindex="-1">
       <Content />
     </div>
     {

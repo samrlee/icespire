@@ -11,10 +11,9 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Profile review freshness** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  explicit published-session checkpoints on character/NPC profiles, linked review
-  labels and freshness notices, plus report findings and build validation.
-  No existing profiles are automatically marked reviewed.
+- **Optional recap reading position** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  per-tab opt-in tracking, explicit resume, stop/forget controls, content-version
+  invalidation and blocked-storage handling on longer recaps.
 
 ## Phased backlog from issue #75
 
@@ -42,8 +41,8 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
    appearances or proof of character knowledge. Retrieved documents do not prove
    every answer claim; construct citation links from validated records.
 4. **Editorial tools and options:** post-session publication reports are merged;
-   character-replacement-safe casting is merged. Profile review freshness is in this PR; claim-level provenance remains.
-   Reading-position/Q&A retention needs explicit reset, cancellation and stale
+   character-replacement-safe casting is merged. Profile review freshness is merged; claim-level provenance remains.
+   Reading position is in this PR. Q&A retention still needs explicit reset, cancellation and stale
    corpus handling; never retain an answer under a different question. A historical
    session selector cannot promise spoiler safety while previews show current
    entity data. Character knowledge briefings require a separate reviewed pilot.
@@ -51,6 +50,10 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Profile review freshness** — [PR #94](https://github.com/samrlee/icespire/pull/94)
+  merged: explicit profile review checkpoints, freshness labels and report findings.
+  _(Sep 2026)_
 
 - **Clear navigation labels** — [PR #93](https://github.com/samrlee/icespire/pull/93)
   merged: Story so far, Party and Relationships in the header and footer.
