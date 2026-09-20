@@ -7,6 +7,7 @@ import { url } from '../../utils/url';
 import { isSessionPublished } from '../../lib/session-publication';
 import { isMapLocationPublished, isMapLinkPublished } from '../../lib/map-publication';
 import { submaps } from '../../components/map/submaps/registry';
+import { readingMinutes } from '../../lib/reading-time';
 
 export async function getStaticPaths() {
   const published = (await getCollection('sessions', isSessionPublished)).sort(
@@ -26,6 +27,7 @@ export async function getStaticPaths() {
 
 const { session, prev, next } = Astro.props;
 const { Content } = await render(session);
+const minutes = readingMinutes(session.rendered?.html ?? '');
 const dateStr = session.data.date.toLocaleDateString('en-US', {
   timeZone: 'UTC',
   month: 'short',
@@ -47,6 +49,7 @@ const hasAside = hasEncounters || hasJourney;
 ---
 
 <Base
+  printable
   title={`Session ${session.data.sessionNumber}: ${session.data.title}`}
   description={session.data.summary}
   ogImage={`/og/sessions/${session.id}.png`}
@@ -55,6 +58,7 @@ const hasAside = hasEncounters || hasJourney;
   <div class="recap-kicker">
     Session {session.data.sessionNumber}
     <span class="date">{dateStr}</span>
+    {minutes && <span class="reading-time">About {minutes} min read</span>}
   </div>
   <h1 class="session-title">{session.data.title}</h1>
   {

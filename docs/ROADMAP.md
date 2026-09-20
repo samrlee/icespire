@@ -11,10 +11,10 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Mobile homepage and portrait sizing** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  homepage actions precede the cover on phones; generated responsive portraits
-  serve recap avatars, the party strip, roster cards, and entity previews.
-  Original profile art, credits, crops, and campaign prose remain unchanged.
+- **Reading time and print styles** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  estimated reading time for recaps with at least 500 words; single-column,
+  dark-on-white printing for recaps and the campaign summary. Preserve prose,
+  cast names and sidebar notes; omit navigation, preview cards and decorative art.
 
 ## Phased backlog from issue #75
 
@@ -29,8 +29,8 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
    retain existing CI gates.
 2. **First player-facing release:** shared “Where we left off” data with source/as-of
    session and split-party support; current-first campaign layout; mobile actions
-   before cover art and portrait variants are in the current PR; reading time
-   and print styles remain follow-ups. Reuse the
+   before cover art and portrait variants are merged; reading time and print
+   styles are in the current PR. Reuse the
    existing `MarkdownPage.astro` contents rail. Author current state once, without
    inferring current resources from an earlier rest. Rendering and search must
    change together if `src/pages/campaign.md` moves; keep `/campaign/` and anchors.
@@ -50,6 +50,11 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Mobile homepage and portrait sizing** — [PR #84](https://github.com/samrlee/icespire/pull/84)
+  merged: phone actions precede the cover; responsive portraits serve avatars,
+  party strips, roster cards and previews. Original profile art and credits remain.
+  _(Sep 2026)_
 
 - **Entity preview accessibility** — [PR #83](https://github.com/samrlee/icespire/pull/83)
   merged: reliable first-tap previews, adjacent keyboard navigation, Escape/focus
@@ -219,17 +224,7 @@ The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 Ordered high → low by rough impact-per-effort.
 
-1. **Reading time on recaps.** The cast strip half of this idea shipped (see
-   Done); the reading-time estimate did not. It was held back because it reads
-   as noise on the early recaps — Sessions 0–4 run 61 to 389 words, and "1 min
-   read" tells nobody anything. The trend argues for revisiting: the last four
-   sessions ran 749, 1,789, 3,214 and 4,165 words. Ship it behind a threshold
-   (say 500 words) rather than on every recap.
-
-2. **Print stylesheet.** A `@media print` block so a recap or the campaign
-   summary prints cleanly for players/DMs who want a hard copy.
-
-3. **Redraw the eleven hidden local maps, as they publish.** Axeholm,
+1. **Redraw the eleven hidden local maps, as they publish.** Axeholm,
    Butterskull Ranch, Circle of Thunder, Dragon Barrow, Falcon's Hunting Lodge,
    Icespire Hold, Loggers' Camp, Mountain's Toe Gold Mine, Shrine of Savras,
    Tower of Storms and the Woodland Manse are still in the pre-redraw invented

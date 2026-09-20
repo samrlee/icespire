@@ -19,7 +19,7 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
 const showToc = toc.length >= 3;
 ---
 
-<Base title={frontmatter.title} description={frontmatter.description}>
+<Base title={frontmatter.title} description={frontmatter.description} printable>
   {frontmatter.kicker && <div class="kicker">{frontmatter.kicker}</div>}
   <div class={`doc-layout${showToc ? '' : ' no-aside'}`}>
     <div class="prose">

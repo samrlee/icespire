@@ -13,7 +13,7 @@
     "test:ask": "node --experimental-strip-types --test tests/ask-context.test.mjs tests/ask-request.test.mjs",
     "test:publication": "node --test tests/publication-build.test.mjs",
     "test:browser": "playwright test",
-    "test:integrity": "node --experimental-strip-types --test tests/content-integrity.test.mjs tests/generated-links.test.mjs"
+    "test:integrity": "node --experimental-strip-types --test tests/content-integrity.test.mjs tests/generated-links.test.mjs tests/reading-time.test.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
