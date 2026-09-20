@@ -4,6 +4,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "review:publication": "node --experimental-strip-types scripts/publication-review.mjs",
+    "test:review": "node --experimental-strip-types --test tests/publication-review.test.mjs",
     "dev": "astro dev",
     "check": "astro check",
     "build": "astro build",
@@ -26,6 +28,7 @@
     "@playwright/test": "^1.63.0",
     "@types/node": "^26.1.1",
     "parse5": "^8.0.1",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "yaml": "^2.9.0"
   }
 }

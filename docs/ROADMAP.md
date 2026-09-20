@@ -11,10 +11,9 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Search filters and more results** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  type filters and batches of eight with complete match counts. Filtering does
-  not narrow Ask's sources or trigger a model call; query edits and reopening
-  reset the expanded list.
+- **Publication review report** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  changed campaign files, publication-gate transitions, reference findings and
+  snapshot freshness in an ignored local report and the read-only CI job summary.
 
 ## Phased backlog from issue #75
 
@@ -37,10 +36,10 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 3. **Connected references:** one shared scene representation with stable IDs
    through title/prose changes and insertions, reused for jump navigation,
    profile backlinks, timeline and validated passage citations. NPC filters are
-   merged; expanded/type-filtered search is in this PR. Detected mentions are not confirmed
+   merged, as is expanded/type-filtered search. Detected mentions are not confirmed
    appearances or proof of character knowledge. Retrieved documents do not prove
    every answer claim; construct citation links from validated records.
-4. **Editorial tools and options:** post-session publication reports,
+4. **Editorial tools and options:** post-session publication reports are in this PR;
    review freshness/provenance, and character-replacement-safe attendance.
    Reading-position/Q&A retention needs explicit reset, cancellation and stale
    corpus handling; never retain an answer under a different question. A historical
@@ -50,6 +49,10 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Search filters and more results** — [PR #88](https://github.com/samrlee/icespire/pull/88)
+  merged: type filters, complete counts and batches beyond eight results;
+  deliberate Enter selection and explicit Ask requests preserved. _(Sep 2026)_
 
 - **NPC directory filters** — [PR #87](https://github.com/samrlee/icespire/pull/87)
   merged: responsive thumbnails, combined disposition/faction filtering, live

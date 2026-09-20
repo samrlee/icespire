@@ -264,6 +264,12 @@ per-session social card. They are all derived at build time.
 
 ## 8. Verify
 
+Run `npm run review:publication -- <base-commit>` and review
+`.review/publication-review.md` for changed campaign records, newly eligible
+recaps/map gates, reference findings and a stale current snapshot. CI includes
+the comparison in the Build site summary. This focuses review; it does not
+approve discoveries, character knowledge, prose or map drawings.
+
 ```sh
 npm run check && npm run build
 ```
