@@ -467,6 +467,21 @@ her "the panther" and has no name to match on. `firstAppearance: 7` puts her in
 that session's cast anyway, and Session 8 picks her up from the prose like
 anyone else.
 
+## Profile recap links
+
+Character and NPC profiles end with **Mentioned in recaps**, newest first,
+using the shared entity aliases and Markdown body matcher in `entities.ts`.
+`recap-mentions.ts` builds one index from published sessions for both profile
+types; no sidecar lists or new content fields are maintained. Repeated aliases
+produce one link per recap, dates use UTC, and profiles without matches omit
+the section. The links work without JavaScript.
+
+A mention does not confirm participation or knowledge. Attendance, encounter
+metadata and `firstAppearance` alone do not add a link here. Generic titles
+such as “the queen” may be missed, following the existing conservative matcher.
+These are whole-recap links; future scene links should use the planned shared
+scene representation rather than a second set of manually authored anchors.
+
 ## Indexing
 
 `public/robots.txt` allows crawling and points at the sitemap; the sitemap

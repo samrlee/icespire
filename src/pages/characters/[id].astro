@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import CharacterCard from '../../components/CharacterCard.astro';
+import RecapMentions from '../../components/RecapMentions.astro';
 import { url } from '../../utils/url';
 
 export async function getStaticPaths() {
@@ -32,4 +33,5 @@ const statusNote =
   <div class="prose" style="margin-top: var(--space-6);">
     <Content />
   </div>
+  <RecapMentions href={url(`/characters/${character.id}/`)} />
 </Base>
