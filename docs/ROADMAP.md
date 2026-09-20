@@ -11,10 +11,11 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Navigation accessibility** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  first-focus skip link to main content; ordinary disclosure navigation links
-  with explicit controls/expanded state, Escape focus return, and dismissal when
-  focus leaves a group. Browser coverage includes keyboard and touch navigation.
+- **Content reference integrity** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  reject duplicate session/journey numbers, missing collection references,
+  attendance names outside the roster, and missing portrait/encounter images.
+  Validate parsed collections including drafts/hidden entries; retain publication
+  gates and campaign prose. Unit and disposable build-failure checks run in CI.
 
 ## Phased backlog from issue #75
 
@@ -23,8 +24,9 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 
 1. **Reliability:** search reset/retry, browser regressions, Ask body limits and
    controlled origin errors and dependency/action maintenance are merged.
-   Navigation disclosure semantics and a skip link are in the current PR.
-   Future integrity work includes build-time relationship/reference validation;
+   Navigation disclosure semantics and a skip link are merged. Collection and
+   image reference validation is in the current PR. General link/fragment checks
+   and entity-popover accessibility review remain follow-ups;
    retain existing CI gates.
 2. **First player-facing release:** shared “Where we left off” data with source/as-of
    session and split-party support; current-first campaign layout; mobile actions
@@ -48,6 +50,10 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Navigation accessibility** — [PR #80](https://github.com/samrlee/icespire/pull/80)
+  merged: skip-to-content, disclosure semantics, Escape focus return and
+  focus-leave dismissal, covered by Chromium/WebKit tests. _(Sep 2026)_
 
 - **Dependency and CI maintenance** — [PR #79](https://github.com/samrlee/icespire/pull/79)
   merged: compatible devalue 5.9.4 patch and current checkout/setup-node actions;

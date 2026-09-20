@@ -3,6 +3,9 @@ import EntityLinks from '../components/EntityLinks.astro';
 import SearchPalette from '../components/SearchPalette.astro';
 import { url } from '../utils/url';
 import '../styles/global.css';
+import { validateContent } from '../lib/validate-content';
+
+await validateContent();
 
 interface Props {
   title: string;

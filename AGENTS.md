@@ -56,13 +56,18 @@ journey file fails the build. **Always run `npm run check && npm run build`
 before committing** — CI (`.github/workflows/ci.yml`) runs both on every PR, plus
 `npm audit --omit=dev --audit-level=high`.
 
-Also run `npm run test:map`, `npm run test:ask`, and `npm run test:publication`.
+Also run `npm run test:integrity`, `npm run test:map`, `npm run test:ask`, and `npm run test:publication`.
 The latter builds synthetic fixtures in a disposable copy; never put test-only
 campaign entries into the working content or deployable output. After building,
 also run `npm run test:browser` (install Chromium once with
 `npx playwright install chromium webkit`). It tests desktop/phone search and mocked Ask
-against the built site, without paid model requests. All four suites run in the
+against the built site, without paid model requests. All five suites run in the
 same required **Build site** job. See README for browser setup and server limits.
+
+The shared layout validates references across all parsed collections, including
+drafts/hidden locations, and checks portrait/encounter image files during builds.
+Fix the source field named by a validation error; never change discovery flags
+to bypass it. Session attendance names must match a character roster player.
 
 Note `npm run preview` serves the built site but does **not** apply
 `dist/_headers`, so it will not show you CSP problems.

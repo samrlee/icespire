@@ -427,6 +427,7 @@ npm run build    # production build (also validates all content)
 ```
 
 Before committing, run `npm run check`, `npm run test:map`, `npm run test:ask`,
+`npm run test:integrity`,
 `npm run build`, `npm run test:publication`, and `npm run test:browser`. All run in the required **Build
 site** CI job, alongside the shipped-dependency audit.
 
@@ -456,6 +457,23 @@ Enter after typing preserves the query and results; arrow keys must select a
 result before Enter navigates. Form submission also keeps the dialog open.
 Ask still requires its explicit button. WebKit emulation is not a physical
 iPhone keyboard test.
+
+## Content reference validation
+
+Content references are checked from Astro's parsed collections when the shared
+Base layout renders. Production builds share one validation result across pages;
+development renders recheck edits. Duplicate session numbers/journey assignments,
+orphan journeys, route/event locations, NPC faction/first-appearance references,
+location lore/faction/first-visit references, and attendance names outside the
+character roster fail the build with source IDs and field names. Portrait and
+encounter image paths must name files under `public/`.
+
+Checks include drafts and hidden locations but do not change publication gates.
+Roster membership is only a spelling/reference check; it does not prove attendance,
+participation, or character knowledge. A referenced session may be a draft.
+`test:integrity` covers the reference rules; `test:publication` also proves a real
+build rejects broken draft references and missing images in its disposable copy.
+General authored links and URL fragments remain a separate validation task.
 
 ## Response headers
 
