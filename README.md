@@ -24,11 +24,11 @@ This README stays the reference manual for the collections and subsystems below.
 | Nav item | Route | Source |
 | --- | --- | --- |
 | Recaps | `/sessions/` | `src/content/sessions/` |
-| Campaign | `/campaign/` | `src/pages/campaign.md` (single running page, edit in place) |
+| Story so far | `/campaign/` | `src/pages/campaign.md` (single running page, edit in place) |
 | Map | `/map/` | `src/content/locations/` + `src/content/journey/` |
-| Roster | `/characters/` | `src/content/characters/` |
+| Party | `/characters/` | `src/content/characters/` |
 | NPCs | `/npcs/` | `src/content/npcs/` |
-| Relations | `/graph/` | derived from `src/content/npcs/` + `factions/` + `characters/` |
+| Relationships | `/graph/` | derived from `src/content/npcs/` + `factions/` + `characters/` |
 | Codex | `/codex/` | factions (`src/content/factions/`) + lore (`src/content/lore/`) |
 | Search (`⌘K`) | `/search-index.json` | every published entry, built by `src/lib/search-index.ts` |
 | Ask | `POST /api/ask` | `functions/api/ask.ts` (Cloudflare Pages Function) |

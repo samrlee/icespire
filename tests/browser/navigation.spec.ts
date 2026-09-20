@@ -40,7 +40,7 @@ test('tabbing out closes a disclosure without moving focus back', async ({ page 
   const trigger = nav.getByRole('button', { name: 'The Story' });
   await trigger.focus();
   await trigger.press('Space');
-  await nav.getByRole('link', { name: 'Campaign', exact: true }).focus();
+  await nav.getByRole('link', { name: 'Story so far', exact: true }).focus();
   await page.keyboard.press('Tab');
   await expect(nav.getByRole('button', { name: 'The World' })).toBeFocused();
   await expect(trigger).toHaveAttribute('aria-expanded', 'false');
