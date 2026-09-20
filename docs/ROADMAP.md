@@ -11,9 +11,9 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Theme switch reliability** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  functional Light mode / Dark mode labels and switching even when saved
-  preferences are blocked. Browser regressions cover persistence and blocked storage.
+- **Clear navigation labels** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  Story so far, Party and Relationships name their destinations in the header
+  and footer. Existing routes, active-page markers and disclosure behavior remain.
 
 ## Phased backlog from issue #75
 
@@ -50,6 +50,10 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Theme switch reliability** — [PR #92](https://github.com/samrlee/icespire/pull/92)
+  merged: functional mode labels and switching with blocked preference storage.
+  _(Sep 2026)_
 
 - **Profile recap links** ([PR #91](https://github.com/samrlee/icespire/pull/91)):
   character and NPC profiles list published recaps that mention their names,
