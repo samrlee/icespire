@@ -10,6 +10,7 @@
 import { getCollection } from 'astro:content';
 import { isMapLocationPublished } from './map-publication';
 import { url } from '../utils/url';
+import { portraitSources } from './portraits';
 
 export type EntityType = 'Party' | 'NPC' | 'Faction' | 'Location';
 
@@ -20,6 +21,7 @@ export type Entity = {
   sub?: string;
   note?: string;
   portrait?: string;
+  previewPortrait?: { src: string; srcset: string };
   status?: string;
   statusLabel?: string;
   aliases: string[];
@@ -72,6 +74,7 @@ export async function buildEntities(): Promise<Entity[]> {
       sub: `${c.data.ancestry} ${c.data.class} · played by ${c.data.player}`,
       note: c.data.tagline,
       portrait: c.data.portrait ? url(c.data.portrait) : undefined,
+      previewPortrait: c.data.portrait ? await portraitSources(c.data.portrait, 256) : undefined,
       aliases: nameVariants(c.data.name),
     });
   }
@@ -84,6 +87,7 @@ export async function buildEntities(): Promise<Entity[]> {
       sub: [n.data.role, n.data.affiliation].filter(Boolean).join(' · '),
       note: n.data.note,
       portrait: n.data.portrait ? url(n.data.portrait) : undefined,
+      previewPortrait: n.data.portrait ? await portraitSources(n.data.portrait, 256) : undefined,
       status: n.data.status,
       statusLabel: npcStatusLabels[n.data.status],
       aliases: nameVariants(n.data.name),

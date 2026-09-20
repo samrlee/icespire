@@ -11,11 +11,10 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Entity preview accessibility** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  reliable first-tap previews, Escape dismissal/focus return, adjacent keyboard
-  navigation, and persistence while hovered or focused. Browser regressions cover
-  desktop and phone Chromium/WebKit; physical-device/assistive-technology review
-  remains a manual check.
+- **Mobile homepage and portrait sizing** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  homepage actions precede the cover on phones; generated responsive portraits
+  serve recap avatars, the party strip, roster cards, and entity previews.
+  Original profile art, credits, crops, and campaign prose remain unchanged.
 
 ## Phased backlog from issue #75
 
@@ -26,11 +25,12 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
    controlled origin errors and dependency/action maintenance are merged.
    Navigation disclosure semantics and a skip link are merged. Collection and
    image reference validation and generated HTML link/fragment checks are merged.
-   Entity-preview touch/keyboard fixes are in the current PR;
+   Entity-preview touch/keyboard fixes are merged;
    retain existing CI gates.
 2. **First player-facing release:** shared “Where we left off” data with source/as-of
    session and split-party support; current-first campaign layout; mobile actions
-   before cover art; portrait variants; reading time and print styles. Reuse the
+   before cover art and portrait variants are in the current PR; reading time
+   and print styles remain follow-ups. Reuse the
    existing `MarkdownPage.astro` contents rail. Author current state once, without
    inferring current resources from an earlier rest. Rendering and search must
    change together if `src/pages/campaign.md` moves; keep `/campaign/` and anchors.
@@ -50,6 +50,11 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Entity preview accessibility** — [PR #83](https://github.com/samrlee/icespire/pull/83)
+  merged: reliable first-tap previews, adjacent keyboard navigation, Escape/focus
+  return, and hover/focus persistence. Covered in desktop/phone Chromium/WebKit;
+  physical-device and assistive-technology verification remains manual. _(Sep 2026)_
 
 - **Generated link validation** — [PR #82](https://github.com/samrlee/icespire/pull/82)
   merged: builds reject missing local pages, assets, and HTML fragments, including

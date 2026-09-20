@@ -885,7 +885,6 @@ body {
   .hero-cover {
     max-width: 300px;
     justify-self: center;
-    order: -1;
   }
 }
 
@@ -1747,6 +1746,14 @@ body {
   color: var(--text-muted);
   font-family: var(--font-body);
   font-size: var(--text-xs);
+}
+
+.character-card .portrait > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: inherit;
 }
 
 /* Pinned to the top of the row rather than stretched. The height here comes

@@ -7,6 +7,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { buildEntities, matchEntities, type Entity } from '../lib/entities';
 import { url } from '../utils/url';
+import Portrait from './Portrait.astro';
 
 interface Props {
   session: CollectionEntry<'sessions'>;
@@ -100,7 +101,7 @@ const monogram = (name: string) =>
                 /* Top of the page — in the first viewport, so not lazy. The
                    dimensions match the CSS box to keep the strip from
                    reflowing as portraits arrive. */
-                <img class="dp-avatar" src={m.portrait} alt="" width="32" height="32" />
+                <Portrait class="dp-avatar" src={m.portrait} alt="" width={32} height={32} sizes="32px" maximum={128} loading="eager" />
               ) : (
                 <span class={`dp-avatar dp-monogram${m.status ? ` ${m.status}` : ''}`} aria-hidden="true">
                   {monogram(m.name)}
