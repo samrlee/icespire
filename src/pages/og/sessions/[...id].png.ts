@@ -1,12 +1,13 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { renderOgCard } from '../../../lib/og';
+import { isSessionPublished } from '../../../lib/session-publication';
 
 // One social-preview PNG per session, generated at build time as
 // /og/sessions/<id>.png. The session page points its og:image here so a shared
-// recap link carries that session's own title (see src/pages/sessions/[id].astro).
+// recap link carries that session's own title (see src/pages/sessions/[...id].astro).
 export async function getStaticPaths() {
-  const sessions = await getCollection('sessions');
+  const sessions = await getCollection('sessions', isSessionPublished);
   return sessions.map((session) => ({ params: { id: session.id }, props: { session } }));
 }
 
@@ -28,7 +29,7 @@ export const GET: APIRoute = async ({ props }) => {
   //
   // In a static build these headers never reach a client — the body is written
   // to dist/og/sessions/<id>.png and the response is discarded. Cache policy for
-  // this path lives in public/_headers, where Cloudflare Pages will read it.
+  // this path lives in generated dist/_headers, where Cloudflare Pages reads it.
   return new Response(new Uint8Array(png), {
     headers: { 'Content-Type': 'image/png' },
   });

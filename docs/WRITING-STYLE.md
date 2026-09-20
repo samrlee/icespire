@@ -170,7 +170,7 @@ character. Check every proper noun against it.
 
 Write names plainly and do not hand-write links to site pages inside recap
 prose. `EntityLinks.astro` turns the first mention of any character, NPC,
-faction, or known location into a link with a hover card. Full name on first
+faction, or visited location into a link with a hover card. Full name on first
 mention in a scene; the linker also matches distinctive single-word aliases
 ("Thornton", "Dazlyn"). Bold is for emphasis the sentence cannot carry on its
 own, not for names.

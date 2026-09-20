@@ -1,10 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
+import { isSessionPublished } from '../lib/session-publication';
+import { isMapLocationPublished } from '../lib/map-publication';
 import Base from '../layouts/Base.astro';
 import SessionRecapCard from '../components/SessionRecapCard.astro';
 import { url } from '../utils/url';
 
-const sessions = (await getCollection('sessions', ({ data }) => !data.draft)).sort(
+const sessions = (await getCollection('sessions', isSessionPublished)).sort(
   (a, b) => b.data.sessionNumber - a.data.sessionNumber
 );
 const characters = (await getCollection('characters')).sort((a, b) =>
@@ -12,7 +14,7 @@ const characters = (await getCollection('characters')).sort((a, b) =>
 );
 const npcs = await getCollection('npcs');
 const locations = await getCollection('locations');
-const placesVisited = locations.filter((l) => l.data.status === 'visited').length;
+const placesVisited = locations.filter(isMapLocationPublished).length;
 
 // The homepage shows the newest few recaps; the full archive lives on /sessions/.
 const recentSessions = sessions.slice(0, 3);

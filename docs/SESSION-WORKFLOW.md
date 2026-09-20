@@ -196,6 +196,13 @@ where there is one).
 Everything about the prose itself is in **[`WRITING-STYLE.md`](WRITING-STYLE.md)**.
 Sessions 6 and 7 are the model.
 
+Use `draft: true` while a recap is unapproved. Drafts generate no recap HTML or
+social image, including in local development, and contribute no navigation,
+timeline, search/Ask document, or map journey. Review the Markdown in an editor;
+there is no private preview service. The repository is public, so the flag does
+not make source files or history confidential. Keep legitimate reports about
+unvisited places in the prose; they do not earn a map marker or link.
+
 ## 7. Propagate the session across the site
 
 A recap on its own leaves the site contradicting itself. This checklist is drawn

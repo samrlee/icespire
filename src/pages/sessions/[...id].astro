@@ -4,21 +4,21 @@ import Base from '../../layouts/Base.astro';
 import CreatureCard from '../../components/CreatureCard.astro';
 import DramatisPersonae from '../../components/DramatisPersonae.astro';
 import { url } from '../../utils/url';
+import { isSessionPublished } from '../../lib/session-publication';
+import { isMapLocationPublished, isMapLinkPublished } from '../../lib/map-publication';
+import { submaps } from '../../components/map/submaps/registry';
 
 export async function getStaticPaths() {
-  const sessions = (await getCollection('sessions')).sort(
+  const published = (await getCollection('sessions', isSessionPublished)).sort(
     (a, b) => a.data.sessionNumber - b.data.sessionNumber
   );
-  // Drafts get pages but stay out of the prev/next chain.
-  const published = sessions.filter((s) => !s.data.draft);
-  return sessions.map((session) => {
-    const i = published.findIndex((s) => s.id === session.id);
+  return published.map((session, i) => {
     return {
       params: { id: session.id },
       props: {
         session,
         prev: i > 0 ? published[i - 1] : null,
-        next: i >= 0 && i < published.length - 1 ? published[i + 1] : null,
+        next: i < published.length - 1 ? published[i + 1] : null,
       },
     };
   });
@@ -39,6 +39,7 @@ const journey = (await getCollection('journey')).find(
 );
 const locations = await getCollection('locations');
 const locationName = (slug: string) => locations.find((l) => l.id === slug)?.data.name ?? slug;
+const mapLocations = new Set(locations.filter(isMapLocationPublished).map((l) => l.id));
 
 const hasEncounters = session.data.encounters.length > 0;
 const hasJourney = journey && (journey.data.route.length > 0 || journey.data.events.length > 0);
@@ -78,7 +79,8 @@ const hasAside = hasEncounters || hasJourney;
                     name={encounter.name}
                     image={url(encounter.image)}
                     note={encounter.note}
-                    href={encounter.href ? url(encounter.href) : undefined}
+                    href={encounter.href && isMapLinkPublished(encounter.href, locations, submaps)
+                      ? url(encounter.href) : undefined}
                   />
                 ))}
               </div>
@@ -92,7 +94,9 @@ const hasAside = hasEncounters || hasJourney;
                   {journey.data.route.map((slug, i) => (
                     <>
                       {i > 0 && <span class="route-sep" aria-hidden="true">→</span>}
-                      <a href={url(`/map/#${slug}`)}>{locationName(slug)}</a>
+                      {mapLocations.has(slug)
+                        ? <a href={url(`/map/#${slug}`)}>{locationName(slug)}</a>
+                        : <span>{locationName(slug)}</span>}
                     </>
                   ))}
                 </p>

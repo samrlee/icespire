@@ -26,6 +26,7 @@
 // together; the Key numbers its lines explicitly, so a dropped one does not
 // renumber the rest.
 
+import { isLocalMapPublished } from '../../../lib/map-publication';
 import Phandalin from './Phandalin.astro';
 import Gnomengarde from './Gnomengarde.astro';
 import DwarvenExcavation from './DwarvenExcavation.astro';
@@ -71,10 +72,7 @@ export function hasSubmapPage(loc: {
   id: string;
   data: { status: string; interiorSeen?: boolean };
 }): boolean {
-  if (loc.data.status !== 'visited') return false;
-  const entry = submaps[loc.id];
-  if (!entry) return false;
-  return !entry.interiorOnly || loc.data.interiorSeen === true;
+  return isLocalMapPublished(loc, submaps[loc.id]);
 }
 
 export const submaps: Record<string, SubmapEntry> = {
