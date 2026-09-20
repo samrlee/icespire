@@ -66,6 +66,7 @@ function linkMentions(entities: Entity[]) {
         pieces.push(text.slice(cursor, match.index));
         const a = document.createElement('a');
         a.className = 'entity-link';
+        a.tabIndex = 0;
         a.href = entity.href;
         a.dataset.entity = String(idx);
         a.textContent = match[0];
@@ -84,19 +85,25 @@ function linkMentions(entities: Entity[]) {
 }
 
 function setupPopover(entities: Entity[]) {
-  const pop = document.createElement('div');
+  const pop = document.createElement('span');
+  pop.id = 'entity-preview';
+  pop.setAttribute('role', 'group');
+  pop.setAttribute('aria-labelledby', 'entity-preview-name');
   pop.className = 'entity-pop';
   pop.hidden = true;
   document.body.appendChild(pop);
 
   let hideTimer: number | undefined;
   let shownFor: HTMLElement | null = null;
-  const touchOnly = matchMedia('(hover: none)').matches;
+  let hovered = false;
+  let restoringFocus = false;
+  let touchWasOpen = false;
+  let touchLink: Element | null = null;
 
   const fill = (entity: Entity) => {
     pop.replaceChildren();
 
-    const head = document.createElement('div');
+    const head = document.createElement('span');
     head.className = 'pop-head';
     const kicker = document.createElement('span');
     kicker.className = 'pop-kicker';
@@ -110,27 +117,29 @@ function setupPopover(entities: Entity[]) {
     }
     pop.appendChild(head);
 
-    const body = document.createElement('div');
+    const body = document.createElement('span');
     body.className = 'pop-body';
-    const textCol = document.createElement('div');
-    const name = document.createElement('div');
+    const textCol = document.createElement('span');
+    const name = document.createElement('span');
     name.className = 'pop-name';
+    name.id = 'entity-preview-name';
     name.textContent = entity.name;
     textCol.appendChild(name);
     if (entity.sub) {
-      const sub = document.createElement('div');
+      const sub = document.createElement('span');
       sub.className = 'pop-sub';
       sub.textContent = entity.sub;
       textCol.appendChild(sub);
     }
     if (entity.note) {
-      const note = document.createElement('div');
+      const note = document.createElement('span');
       note.className = 'pop-note';
       note.textContent = entity.note;
       textCol.appendChild(note);
     }
     const open = document.createElement('a');
     open.className = 'pop-open';
+    open.tabIndex = 0;
     open.href = entity.href;
     open.textContent = entity.type === 'Location' ? 'On the map →' : 'Open page →';
     textCol.appendChild(open);
@@ -145,59 +154,105 @@ function setupPopover(entities: Entity[]) {
     pop.appendChild(body);
   };
 
-  const show = (link: HTMLElement) => {
-    window.clearTimeout(hideTimer);
-    const idx = Number(link.dataset.entity);
-    const entity = entities[idx];
-    // A .entity-link that didn't come from linkMentions (hand-written in prose,
-    // say) carries no index — there's nothing to preview, so leave it be.
-    if (!entity) return;
-    fill(entity);
-    shownFor = link;
-    pop.hidden = false;
-    pop.style.visibility = 'hidden';
+  const position = (link: HTMLElement) => {
     const rect = link.getBoundingClientRect();
     const popRect = pop.getBoundingClientRect();
     const left = Math.min(Math.max(8, rect.left), window.innerWidth - popRect.width - 8);
     const below = rect.bottom + 8 + popRect.height < window.innerHeight;
     const top = below ? rect.bottom + 8 : rect.top - popRect.height - 8;
-    pop.style.left = `${left + window.scrollX}px`;
-    pop.style.top = `${top + window.scrollY}px`;
+    pop.style.left = `${left}px`;
+    pop.style.top = `${Math.max(8, top)}px`;
+  };
+
+  const show = (link: HTMLElement) => {
+    window.clearTimeout(hideTimer);
+    if (link.dataset.entity === undefined) return;
+    const idx = Number(link.dataset.entity);
+    const entity = entities[idx];
+    // A .entity-link that didn't come from linkMentions (hand-written in prose,
+    // say) carries no index — there's nothing to preview, so leave it be.
+    if (!entity || (shownFor === link && !pop.hidden)) return;
+    shownFor?.removeAttribute('aria-controls');
+    fill(entity);
+    // Phrasing content beside the trigger preserves paragraph validity and Tab order.
+    link.after(pop);
+    link.setAttribute('aria-controls', pop.id);
+    shownFor = link;
+    pop.hidden = false;
+    pop.style.visibility = 'hidden';
+    position(link);
     pop.style.visibility = '';
   };
 
+  const hide = (restore = false) => {
+    window.clearTimeout(hideTimer);
+    const trigger = shownFor;
+    shownFor = null;
+    hovered = false;
+    pop.hidden = true;
+    trigger?.removeAttribute('aria-controls');
+    if (restore && trigger) {
+      restoringFocus = true;
+      trigger.focus({ preventScroll: true });
+      restoringFocus = false;
+    }
+  };
   const scheduleHide = () => {
+    window.clearTimeout(hideTimer);
     hideTimer = window.setTimeout(() => {
-      pop.hidden = true;
-      shownFor = null;
+      if (!hovered && document.activeElement !== shownFor && !pop.contains(document.activeElement)) hide();
     }, 200);
   };
 
   document.addEventListener('pointerover', (event) => {
+    if (event.pointerType === 'touch') return;
     const link = (event.target as Element).closest?.('.entity-link');
-    if (link instanceof HTMLElement) show(link);
-    else if (!pop.contains(event.target as Node) && !pop.hidden) scheduleHide();
+    hovered = (!!shownFor && link === shownFor) || pop.contains(event.target as Node);
+    if (link instanceof HTMLElement) {
+      show(link);
+      hovered = true;
+    } else if (!hovered) scheduleHide();
   });
-  pop.addEventListener('pointerover', () => window.clearTimeout(hideTimer));
-  pop.addEventListener('pointerleave', scheduleHide);
+  document.addEventListener('pointerout', event => {
+    if (event.pointerType === 'touch') return;
+    const next = event.relatedTarget as Node | null;
+    hovered = !!next && (!!shownFor?.contains(next) || pop.contains(next));
+    if (!hovered) scheduleHide();
+  });
 
   document.addEventListener('focusin', (event) => {
+    if (restoringFocus) return;
     const link = (event.target as Element).closest?.('.entity-link');
     if (link instanceof HTMLElement) show(link);
     else if (!pop.contains(event.target as Node)) scheduleHide();
   });
-
-  // On touch screens the first tap previews; the card's own link navigates.
-  if (touchOnly) {
-    document.addEventListener('click', (event) => {
-      const link = (event.target as Element).closest?.('.entity-link');
-      if (link instanceof HTMLElement && shownFor !== link) {
-        event.preventDefault();
-        show(link);
-      } else if (!(event.target as Element).closest?.('.entity-pop, .entity-link')) {
-        pop.hidden = true;
-        shownFor = null;
-      }
-    });
-  }
+  document.addEventListener('focusout', scheduleHide);
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !pop.hidden) {
+      event.preventDefault();
+      hide(pop.contains(document.activeElement));
+    }
+  });
+  // Snapshot before touch-generated focus so the first tap always previews.
+  // Keyboard Enter and mouse clicks remain ordinary link navigation.
+  document.addEventListener('pointerdown', event => {
+    const link = (event.target as Element).closest?.('.entity-link');
+    touchLink = event.pointerType === 'touch' ? link ?? null : null;
+    touchWasOpen = event.pointerType === 'touch' && link === shownFor && !pop.hidden;
+    if (!link && !pop.contains(event.target as Node)) hide();
+  });
+  document.addEventListener('click', event => {
+    const link = (event.target as Element).closest?.('.entity-link');
+    // WebKit can deliver a MouseEvent click without pointerType after touch.
+    if (event.detail > 0 && link === touchLink && link instanceof HTMLElement && !touchWasOpen) {
+      event.preventDefault();
+      show(link);
+    }
+    touchWasOpen = false;
+    touchLink = null;
+  });
+  document.addEventListener('pointercancel', () => { touchLink = null; });
+  const reposition = () => { if (!pop.hidden && shownFor) position(shownFor); };
+  window.addEventListener('scroll', reposition, { passive: true });
+  window.addEventListener('resize', reposition);
 }

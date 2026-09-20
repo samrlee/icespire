@@ -347,6 +347,14 @@ endpoint that calls `renderOgCard(...)` and point its `ogImage` at it.
 
 ## Dramatis personae
 
+Entity links in prose show a preview on hover or keyboard focus. On touch,
+the first tap previews; a second tap or the card's page link navigates. Mouse
+clicks and keyboard Enter navigate directly. Tab reaches the card's link next,
+and Escape dismisses the card (returning focus to its source when necessary).
+The card stays open while hovered or focused and closes after both leave, or
+on an outside press. Chromium/WebKit desktop and phone tests cover these paths;
+they do not replace physical iPhone or screen-reader testing.
+
 Each recap opens with its cast: the party who were at the table, then the NPCs
 and factions the session involves, as chips linking to their pages.
 

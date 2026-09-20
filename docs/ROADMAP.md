@@ -11,10 +11,11 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Generated link validation** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  parse generated HTML and reject missing local pages/assets/fragments, including
-  links to absent map markers. Correct the 404 canonical route; cover URL rules
-  and actual build failures in existing required CI suites.
+- **Entity preview accessibility** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  reliable first-tap previews, Escape dismissal/focus return, adjacent keyboard
+  navigation, and persistence while hovered or focused. Browser regressions cover
+  desktop and phone Chromium/WebKit; physical-device/assistive-technology review
+  remains a manual check.
 
 ## Phased backlog from issue #75
 
@@ -24,8 +25,8 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 1. **Reliability:** search reset/retry, browser regressions, Ask body limits and
    controlled origin errors and dependency/action maintenance are merged.
    Navigation disclosure semantics and a skip link are merged. Collection and
-   image reference validation is merged. Generated HTML link/fragment checks
-   are in the current PR; entity-popover accessibility review remains a follow-up;
+   image reference validation and generated HTML link/fragment checks are merged.
+   Entity-preview touch/keyboard fixes are in the current PR;
    retain existing CI gates.
 2. **First player-facing release:** shared “Where we left off” data with source/as-of
    session and split-party support; current-first campaign layout; mobile actions
@@ -49,6 +50,11 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Generated link validation** — [PR #82](https://github.com/samrlee/icespire/pull/82)
+  merged: builds reject missing local pages, assets, and HTML fragments, including
+  unavailable map markers. Corrected the 404 canonical route; parser and disposable
+  build-failure tests run in required CI. _(Sep 2026)_
 
 - **Content reference integrity** — [PR #81](https://github.com/samrlee/icespire/pull/81)
   merged: parsed collection references, duplicate session/journey assignments,
