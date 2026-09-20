@@ -11,22 +11,22 @@ Priorities are a rough guide, not a contract — reorder freely.
 
 ## Implementation in this PR — not yet merged or deployed
 
-- **Ask request validation** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  malformed/opaque and cross-origin Origin headers return controlled 403 JSON;
-  bodies are bounded to 4 KiB before parsing, including streamed requests without
-  reliable Content-Length. Oversized bodies return 413; invalid JSON/questions
-  return 400. Request regressions run alongside retrieval tests in required CI.
+- **Dependency and CI maintenance** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
+  update devalue 5.8.1 → 5.9.4 within Astro's existing range to resolve
+  its moderate advisory; refresh checkout to 7.0.1 and setup-node to 7.0.0.
+  Keep Node 22 for the project, read-only permissions, disabled checkout
+  credentials, and all checks in the required Build site job.
 
 ## Phased backlog from issue #75
 
 These are intended follow-ups, not blanket implementation or editorial approval.
 Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 
-1. **Reliability:** search reset/retry and browser regressions are merged. Ask
-   body limits and controlled origin errors are in the current PR. Remaining
+1. **Reliability:** search reset/retry, browser regressions, Ask body limits and
+   controlled origin errors are merged. Dependency/action maintenance is in the current PR. Remaining
    navigation accessibility includes disclosure semantics and a skip link.
-   Recheck current dependency advisories
-   and compatible action releases in a maintenance PR; retain existing CI gates.
+   Future integrity work includes build-time relationship/reference validation;
+   retain existing CI gates.
 2. **First player-facing release:** shared “Where we left off” data with source/as-of
    session and split-party support; current-first campaign layout; mobile actions
    before cover art; portrait variants; reading time and print styles. Reuse the
@@ -49,6 +49,10 @@ Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
 The existing rejected quest board, treasury index and RSS feed remain rejected.
 
 ## Done
+
+- **Ask request validation** — [PR #78](https://github.com/samrlee/icespire/pull/78)
+  merged: controlled origin errors, 4 KiB streamed body limit before parsing,
+  and request regressions alongside retrieval tests. _(Sep 2026)_
 
 - **Search reliability** — [PR #77](https://github.com/samrlee/icespire/pull/77)
   merged: reset/reopen/retry, explicit index states, named dialog, deliberate
