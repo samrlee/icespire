@@ -87,6 +87,16 @@ process for adding a session.
   (`battle`/`discovery`/`social`/`omen` — battles pin in ember). Unknown slugs
   fail the build.
 
+### NPC directory
+
+The alphabetical directory uses the existing responsive portrait generator for
+64px thumbnails. Disposition and faction filters combine, show a live result
+count, and reset to the complete list. Faction options use explicit `faction`
+references, not free-text `affiliation` or inferred allegiance; **No faction
+recorded** means only that the reference is absent. All entries and profile
+links remain available without JavaScript; inactive filter controls stay hidden.
+No extra authoring fields are required.
+
 ### The maps
 
 `/map/` renders a custom SVG of the Sword Coast

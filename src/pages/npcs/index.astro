@@ -5,15 +5,42 @@ import NpcEntry from '../../components/NpcEntry.astro';
 import { url } from '../../utils/url';
 
 const npcs = (await getCollection('npcs')).sort((a, b) => a.data.name.localeCompare(b.data.name));
+const factions = (await getCollection('factions'))
+  .filter(faction => npcs.some(npc => npc.data.faction === faction.id))
+  .sort((a, b) => a.data.name.localeCompare(b.data.name));
+const dispositions = {
+  ally: 'Ally', hostile: 'Hostile', unresolved: 'Unresolved Thread',
+  'at-large': 'At Large', neutral: 'Neutral', deceased: 'Deceased',
+};
 ---
 
 <Base title="NPC Directory" description="Everyone the party has met.">
   <h1 class="page-title">NPC Directory</h1>
+  <form class="npc-filters" hidden aria-label="Filter NPCs">
+    <div class="npc-filter-field">
+      <label for="npc-disposition">Disposition</label>
+      <select id="npc-disposition" name="disposition" aria-controls="npc-directory">
+        <option value="">All dispositions</option>
+        {Object.entries(dispositions).filter(([value]) => npcs.some(npc => npc.data.status === value)).map(([value, label]) => <option value={value}>{label}</option>)}
+      </select>
+    </div>
+    <div class="npc-filter-field">
+      <label for="npc-faction">Faction</label>
+      <select id="npc-faction" name="faction" aria-controls="npc-directory">
+        <option value="">All factions</option>
+        {factions.map(faction => <option value={faction.id}>{faction.data.name}</option>)}
+        <option value="unrecorded">No faction recorded</option>
+      </select>
+    </div>
+    <button type="reset" class="btn-ghost">Reset filters</button>
+    <p class="npc-filter-count" role="status" aria-live="polite" aria-atomic="true"></p>
+  </form>
+  <p id="npc-filter-empty" hidden>No NPCs match these filters. Change a filter or reset to see everyone.</p>
   {
     npcs.length === 0 ? (
       <p class="prose">No NPCs recorded yet.</p>
     ) : (
-      <ul class="npc-list">
+      <ul class="npc-list" id="npc-directory">
         {npcs.map((npc) => (
           <NpcEntry
             name={npc.data.name}
@@ -22,9 +49,44 @@ const npcs = (await getCollection('npcs')).sort((a, b) => a.data.name.localeComp
             status={npc.data.status}
             note={npc.data.note}
             href={url(`/npcs/${npc.id}/`)}
+            faction={npc.data.faction}
+            portrait={npc.data.portrait}
           />
         ))}
       </ul>
     )
   }
 </Base>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('.npc-filters');
+  if (form) {
+    const disposition = form.querySelector<HTMLSelectElement>('[name="disposition"]')!;
+    const faction = form.querySelector<HTMLSelectElement>('[name="faction"]')!;
+    const entries = [...document.querySelectorAll<HTMLLIElement>('#npc-directory > li')];
+    const count = form.querySelector<HTMLElement>('[role="status"]')!;
+    const empty = document.querySelector<HTMLElement>('#npc-filter-empty')!;
+    const update = () => {
+      let shown = 0;
+      for (const entry of entries) {
+        const matchesFaction = !faction.value || (faction.value === 'unrecorded'
+          ? !entry.dataset.faction : entry.dataset.faction === faction.value);
+        entry.hidden = !matchesFaction || (!!disposition.value && entry.dataset.status !== disposition.value);
+        if (!entry.hidden) shown++;
+      }
+      count.textContent = `${shown} of ${entries.length} NPCs`;
+      empty.hidden = shown !== 0;
+    };
+    form.addEventListener('change', update);
+    form.addEventListener('submit', event => event.preventDefault());
+    form.addEventListener('reset', () => {
+      disposition.value = '';
+      faction.value = '';
+      update();
+    });
+    // Reconcile values restored by browser history, too.
+    window.addEventListener('pageshow', update);
+    update();
+    form.hidden = false;
+  }
+</script>
