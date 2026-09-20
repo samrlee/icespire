@@ -11,6 +11,7 @@ const recaps = await recapMentions(Astro.props.href);
         <li>
           <a href={recap.href}>Session {recap.number} — {recap.title}</a>
           <span class="recap-mention-date">{recap.date}</span>
+          {recap.scenes.length > 0 && <span class="recap-scenes">Mentioned in: {recap.scenes.map(scene => <a href={scene.href}>{scene.label}</a>)}</span>}
         </li>
       ))}
     </ul>

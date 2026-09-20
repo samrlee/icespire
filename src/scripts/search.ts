@@ -35,7 +35,7 @@ function wire(
   // The Ask panel is optional: without the endpoint configured the palette is
   // exactly the search it was before.
   const ask =
-    askBox && dialog.dataset.ask ? createAsk(askBox, dialog.dataset.ask) : null;
+    askBox && dialog.dataset.ask ? createAsk(askBox, dialog.dataset.ask, query => { input.value = query; limit = MAX_HITS; render(); input.focus(); }) : null;
   let docs: Indexed[] | null = null;
   let loading: Promise<void> | null = null;
   let state: 'idle' | 'loading' | 'ready' | 'error' = 'idle';
@@ -53,14 +53,16 @@ function wire(
     if (loading) return loading;
     if (state === 'ready') return Promise.resolve();
     state = 'loading';
+    ask?.prepare();
     render();
-    loading = fetch(indexUrl)
+    loading = fetch(indexUrl, { cache: 'no-cache' })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
-      .then((raw: unknown) => {
+      .then(async (raw: unknown) => {
         if (!Array.isArray(raw) || !raw.every(isSearchDoc)) {
           throw new Error('Invalid search index');
         }
         docs = index(raw);
+        await ask?.setCorpus(raw);
         filters?.replaceChildren();
         for (const value of ['', ...new Set(raw.map(doc => doc.kind).sort())]) {
           const button = document.createElement('button');
@@ -92,6 +94,7 @@ function wire(
     if (dialog.open) return;
     returnFocus = opener ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
     dialog.showModal();
+    if (state === 'ready') { state = 'idle'; docs = null; }
     input.select();
     render();
     if (state === 'idle') void load();

@@ -6,6 +6,8 @@ summary: 'The party forms on the road, takes the Gnomengarde quest, hears the fi
 playersPresent: ['Nolan', 'Nate', 'Jay', 'Christa', 'Joseph', 'Brittany']
 ---
 
+<span id="scene-sbb71839c09" data-scene-label="Part 1" class="recap-scene-anchor" tabindex="-1"></span>
+
 The players met on the road to Phandalin, where Thom made a "friend" named
 "Friend."
 

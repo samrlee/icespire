@@ -555,6 +555,9 @@ body {
 }
 
 .ask-trigger {
+  color: var(--text-primary);
+  font: inherit;
+  min-height: 44px;
   display: flex;
   align-items: baseline;
   gap: var(--space-2);
@@ -4360,3 +4363,8 @@ body {
 }
 .reading-position p { margin: 0.25rem 0; }
 @media print { .reading-position { display: none; } }
+
+.recap-scenes { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; margin-block: 1rem; }
+.recap-scenes a { display: inline-flex; align-items: center; min-height: 44px; padding-block: 0.5rem; }
+.recap-scene-anchor { display: block; scroll-margin-top: 2rem; }
+@media print { nav.recap-scenes { display: none; } }

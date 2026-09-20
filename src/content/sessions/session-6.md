@@ -13,6 +13,8 @@ encounters:
     note: 'A raiding band scouting the ruin as a fort. Their leader knew Dax by his work at Gnomengarde.'
 ---
 
+<span id="scene-s4a378accf5" data-scene-label="Part 1" class="recap-scene-anchor" tabindex="-1"></span>
+
 The session opened mid-fight, exactly where Session 5 left off: one last ochre
 jelly waiting in the dark at the end of the rubble hallway.
 
@@ -35,6 +37,8 @@ overhead. A heavy glop of it slid off his coat as the rest came apart.
 
 He picked Rut up by the tail on the way out. Rut twisted around and snapped at
 his hand, hit the floor, and ran off into the room without comment.
+
+<span id="scene-sf8d77b5714" data-scene-label="Part 2" class="recap-scene-anchor" tabindex="-1"></span>
 
 ## What was behind the doors
 
@@ -79,6 +83,8 @@ large to shift. Thom, Sage, and Bean followed another branch into the same
 wall of rubble, and found a **dead dwarf with a few coins around him** and a
 tattered book half-buried beside the body.
 
+<span id="scene-s9943b9512e" data-scene-label="Part 3" class="recap-scene-anchor" tabindex="-1"></span>
+
 ## The deal breaks
 
 **Norbus and Dazlyn** came for their share.
@@ -100,6 +106,8 @@ gold pieces** out of her own purse and handed them over.
 They looked at the coins, at the party, and at a temple full of doors these
 adventurers had spent all day opening. Then they turned and stamped out
 through the entrance hall and were gone.
+
+<span id="scene-s340036aba3" data-scene-label="Part 4" class="recap-scene-anchor" tabindex="-1"></span>
 
 ## The ledger
 
@@ -137,6 +145,8 @@ nobody is likely to learn where they went.
 Standing in the empty camp, she heard footsteps carrying through the rock of
 the mountain and echoing off the canyon walls. More than two of them. Coming
 their way.
+
+<span id="scene-se9e35161b2" data-scene-label="Part 5" class="recap-scene-anchor" tabindex="-1"></span>
 
 ## Seven orcs
 

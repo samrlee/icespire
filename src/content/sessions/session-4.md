@@ -10,6 +10,8 @@ encounters:
     note: 'Two of them, circling the Umbrage Hill windmill. The windmill mostly survived.'
 ---
 
+<span id="scene-s24c3e47fe8" data-scene-label="Part 1" class="recap-scene-anchor" tabindex="-1"></span>
+
 After wrapping up business at Gnomengarde, the party headed back to Phandalin
 to collect their reward and figure out next steps.
 

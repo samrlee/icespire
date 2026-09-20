@@ -9,47 +9,47 @@ back around as a fresh idea.
 
 Priorities are a rough guide, not a contract — reorder freely.
 
-## Implementation in this PR — not yet merged or deployed
+## Core completion — one final PR, not yet merged or deployed
 
-- **Optional recap reading position** ([issue #75](https://github.com/samrlee/icespire/issues/75)):
-  per-tab opt-in tracking, explicit resume, stop/forget controls, content-version
-  invalidation and blocked-storage handling on longer recaps.
+The implementation backlog from [issue #75](https://github.com/samrlee/icespire/issues/75)
+is consolidated on `codex/core-roadmap-completion`. See
+[CORE-COMPLETION.md](CORE-COMPLETION.md) for acceptance checks and limitations.
 
-## Phased backlog from issue #75
+- Shared stable recap parts feed jump navigation, profile mention links, timeline
+  navigation, search and Ask source URLs. Existing prose and breaks are preserved;
+  initial labels are neutral part numbers. IDs survive renaming and insertion.
+- Explicit per-tab Q&A save/restore/forget, corpus-version invalidation, cancellation
+  and manual retry. Reopening search stays empty unless Restore is chosen.
+- Bounded Ask waits, safe indexed source links and explicit evidence rules for
+  reported events, agreements versus payment and character knowledge.
+- Required unit, publication and browser regressions; read-only live header and
+  invalid-request checks. These do not certify model truthfulness or real devices.
 
-These are intended follow-ups, not blanket implementation or editorial approval.
-Keep [the umbrella issue](https://github.com/samrlee/icespire/issues/75) open.
+## Explicit follow-ups outside core implementation
 
-1. **Reliability:** search reset/retry, browser regressions, Ask body limits and
-   controlled origin errors and dependency/action maintenance are merged.
-   Navigation disclosure semantics and a skip link are merged. Collection and
-   image reference validation and generated HTML link/fragment checks are merged.
-   Entity-preview touch/keyboard fixes are merged;
-   retain existing CI gates.
-2. **First player-facing release:** shared “Where we left off” data with source/as-of
-   session and split-party support; current-first campaign layout; mobile actions
-   before cover art and portrait variants are merged; reading time and print
-   styles, shared current state and current-first layout are merged. Reuse the
-   existing `MarkdownPage.astro` contents rail. Author current state once, without
-   inferring current resources from an earlier rest. Rendering and search must
-   change together if `src/pages/campaign.md` moves; keep `/campaign/` and anchors.
-3. **Connected references:** one shared scene representation with stable IDs
-   through title/prose changes and insertions, reused for jump navigation,
-   scene-level profile backlinks, timeline and validated passage citations.
-   Whole-recap mention links are merged. NPC filters are
-   merged, as is expanded/type-filtered search. Detected mentions are not confirmed
-   appearances or proof of character knowledge. Retrieved documents do not prove
-   every answer claim; construct citation links from validated records.
-4. **Editorial tools and options:** post-session publication reports are merged;
-   character-replacement-safe casting is merged. Profile review freshness is merged; claim-level provenance remains.
-   Reading position is in this PR. Q&A retention still needs explicit reset, cancellation and stale
-   corpus handling; never retain an answer under a different question. A historical
-   session selector cannot promise spoiler safety while previews show current
-   entity data. Character knowledge briefings require a separate reviewed pilot.
+These are optional editorial work, account/device verification or campaign work,
+not a reason to keep adding small implementation PRs to this completion batch.
 
-The existing rejected quest board, treasury index and RSS feed remain rejected.
+- Review descriptive scene labels or optional quick catch-up prose if desired.
+- Review existing profiles before authoring their review checkpoints. Claim-level
+  provenance and character-specific knowledge briefings need a separately reviewed
+  pilot; mention matching is not proof of knowledge.
+- Physical iPhone and assistive-technology checks require those devices. Browser
+  emulation covers automated interaction regressions only.
+- Review Cloudflare account-level rate/budget controls with account access. Current
+  deadlines stop waiting, not provider computation or billing. No paid setting was
+  changed. Recheck the new Function behavior after the final PR deploys.
+- Search Console domain verification/sitemap submission remains an owner dashboard
+  task. Hidden maps are redrawn as exploration warrants (see Ideas below).
+
+The rejected quest board, treasury index and RSS feed remain rejected. The umbrella
+issue stays open through final review; its older recommendations are historical.
 
 ## Done
+
+- **Optional recap reading position** — [PR #95](https://github.com/samrlee/icespire/pull/95)
+  merged: per-tab opt-in tracking, explicit resume/forget and version invalidation.
+  _(Sep 2026)_
 
 - **Profile review freshness** — [PR #94](https://github.com/samrlee/icespire/pull/94)
   merged: explicit profile review checkpoints, freshness labels and report findings.

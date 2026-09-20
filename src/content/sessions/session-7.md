@@ -14,6 +14,8 @@ encounters:
     href: '/npcs/the-white-dragon'
 ---
 
+<span id="scene-s771ec41d32" data-scene-label="Part 1" class="recap-scene-anchor" tabindex="-1"></span>
+
 They woke on the floor of the temple where they had fallen, among seven dead
 orcs going stiff in the cold.
 
@@ -54,6 +56,9 @@ pack and asked what color orc eyes were supposed to be. Green, as it turned
 out.
 
 ---
+
+<span id="scene-s5100d73fb7" data-scene-label="Part 2" class="recap-scene-anchor" tabindex="-1"></span>
+
 
 It was Thom who remembered the rubble.
 
@@ -146,6 +151,9 @@ He showed the note around so that nobody could say otherwise.
 
 ---
 
+<span id="scene-s9647e4181d" data-scene-label="Part 3" class="recap-scene-anchor" tabindex="-1"></span>
+
+
 Sage did not feel good about it.
 
 She said so — that she had tried to keep the peace with the dwarves and the
@@ -167,6 +175,9 @@ hauling a backpack that seemed to be trying to sit down.
 
 ---
 
+<span id="scene-se6ac887538" data-scene-label="Part 4" class="recap-scene-anchor" tabindex="-1"></span>
+
+
 On the road down, with nobody else in earshot, the talk between Dax and Rut
 came round to dragons. Dax told him that dragons eat people. He says everything
 the same way — flatly, reasonably, no tell in his face at all — and Rut
@@ -182,6 +193,9 @@ to her himself: dragons eat people, and that is why Barnaby is kept well fed.
 Dax confirmed that dragons do, in fact, eat people.
 
 ---
+
+<span id="scene-sec840c7d26" data-scene-label="Part 5" class="recap-scene-anchor" tabindex="-1"></span>
+
 
 Hamish and Sage went out ahead to scout, the two of them faster than the rest
 and better in the rock than anyone.
@@ -222,6 +236,9 @@ Rut raised the feeding question with Barnaby directly.
 
 ---
 
+<span id="scene-s177f7214f4" data-scene-label="Part 6" class="recap-scene-anchor" tabindex="-1"></span>
+
+
 North on the trail, they found the body.
 
 It was one of the dwarves. He was face down with an orc javelin standing out of
@@ -255,6 +272,9 @@ would want a brother. Barnaby picked him up. They carried him north.
 
 ---
 
+<span id="scene-s0829ab43a5" data-scene-label="Part 7" class="recap-scene-anchor" tabindex="-1"></span>
+
+
 Adabra Gwynn was still at her windmill, and put her head out of an upper window
 when they came into the yard, and came down pleased to see them.
 
@@ -282,6 +302,9 @@ the panther has to be kept fed so that he does not eat anybody.
 *Well, that's advisable.*
 
 ---
+
+<span id="scene-s599c66a1fc" data-scene-label="Part 8" class="recap-scene-anchor" tabindex="-1"></span>
+
 
 They came into Phandalin in the rain, muddy and slow and very tired, and Thom
 slower than any of them — by the end of the walk the emerald had him down to
@@ -320,6 +343,9 @@ He stood in his doorway a moment and sniffed the air and said it was probably
 nothing.
 
 ---
+
+<span id="scene-s79837e251b" data-scene-label="Part 9" class="recap-scene-anchor" tabindex="-1"></span>
+
 
 The inn was fuller than they had ever seen it, and the noise in it was wrong —
 too many townspeople, too much low talk, everyone worried about something they
@@ -371,6 +397,9 @@ then hunched over the bar with his head down and his shoulders shaking.
 
 ---
 
+<span id="scene-s09baa7db28" data-scene-label="Part 10" class="recap-scene-anchor" tabindex="-1"></span>
+
+
 The others drifted toward the door.
 
 Dax waited until they had, then went back and put down a second bag — fifteen
@@ -390,6 +419,9 @@ Norbus looked up and nodded.
 He walked away.
 
 ---
+
+<span id="scene-s67c94f30b5" data-scene-label="Part 11" class="recap-scene-anchor" tabindex="-1"></span>
+
 
 They were turning for the door when it banged open ahead of them and a man came
 through it at a run with a report he had only just been handed.

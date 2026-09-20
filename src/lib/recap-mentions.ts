@@ -2,8 +2,9 @@ import { getCollection } from 'astro:content';
 import { buildEntities, matchEntities } from './entities';
 import { isSessionPublished } from './session-publication';
 import { url } from '../utils/url';
+import { recapScenes } from './recap-scenes';
 
-type RecapMention = { title: string; number: number; date: string; href: string };
+type RecapMention = { title: string; number: number; date: string; href: string; scenes: { label: string; href: string }[] };
 
 async function buildRecapMentions() {
   const entities = await buildEntities();
@@ -19,6 +20,8 @@ async function buildRecapMentions() {
         number: session.data.sessionNumber,
         date: session.data.date.toLocaleDateString('en-US', { dateStyle: 'medium', timeZone: 'UTC' }),
         href: url(`/sessions/${session.id}/`),
+        scenes: recapScenes(session.body ?? '').filter(scene => matchEntities(scene.body, entities).some(match => match.href === entity.href))
+          .map(scene => ({ label: scene.label, href: url(`/sessions/${session.id}/#${scene.id}`) })),
       });
       mentions.set(entity.href, recaps);
     }

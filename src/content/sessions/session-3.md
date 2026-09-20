@@ -10,6 +10,8 @@ encounters:
     note: 'Two of them, in a storage room. King Korboz was right to check everything.'
 ---
 
+<span id="scene-s34bdd7cc51" data-scene-label="Part 1" class="recap-scene-anchor" tabindex="-1"></span>
+
 Deeper into Gnomengarde:
 
 - Slime found on the throne room floor, headed toward a door.

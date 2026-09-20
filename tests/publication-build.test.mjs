@@ -55,6 +55,8 @@ encounters:
     image: /images/creatures/orc.webp
     href: /map/#${a.id}
 ${session.flag ? `draft: ${session.flag}\n` : ''}---
+<span id="scene-fixture-start" data-scene-label="Fixture part" class="recap-scene-anchor" tabindex="-1"></span>
+
 ${body}
 
 The report mentioned ${known.name} and ${rumored.name}.
@@ -201,11 +203,19 @@ test('production publication across assembled routes, indexes, maps and navigati
         assert.ok(links.includes('Mentioned in recaps'));
         for (const session of published.slice(0, 2)) {
           assert.equal(links.split(`href="/sessions/${session.id}/"`).length - 1, 1);
+          assert.ok(links.includes(`/sessions/${session.id}/#scene-fixture-start`));
         }
         assert.ok(links.indexOf(`/sessions/${published[1].id}/`) < links.indexOf(`/sessions/${published[0].id}/`));
         assert.ok(!links.includes(`/sessions/${published[2].id}/`));
         for (const session of drafts) assert.ok(!links.includes(`/sessions/${session.id}/`));
       }
+    });
+    await t.test('scene search records resolve published anchors and exclude draft scenes', async () => {
+      for (const session of published) {
+        assert.ok((await html(`sessions/${session.id}/index.html`)).includes('id="scene-fixture-start"'));
+        assert.ok(search.some(doc => doc.href === `/sessions/${session.id}/#scene-fixture-start` && doc.kind === 'Recap part'));
+      }
+      for (const session of drafts) assert.ok(!search.some(doc => doc.href.includes(session.id)));
     });
     await t.test('body draft text and nested published recaps build and preserve previous/next ordering', async () => {
       assert.ok(recap.includes('draft: true'));
