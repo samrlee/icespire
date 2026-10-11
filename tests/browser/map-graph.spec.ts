@@ -185,43 +185,6 @@ for (const canvas of ['map', 'graph'] as const) {
     await expect(origin).toBeFocused();
   });
 
-  test(`${canvas} leaves ordinary wheel scrolling to the page and supports deliberate zoom and pan`, async ({ page }) => {
-    await page.goto(`/${canvas}/`);
-    if (canvas === 'graph') await showGraph(page);
-    const svg = page.locator(`#${canvas}-svg`);
-    const explore = page.locator(`#${canvas}-explore`);
-    await expect(explore).toHaveAttribute('aria-pressed', 'false');
-    await svg.scrollIntoViewIfNeeded();
-    await svg.hover({ position: { x: 10, y: 10 } });
-    const before = await svg.getAttribute('viewBox');
-    const scrollBefore = await page.evaluate(() => scrollY);
-    await page.mouse.wheel(0, 160);
-    await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(scrollBefore);
-    await expect(svg).toHaveAttribute('viewBox', before!);
-
-    await svg.scrollIntoViewIfNeeded();
-    await svg.hover({ position: { x: 10, y: 10 } });
-    await page.keyboard.down('Control');
-    await page.mouse.wheel(0, -160);
-    await page.keyboard.up('Control');
-    await expect(svg).not.toHaveAttribute('viewBox', before!);
-
-    await page.locator(`#${canvas}-zoom-reset`).click();
-    await expect(svg).toHaveAttribute('viewBox', before!);
-    await explore.click();
-    await expect(explore).toHaveAttribute('aria-pressed', 'true');
-    await svg.hover({ position: { x: 10, y: 10 } });
-    await page.mouse.wheel(0, -160);
-    await expect(svg).not.toHaveAttribute('viewBox', before!);
-    const zoomed = await svg.getAttribute('viewBox');
-    const box = (await svg.boundingBox())!;
-    await page.mouse.move(box.x + 15, box.y + 15);
-    await page.mouse.down();
-    await page.mouse.move(box.x + 65, box.y + 65, { steps: 3 });
-    await page.mouse.up();
-    await expect(svg).not.toHaveAttribute('viewBox', zoomed!);
-  });
-
   test(`${canvas} permits browser touch scrolling without moving its default view`, async ({ page }) => {
     await page.goto(`/${canvas}/`);
     if (canvas === 'graph') await showGraph(page);
@@ -240,24 +203,87 @@ for (const canvas of ['map', 'graph'] as const) {
   });
 }
 
-test('a local map also preserves page scrolling until Explore is enabled', async ({ page }) => {
-  await page.goto('/map/phandalin/');
-  const svg = page.locator('#map-svg');
-  const explore = page.locator('#map-explore');
-  await expect(explore).toHaveAttribute('aria-pressed', 'false');
-  expect(await svg.evaluate(element => getComputedStyle(element).touchAction)).toContain('pan-y');
-  await svg.hover({ position: { x: 10, y: 10 } });
-  const before = await svg.getAttribute('viewBox');
-  const scrollBefore = await page.evaluate(() => scrollY);
-  await page.mouse.wheel(0, 160);
-  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(scrollBefore);
-  await expect(svg).toHaveAttribute('viewBox', before!);
-  await explore.click();
-  await expect(explore).toHaveAttribute('aria-pressed', 'true');
-  await svg.hover({ position: { x: 10, y: 10 } });
-  await page.mouse.wheel(0, -160);
-  await expect(svg).not.toHaveAttribute('viewBox', before!);
-});
+for (const canvas of [
+  { name: 'region map', path: '/map/', id: 'map' },
+  { name: 'relationship graph', path: '/graph/', id: 'graph' },
+  { name: 'local map', path: '/map/phandalin/', id: 'map' },
+]) {
+  test(`${canvas.name} leaves ordinary wheel scrolling to the page and supports deliberate wheel zoom`, async ({ page, isMobile, browserName }) => {
+    test.skip(isMobile && browserName === 'webkit', 'Playwright does not support mouse wheel input in mobile WebKit.');
+    await page.goto(canvas.path);
+    if (canvas.id === 'graph') await showGraph(page);
+    const svg = page.locator(`#${canvas.id}-svg`);
+    const explore = page.locator(`#${canvas.id}-explore`);
+    await expect(explore).toHaveAttribute('aria-pressed', 'false');
+    await svg.scrollIntoViewIfNeeded();
+    await svg.hover({ position: { x: 10, y: 10 } });
+    const before = await svg.getAttribute('viewBox');
+    const scrollBefore = await page.evaluate(() => scrollY);
+    await page.mouse.wheel(0, 160);
+    await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(scrollBefore);
+    await expect(svg).toHaveAttribute('viewBox', before!);
+
+    await svg.scrollIntoViewIfNeeded();
+    await svg.hover({ position: { x: 10, y: 10 } });
+    await page.keyboard.down('Control');
+    await page.mouse.wheel(0, -160);
+    await page.keyboard.up('Control');
+    await expect(svg).not.toHaveAttribute('viewBox', before!);
+
+    await page.locator(`#${canvas.id}-zoom-reset`).click();
+    await expect(svg).toHaveAttribute('viewBox', before!);
+    await explore.click();
+    await expect(explore).toHaveAttribute('aria-pressed', 'true');
+    await svg.hover({ position: { x: 10, y: 10 } });
+    await page.mouse.wheel(0, -160);
+    await expect(svg).not.toHaveAttribute('viewBox', before!);
+  });
+
+  test(`${canvas.name} supports zoom buttons and Explore keyboard and pointer panning`, async ({ page }) => {
+    await page.goto(canvas.path);
+    if (canvas.id === 'graph') await showGraph(page);
+    const svg = page.locator(`#${canvas.id}-svg`);
+    const explore = page.locator(`#${canvas.id}-explore`);
+    const zoomIn = page.locator(`#${canvas.id}-zoom-in`);
+    const reset = page.locator(`#${canvas.id}-zoom-reset`);
+    const before = (await svg.getAttribute('viewBox'))!;
+    await expect(explore).toHaveAttribute('aria-pressed', 'false');
+    expect(await svg.evaluate(element => getComputedStyle(element).touchAction)).toContain('pan-y');
+    await svg.focus();
+    await svg.press('ArrowRight');
+    await expect(svg).toHaveAttribute('viewBox', before);
+
+    await zoomIn.click();
+    await expect(svg).not.toHaveAttribute('viewBox', before);
+    const zoomed = (await svg.getAttribute('viewBox'))!;
+    await page.locator(`#${canvas.id}-zoom-out`).click();
+    await expect(svg).not.toHaveAttribute('viewBox', zoomed);
+    await reset.click();
+    await expect(svg).toHaveAttribute('viewBox', before);
+
+    await explore.click();
+    await expect(explore).toHaveAttribute('aria-pressed', 'true');
+    expect(await svg.evaluate(element => getComputedStyle(element).touchAction)).toBe('none');
+    await svg.focus();
+    await svg.press('ArrowRight');
+    await expect(svg).not.toHaveAttribute('viewBox', before);
+
+    await reset.click();
+    await zoomIn.click();
+    await svg.hover({ position: { x: 10, y: 10 } });
+    const beforeDrag = (await svg.getAttribute('viewBox'))!;
+    const box = (await svg.boundingBox())!;
+    await page.mouse.move(box.x + 15, box.y + 15);
+    await page.mouse.down();
+    await page.mouse.move(box.x + 65, box.y + 65, { steps: 3 });
+    await page.mouse.up();
+    await expect(svg).not.toHaveAttribute('viewBox', beforeDrag);
+
+    await explore.click();
+    await expect(explore).toHaveAttribute('aria-pressed', 'false');
+    expect(await svg.evaluate(element => getComputedStyle(element).touchAction)).toContain('pan-y');
+  });
+}
 
 for (const activation of ['click', 'keyboard']) {
   test(`a same-page Search ${activation} selects the map location and focuses its detail`, async ({ page }) => {
