@@ -28,13 +28,12 @@ acquiring other people's valuables.
 - Landed a natural-20 sneak attack in the ochre jelly fight (Session 5).
 - Shot the last jelly from clear across the chamber without being spotted
   (Session 6).
-- Settled the party's broken sixty-forty deal by digging **five gold pieces**
-  out of her own purse and handing them to the dwarves. Bean, who loves gold,
-  paid the bill nobody else would (Session 6).
+- Gave the dwarves **five gold pieces** from her own purse when they demanded
+  their agreed share. The gemstones remained undeclared (Session 6).
 - Spent the entire orc fight behind one pillar and was never found or hit
   once, and killed an orc from it (Session 6).
-- Checked the hidden chamber for traps twice, found none, and was right —
-  the statue was not a trap so much as a consequence (Session 7).
+- Checked the hidden chamber for traps twice and found none. Removing the
+  emerald detonated its statue despite her checks (Session 7).
 - Picked the lock on the offering chest in the hidden alcove, the last locked
   thing in the temple (Session 7).
 - Would not put her hands anywhere near the orc dead, and came away from the

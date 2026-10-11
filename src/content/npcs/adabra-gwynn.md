@@ -3,15 +3,15 @@ name: 'Adabra Gwynn'
 role: 'Midwife & Apothecary'
 affiliation: 'Phandalin'
 status: neutral
-note: 'Brews Phandalin''s healing potions. Refused to leave her windmill twice — the orcs moved her where the dragon could not, hours before it burned.'
+note: 'Phandalin''s apothecary, evacuated from her windmill before its reported destruction. No replacement workshop is established.'
 firstAppearance: 4
 portrait: '/images/npcs/adabra-gwynn.webp'
 portraitCredit: 'AI-generated campaign portrait'
 ---
 
 A Colletite of Chauntea who lived and worked in the stone windmill at Umbrage
-Hill — the one the party saved from two manticores. She is now in Phandalin,
-and the windmill is gone.
+Hill — the one the party saved from two manticores. She is now in Phandalin;
+a messenger reported the windmill destroyed by the dragon.
 
 - Refused Harbin's request to relocate: she insists she can't brew anywhere
   but her windmill, and her potion supply matters to the town (Session 5).
@@ -38,5 +38,6 @@ a burlap sack. She told Rut his orc eye was very good work and patted him on
 the head.
 
 That evening a runner brought word to the inn that **Umbrage Hill had been
-destroyed by the dragon**. She is alive because the party came back for her.
-Harbin Wester paid them 35 gold for it, in front of her.
+destroyed by the dragon**. The party did not witness the attack or inspect
+the site afterward. Harbin Wester paid them 35 gold for the midwife contract,
+in front of her. No replacement potion workshop is established.

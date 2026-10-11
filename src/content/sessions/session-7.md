@@ -2,7 +2,7 @@
 title: 'The Hidden Chamber, a Debt Paid, and a Dragon'
 sessionNumber: 7
 date: 2026-08-25
-summary: 'The last room in the temple gives up an emerald and a written blessing to rob the place, a dead dwarf is carried home to his brother — and the dragon stops being a rumor.'
+summary: 'A sealed room in the temple gives up an emerald and written permission to take the offering, a dead dwarf is carried home to his brother — and a messenger reports a dragon attack.'
 playersPresent: ['Nolan', 'Nate', 'Jay', 'Christa', 'Joseph', 'Brittany', 'Samuel']
 encounters:
   - name: 'Seven Dead Orcs'
@@ -10,11 +10,11 @@ encounters:
     note: 'Stripped where they fell — Neverwinter-made chain mail, a sheepskin map of raid targets, and one green eye for Rut''s collection.'
   - name: 'The White Dragon'
     image: '/images/creatures/young-white-dragon.webp'
-    note: 'No longer a rumor. It destroyed Umbrage Hill the same day the party emptied the windmill.'
+    note: 'A messenger reports Umbrage Hill destroyed by a dragon the same day the party evacuated Adabra. The party did not see the attack.'
     href: '/npcs/the-white-dragon'
 ---
 
-<span id="scene-s771ec41d32" data-scene-label="Part 1" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s771ec41d32" data-scene-label="The orc dead" class="recap-scene-anchor" tabindex="-1"></span>
 
 They woke on the floor of the temple where they had fallen, among seven dead
 orcs going stiff in the cold.
@@ -57,7 +57,7 @@ out.
 
 ---
 
-<span id="scene-s5100d73fb7" data-scene-label="Part 2" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s5100d73fb7" data-scene-label="The emerald and the offering" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 It was Thom who remembered the rubble.
@@ -107,8 +107,8 @@ Thom held the emerald in front of him and gave them the story: a draft, a wall
 nobody could open, a gem nobody could resist, and a statue that had been
 waiting a very long time for someone to try. Where the statue had stood there
 was now a fresh pile of rubble, scattered in exactly the same pattern as the
-old one across the room. Someone had done this before. Nobody had learned
-anything from it.
+old one across the room. Nothing in the room told them when the other statue
+had broken.
 
 Hamish went to the pedestals — both of them — and looked at what the explosion
 had opened up. Under the base of each, sunk into the floor, was gearing. He
@@ -151,7 +151,7 @@ He showed the note around so that nobody could say otherwise.
 
 ---
 
-<span id="scene-s9647e4181d" data-scene-label="Part 3" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s9647e4181d" data-scene-label="The dwarves and the squirrels" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Sage did not feel good about it.
@@ -175,7 +175,7 @@ hauling a backpack that seemed to be trying to sit down.
 
 ---
 
-<span id="scene-se6ac887538" data-scene-label="Part 4" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-se6ac887538" data-scene-label="Dax and Rut on dragons" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 On the road down, with nobody else in earshot, the talk between Dax and Rut
@@ -194,7 +194,7 @@ Dax confirmed that dragons do, in fact, eat people.
 
 ---
 
-<span id="scene-sec840c7d26" data-scene-label="Part 5" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-sec840c7d26" data-scene-label="A panther finds Sage" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Hamish and Sage went out ahead to scout, the two of them faster than the rest
@@ -236,7 +236,7 @@ Rut raised the feeding question with Barnaby directly.
 
 ---
 
-<span id="scene-s177f7214f4" data-scene-label="Part 6" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s177f7214f4" data-scene-label="Dazlyn on the trail" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 North on the trail, they found the body.
@@ -272,7 +272,7 @@ would want a brother. Barnaby picked him up. They carried him north.
 
 ---
 
-<span id="scene-s0829ab43a5" data-scene-label="Part 7" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s0829ab43a5" data-scene-label="Adabra packs" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Adabra Gwynn was still at her windmill, and put her head out of an upper window
@@ -303,7 +303,7 @@ the panther has to be kept fed so that he does not eat anybody.
 
 ---
 
-<span id="scene-s599c66a1fc" data-scene-label="Part 8" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s599c66a1fc" data-scene-label="Harbin pays" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 They came into Phandalin in the rain, muddy and slow and very tired, and Thom
@@ -344,7 +344,7 @@ nothing.
 
 ---
 
-<span id="scene-s79837e251b" data-scene-label="Part 9" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s79837e251b" data-scene-label="Norbus at the bar" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 The inn was fuller than they had ever seen it, and the noise in it was wrong —
@@ -397,7 +397,7 @@ then hunched over the bar with his head down and his shoulders shaking.
 
 ---
 
-<span id="scene-s09baa7db28" data-scene-label="Part 10" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s09baa7db28" data-scene-label="Dax's private offer" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 The others drifted toward the door.
@@ -420,7 +420,7 @@ He walked away.
 
 ---
 
-<span id="scene-s67c94f30b5" data-scene-label="Part 11" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s67c94f30b5" data-scene-label="The messenger" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 They were turning for the door when it banged open ahead of them and a man came

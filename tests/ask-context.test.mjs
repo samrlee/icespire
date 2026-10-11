@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { buildAskContext, relevantPassages, estimateTokens } from '../src/lib/ask-context.ts';
 import { index } from '../src/lib/search-rank.ts';
+import { retrieveAsk } from '../src/lib/ask-retrieval.ts';
 
 const doc = (text, title = 'Session recap') => index([{ title, kind: 'Recap', href: '/sessions/test/', text }])[0];
 const filler = Array.from({ length: 200 }, (_, i) => `They walked along the road past milestone ${i}. `).join('');
@@ -49,4 +50,14 @@ test('accounts for headings and separators at tight budgets', () => {
 test('no supplied published evidence means no context or sources', () => {
   assert.deepEqual(buildAskContext([], ['axeholm'], 1000), { text: '', used: [], tokens: 0 });
   assert.equal(relevantPassages(doc(filler), ['axeholm'], 500), '');
+});
+
+test('a numbered overview remains available when the optional recap summary is absent', () => {
+  const text = filler + 'The party reached the gate and stopped there.';
+  const source = index([{ title: 'A long journey', kind: 'Recap', href: '/sessions/long/', sessionNumber: 9, text }]);
+  const { hits, terms } = retrieveAsk(source, 'What happened in Session 9?');
+  const context = buildAskContext(hits, terms, 12000);
+  assert.equal(context.used.length, 1);
+  assert.ok(context.text.includes(text));
+  assert.ok(context.tokens <= 12000);
 });

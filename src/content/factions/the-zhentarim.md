@@ -6,9 +6,8 @@ alignment: 'complicated'
 summary: 'The Black Network. Thornton wears their pin, works from an occupied hideout beneath Phandalin, and intends to replace Harbin.'
 ---
 
-An unscrupulous shadow network expanding its influence across Faerûn —
-ambitious, opportunistic, and meritocratic. Publicly a mercenary and
-protection outfit; secretly running smuggling, extortion, and worse.
+A shadow organization involved in organized crime and politics, identified by
+Hamish from Thornton's dragon-symbol pin (Session 4).
 
 ## The party's entanglement
 
@@ -28,10 +27,9 @@ protection outfit; secretly running smuggling, extortion, and worse.
 
 ## What Session 8 exposed
 
-The pact was never a trade. **The dragon intelligence the party has been selling
-Thornton is what she is using to take Phandalin**, and she said so to her own
-people in a room she believed was empty: soon Harbin will be out, she will be
-town master, and the foolish adventurers have brought her everything she needed.
+**Thom and Bean heard Thornton declare her intention to replace Harbin as
+townmaster.** She told her people the adventurers had brought her everything
+she needed. She did not explain how their information would secure the office.
 
 The Network's footprint in town is bigger than one guildmaster and one watcher
 at the inn:

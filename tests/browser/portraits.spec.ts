@@ -9,6 +9,8 @@ test('homepage actions precede the cover on phones and remain usable', async ({ 
   if (isMobile) {
     const actions = await page.locator('.hero-actions').boundingBox();
     const cover = await page.locator('.hero-cover').boundingBox();
+    const state = await page.locator('.current-state').boundingBox();
+    expect(actions!.y + actions!.height).toBeLessThan(state!.y);
     expect(actions!.y + actions!.height).toBeLessThan(cover!.y);
   }
   await page.getByRole('button', { name: 'Ask the chronicle', exact: true }).click();
@@ -16,6 +18,38 @@ test('homepage actions precede the cover on phones and remain usable', async ({ 
   await page.keyboard.press('Escape');
   await page.getByRole('link', { name: 'Read the latest recap' }).click();
   await expect(page).toHaveURL(/\/sessions\/session-\d+\/$/);
+});
+
+test('phone cast is compact, expands with the keyboard, and remains complete when printed', async ({ page, isMobile }) => {
+  await page.goto('/sessions/session-9/');
+  const toggle = page.locator('.dramatis-toggle');
+  const cast = page.locator('.dramatis-list');
+  if (isMobile) {
+    await expect(cast).toBeHidden();
+    await toggle.focus();
+    await page.keyboard.press('Enter');
+    await expect(cast).toBeVisible();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    await page.keyboard.press('Enter');
+    await expect(cast).toBeHidden();
+    await page.emulateMedia({ media: 'print' });
+    await expect(cast).toBeVisible();
+    await expect(toggle).toBeHidden();
+  } else {
+    await expect(cast).toBeVisible();
+    await expect(page.locator('.dramatis-toggle')).toBeHidden();
+  }
+});
+
+test('the complete recap cast remains available without JavaScript', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+  const page = await context.newPage();
+  await page.route('https://**', route => route.abort());
+  await page.goto('http://127.0.0.1:4322/sessions/session-9/');
+  await expect(page.locator('.dramatis-list')).toBeVisible();
+  await expect(page.locator('.dramatis-list a')).toHaveCount(14);
+  await expect(page.locator('.dramatis-toggle')).toBeHidden();
+  await context.close();
 });
 
 test('homepage and roster load small portraits with reserved crop dimensions', async ({ page }) => {

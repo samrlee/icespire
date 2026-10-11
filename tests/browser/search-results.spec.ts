@@ -78,3 +78,43 @@ test('filtering and expansion never call Ask or discard the same question answer
   await expect(page.locator('.ask-answer')).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
+
+for (const activation of ['pointer', 'keyboard']) {
+  test(`a same-page result closes search and focuses its destination using ${activation}`, async ({ page }) => {
+    const destination = { title: 'Dragon destination', kind: 'Page', href: '/campaign/#open-threads', text: 'Dragon open threads.' };
+    await page.route('**/search-index.json', route => route.fulfill({ json: [destination] }));
+    let questions = 0;
+    page.on('request', request => { if (request.url().endsWith('/api/ask')) questions++; });
+    await page.goto('/campaign/');
+    await page.locator('[data-search-open]:visible').first().click();
+    const input = page.getByRole('combobox');
+    await input.fill('dragon');
+    await expect(page.getByRole('option')).toHaveCount(1);
+    if (activation === 'pointer') await page.getByRole('option').click();
+    else { await input.press('ArrowDown'); await input.press('Enter'); }
+    await expect(page).toHaveURL(/\/campaign\/#open-threads$/);
+    await expect(page.locator('#search-dialog')).not.toBeVisible();
+    await expect(page.locator('#open-threads')).toBeFocused();
+    await expect(page.locator('#open-threads')).toBeInViewport();
+    expect(questions).toBe(0);
+  });
+}
+
+test('a same-page Ask source closes search and focuses the cited section', async ({ page }) => {
+  const source = { title: 'Dragon destination', kind: 'Page', href: '/campaign/#open-threads', text: 'Dragon open threads.' };
+  await page.route('**/search-index.json', route => route.fulfill({ json: [source] }));
+  await page.route('**/api/ask', route => route.fulfill({ json: {
+    answer: 'The dragon remained an open thread.',
+    sources: [{ title: source.title, kind: source.kind, href: source.href }],
+  } }));
+  await page.goto('/campaign/');
+  await page.locator('[data-search-open]:visible').first().click();
+  await page.getByRole('combobox').fill('dragon');
+  await page.locator('.ask-trigger').click();
+  await expect(page.locator('.ask-answer')).toHaveText('The dragon remained an open thread.');
+  await page.locator('.ask-sources a').click();
+  await expect(page).toHaveURL(/\/campaign\/#open-threads$/);
+  await expect(page.locator('#search-dialog')).not.toBeVisible();
+  await expect(page.locator('#open-threads')).toBeFocused();
+  await expect(page.locator('#open-threads')).toBeInViewport();
+});

@@ -1,26 +1,26 @@
 ---
 title: 'The Temple of Abbathor'
 category: 'places'
-summary: 'A ruined dwarven temple to the god of greed. The ochre jellies inside used to be its priests. Its last sealed chamber has been opened; the wealth it accounted for has still never been found.'
+summary: 'A ruined dwarven temple to the god of greed. The prospectors said its ochre jellies used to be priests. A sealed chamber has been opened; the wealth the ledger accounted for has still never been found.'
 ---
 
 A ruined dwarven settlement and temple southwest of Phandalin, behind a broken
 black-stone gate in a canyon — until Session 6, the dig site of prospectors
 Norbus Ithermel and Dazlyn Grayshard, who walked off it after the party lied to
-them about the haul. Dazlyn was dead on the road north within days; Norbus is
-in Phandalin, and nobody is digging here now.
+them about the haul. Dazlyn was killed on the road north; Norbus was last seen
+at the inn in Phandalin. No further digging at the temple is recorded.
 
-**The history:** Abbathor, dwarven god of greed, grew displeased with his
-priests' sacrifices. He buried the settlement in an avalanche — and
-transformed the surviving priests into the **ochre jellies** that blocked the
-dig. There was no known way to change them back. All three are dead now.
+**The history, as the dwarves told it:** Abbathor, dwarven god of greed, grew
+displeased with his priests' sacrifices. He buried the settlement in an
+avalanche — and transformed the surviving priests into the **ochre jellies**
+that blocked the dig. They knew no way to change them back. All three are dead
+now.
 
 ## The layout
 
-The temple loops back on itself. Every hidden passage the dwarves built here
-eventually comes home to the main chamber — Dax proved it by opening a
-seamless stretch of wall at the end of a black corridor and stepping straight
-back out beside the altars.
+One explored passage loops back to the main chamber. Dax opened a seamless
+stretch of wall at the end of a black corridor and stepped straight back out
+beside the altars. What lies beyond the remaining cave-ins is unknown.
 
 - **Main chamber** — four pillars and the altars. One pillar base hid the
   gemstone coffer.
@@ -43,21 +43,21 @@ back out beside the altars.
 
 ## The hidden chamber
 
-Opened in Session 7. It is round, and holds **two pedestals**, each of which
-once carried a statue cradling a large gem.
+Opened in Session 7. It is round, and holds **two pedestals**. One held a
+horned-dwarf statue cradling an emerald; the other statue was already in
+pieces. No second gem was found or seen in place.
 
 Two pedestals, two statues: it fits the **sacrifice chamber** the ledger
-describes, and the party has been treating it as that room. Nothing in the
-chamber says so outright — no inscription, no name, no altar — so the match is
-inference, not proof.
+describes. Nothing in the chamber says so outright — no inscription, no name,
+no altar — and the party never confirmed the match.
 
-- **Lifting a gem detonates its statue.** Thom took the emerald off the
+- **Removing the emerald detonated the standing statue.** Thom took it off the
   left-hand statue with a Mage Hand and it burst — 20 piercing to Rut, 10 to
   Barnaby. The gem itself was untouched.
-- **It had happened before.** The right-hand statue was already in pieces when
-  the party crawled in, scattered in a wide radius. After the blast, the fresh
-  rubble lay in exactly the same pattern. Somebody tried this centuries ago and
-  nobody learned anything from it.
+- **Matching rubble patterns.** The right-hand statue was already in pieces
+  when the party crawled in, scattered in a wide radius. After the blast, the
+  fresh rubble lay in exactly the same pattern. How and when the earlier statue
+  broke, and who might have been involved, remain unknown.
 - **The pedestals are the lock.** Under the base of each, sunk into the floor,
   is gearing — Hamish found it in the wreckage and worked both mechanisms until
   they clicked.
@@ -79,7 +79,7 @@ was **invested**.
 
 Two **cave-ins** in the eastern passage remain unexcavated, packed tight and
 too large to shift by hand, and the prospectors who might have dug them out are
-one dead and one grieving in Phandalin.
+one dead and the other last seen grieving in Phandalin.
 
 ## Field notes
 

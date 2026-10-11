@@ -17,6 +17,12 @@ export type SearchDoc = {
   sub?: string;
   href: string;
   text: string;
+  /** Published recap metadata; numeric IDs must survive question tokenization. */
+  sessionNumber?: number;
+  summary?: string;
+  parentTitle?: string;
+  sceneLabel?: string;
+  currentState?: boolean;
 };
 
 /** A doc plus the lowercased copies we match against, folded once at load. */
@@ -58,14 +64,14 @@ const STOP = new Set([
   'so', 'some', 'tell', 'than', 'that', 'the', 'their', 'them', 'then', 'there', 'these',
   'they', 'thing', 'things', 'this', 'to', 'told', 'up', 'us', 'was', 'we', 'were',
   'what', 'when', 'where', 'which', 'who', 'whom', 'why', 'will', 'with', 'would', 'you',
-  'your',
+  'your', 'now', 'currently',
 ]);
 
 /** Tokens with the question scaffolding removed; falls back if nothing is left. */
-export function contentTokens(query: string): string[] {
+export function contentTokens(query: string, fallback = true): string[] {
   const all = tokenize(query);
-  const kept = all.filter((t) => t.length > 2 && !STOP.has(t));
-  return kept.length > 0 ? kept : all;
+  const kept = all.filter((t) => (t.length > 2 || /^\d+$/.test(t)) && !STOP.has(t));
+  return kept.length > 0 || !fallback ? kept : all;
 }
 
 /**

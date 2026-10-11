@@ -13,7 +13,7 @@ encounters:
     note: 'A raiding band scouting the ruin as a fort. Their leader knew Dax by his work at Gnomengarde.'
 ---
 
-<span id="scene-s4a378accf5" data-scene-label="Part 1" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s4a378accf5" data-scene-label="The last jelly" class="recap-scene-anchor" tabindex="-1"></span>
 
 The session opened mid-fight, exactly where Session 5 left off: one last ochre
 jelly waiting in the dark at the end of the rubble hallway.
@@ -38,7 +38,7 @@ overhead. A heavy glop of it slid off his coat as the rest came apart.
 He picked Rut up by the tail on the way out. Rut twisted around and snapped at
 his hand, hit the floor, and ran off into the room without comment.
 
-<span id="scene-sf8d77b5714" data-scene-label="Part 2" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-sf8d77b5714" data-scene-label="What was behind the doors" class="recap-scene-anchor" tabindex="-1"></span>
 
 ## What was behind the doors
 
@@ -74,8 +74,8 @@ the black. Behind him, the party. Ahead and faint: footsteps and voices — the
 dwarves, moving somewhere in the ruin, looking for them. When Thom brought a
 light down, Dax found what the dark had been hiding — a stretch of smooth,
 seamless wall with a mechanism behind it. One good pull swung it open onto the
-**main chamber and its altars**. The temple loops back on itself; every hidden
-passage the dwarves ever built here eventually comes home.
+**main chamber and its altars**. This passage looped back to where they had
+started.
 
 Rut spent the hour trying to force both cave-ins, squeezing into gaps and
 digging at loose stone, and got nowhere — the rock is packed tight and too
@@ -83,7 +83,7 @@ large to shift. Thom, Sage, and Bean followed another branch into the same
 wall of rubble, and found a **dead dwarf with a few coins around him** and a
 tattered book half-buried beside the body.
 
-<span id="scene-s9943b9512e" data-scene-label="Part 3" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s9943b9512e" data-scene-label="The deal breaks" class="recap-scene-anchor" tabindex="-1"></span>
 
 ## The deal breaks
 
@@ -107,7 +107,7 @@ They looked at the coins, at the party, and at a temple full of doors these
 adventurers had spent all day opening. Then they turned and stamped out
 through the entrance hall and were gone.
 
-<span id="scene-s340036aba3" data-scene-label="Part 4" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s340036aba3" data-scene-label="The ledger" class="recap-scene-anchor" tabindex="-1"></span>
 
 ## The ledger
 
@@ -146,7 +146,7 @@ Standing in the empty camp, she heard footsteps carrying through the rock of
 the mountain and echoing off the canyon walls. More than two of them. Coming
 their way.
 
-<span id="scene-se9e35161b2" data-scene-label="Part 5" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-se9e35161b2" data-scene-label="Seven orcs" class="recap-scene-anchor" tabindex="-1"></span>
 
 ## Seven orcs
 

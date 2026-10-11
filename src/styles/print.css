@@ -26,7 +26,8 @@
   body.print-document dialog,
   body.print-document .journey-map-link,
   body.print-document .creature-art,
-  body.print-document .dp-avatar { display: none !important; }
+  body.print-document .dp-avatar,
+  body.print-document .dramatis-toggle { display: none !important; }
 
   body.print-document .page,
   body.print-document .prose {
@@ -49,7 +50,7 @@
   body.print-document p { orphans: 3; widows: 3; }
   body.print-document .prose a { text-decoration: underline; border: 0; }
   body.print-document .dp-chip { border: 0; padding: 0; }
-  body.print-document .dramatis-list { gap: 4pt 12pt; }
+  body.print-document .dramatis-list { display: flex !important; gap: 4pt 12pt; }
   body.print-document .dp-sub { display: block; }
   body.print-document .aside-block { margin-top: 16pt; }
   body.print-document .creature-card { margin: 0 0 8pt; break-inside: avoid; }

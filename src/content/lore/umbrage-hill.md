@@ -1,7 +1,7 @@
 ---
 title: 'Umbrage Hill'
 category: 'places'
-summary: 'Adabra Gwynn''s stone windmill — potion source for all of Phandalin, manticore battleground, and, as of Session 7, gone.'
+summary: 'Adabra Gwynn''s stone windmill — Phandalin''s potion workshop and manticore battleground, reported destroyed in Session 7 after her evacuation.'
 ---
 
 A stone windmill outside Phandalin, home and workshop of midwife-apothecary
@@ -27,6 +27,6 @@ That same evening a man ran into the inn with a report he had just been handed:
 **Umbrage Hill had been attacked. It was a dragon. There was nothing left of
 it.**
 
-Adabra is alive because the party came back for her. Phandalin's only source of
-healing potions is a pile of stone on a hill, and the woman who made them has
-no workshop to make them in.
+The party did not witness the attack or inspect the site afterward. Adabra is
+in Phandalin with her brewing equipment; no replacement workshop has been
+established.

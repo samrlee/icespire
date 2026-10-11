@@ -10,6 +10,25 @@
 @import './tokens/effects.css';
 @import './tokens/base.css';
 
+/* Component-level contrast corrections; the design-token source stays intact. */
+:root:not([data-theme='light']) {
+  --text-muted: var(--frost-400);
+  --status-ally: #83b593;
+  --status-hostile: var(--ember-300);
+  --status-deceased: #b4a5af;
+}
+
+:root[data-theme='light'] {
+  --text-muted: #58636c;
+  --text-on-gold: var(--snow-000);
+  --status-unresolved: var(--accent-gold-strong);
+  --status-neutral: #526574;
+}
+
+[data-theme='light'] .ask-trigger-label {
+  color: var(--accent-gold-strong);
+}
+
 /* Frost-edge vignette: the single sanctioned page-top atmosphere effect. */
 body {
   background-color: var(--bg-page);
@@ -948,6 +967,22 @@ body {
   margin-top: var(--space-6);
 }
 
+.hero-actions .btn-gold,
+.hero-actions .btn-ghost,
+.search-close,
+.search-trigger,
+.theme-toggle,
+.nav-trigger {
+  min-height: 44px;
+}
+
+.hero-actions .btn-gold,
+.hero-actions .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .btn-gold,
 .btn-ghost {
   font-family: var(--font-display);
@@ -1629,6 +1664,16 @@ body {
 
 .dramatis .kicker {
   margin-bottom: var(--space-3);
+}
+
+.dramatis-toggle {
+  margin-bottom: var(--space-3);
+  cursor: pointer;
+}
+
+.dramatis-toggle[hidden],
+.dramatis-list[hidden] {
+  display: none;
 }
 
 .dramatis-list {
@@ -2819,6 +2864,7 @@ body {
 }
 
 .map-marker .map-label {
+  pointer-events: none;
   font-family: var(--font-display);
   font-size: 14px;
   fill: var(--text-primary);
@@ -4368,3 +4414,37 @@ body {
 .recap-scenes a { display: inline-flex; align-items: center; min-height: 44px; padding-block: 0.5rem; }
 .recap-scene-anchor { display: block; scroll-margin-top: 2rem; }
 @media print { nav.recap-scenes { display: none; } }
+/* Readable document order around the interactive canvases. */
+.map-layout { grid-template-areas: 'main panel' 'journey panel'; }
+.map-main { grid-area: main; }
+.map-panel { grid-area: panel; }
+.map-journey { grid-area: journey; }
+.graph-layout { grid-template-areas: 'canvas panel' 'list panel'; }
+.graph-main { grid-area: canvas; min-width: 0; }
+.graph-rollcall { grid-area: list; }
+.graph-panel { grid-area: panel; }
+.map-interaction { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-block: 1rem; }
+.map-interaction[hidden] { display: none; }
+.map-svg[data-exploring='false']:active,
+.graph-svg[data-exploring='false']:active { cursor: default; }
+.map-interaction p { flex-basis: 100%; margin: 0; color: var(--text-secondary); font-size: var(--text-sm); }
+.map-interaction label { font-size: var(--text-sm); }
+.map-interaction select { max-width: 100%; min-height: 44px; padding: .5rem; background: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); font: inherit; }
+.map-interaction button, .graph-expand { min-width: 44px; min-height: 44px; }
+.map-interaction button[aria-pressed='true'] { color: var(--accent-gold); border-color: var(--accent-gold); }
+.map-svg, .graph-svg { touch-action: pan-y pinch-zoom; cursor: default; }
+.map-svg[data-exploring='true'], .graph-svg[data-exploring='true'] { touch-action: none; cursor: grab; }
+.map-svg[data-exploring='true']:active, .graph-svg[data-exploring='true']:active { cursor: grabbing; }
+.map-controls button, .graph-controls button { width: 44px; height: 44px; }
+.map-panel-title:focus, .graph-panel-title:focus { outline: 2px solid var(--accent-gold); outline-offset: 4px; }
+.mj-place[aria-pressed='true'] { background: var(--accent-gold-wash); color: var(--accent-gold-strong); text-decoration: underline; }
+.graph-expand { margin-bottom: 1rem; }
+.graph-frame[hidden], .graph-expand[hidden] { display: none; }
+@media (max-width: 900px) {
+  .map-layout { grid-template-areas: 'main' 'panel' 'journey'; }
+  .graph-layout { grid-template-areas: 'list' 'canvas' 'panel'; }
+  .graph-rollcall { margin-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scrub-off, .map-pin-group, #map-here-anchor { transition: none; }
+}

@@ -6,6 +6,7 @@ import { isMapLocationPublished } from './map-publication';
 import { url } from '../utils/url';
 import { getCurrentState } from './current-state';
 import { recapScenes } from './recap-scenes';
+import type { SearchDoc } from './search-rank';
 
 // Build-time search index. Everything the site publishes becomes one document
 // here; the browser fetches the whole thing once and searches it locally, so
@@ -18,16 +19,7 @@ import { recapScenes } from './recap-scenes';
 // becomes searchable at exactly the moment it becomes visible. See the
 // `published` helpers rather than reaching for a bare getCollection().
 
-export type SearchDoc = {
-  title: string;
-  /** Short kind label, shown as the chip on a result row. */
-  kind: string;
-  /** Secondary line: role, ancestry, category — whatever the card shows. */
-  sub?: string;
-  href: string;
-  /** Body prose, flattened to plain text, for matching and snippets. */
-  text: string;
-};
+export type { SearchDoc } from './search-rank';
 
 /**
  * Markdown (and the odd block of callout HTML) to the plain prose a reader
@@ -89,11 +81,15 @@ export async function buildSearchIndex(): Promise<SearchDoc[]> {
         s.data.date.toLocaleDateString('en-US', { dateStyle: 'medium', timeZone: 'UTC' })
       ),
       href: url(`/sessions/${s.id}/`),
+      sessionNumber: s.data.sessionNumber,
+      summary: s.data.summary,
       text: [s.data.summary, toPlainText(s.body ?? '')].filter(Boolean).join(' '),
     });
     for (const scene of recapScenes(s.body ?? '')) {
       docs.push({ title: `${s.data.title} — ${scene.label}`, kind: 'Recap part',
-        sub: `Session ${s.data.sessionNumber}`, href: url(`/sessions/${s.id}/#${scene.id}`), text: toPlainText(scene.body) });
+        sub: sub(`Session ${s.data.sessionNumber}`, s.data.date.toLocaleDateString('en-US', { dateStyle: 'medium', timeZone: 'UTC' })),
+        sessionNumber: s.data.sessionNumber, parentTitle: s.data.title, sceneLabel: scene.label,
+        href: url(`/sessions/${s.id}/#${scene.id}`), text: toPlainText(scene.body) });
     }
   }
 
@@ -171,6 +167,7 @@ export async function buildSearchIndex(): Promise<SearchDoc[]> {
     kind: KIND.page,
     sub: asOf,
     href: url('/campaign/#where-we-left-off'),
+    currentState: true,
     text: [asOf, state.newerRecap ? 'A newer recap is available; this snapshot has not yet been updated.' : '',
       ...state.groups.map(group => `${group.label}. ${group.members.map(member => member.data.name).join(', ')}. ${group.summary}`)].filter(Boolean).join(' '),
   });

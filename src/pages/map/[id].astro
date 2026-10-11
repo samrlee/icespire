@@ -71,17 +71,23 @@ const kindLabels: Record<string, string> = {
     <span class="wip-label">Work in progress</span>
     <span class="wip-text">
       The local maps are hand-drawn and still being redrawn as we go — read them
-      for layout and landmarks, not exact distances. Details may shift, and
-      anything the party hasn't walked yet is a best guess.
+      for layout and landmarks. The drawing follows its map reference; unseen
+      interiors are withheld until the party explores them.
     </span>
   </aside>
 
+  <div class="map-interaction" data-map-interaction hidden>
+    <button type="button" class="btn-ghost" id="map-explore" aria-pressed="false" aria-controls="map-svg" hidden>Explore map</button>
+    <p id="map-interaction-hint">Scroll the page normally. Choose Explore map to drag or pinch, or hold Ctrl/⌘ while scrolling to zoom. Arrow keys pan while exploring.</p>
+  </div>
   <div class="map-frame" id="map-frame">
     <svg
       class="map-svg submap-svg"
       id="map-svg"
       viewBox={`0 0 ${width} ${height}`}
       role="img"
+      tabindex="0"
+      aria-describedby="map-interaction-hint"
       aria-label={`Local map of ${location.data.name}`}
     >
       <Component interior={interiorSeen} />
@@ -139,5 +145,6 @@ const kindLabels: Record<string, string> = {
     zoomInBtn: document.getElementById('map-zoom-in'),
     zoomOutBtn: document.getElementById('map-zoom-out'),
     resetBtn: document.getElementById('map-zoom-reset'),
+    exploreBtn: document.getElementById('map-explore'),
   });
 </script>

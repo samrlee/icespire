@@ -55,7 +55,8 @@ not used; ammunition and weight are not tracked unless special or ridiculous;
 Bean can appraise valuables on an Intelligence check at disadvantage.
 
 Hamish and Sage are both wood elf rangers who scout together — "the ranger" is
-never unambiguous. "Friend" is Rut, whose real name the party does not know.
+never unambiguous. "Friend" is Rut. Sage alone learned his real name in
+Session 9 and may tell the others, but has not yet done so.
 "The weasel" is usually Rut wild-shaped; "the panther" is Phantom, Sage's
 companion. The guildmaster is **Holia Thornton** (Zhentarim, hostile); the
 townmaster is **Harbin Wester** (nervous, an ally). They are opposites and

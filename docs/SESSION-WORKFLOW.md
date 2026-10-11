@@ -87,7 +87,7 @@ transcript the agent needs three things it cannot get from the audio:
    date it was played).
 2. **Who was at the table**, by player name — this becomes `playersPresent`, and
    an absent player's character usually should not act in the recap.
-3. **The speaker map**, if diarization was used: `SPEAKER_00 = Nolan (Thom)`,
+3. **The speaker map**, if diarization was used: `SPEAKER_00 = Nolan (Rut)`,
    and so on, plus which label is the DM.
 
 ## 4. What the agent reads before writing anything

@@ -12,6 +12,7 @@ import { createAsk } from './ask';
 
 const MAX_HITS = 8;
 const SNIPPET_RADIUS = 90;
+const INDEX_TIMEOUT_MS = 5_000;
 
 const dialog = document.querySelector<HTMLDialogElement>('#search-dialog');
 const input = document.querySelector<HTMLInputElement>('#search-input');
@@ -38,6 +39,7 @@ function wire(
     askBox && dialog.dataset.ask ? createAsk(askBox, dialog.dataset.ask, query => { input.value = query; limit = MAX_HITS; render(); input.focus(); }) : null;
   let docs: Indexed[] | null = null;
   let loading: Promise<void> | null = null;
+  let loadingController: AbortController | null = null;
   let state: 'idle' | 'loading' | 'ready' | 'error' = 'idle';
   const retry = dialog.querySelector<HTMLButtonElement>('[data-search-retry]');
   const filters = dialog.querySelector<HTMLElement>('#search-filters');
@@ -52,17 +54,24 @@ function wire(
   const load = () => {
     if (loading) return loading;
     if (state === 'ready') return Promise.resolve();
+    const controller = new AbortController();
+    loadingController = controller;
+    const timer = window.setTimeout(() => controller.abort(), INDEX_TIMEOUT_MS);
     state = 'loading';
     ask?.prepare();
     render();
-    loading = fetch(indexUrl, { cache: 'no-cache' })
+    loading = fetch(indexUrl, { cache: 'no-cache', signal: controller.signal })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then(async (raw: unknown) => {
+        if (loadingController !== controller) return;
+        controller.signal.throwIfAborted();
         if (!Array.isArray(raw) || !raw.every(isSearchDoc)) {
           throw new Error('Invalid search index');
         }
-        docs = index(raw);
         await ask?.setCorpus(raw);
+        if (loadingController !== controller) return;
+        controller.signal.throwIfAborted();
+        docs = index(raw);
         filters?.replaceChildren();
         for (const value of ['', ...new Set(raw.map(doc => doc.kind).sort())]) {
           const button = document.createElement('button');
@@ -81,9 +90,13 @@ function wire(
         state = 'ready';
       })
       .catch(() => {
+        if (loadingController !== controller) return;
         state = 'error';
       })
       .finally(() => {
+        window.clearTimeout(timer);
+        if (loadingController !== controller) return;
+        loadingController = null;
         loading = null;
         if (dialog.open) render();
       });
@@ -135,12 +148,51 @@ function wire(
     }
   });
 
-  // Clicking the backdrop — anywhere outside the panel — dismisses.
+  // Close before a same-document fragment navigates, so its destination is no
+  // longer inert. The native link still updates history and scroll position.
   dialog.addEventListener('click', (e) => {
-    if (e.target === dialog) dialog.close();
+    if (e.target === dialog) { dialog.close(); return; }
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const link = e.target instanceof Element ? e.target.closest<HTMLAnchorElement>('a[href]') : null;
+    if (!link || (link.target && link.target !== '_self') || link.hasAttribute('download')) return;
+    const destination = new URL(link.href, window.location.href);
+    if (destination.origin !== window.location.origin || destination.pathname !== window.location.pathname || destination.search !== window.location.search) return;
+    let target: HTMLElement | null = null;
+    let mapMarker: HTMLElement | null = null;
+    try {
+      const fragment = decodeURIComponent(destination.hash.slice(1));
+      target = document.getElementById(fragment);
+      mapMarker = document.querySelector<HTMLElement>(`.map-marker[data-slug="${CSS.escape(fragment)}"]`);
+    } catch { /* Invalid fragments cannot identify a focus target. */ }
+    // Map navigation selects the marker and focuses its detail heading itself.
+    if (mapMarker) returnFocus = null;
+    else if (target) {
+      if (!target.hasAttribute('tabindex')) {
+        target.setAttribute('tabindex', '-1');
+        target.addEventListener('blur', () => target?.removeAttribute('tabindex'), { once: true });
+      }
+      returnFocus = target;
+    }
+    dialog.close();
+  });
+
+  // Escape dismisses search without reaching the underlying map or graph,
+  // even when focus is on a filter or Ask control.
+  dialog.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    e.preventDefault();
+    e.stopPropagation();
+    dialog.close();
   });
 
   dialog.addEventListener('close', () => {
+    if (loadingController) {
+      loadingController.abort();
+      loadingController = null;
+      loading = null;
+      docs = null;
+      state = 'idle';
+    }
     input.value = '';
     kind = '';
     limit = MAX_HITS;
@@ -175,10 +227,7 @@ function wire(
   });
 
   input.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      e.preventDefault();
-      dialog.close();
-    } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       if (hits.length === 0) return;
       e.preventDefault();
       const step = e.key === 'ArrowDown' ? 1 : -1;

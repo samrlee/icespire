@@ -16,8 +16,9 @@ laid before Abbathor across generations of priests.
 - **The offerings thin out.** Year over year, the entries get smaller.
 - **The tone gets defensive.** Alongside the shrinking numbers, the priests
   start justifying themselves — *"Abbathor will be pleased with our
-  investments."* Whether that pleading was aimed at the god or at each other,
-  it did not work: the avalanche came, and the priests became jellies.
+  investments."* Whether that pleading was aimed at the god or at each other
+  is unknown. The prospectors separately told the party that Abbathor buried
+  the settlement in an avalanche and transformed its surviving priests.
 - **It describes a room.** A **sacrifice chamber**: dark, flanked by two
   statues. In Session 7 the party opened a sealed round chamber behind the
   rubble holding exactly that — two pedestals, two statues — and emptied it.
@@ -32,8 +33,7 @@ laid before Abbathor across generations of priests.
 Two of the party are now carrying pieces of Abbathor's temple — Rut the
 necklace that reads *"This is what happens to those who displease me,"* Hamish
 the holy symbol that reads *"Greed is good"* — and one of them is holding a
-book that catalogues exactly what happens to people who take from this god and
-give too little back.
+book that records generations of offerings to the same god.
 
-The party lied to their partners about the haul and kept the coffer that same
-day. One of those partners was dead on the road within a week.
+The party concealed the gemstones from their partners. Dazlyn was later
+killed on the road by the seven orcs that attacked the temple.

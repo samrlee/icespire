@@ -113,9 +113,9 @@ anyway").
 - Put **15 gp into the bag the party gave Norbus**, then went back alone
   afterward and left **another 15 of his own** with an offer of future work —
   and gave the dwarf his name (Session 7).
-- Carries the Clockwork Amulet — available, recharges at dawn, unused in
-  Session 7. Still holding the **inspiration die** awarded at the end of
-  Session 6.
+- Carried the Clockwork Amulet, unused that day, and still held the
+  **inspiration die** awarded at the end of Session 6 (Session 7).
+  The amulet recharges at dawn.
 - Tailed the dark-clad figure to the Miner's Exchange and held the yard while
   Barnaby boosted Hamish to the window (Session 8).
 - His chain mail gave the three of them away on the way out. He waved the other
@@ -156,8 +156,8 @@ anyway").
   loose gold they found there, still unrecovered (Session 9).
 
 **Standing with the dwarves:** the goodwill he earned in Dwarvish in Session 5
-was spent by his failed lie in Session 6 — and in Session 7 he squared it
-privately with the survivor, on his own terms and out of his own purse.
+was spent by his failed lie in Session 6. In Session 7 he made a private
+payment and offer of service to Norbus, who remained unaware of the gems.
 
 ## Dax and Rut
 

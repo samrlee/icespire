@@ -3,13 +3,13 @@ name: 'The Orc Bands'
 type: 'Raiders'
 status: active
 alignment: 'hostile'
-summary: 'Roving orc war-bands pushed into the region and looking for ground to hold. They remember who kills their people.'
+summary: 'Orc bands around Phandalin: a large encampment, seven scouts seeking a fort, and Dax''s reports of a dragon frightening the orcs he fought.'
 ---
 
-Not one organized force so much as several war-bands driven into the Phandalin
-region and hunting for somewhere defensible to sit. Adabra Gwynn says they've
-grown more common lately; Dax says the ones he fought were agitated by
-something they called a *dragon*.
+Orcs have grown more common around Phandalin, according to Adabra Gwynn.
+Dax says the ones he fought were agitated by something they called a *dragon*.
+The seven that came to the excavation wanted a fort; the party has not
+established a common motive or command structure for every band in the region.
 
 ## Encounters so far
 

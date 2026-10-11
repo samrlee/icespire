@@ -14,7 +14,7 @@ encounters:
     href: '/npcs/facktore/'
 ---
 
-<span id="scene-s079c229890" data-scene-label="Part 1" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s079c229890" data-scene-label="Dax joins and Facktoré fires" class="recap-scene-anchor" tabindex="-1"></span>
 
 The party woke and prepared bacon for breakfast. Rut seemed interested in
 Barnaby and got in his face.

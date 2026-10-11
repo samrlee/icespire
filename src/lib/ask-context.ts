@@ -45,16 +45,18 @@ export function relevantPassages(doc: Indexed, terms: string[], maxChars = 6_000
 
 /** Budget includes headings, separators, and excerpt labels, not just prose. */
 export function buildAskContext(
-  hits: { doc: Indexed }[], terms: string[], budget: number,
+  hits: { doc: Indexed; overview?: boolean }[], terms: string[], budget: number,
 ) {
   const used: Indexed[] = [];
   const blocks: string[] = [];
-  for (const { doc } of hits) {
-    const heading = `## ${doc.title} (${doc.kind})\n`;
+  for (const { doc, overview } of hits) {
+    const heading = `## ${doc.title} (${doc.kind})\n${doc.sub ? doc.sub + '\n' : ''}`;
     const prefix = blocks.length ? '\n\n' : '';
     const remaining = budget * 4 - blocks.join('').length - prefix.length - heading.length;
     const label = '[Excerpts from this entry; omitted passages are marked […].]\n';
-    const allowance = Math.min(6_000, remaining - label.length);
+    // A requested recap overview uses its authored summary when available.
+    // Otherwise the complete entry can fit inside the unchanged total budget.
+    const allowance = Math.min(overview ? budget * 4 : 6_000, remaining - label.length);
     if (allowance <= 0) continue;
     const prose = relevantPassages(doc, terms, allowance);
     if (!prose) continue;

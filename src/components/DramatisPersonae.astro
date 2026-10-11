@@ -86,7 +86,11 @@ const monogram = (name: string) =>
   members.length > 0 && (
     <section class="dramatis" aria-labelledby="dramatis-heading">
       <h2 class="kicker" id="dramatis-heading">Dramatis personae</h2>
-      <ul class="dramatis-list">
+      <button class="dramatis-toggle btn-ghost" type="button" hidden
+        aria-controls="dramatis-list" aria-expanded="true" data-cast-count={members.length}>
+        Hide cast ({members.length})
+      </button>
+      <ul class="dramatis-list" id="dramatis-list">
         {members.map((m) => (
           <li>
             <a class={`dp-chip ${m.kind}`} href={m.href}>
@@ -111,3 +115,26 @@ const monogram = (name: string) =>
     </section>
   )
 }
+
+<script>
+  const cast = document.querySelector<HTMLElement>('.dramatis');
+  const toggle = cast?.querySelector<HTMLButtonElement>('.dramatis-toggle');
+  const list = cast?.querySelector<HTMLUListElement>('.dramatis-list');
+  if (toggle && list) {
+    const phone = window.matchMedia('(max-width: 640px)');
+    let expandedOnPhone = false;
+    const update = () => {
+      const expanded = !phone.matches || expandedOnPhone;
+      list.hidden = !expanded;
+      toggle.hidden = !phone.matches;
+      toggle.setAttribute('aria-expanded', String(expanded));
+      toggle.textContent = `${expanded ? 'Hide' : 'Show'} cast (${toggle.dataset.castCount})`;
+    };
+    toggle.addEventListener('click', () => {
+      expandedOnPhone = !expandedOnPhone;
+      update();
+    });
+    phone.addEventListener('change', update);
+    update();
+  }
+</script>
