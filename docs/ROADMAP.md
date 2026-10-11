@@ -48,6 +48,14 @@ issue stays open through final review; its older recommendations are historical.
 
 ## Done
 
+- **Mobile map scrolling** — keep page previews scrollable and bounded in
+  landscape; open region and local maps in a dedicated phone viewer with
+  reachable Done and zoom controls. Restore page position/focus on dismissal,
+  open selected-place details after leaving the viewer, and correct pointer
+  coordinates, pinch anchoring and continuous touch capture. Local viewers
+  retain the published key; letterboxed and enlarged-text layouts keep the
+  drawing proportional and the controls reachable. _(Oct 2026)_
+
 - **October website review fixes** — correct Ask retrieval for session numbers,
   current whereabouts and scene evidence; repair same-page search navigation,
   stalled-index recovery, map/graph focus and gesture handling; remove hidden
@@ -300,9 +308,9 @@ fixes do not add the features below.
   Exchange: mark consequential claims observed, reported or inferred, with
   stable scene citations and explicitly established witnesses. Review the pilot
   before applying it across profiles or generating character briefings.
-- **Optional expanded canvas view.** Consider fullscreen maps/relationships and
-  a person selector if the list-first phone view and Explore controls still
-  leave a practical need. Preserve a readable keyboard alternative.
+- **Optional expanded relationship view.** Mobile region/local map exploration
+  now has a dedicated viewer. A fullscreen relationship graph and person
+  selector remain deferred; preserve a readable keyboard alternative.
 - **Self-hosted fonts.** Bundle licensed font files and update the stylesheet
   and generated CSP together, removing the Google Fonts network dependency.
 - **Catch up through a chosen session.** Restrict an initial version to
