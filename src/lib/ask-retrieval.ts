@@ -1,15 +1,15 @@
-import { contentTokens, pickAny } from './search-rank.ts';
+import { contentTokens, foldSearchText, foldSearchTextWithOffsets, index, pickAny } from './search-rank.ts';
 import type { Hit, Indexed } from './search-rank.ts';
 
 export type AskHit = Hit & { overview?: boolean };
 
 const parentHref = (doc: Indexed) => doc.href.split('#')[0];
 const sessionNumber = (doc: Indexed) => doc.sessionNumber ?? Number(doc.sub?.match(/^Session (\d+)\b/)?.[1] ?? NaN);
-const overview = (doc: Indexed): AskHit => ({ doc: { ...doc, text: doc.summary || doc.text,
-  textLc: (doc.summary || doc.text).toLowerCase() }, score: 40, at: -1, overview: true });
+const overview = (doc: Indexed): AskHit => ({ doc: index([{ ...doc, text: doc.summary || doc.text }])[0],
+  score: 40, at: -1, overview: true });
 const exactTerm = (text: string, term: string) => {
   const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  return new RegExp(`(?<![\\p{L}\\p{N}])${escaped}(?![\\p{L}\\p{N}])`, 'u').test(text.toLowerCase());
+  return new RegExp(`(?<![\\p{L}\\p{N}])${escaped}(?![\\p{L}\\p{N}])`, 'u').test(foldSearchText(text));
 };
 
 /** Rank only the already published index. Intent changes selection, never gates. */
@@ -38,11 +38,15 @@ export function retrieveAsk(docs: Indexed[], question: string, maximum = 5): { h
       return { hits: [overview(scoped)], terms };
     }
   } else {
-    const named = recaps.find(doc => question.toLowerCase().includes(doc.title.toLowerCase()));
+    const foldedQuestion = foldSearchTextWithOffsets(question);
+    const named = recaps.find(doc => foldedQuestion.text.includes(foldSearchText(doc.title)));
     if (named) {
       scoped = named;
-      const offset = question.toLowerCase().indexOf(named.title.toLowerCase());
-      terms = contentTokens(question.slice(0, offset) + question.slice(offset + named.title.length), false);
+      const title = foldSearchText(named.title);
+      const offset = foldedQuestion.text.indexOf(title);
+      const start = foldedQuestion.starts[offset];
+      const end = foldedQuestion.ends[offset + title.length - 1];
+      terms = contentTokens(question.slice(0, start) + question.slice(end), false);
       if (!terms.length) return { hits: [overview(named)], terms };
     } else {
       // Two distinctive title terms can identify a recap, but each scene must
@@ -56,7 +60,7 @@ export function retrieveAsk(docs: Indexed[], question: string, maximum = 5): { h
   const eligible = docs.filter(doc => (!scoped || parentHref(doc) === scoped.href)
     && (doc.kind !== 'Recap' || !partParents.has(doc.href)));
   const rankedDocs = eligible.map(doc => doc.kind === 'Recap part'
-    ? { ...doc, titleLc: (doc.sceneLabel ?? doc.title.split(' — ').at(-1) ?? '').toLowerCase() }
+    ? { ...doc, titleLc: foldSearchText(doc.sceneLabel ?? doc.title.split(' — ').at(-1) ?? '') }
     : doc);
   // Four is one complete-word occurrence in prose. The old floor of twelve
   // excluded every one-keyword body match, even an explicitly recorded fact.

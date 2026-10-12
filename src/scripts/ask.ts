@@ -1,7 +1,7 @@
 import { corpusVersion, safeSourceHref } from '../lib/ask-safety';
 import type { SearchDoc } from '../lib/search-rank';
 
-type Source = { title: string; kind: string; href: string };
+type Source = { title: string; kind: string; href: string; excerpt?: string };
 type Answer = { answer: string; sources: Source[]; corpusVersion?: string };
 type Saved = Answer & { question: string; version: string };
 export type Ask = { offer(query: string): void; clear(): void; prepare(): void; setCorpus(docs: SearchDoc[]): Promise<void> };
@@ -13,6 +13,9 @@ export function createAsk(container: HTMLElement, endpoint: string, restoreQuery
   let known = new Map<string, SearchDoc>();
   let saved: Saved | null = null;
   const key = 'icespire-saved-answer';
+  // The unchanged 12,000-token context budget allows at most 48,000 estimated
+  // characters across supplied passages. Headings make the real ceiling lower.
+  const maxExcerptChars = 48_000;
   const retention = document.createElement('div');
   retention.className = 'search-status';
   container.after(retention);
@@ -25,11 +28,31 @@ export function createAsk(container: HTMLElement, endpoint: string, restoreQuery
   };
   const sources = (value: unknown): Source[] => {
     if (!Array.isArray(value)) return [];
-    return value.filter((s): s is Source => {
+    const valid = value.filter((s): s is Source => {
       if (!s || !safeSourceHref(s.href)) return false;
       const doc = known.get(s.href);
-      return !!doc && doc.title === s.title && doc.kind === s.kind;
+      if (!doc || doc.title !== s.title || doc.kind !== s.kind) return false;
+      // Older responses and saved answers have links without an excerpt.
+      if (s.excerpt === undefined) return true;
+      const excerpt = s.excerpt;
+      if (typeof excerpt !== 'string' || !excerpt.trim() || excerpt.length > maxExcerptChars) return false;
+      // Validate retained evidence against this corpus too, not just its link.
+      // Ranked windows retain source order and use this exact omission marker.
+      return [doc.text, doc.summary].some(text => {
+        if (typeof text !== 'string') return false;
+        let after = 0;
+        return excerpt.split('\n[…]\n').every(passage => {
+          if (!passage) return false;
+          const at = text.indexOf(passage, after);
+          if (at < 0) return false;
+          after = at + passage.length;
+          return true;
+        });
+      });
     }).slice(0, 5);
+    if (valid.reduce((total, source) => total + (source.excerpt?.length ?? 0), 0) > maxExcerptChars) return [];
+    return valid.map(({ title, kind, href, excerpt }) => ({ title, kind, href,
+      ...(excerpt === undefined ? {} : { excerpt }) }));
   };
   const savedControls = () => {
     retention.replaceChildren();
@@ -59,11 +82,23 @@ export function createAsk(container: HTMLElement, endpoint: string, restoreQuery
     container.replaceChildren(say('ask-answer', data.answer));
     const valid = sources(data.sources);
     if (valid.length) {
-      const cite = say('ask-sources', 'Sources consulted: ');
-      valid.forEach((source, i) => {
-        if (i) cite.append(', ');
-        const a = document.createElement('a'); a.href = source.href; a.textContent = source.title; cite.append(a);
+      const cite = document.createElement('div'); cite.className = 'ask-sources';
+      cite.append(say('', 'Sources consulted:'));
+      const list = document.createElement('ul'); list.className = 'ask-source-list';
+      valid.forEach(source => {
+        const item = document.createElement('li');
+        const a = document.createElement('a'); a.href = source.href; a.textContent = source.title; item.append(a);
+        if (source.excerpt !== undefined) {
+          const details = document.createElement('details'); details.className = 'ask-evidence';
+          const summary = document.createElement('summary'); summary.textContent = 'Read supplied passage';
+          summary.setAttribute('aria-label', `Read supplied passage from ${source.title}`);
+          const excerpt = say('ask-excerpt', source.excerpt); excerpt.tabIndex = 0;
+          excerpt.setAttribute('role', 'region'); excerpt.setAttribute('aria-label', `Passage supplied from ${source.title}`);
+          details.append(summary, excerpt); item.append(details);
+        }
+        list.append(item);
       });
+      cite.append(list);
       container.append(cite, say('ask-status', 'These passages were supplied to the chronicler; they do not independently verify every claim.'));
     }
     if (data.corpusVersion === version && version) container.append(button('Save answer in this tab', () => {
@@ -112,7 +147,7 @@ export function createAsk(container: HTMLElement, endpoint: string, restoreQuery
       const raw = sessionStorage.getItem(key);
       if (raw) {
         let record; try { record = JSON.parse(raw); } catch { record = null; }
-        if (record?.version === version && record.corpusVersion === version && typeof record.question === 'string' && record.question.trim() && record.question.length <= 400 && typeof record.answer === 'string' && record.answer.trim() && record.answer.length <= 8000 && Array.isArray(record.sources) && record.sources.length <= 5 && sources(record.sources).length === record.sources.length) saved = record;
+        if (record?.version === version && record.corpusVersion === version && typeof record.question === 'string' && record.question.trim() && record.question.length <= 400 && typeof record.answer === 'string' && record.answer.trim() && record.answer.length <= 8000 && Array.isArray(record.sources) && record.sources.length <= 5 && sources(record.sources).length === record.sources.length) saved = { ...record, sources: sources(record.sources) };
         else { sessionStorage.removeItem(key); retention.replaceChildren(say('', 'The saved answer was cleared because the chronicle changed or the record was invalid.')); return; }
       }
       savedControls();

@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import StatusPill from '../../components/StatusPill.astro';
+import MapExplorer from '../../components/map/MapExplorer.astro';
 import { url } from '../../utils/url';
 
 // The political web: the party at the centre, factions on an inner ring, and
@@ -195,6 +196,17 @@ const roleLine = (role?: string, affiliation?: string) =>
   <div class="kicker">Who owes whom</div>
   <h1 class="page-title">The Political Web</h1>
 
+  <div class="graph-picker map-interaction" id="graph-picker" hidden>
+    <label for="graph-person">Find a person or faction</label>
+    <select id="graph-person" aria-controls="graph-panel-detail">
+      <option value="">Choose an entry…</option>
+      <option value="party">The Party</option>
+      <optgroup label="Party members">{party.map(c => <option value={`character:${c.id}`}>{c.data.name}</option>)}</optgroup>
+      <optgroup label="NPCs">{npcNodes.map(n => <option value={`npc:${n.id}`}>{n.data.name}</option>)}</optgroup>
+      <optgroup label="Factions">{factionNodes.map(f => <option value={`faction:${f.id}`}>{f.data.name}</option>)}</optgroup>
+    </select>
+    <button type="button" class="btn-ghost" id="graph-person-open" aria-controls="graph-panel-detail" disabled>View relationships</button>
+  </div>
   <div class="graph-layout">
       {/* The graph shows the shape of the web; this reads it out, faction by
           faction — the reliable path on a phone, no tiny targets required. */}
@@ -245,7 +257,7 @@ const roleLine = (role?: string, affiliation?: string) =>
       <div id="graph-canvas">
       <div class="map-interaction" data-map-interaction hidden>
         <button type="button" class="btn-ghost" id="graph-explore" aria-pressed="false" aria-controls="graph-svg" hidden>Explore graph</button>
-        <p id="graph-interaction-hint">Scroll the page normally. Choose Explore graph to drag or pinch, or hold Ctrl/⌘ while scrolling to zoom. Arrow keys pan while exploring. Zoom in to read the graph labels; the allegiance list links every entry.</p>
+        <p id="graph-interaction-hint"><span class="map-hint-desktop">Scroll the page normally. Choose Explore graph to drag or pinch, or hold Ctrl/⌘ while scrolling to zoom. Arrow keys pan while exploring. The allegiance list links every entry.</span><span class="map-hint-mobile">Explore graph opens a larger view to drag and zoom. Use the selector to read an entry without opening the drawing.</span></p>
       </div>
       <div class="graph-frame" id="graph-frame">
         <svg
@@ -360,7 +372,7 @@ const roleLine = (role?: string, affiliation?: string) =>
           </g>
         </svg>
 
-        <div class="graph-controls">
+        <div class="graph-controls" role="group" aria-label="Graph zoom controls" tabindex="0">
           <button type="button" id="graph-zoom-in" aria-label="Zoom in">+</button>
           <button type="button" id="graph-zoom-out" aria-label="Zoom out">−</button>
           <button type="button" id="graph-zoom-reset" aria-label="Reset view">⌂</button>
@@ -372,6 +384,7 @@ const roleLine = (role?: string, affiliation?: string) =>
         <div class="graph-hint" aria-hidden="true">Tap anyone to trace their ties</div>
       </div>
       </div>
+      <MapExplorer title="Relationships" kind="graph" />
     </div>
     <aside class="graph-panel" id="graph-panel">
       <div id="graph-panel-home">
@@ -477,6 +490,17 @@ const roleLine = (role?: string, affiliation?: string) =>
           <a href={url('/characters/')}>Full roster →</a>
         </p>
       </template>
+      {party.map(c => (
+        <template data-node={`character:${c.id}`}>
+          <button class="graph-panel-close" type="button" aria-label="Back to legend">×</button>
+          <div class="kicker">Party member</div>
+          <h2 class="graph-panel-title" id="graph-detail-title" tabindex="-1">{c.data.name}</h2>
+          <p class="graph-panel-meta">{c.data.ancestry} · {c.data.class} · Played by {c.data.player}</p>
+          {c.data.tagline && <p class="graph-panel-body">{c.data.tagline}</p>}
+          <p class="graph-panel-body">The drawing groups adventurers into the Party node. Individual ties to NPCs are not recorded by this graph.</p>
+          <p class="graph-panel-links"><a href={url(`/characters/${c.id}/`)}>Character entry →</a></p>
+        </template>
+      ))}
     </aside>
   </div>
 </Base>
@@ -494,12 +518,18 @@ const roleLine = (role?: string, affiliation?: string) =>
   const canvas = document.getElementById('graph-canvas')!;
   const narrow = window.matchMedia('(max-width: 900px)');
   let expanded = false;
-  let selectionSource: SVGElement | null = null;
+  const picker = document.getElementById('graph-person') as HTMLSelectElement;
+  const viewPerson = document.getElementById('graph-person-open') as HTMLButtonElement;
+  document.getElementById('graph-picker')!.hidden = false;
+  let selectionSource: SVGElement | HTMLElement | null = null;
   function updateCanvas() {
+    const hadCanvasFocus = frame.contains(document.activeElement) || canvas.contains(document.activeElement);
+    const hidingCanvas = narrow.matches && !expanded;
     expandButton.hidden = !narrow.matches;
-    frame.hidden = canvas.hidden = narrow.matches && !expanded;
+    frame.hidden = canvas.hidden = hidingCanvas;
     expandButton.setAttribute('aria-expanded', String(!frame.hidden));
     expandButton.textContent = frame.hidden ? 'Show relationship graph' : 'Hide relationship graph';
+    if (hidingCanvas && hadCanvasFocus) expandButton.focus();
   }
   expandButton.addEventListener('click', () => {
     expanded = !expanded;
@@ -519,6 +549,7 @@ const roleLine = (role?: string, affiliation?: string) =>
     zoomOutBtn: document.getElementById('graph-zoom-out'),
     resetBtn: document.getElementById('graph-zoom-reset'),
     exploreBtn: document.getElementById('graph-explore'),
+    explorer: document.getElementById('map-explorer') as HTMLDialogElement,
   });
 
   const nodeEls = [...svg.querySelectorAll<SVGGElement>('.g-node[data-node]')];
@@ -548,16 +579,20 @@ const roleLine = (role?: string, affiliation?: string) =>
     for (const el of nodeEls) el.setAttribute('aria-pressed', 'false');
   }
 
-  function openNode(id: string, source: SVGElement) {
+  function openNode(id: string, source: SVGElement | HTMLElement) {
     const tpl = panel.querySelector<HTMLTemplateElement>(`template[data-node="${id}"]`);
     if (!tpl) return;
+    if (frame.closest('dialog[open]')) viewer.finishExploring(false);
     panelDetail.innerHTML = '';
     panelDetail.appendChild(tpl.content.cloneNode(true));
     panelDetail.hidden = false;
     panelHome.hidden = true;
     selectionSource = source;
-    for (const el of nodeEls) el.setAttribute('aria-pressed', String(el.dataset.node === id));
-    focusNode(id);
+    picker.value = id;
+    viewPerson.disabled = false;
+    const diagramId = id.startsWith('character:') ? 'party' : id;
+    for (const el of nodeEls) el.setAttribute('aria-pressed', String(el.dataset.node === diagramId));
+    focusNode(diagramId);
     panelDetail.querySelector<HTMLElement>('.graph-panel-title')!.focus({ preventScroll: true });
     if (narrow.matches) {
       panel.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'nearest' });
@@ -570,7 +605,7 @@ const roleLine = (role?: string, affiliation?: string) =>
     panelHome.hidden = false;
     clearFocus();
     if (returnFocus && selectionSource) {
-      (canvas.hidden ? expandButton : selectionSource).focus();
+      (selectionSource === picker ? picker : canvas.hidden ? expandButton : selectionSource).focus();
     }
     selectionSource = null;
   }
@@ -584,6 +619,8 @@ const roleLine = (role?: string, affiliation?: string) =>
       closePanel();
     }
   });
+  picker.addEventListener('change', () => { viewPerson.disabled = !picker.value; });
+  viewPerson.addEventListener('click', () => openNode(picker.value, picker));
 
   for (const el of nodeEls) {
     el.addEventListener('click', () => {

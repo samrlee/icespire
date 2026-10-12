@@ -25,11 +25,13 @@ export type SearchDoc = {
   currentState?: boolean;
 };
 
-/** A doc plus the lowercased copies we match against, folded once at load. */
+/** A doc plus accent-insensitive copies, folded once at load. */
 export type Indexed = SearchDoc & {
   titleLc: string;
   subLc: string;
   textLc: string;
+  /** Each folded body offset points into the original, displayed prose. */
+  textOffsets: number[];
 };
 
 export type Hit = {
@@ -39,18 +41,96 @@ export type Hit = {
   at: number;
 };
 
+/** Canonical decompositions let both composed and combining accents match. */
+export function foldSearchText(text: string): string {
+  return text.toLowerCase().normalize('NFD').replace(/\p{M}/gu, '');
+}
+
+export type FoldedSearchText = { text: string; starts: number[]; ends: number[] };
+const graphemes = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
+
+/**
+ * Folding can remove accents or expand characters, so its offsets cannot be
+ * used to slice the original. Map every resulting UTF-16 unit to its complete
+ * source grapheme, including combining marks that should remain highlighted.
+ */
+export function foldSearchTextWithOffsets(text: string): FoldedSearchText {
+  const starts: number[] = [];
+  const ends: number[] = [];
+  // ASCII runs need no normalization or segmentation. Include neighboring
+  // characters around Unicode runs so an ASCII base and its accent stay
+  // together, then merge overlapping windows before segmenting them.
+  const windows: [number, number][] = [];
+  for (const match of text.matchAll(/[^\x00-\x7f]+/g)) {
+    let start = Math.max(0, match.index - 1);
+    let end = Math.min(text.length, match.index + match[0].length + 1);
+    if (text[start] === '\n' && text[start - 1] === '\r') start--;
+    if (text[end - 1] === '\r' && text[end] === '\n') end++;
+    const previous = windows.at(-1);
+    if (previous && start <= previous[1]) previous[1] = end;
+    else windows.push([start, end]);
+  }
+  const ascii = (start: number, end: number) => {
+    for (let i = start; i < end;) {
+      const length = text[i] === '\r' && text[i + 1] === '\n' ? 2 : 1;
+      for (let j = 0; j < length; j++) { starts.push(i); ends.push(i + length); }
+      i += length;
+    }
+  };
+  let cursor = 0;
+  for (const [start, end] of windows) {
+    ascii(cursor, start);
+    for (const { segment, index: offset } of graphemes.segment(text.slice(start, end))) {
+      for (let i = 0; i < foldSearchText(segment).length; i++) {
+        starts.push(start + offset);
+        ends.push(start + offset + segment.length);
+      }
+    }
+    cursor = end;
+  }
+  ascii(cursor, text.length);
+  // Fold the complete string to retain context-dependent casing, such as a
+  // Greek final sigma. Its mapping lengths are the same as the graphemes'.
+  return { text: foldSearchText(text), starts, ends };
+}
+
+/** Original-text ranges for all matches, merged before building DOM marks. */
+export function searchMatchSpans(text: string, tokens: string[]): [number, number][] {
+  const folded = foldSearchTextWithOffsets(text);
+  const spans: [number, number][] = [];
+  for (const token of new Set(tokens.map(foldSearchText).filter(Boolean))) {
+    let at = folded.text.indexOf(token);
+    while (at !== -1) {
+      spans.push([folded.starts[at], folded.ends[at + token.length - 1]]);
+      at = folded.text.indexOf(token, at + token.length);
+    }
+  }
+  spans.sort((a, b) => a[0] - b[0]);
+  const merged: [number, number][] = [];
+  for (const span of spans) {
+    const last = merged.at(-1);
+    if (last && span[0] <= last[1]) last[1] = Math.max(last[1], span[1]);
+    else merged.push(span);
+  }
+  return merged;
+}
+
 export function index(docs: SearchDoc[]): Indexed[] {
-  return docs.map((d) => ({
-    ...d,
-    titleLc: d.title.toLowerCase(),
-    subLc: (d.sub ?? '').toLowerCase(),
-    textLc: d.text.toLowerCase(),
-  }));
+  return docs.map((d) => {
+    const body = foldSearchTextWithOffsets(d.text);
+    return {
+      ...d,
+      titleLc: foldSearchText(d.title),
+      subLc: foldSearchText(d.sub ?? ''),
+      textLc: body.text,
+      textOffsets: body.starts,
+    };
+  });
 }
 
 /** Query text to the distinct lowercase terms worth matching on. */
 export function tokenize(query: string): string[] {
-  return [...new Set(query.toLowerCase().split(/[^\p{L}\p{N}']+/u).filter(Boolean))];
+  return [...new Set(foldSearchText(query).split(/[^\p{L}\p{N}']+/u).filter(Boolean))];
 }
 
 // Question scaffolding. These carry no signal about *which* entry is wanted,
@@ -110,7 +190,7 @@ function scoreTerm(doc: Indexed, token: string) {
   if (subtitle.count > 0) score += subtitle.boundary ? 4 : 2;
   if (body.count > 0) score += (body.boundary ? 3 : 1) + Math.min(body.count, 4);
 
-  return { score, at: body.count > 0 ? body.first : -1 };
+  return { score, at: body.count > 0 ? doc.textOffsets[body.first] : -1 };
 }
 
 const byScore = (a: Hit, b: Hit) =>
@@ -118,6 +198,7 @@ const byScore = (a: Hit, b: Hit) =>
 
 /** Entries matching EVERY term. The palette's behaviour. */
 export function pickAll(docs: Indexed[], tokens: string[], max: number): Hit[] {
+  tokens = [...new Set(tokens.map(foldSearchText).filter(Boolean))];
   const hits: Hit[] = [];
 
   for (const doc of docs) {
@@ -153,6 +234,7 @@ export function pickAny(
   max: number,
   minScore = 0
 ): Hit[] {
+  tokens = [...new Set(tokens.map(foldSearchText).filter(Boolean))];
   const hits: Hit[] = [];
 
   for (const doc of docs) {

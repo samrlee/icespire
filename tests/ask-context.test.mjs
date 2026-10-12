@@ -15,6 +15,10 @@ test('retrieves late evidence with attribution and consequences instead of the o
   assert.match(result.text, /Bean opened/);
   assert.doesNotMatch(result.text, /milestone 0\./);
   assert.equal(result.used[0], source);
+  assert.equal(result.passages[0].doc, source);
+  assert.ok(result.text.includes(result.passages[0].excerpt));
+  assert.match(result.passages[0].excerpt, /Thornton owed fifty gold/);
+  assert.doesNotMatch(result.passages[0].excerpt, /milestone 0\./);
   assert.ok(result.tokens <= 1000);
 });
 
@@ -36,6 +40,7 @@ test('skips an unfit entry and still admits a later short entry', () => {
   const small = doc('Bean found the ledger.', 'Ledger');
   const result = buildAskContext([{ doc: enormous }, { doc: small }], ['ledger'], 100);
   assert.deepEqual(result.used, [small]);
+  assert.deepEqual(result.passages, [{ doc: small, excerpt: small.text }]);
   assert.ok(result.tokens <= 100);
 });
 
@@ -44,11 +49,13 @@ test('accounts for headings and separators at tight budgets', () => {
     const result = buildAskContext([{ doc: doc('Bean read the ledger.') }, { doc: doc('Thom waited.') }], ['bean'], budget);
     assert.ok(estimateTokens(result.text) <= budget);
     assert.equal(result.tokens, estimateTokens(result.text));
+    assert.equal(result.passages.length, result.used.length);
+    assert.ok(result.passages.every(({ excerpt }) => result.text.includes(excerpt)));
   }
 });
 
 test('no supplied published evidence means no context or sources', () => {
-  assert.deepEqual(buildAskContext([], ['axeholm'], 1000), { text: '', used: [], tokens: 0 });
+  assert.deepEqual(buildAskContext([], ['axeholm'], 1000), { text: '', used: [], passages: [], tokens: 0 });
   assert.equal(relevantPassages(doc(filler), ['axeholm'], 500), '');
 });
 
@@ -59,5 +66,17 @@ test('a numbered overview remains available when the optional recap summary is a
   const context = buildAskContext(hits, terms, 12000);
   assert.equal(context.used.length, 1);
   assert.ok(context.text.includes(text));
+  assert.equal(context.passages[0].excerpt, text);
   assert.ok(context.tokens <= 12000);
+});
+
+test('returned passages preserve exact whitespace and omission markers supplied to the model', () => {
+  const source = doc('Thornton made an offer.  Bean declined.\n' + filler + '\nThornton finally agreed. Bean left.');
+  const context = buildAskContext([{ doc: source }], ['thornton'], 500);
+  assert.equal(context.passages.length, 1);
+  const excerpt = context.passages[0].excerpt;
+  assert.match(excerpt, /offer\.  Bean declined\.\n/);
+  assert.match(excerpt, /\n\[…]\n/);
+  assert.ok(context.text.endsWith(excerpt));
+  assert.ok(excerpt.length <= 2000);
 });

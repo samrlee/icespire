@@ -1,0 +1,13 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import CatchUp from '../../components/CatchUp.astro';
+import { isSessionPublished } from '../../lib/session-publication';
+export async function getStaticPaths() {
+  const sessions = await getCollection('sessions', isSessionPublished);
+  return sessions.map(session => ({ params: { id: session.id }, props: { sessions, throughId: session.id } }));
+}
+interface Props { sessions: CollectionEntry<'sessions'>[]; throughId: string }
+const { sessions, throughId } = Astro.props;
+---
+<CatchUp sessions={sessions} throughId={throughId} />

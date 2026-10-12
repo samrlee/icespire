@@ -1,0 +1,40 @@
+---
+import { url } from '../utils/url';
+interface Props { sessionId?: string }
+const { sessionId } = Astro.props;
+---
+
+<section class="scene-bookmarks" data-bookmarks-root data-session={sessionId} data-base={url('/')} data-catalog={url('/bookmark-catalog.json')} aria-label={sessionId ? 'Private recap bookmarks' : 'Saved bookmarks'}>
+  <p class="bookmark-explanation">Bookmarks and personal notes stay on this browser. Nothing is saved until you choose “Save on this browser”. They are not shared or synced, and clearing browser data removes them. Anyone using this browser can read them.</p>
+  <div data-bookmark-tools hidden>
+    {sessionId ? <div class="bookmark-actions"><button type="button" class="btn-ghost" data-bookmark-create>Bookmark a recap part</button><a href={url('/bookmarks/')}>View my bookmarks</a></div> : <>
+      <p data-bookmark-count></p>
+      <ul class="bookmark-list" data-bookmark-list></ul>
+      <button type="button" class="btn-ghost" data-bookmark-clear hidden>Forget all bookmarks</button>
+      <div class="bookmark-confirm" data-bookmark-confirm hidden>
+        <p>Forget every bookmark and personal note saved on this browser? This cannot be undone.</p>
+        <div class="bookmark-actions"><button type="button" class="btn-ghost" data-bookmark-clear-confirm>Confirm forget all</button><button type="button" class="btn-ghost" data-bookmark-clear-cancel>Keep bookmarks</button></div>
+      </div>
+    </>}
+    <button type="button" class="btn-ghost" data-bookmark-retry hidden>Try again</button>
+  </div>
+  <p class="bookmark-status" role="status" aria-live="polite" aria-atomic="true" data-bookmark-status></p>
+  <noscript>JavaScript is required to save or view private bookmarks. The published recaps remain available.</noscript>
+  <dialog class="bookmark-editor" id="bookmark-editor" aria-labelledby="bookmark-editor-title">
+    <form data-bookmark-form>
+      <h2 id="bookmark-editor-title">Bookmark recap part</h2>
+      <div data-bookmark-picker><label for="bookmark-scene">Recap part</label><select id="bookmark-scene" data-bookmark-scene></select></div>
+      <p data-bookmark-source></p>
+      <p class="bookmark-warning" data-bookmark-warning hidden></p>
+      <label for="bookmark-note">Personal note (optional)</label>
+      <textarea id="bookmark-note" data-bookmark-note maxlength="2000" rows="5" aria-describedby="bookmark-note-help"></textarea>
+      <p id="bookmark-note-help">Up to 2,000 characters. Edits are saved only when you choose the save button.</p>
+      <div class="bookmark-actions"><button type="submit" class="btn-ghost" data-bookmark-save>Save on this browser</button><button type="button" class="btn-ghost" data-bookmark-cancel>Cancel</button><button type="button" class="btn-ghost" data-bookmark-forget hidden>Forget bookmark</button></div>
+      <p class="bookmark-status" role="status" aria-live="polite" aria-atomic="true" data-bookmark-editor-status></p>
+    </form>
+  </dialog>
+</section>
+
+<script>
+  import '../scripts/bookmarks';
+</script>

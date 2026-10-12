@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import { catchUpThrough, type CatchUpSession } from '../lib/catch-up';
+import { toPlainText } from '../lib/search-index';
+import { url } from '../utils/url';
+interface Props { sessions: readonly CatchUpSession[]; throughId?: string }
+const { sessions, throughId } = Astro.props;
+const { through, choices, entries } = catchUpThrough(sessions, throughId);
+const date = (value: Date) => value.toLocaleDateString('en-US', { dateStyle: 'medium', timeZone: 'UTC' });
+---
+<Base title={through ? `Catch up through Session ${through.number}` : 'Catch up'} description="Choose where to stop: published recap summaries and passages through your selected session." printable linkEntities={false}>
+  <div class="kicker">Read at your own pace</div>
+  <h1 class="page-title">Catch up{through && <> through Session {through.number}</>}</h1>
+  <div class="reference-intro reference-copy">
+    <p>This view contains recap summaries and passages only through the session you choose. Start at the beginning or select where to stop.</p>
+    <p>Other pages and site-wide search show the latest story. Follow a full recap link when you are ready to leave this limited view.</p>
+  </div>
+  {choices.length > 0 ? <>
+    <form class="reference-controls" data-catchup-controls hidden>
+      <div><label for="catchup-through">Stop after</label>
+        <select id="catchup-through" name="through">
+          {choices.map(choice => <option value={url(`/catch-up/${choice.id}/`)} selected={choice.id === through?.id}>Session {choice.number} · {date(choice.date)}</option>)}
+        </select>
+      </div>
+      <button class="reference-button" type="submit">Show catch-up</button>
+    </form>
+    <nav class="reference-cutoffs" data-catchup-fallback aria-label="Choose where to stop">
+      {choices.map(choice => <a href={url(`/catch-up/${choice.id}/`)} aria-current={choice.id === through?.id ? 'page' : undefined}>Through Session {choice.number}</a>)}
+    </nav>
+    <p class="reference-count" role="status">{entries.length} published {entries.length === 1 ? 'recap' : 'recaps'} through Session {through?.number}.</p>
+    <ol class="catchup-list">
+      {entries.map(entry => <li class="reference-card reference-copy catchup-entry" data-catchup-entry data-session-number={entry.number}>
+        <p class="reference-review">Session {entry.number} · {date(entry.date)}</p>
+        <h2>{entry.title}</h2>
+        {entry.summary && <p>{entry.summary}</p>}
+        {entry.scenes.length > 0 && <details class="catchup-passages">
+          <summary>Read passages from Session {entry.number}</summary>
+          {entry.scenes.map(scene => <section class="catchup-passage" aria-labelledby={`catchup-${entry.id.replaceAll('/', '-')}-${scene.id}`}>
+            <h3 id={`catchup-${entry.id.replaceAll('/', '-')}-${scene.id}`}>{scene.label}</h3>
+            <p>{toPlainText(scene.body)}</p>
+            <a href={url(`/sessions/${entry.id}/#${scene.id}`)}>Read this scene in the recap →</a>
+          </section>)}
+        </details>}
+        <a class="reference-more" href={url(`/sessions/${entry.id}/`)}>Read the full recap →</a>
+      </li>)}
+    </ol>
+  </> : <p class="reference-copy">No published recaps are available yet.</p>}
+  <script>
+    const controls = document.querySelector<HTMLFormElement>('[data-catchup-controls]');
+    const choice = document.querySelector<HTMLSelectElement>('#catchup-through');
+    const fallback = document.querySelector<HTMLElement>('[data-catchup-fallback]');
+    if (controls && choice && fallback) {
+      controls.hidden = false;
+      fallback.hidden = true;
+      controls.addEventListener('submit', event => {
+        event.preventDefault();
+        const destination = new URL(choice.value, window.location.href);
+        if (destination.origin === window.location.origin) window.location.assign(destination.href);
+      });
+    }
+  </script>
+</Base>

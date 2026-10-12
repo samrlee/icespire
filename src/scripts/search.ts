@@ -6,7 +6,7 @@
 // The ranking itself lives in lib/search-rank.ts, shared with the Ask
 // endpoint so both retrieve from the index by the same rules.
 
-import { contentTokens, index, pickAll, tokenize } from '../lib/search-rank';
+import { contentTokens, index, pickAll, searchMatchSpans, tokenize } from '../lib/search-rank';
 import type { Hit, Indexed, SearchDoc } from '../lib/search-rank';
 import { createAsk } from './ask';
 
@@ -382,34 +382,15 @@ function snippet(text: string, at: number): string {
  * string so campaign prose can never smuggle markup into the palette.
  */
 function highlight(text: string, tokens: string[]): DocumentFragment {
-  const lower = text.toLowerCase();
-  const spans: [number, number][] = [];
-
-  for (const token of tokens) {
-    let idx = lower.indexOf(token);
-    while (idx !== -1) {
-      spans.push([idx, idx + token.length]);
-      idx = lower.indexOf(token, idx + token.length);
-    }
-  }
-
+  const spans = searchMatchSpans(text, tokens);
   const frag = document.createDocumentFragment();
   if (spans.length === 0) {
     frag.append(text);
     return frag;
   }
 
-  // Overlapping terms ("dragon" and "drag") would otherwise mark twice.
-  spans.sort((a, b) => a[0] - b[0]);
-  const merged: [number, number][] = [];
-  for (const span of spans) {
-    const last = merged[merged.length - 1];
-    if (last && span[0] <= last[1]) last[1] = Math.max(last[1], span[1]);
-    else merged.push([...span]);
-  }
-
   let cursor = 0;
-  for (const [start, end] of merged) {
+  for (const [start, end] of spans) {
     if (start > cursor) frag.append(text.slice(cursor, start));
     const mark = document.createElement('mark');
     mark.textContent = text.slice(start, end);
