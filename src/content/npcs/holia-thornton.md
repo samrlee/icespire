@@ -68,9 +68,9 @@ flush behind him. Nothing on the floor shows it was ever there.
 She calls wherever it leads their **recon point**, and said they had a lot of
 work to do that evening.
 
-- **She is playing the party.** The information they have been selling her is
-  what she is using to unseat Harbin; she said so in as many words, to people
-  she trusted, in a room with two of them in it.
+- **She intends to replace Harbin.** She said the adventurers had brought her
+  everything she needed; she did not explain how their information would
+  secure the office.
 - Her ledgers record what she has paid out, **Dax's fee among them** — ordinary
   business, plainly kept, nothing illegal in any of it.
 

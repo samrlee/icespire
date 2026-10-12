@@ -1,7 +1,7 @@
 // Shared pan/zoom/tooltip behavior for the region map and the local
-// sub-maps. Pure viewBox manipulation on an inline SVG: wheel and pinch to
-// zoom, drag to pan, plus +/−/reset buttons and a hover tooltip for any
-// element carrying data-tip-title / data-tip-sub.
+// sub-maps. Ordinary scrolling stays with the page. Explore enables wheel,
+// pinch, drag and arrow-key navigation; modified wheel and zoom buttons also
+// work outside that mode. All changes use the inline SVG's viewBox.
 
 export interface MapViewerConfig {
   svg: SVGSVGElement;
@@ -14,6 +14,8 @@ export interface MapViewerConfig {
   zoomInBtn?: HTMLElement | null;
   zoomOutBtn?: HTMLElement | null;
   resetBtn?: HTMLElement | null;
+  /** Explicitly enables canvas gestures; ordinary scrolling works by default. */
+  exploreBtn?: HTMLElement | null;
   /** Called with the current zoom factor (1 = full view) whenever it changes. */
   onZoom?: (scale: number) => void;
 }
@@ -26,9 +28,12 @@ export interface MapViewer {
 
 export function initMapViewer(config: MapViewerConfig): MapViewer {
   const { svg, frame, tooltip } = config;
+  const interaction = frame.previousElementSibling;
+  if (interaction instanceof HTMLElement && interaction.matches('[data-map-interaction]')) interaction.hidden = false;
   const BASE = { x: 0, y: 0, w: config.width, h: config.height };
   const MIN_W = BASE.w / (config.maxZoom ?? 5);
   let vb = { ...BASE };
+  let exploring = false;
 
   function hideTip() {
     tooltip.hidden = true;
@@ -68,6 +73,7 @@ export function initMapViewer(config: MapViewerConfig): MapViewer {
   svg.addEventListener(
     'wheel',
     (e) => {
+      if (!exploring && !e.ctrlKey && !e.metaKey) return;
       e.preventDefault();
       zoomAt(e.clientX, e.clientY, Math.exp(-e.deltaY * 0.0016));
     },
@@ -77,19 +83,51 @@ export function initMapViewer(config: MapViewerConfig): MapViewer {
   const pointers = new Map<number, { x: number; y: number }>();
   let dragDistance = 0;
 
+  const clearPointers = () => {
+    for (const id of pointers.keys()) {
+      if (svg.hasPointerCapture(id)) svg.releasePointerCapture(id);
+    }
+    pointers.clear();
+  };
+  const setExploring = (enabled: boolean) => {
+    exploring = enabled;
+    clearPointers();
+    dragDistance = 0;
+    svg.dataset.exploring = String(enabled);
+    config.exploreBtn?.setAttribute('aria-pressed', String(enabled));
+    if (config.exploreBtn) {
+      config.exploreBtn.hidden = false;
+      config.exploreBtn.textContent = enabled
+        ? 'Finish exploring' : svg.id === 'graph-svg' ? 'Explore graph' : 'Explore map';
+    }
+    hideTip();
+  };
+  config.exploreBtn?.addEventListener('click', () => setExploring(!exploring));
+  setExploring(false);
+
   svg.addEventListener('pointerdown', (e) => {
+    if (pointers.size === 0) dragDistance = 0;
+    if (!exploring || (e.pointerType === 'mouse' && e.button !== 0)) return;
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    if (pointers.size === 1) dragDistance = 0;
   });
 
   svg.addEventListener('pointermove', (e) => {
+    if (!exploring) return;
     const prev = pointers.get(e.pointerId);
     if (!prev) return;
+    if (e.pointerType === 'mouse' && !(e.buttons & 1)) {
+      pointers.delete(e.pointerId);
+      return;
+    }
     const rect = svg.getBoundingClientRect();
     const scale = vb.w / rect.width;
 
     if (pointers.size === 1) {
       dragDistance += Math.hypot(e.clientX - prev.x, e.clientY - prev.y);
+      if (dragDistance <= 5) {
+        pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+        return;
+      }
       // Capture only once a real drag starts — capturing on pointerdown would
       // retarget the click event to the svg and break marker clicks.
       if (dragDistance > 5 && !svg.hasPointerCapture(e.pointerId)) {
@@ -115,8 +153,22 @@ export function initMapViewer(config: MapViewerConfig): MapViewer {
   });
 
   const releasePointer = (e: PointerEvent) => pointers.delete(e.pointerId);
-  svg.addEventListener('pointerup', releasePointer);
-  svg.addEventListener('pointercancel', releasePointer);
+  // A press can leave the canvas before capture begins. Listen outside it too.
+  window.addEventListener('pointerup', releasePointer, true);
+  window.addEventListener('pointercancel', releasePointer, true);
+  svg.addEventListener('lostpointercapture', releasePointer);
+  window.addEventListener('blur', clearPointers);
+
+  svg.addEventListener('keydown', (e) => {
+    if (!exploring || !['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) return;
+    e.preventDefault();
+    const step = vb.w / 12;
+    if (e.key === 'ArrowLeft') vb.x -= step;
+    if (e.key === 'ArrowRight') vb.x += step;
+    if (e.key === 'ArrowUp') vb.y -= step;
+    if (e.key === 'ArrowDown') vb.y += step;
+    applyViewBox();
+  });
 
   const zoomAtCenter = (factor: number) => {
     const rect = svg.getBoundingClientRect();

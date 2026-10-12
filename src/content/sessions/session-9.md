@@ -6,7 +6,7 @@ summary: 'Thom and Bean return with a story that requires an alibi, Sage learns 
 playersPresent: ['Nolan', 'Nate', 'Jay', 'Christa', 'Joseph', 'Brittany', 'Samuel']
 ---
 
-<span id="scene-s5eb65c4ad3" data-scene-label="Part 1" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s5eb65c4ad3" data-scene-label="Waiting at the inn" class="recap-scene-anchor" tabindex="-1"></span>
 
 An hour later, Barnaby was at the inn with a ginger ale, and nobody had heard
 from Thom or Bean.
@@ -28,7 +28,7 @@ Dax suggested they finish their drinks and go looking.
 
 ---
 
-<span id="scene-sa6a70d9cc0" data-scene-label="Part 2" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-sa6a70d9cc0" data-scene-label="The backpack and the alibi" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Rut saw them coming up the alley.
@@ -58,7 +58,7 @@ anything that might need interrupting them.
 
 ---
 
-<span id="scene-s326fe50dfd" data-scene-label="Part 3" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s326fe50dfd" data-scene-label="Fifty gold and the tunnel account" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Dax put Holia Thornton's fifty gold on the table.
@@ -172,7 +172,7 @@ way. He had not stayed to rifle through the papers.
 
 ---
 
-<span id="scene-s7229d310f9" data-scene-label="Part 4" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s7229d310f9" data-scene-label="Drinks, rooms, and searching figures" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Dax took his share of the fifty gold and bought the party drinks.
@@ -238,7 +238,7 @@ Nobody disturbed them that night.
 
 ---
 
-<span id="scene-sc1f02db775" data-scene-label="Part 5" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-sc1f02db775" data-scene-label="Rut tells Sage his name" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Rut sat up straight on a stool at the bar and put down a gold piece for
@@ -280,7 +280,7 @@ Phantom rolled his eyes.
 
 ---
 
-<span id="scene-s889c33c40d" data-scene-label="Part 6" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s889c33c40d" data-scene-label="Morning purchases" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Thom went to Barthen's Provisions for ink, paper and a component pouch. He
@@ -324,7 +324,7 @@ Hamish bought a whip.
 
 ---
 
-<span id="scene-s9e0ccf91ba" data-scene-label="Part 7" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s9e0ccf91ba" data-scene-label="Harbin buys the information" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Harbin Wester was at the job board, putting up the work he had promised them.
@@ -384,7 +384,7 @@ and could handle the transaction.
 
 ---
 
-<span id="scene-s9ba2a11016" data-scene-label="Part 8" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s9ba2a11016" data-scene-label="The mine job and the gem sale" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 They would start with the mine. After that they could return for the cart
@@ -424,7 +424,7 @@ Thom counted out a hundred and fourteen for each of them.
 
 ---
 
-<span id="scene-s7bb5ada9e8" data-scene-label="Part 9" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s7bb5ada9e8" data-scene-label="On the road with Don-Jon" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 On the road, Barnaby explained to Rut that he would not eat them. He was a
@@ -465,7 +465,7 @@ were nearly there.
 
 ---
 
-<span id="scene-sebbc09e689" data-scene-label="Part 10" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-sebbc09e689" data-scene-label="The dispute at the mine" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Half the day was gone when they found the tunnel, tucked among bushes at

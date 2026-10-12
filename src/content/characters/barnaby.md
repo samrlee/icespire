@@ -44,8 +44,9 @@ one who ends up carrying people (and tied-up gnomes) when things go sideways.
 - Carried **Dazlyn Grayshard's body** north from the trail to Umbrage Hill, to
   Phandalin, and into the inn, where he set it down at the dwarf's brother's
   feet (Session 7).
-- Was unaware of Rut's belief that he must be fed to prevent him eating the
-  party (Session 7); Rut raised the concern openly in Session 9.
+- Was asked about feeding by Rut without knowing why (Session 7). In Session 9
+  he assured Rut he would not eat the party; no telling of Dax's part in the
+  original belief is recorded.
 - Hoisted Hamish onto his shoulders at the Miner's Exchange's high back window
   three times — the third left the ranger sitting rather than standing and
   stuck there, and the pair of them made enough noise doing it that the room

@@ -301,12 +301,24 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
       </div>
       <script is:inline type="application/json" id="scrub-data" set:html={scrubJson} />
     )}
+    <div class="map-interaction" data-map-interaction hidden>
+      <button type="button" class="btn-ghost" id="map-explore" aria-pressed="false" aria-controls="map-svg" hidden>Explore map</button>
+      <p id="map-interaction-hint">Scroll the page normally. Choose Explore map to drag or pinch, or hold Ctrl/⌘ while scrolling to zoom. Arrow keys pan while exploring.</p>
+      <label for="map-location">Find a visited place</label>
+      <select id="map-location" aria-controls="map-panel-detail">
+        <option value="">Choose a place…</option>
+        {entries.map(({ loc }) => <option value={loc.id}>{loc.data.name}</option>)}
+      </select>
+      <button type="button" class="btn-ghost" id="map-location-open" aria-controls="map-panel-detail" disabled>View place</button>
+    </div>
     <div class="map-frame" id="map-frame">
       <svg
         class="map-svg"
         id="map-svg"
         viewBox="0 0 1344 1872"
         role="group"
+        tabindex="0"
+        aria-describedby="map-interaction-hint"
         aria-label="Sword Coast map with only locations visited by the party labelled"
       >
         <MapTerrain />
@@ -376,6 +388,8 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
                     data-tip-sub={`Session ${pin.session}`}
                     tabindex="0"
                     role="button"
+                    aria-controls="map-panel-detail"
+                    aria-pressed="false"
                     aria-label={`${pin.title} — Session ${pin.session}`}
                   >
                     <circle class="hit" r="12" />
@@ -409,6 +423,8 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
                 data-tip-sub={`${kindLabels[loc.data.kind]} · ${statusLabels[loc.data.status]}`}
                 tabindex="0"
                 role="button"
+                aria-controls="map-panel-detail"
+                aria-pressed="false"
                 aria-label={`${loc.data.name} — ${kindLabels[loc.data.kind]}, ${statusLabels[loc.data.status]}`}
               >
                 <circle class="hit" r={r + 10} />
@@ -460,50 +476,10 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
       )
     }
 
-    <section class="map-journey" aria-label="The journey so far">
-      <div class="kicker">The journey so far</div>
-      <ol class="mj-list">
-        {journeySteps.map((step) => (
-          <li class="mj-leg" data-session={step.session}>
-            <div class="mj-leg-head">
-              {step.sessionId ? (
-                <a href={url(`/sessions/${step.sessionId}/`)}>Session {step.session}</a>
-              ) : (
-                <span>Session {step.session}</span>
-              )}
-            </div>
-            {step.stops.length > 0 && (
-              <p class="mj-route">
-                {step.stops.map((s, i) => (
-                  <>
-                    {i > 0 && <span class="mj-arrow" aria-label={s.connected ? undefined : 'Route omitted'} aria-hidden={s.connected ? 'true' : undefined}>{s.connected ? '→' : '…'}</span>}
-                    <button type="button" class="mj-place" data-goto={s.slug}>
-                      {s.name}
-                    </button>
-                  </>
-                ))}
-              </p>
-            )}
-            {step.events.length > 0 && (
-              <ul class="mj-events">
-                {step.events.map((ev) => (
-                  <li class:list={['mj-event', ev.kind]}>
-                    <span class="mj-event-kind">{eventKindLabels[ev.kind]}</span>
-                    <button type="button" class="mj-place mj-event-title" data-goto={ev.at}>
-                      {ev.title}
-                    </button>
-                    <span class="mj-at">{ev.atName}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
-      </ol>
-    </section>
+
     </div>
 
-    <aside class="map-panel" id="map-panel" aria-live="polite">
+    <aside class="map-panel" id="map-panel">
       <div id="map-panel-home">
         <div class="kicker">Legend</div>
         <ul class="map-legend">
@@ -521,7 +497,7 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
           through? The journey below the map walks it session by session.
         </p>
       </div>
-      <div id="map-panel-detail" hidden></div>
+      <div id="map-panel-detail" role="region" aria-labelledby="map-detail-title" hidden></div>
 
       {
         entries.map(({ loc, Content, events, faction, hasLocalMap }) => (
@@ -530,9 +506,9 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
               ×
             </button>
             <div class="kicker">
-              {kindLabels[loc.data.kind]} · {statusLabels[loc.data.status]}
+              {kindLabels[loc.data.kind]} · Current notes
             </div>
-            <h2 class="map-panel-title">{loc.data.name}</h2>
+            <h2 class="map-panel-title" id="map-detail-title" tabindex="-1">{loc.data.name}</h2>
             {loc.data.firstVisited != null && (
               <p class="map-panel-meta">
                 First visited in{' '}
@@ -589,6 +565,47 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
         ))
       }
     </aside>
+    <section class="map-journey" aria-label="The journey so far">
+      <div class="kicker">The journey so far</div>
+      <ol class="mj-list">
+        {journeySteps.map((step) => (
+          <li class="mj-leg" data-session={step.session}>
+            <div class="mj-leg-head">
+              {step.sessionId ? (
+                <a href={url(`/sessions/${step.sessionId}/`)}>Session {step.session}</a>
+              ) : (
+                <span>Session {step.session}</span>
+              )}
+            </div>
+            {step.stops.length > 0 && (
+              <p class="mj-route">
+                {step.stops.map((s, i) => (
+                  <>
+                    {i > 0 && <span class="mj-arrow" aria-label={s.connected ? undefined : 'Route omitted'} aria-hidden={s.connected ? 'true' : undefined}>{s.connected ? '→' : '…'}</span>}
+                    <button type="button" class="mj-place" aria-controls="map-panel-detail" aria-pressed="false" data-goto={s.slug}>
+                      {s.name}
+                    </button>
+                  </>
+                ))}
+              </p>
+            )}
+            {step.events.length > 0 && (
+              <ul class="mj-events">
+                {step.events.map((ev) => (
+                  <li class:list={['mj-event', ev.kind]}>
+                    <span class="mj-event-kind">{eventKindLabels[ev.kind]}</span>
+                    <button type="button" class="mj-place mj-event-title" aria-controls="map-panel-detail" aria-pressed="false" data-goto={ev.at}>
+                      {ev.title}
+                    </button>
+                    <span class="mj-at">{ev.atName}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ol>
+    </section>
   </div>
 </Base>
 
@@ -601,6 +618,27 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
   const panelHome = document.getElementById('map-panel-home')!;
   const panelDetail = document.getElementById('map-panel-detail')!;
   const panel = document.getElementById('map-panel')!;
+  const picker = document.getElementById('map-location') as HTMLSelectElement;
+  const viewPlace = document.getElementById('map-location-open') as HTMLButtonElement;
+  let selectedSlug: string | null = null;
+  let selectionSource: HTMLElement | SVGElement | null = null;
+  let ensureLocationVisible: (slug: string) => void = () => {};
+  const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function syncMapAccessibility() {
+    for (const el of svg.querySelectorAll<SVGGraphicsElement>('[data-open]')) {
+      const group = el.closest('.map-pin-group');
+      const hidden = el.classList.contains('scrub-off') ||
+        (!!group && svg.dataset.zoom === 'out' && !group.classList.contains('reveal'));
+      el.setAttribute('tabindex', hidden ? '-1' : '0');
+      if (hidden) el.setAttribute('aria-hidden', 'true');
+      else el.removeAttribute('aria-hidden');
+      el.setAttribute('aria-pressed', String(selectedSlug === el.dataset.open));
+    }
+    for (const button of document.querySelectorAll<HTMLElement>('.map-journey [data-goto]')) {
+      button.setAttribute('aria-pressed', String(selectedSlug === button.dataset.goto));
+    }
+  }
 
   // Markers, labels, pins and tags are drawn in map coordinates, so left alone
   // they balloon as you zoom and shrink to nothing on a narrow phone. We
@@ -631,11 +669,13 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
     zoomInBtn: document.getElementById('map-zoom-in'),
     zoomOutBtn: document.getElementById('map-zoom-out'),
     resetBtn: document.getElementById('map-zoom-reset'),
+    exploreBtn: document.getElementById('map-explore'),
     // Session pins only fade in once the reader is actually looking closely —
     // at the resting zoom they'd bury the markers.
     onZoom: (scale) => {
       svg.dataset.zoom = scale >= 1.6 ? 'in' : 'out';
       applyCounterScale(scale);
+      syncMapAccessibility();
     },
   });
 
@@ -653,83 +693,110 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
     for (const g of svg.querySelectorAll('.map-pin-group.reveal')) g.classList.remove('reveal');
   }
 
-  function closePanel() {
+  function closePanel(returnFocus = true) {
+    const previousSlug = selectedSlug;
     panelDetail.hidden = true;
     panelDetail.innerHTML = '';
     panelHome.hidden = false;
+    selectedSlug = null;
+    picker.value = '';
+    viewPlace.disabled = true;
     clearSelection();
+    syncMapAccessibility();
     history.replaceState(null, '', location.pathname + location.search);
+    if (returnFocus) {
+      const marker = previousSlug && svg.querySelector<SVGElement>(`.map-marker[data-slug="${previousSlug}"]`);
+      const sourceVisible = selectionSource?.isConnected && !selectionSource.closest('[hidden], [aria-hidden="true"]');
+      const fallback = marker && marker.getAttribute('aria-hidden') !== 'true' ? marker : picker;
+      (sourceVisible ? selectionSource! : fallback).focus();
+    }
+    selectionSource = null;
   }
 
-  // Every slug the map knows about, read off our own markup. Anything else —
-  // notably whatever a visitor put after the "#" — is rejected before it can
-  // reach a selector, where stray punctuation would throw a SyntaxError and
-  // take the rest of this module (scrubber included) down with it.
   const knownSlugs = new Set(
     [...panel.querySelectorAll<HTMLTemplateElement>('template[data-loc]')].map(
       (tpl) => tpl.dataset.loc!
     )
   );
 
-  function openLocation(slug: string, scrollTo = false) {
+  function openLocation(slug: string, focus = false, source: HTMLElement | SVGElement | null = null) {
     if (!knownSlugs.has(slug)) return;
     const tpl = panel.querySelector<HTMLTemplateElement>(`template[data-loc="${slug}"]`);
     if (!tpl) return;
+    ensureLocationVisible(slug);
     panelDetail.innerHTML = '';
     panelDetail.appendChild(tpl.content.cloneNode(true));
     panelDetail.hidden = false;
     panelHome.hidden = true;
     clearSelection();
+    selectedSlug = slug;
+    picker.value = slug;
+    viewPlace.disabled = false;
+    selectionSource = source ?? svg.querySelector<SVGElement>(`.map-marker[data-slug="${slug}"]`);
     svg.querySelector(`.map-marker[data-slug="${slug}"]`)?.classList.add('selected');
-    // Surface this place's event pins even at the resting zoom, so its
-    // highlights show the moment you choose it.
     svg.querySelector(`.map-pin-group[data-loc="${slug}"]`)?.classList.add('reveal');
-    history.replaceState(null, '', `#${slug}`);
-    if (scrollTo && window.matchMedia('(max-width: 900px)').matches) {
-      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    history.replaceState(null, '', `#${encodeURIComponent(slug)}`);
+    syncMapAccessibility();
+    if (focus) {
+      const heading = panelDetail.querySelector<HTMLElement>('.map-panel-title')!;
+      heading.focus({ preventScroll: true });
+      if (window.matchMedia('(max-width: 900px)').matches) {
+        panel.scrollIntoView({ behavior: reducedMotion() ? 'instant' : 'smooth', block: 'nearest' });
+      }
     }
   }
 
   panel.addEventListener('click', (e) => {
-    if ((e.target as HTMLElement).closest('.map-panel-close')) closePanel();
+    if ((e.target as Element).closest('.map-panel-close')) closePanel();
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !panelDetail.hidden) closePanel();
+    if (e.key === 'Escape' && !panelDetail.hidden && !document.querySelector('dialog[open]')) {
+      e.preventDefault();
+      closePanel();
+    }
   });
 
   for (const el of svg.querySelectorAll<SVGGraphicsElement>('[data-open]')) {
     el.addEventListener('click', () => {
-      if (viewer.wasDrag()) return; // it was a pan, not a click
-      openLocation(el.dataset.open!, true);
+      if (viewer.wasDrag() || el.getAttribute('aria-hidden') === 'true') return;
+      openLocation(el.dataset.open!, true, el);
     });
     el.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
+      if ((e.key === 'Enter' || e.key === ' ') && el.getAttribute('aria-hidden') !== 'true') {
         e.preventDefault();
-        openLocation(el.dataset.open!, true);
+        openLocation(el.dataset.open!, true, el);
       }
     });
   }
 
-  // The journey list is the no-zoom, no-tiny-target path: tapping a place or an
-  // event opens it on the map and brings the map into view.
   for (const el of document.querySelectorAll<HTMLElement>('.map-journey [data-goto]')) {
-    el.addEventListener('click', () => {
-      openLocation(el.dataset.goto!);
-      frame.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+    el.addEventListener('click', () => openLocation(el.dataset.goto!, true, el));
   }
+  picker.addEventListener('change', () => {
+    viewPlace.disabled = !picker.value;
+  });
+  viewPlace.addEventListener('click', () => openLocation(picker.value, true, picker));
 
-  // Deep link: /map/#phandalin opens that location. A malformed escape ("#%")
-  // makes decodeURIComponent throw, so treat the hash as best-effort.
-  if (location.hash.length > 1) {
-    let slug = '';
-    try {
-      slug = decodeURIComponent(location.hash.slice(1));
-    } catch {
-      slug = location.hash.slice(1);
-    }
-    openLocation(slug);
+  function hashSlug() {
+    try { return decodeURIComponent(location.hash.slice(1)); }
+    catch { return ''; }
   }
+  function readHash(focus = false) {
+    const slug = hashSlug();
+    if (knownSlugs.has(slug)) openLocation(slug, focus);
+    else if (!slug && selectedSlug) closePanel(false);
+  }
+  window.addEventListener('hashchange', () => readHash(true));
+  // Re-activating a link to the current fragment does not emit hashchange.
+  document.addEventListener('click', (e) => {
+    if (e.defaultPrevented || (e as MouseEvent).button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+    const anchor = (e.target as Element).closest<HTMLAnchorElement>('a[href]');
+    if (!anchor || anchor.target || anchor.hasAttribute('download')) return;
+    const destination = new URL(anchor.href, location.href);
+    if (destination.origin === location.origin && destination.pathname === location.pathname && destination.search === location.search && destination.hash === location.hash) {
+      readHash(true);
+    }
+  });
 
   // ---- Time-scrubber ----------------------------------------------------------
   // Wind the campaign back and forth: at each rung, the trail, tags, event pins
@@ -775,6 +842,8 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
       hideAfter(pins);
       // A visited place without a recorded reveal session stays visible.
       hideAfter(markers);
+      if (selectedSlug && svg.querySelector(`.map-marker[data-slug="${selectedSlug}"]`)?.classList.contains('scrub-off')) closePanel(false);
+      syncMapAccessibility();
 
       // The newest visible leg reads boldest, so the frontier of the journey
       // stands out no matter where the scrubber rests.
@@ -845,7 +914,18 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
     }
     playBtn.addEventListener('click', () => (playing ? stopPlay() : startPlay()));
 
+    ensureLocationVisible = (slug) => {
+      const marker = svg.querySelector<SVGElement>(`.map-marker[data-slug="${slug}"]`);
+      if (!marker?.classList.contains('scrub-off')) return;
+      stopPlay();
+      const reveal = Number(marker.dataset.reveal);
+      const index = rungs.findIndex(rung => rung.session >= reveal);
+      range.value = String(index < 0 ? lastIndex : index);
+      applyScrub(Number(range.value));
+    };
+
     // Start fully revealed — the present-day map, identical to the static view.
     applyScrub(lastIndex);
   }
+  readHash(true);
 </script>

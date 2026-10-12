@@ -6,7 +6,7 @@ class: 'Sorcerer'
 level: 3
 status: active
 portrait: '/images/characters/thom.webp'
-tagline: 'Wild magic, smooth talk, and a face three years older than it was last month.'
+tagline: 'Wild magic, smooth talk, and a face three years older than it was before the jelly fight.'
 traits: ['Wild Magic', 'Party Negotiator', 'Crossbow Magnet', 'Recently Aged']
 ---
 

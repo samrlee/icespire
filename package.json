@@ -21,7 +21,7 @@
     "@astrojs/sitemap": "^3.7.4",
     "astro": "^7.1.0",
     "satori": "^0.12.2",
-    "sharp": "^0.35.3"
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",

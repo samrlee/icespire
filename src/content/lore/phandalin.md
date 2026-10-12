@@ -5,7 +5,7 @@ summary: 'Home base. Quest board, nervous townmaster, an inn with watchful stran
 ---
 
 The frontier town at the center of the campaign, living in the shadow of the
-white dragon rumors.
+white dragon threat.
 
 **Known locations:**
 
@@ -15,8 +15,9 @@ white dragon rumors.
   the patrons.
 - **The Miner's Exchange** — run by Guildmaster Holia Thornton, who is more
   than she appears. There is a **trap door in the floor behind her desk** that
-  closes flush into the boards and cannot be found from above; she and her
-  guards go down it at night, to what she calls their **recon point**.
+  closes flush into the boards, with no visible seam or handle. Thom and Bean
+  watched her and her guards descend to what she calls their **recon point**,
+  then found the catch and opened the hatch themselves.
 - **The Lionshield Coster** — arms and armor. Locked at night, open the next
   morning for Barnaby's bow, Dax's shield and Hamish's whip. Shield decoration
   was offered but not commissioned (Session 9).
@@ -34,7 +35,8 @@ entire supply of healing potions depended on.
 
 **Who runs the town is now in question.** Harbin Wester is the townmaster and
 the banker both. Guildmaster Thornton intends to have the office, has told her
-own people so, and is using the party's dragon intelligence to get it.
+own people so, and said the adventurers had brought her everything she needed.
+How their information would secure the office remains unclear.
 
 In Session 9 Thom and Bean returned from below the Exchange and told the
 whole party about the traps, occupied hall, Thornton's office and second

@@ -196,124 +196,6 @@ const roleLine = (role?: string, affiliation?: string) =>
   <h1 class="page-title">The Political Web</h1>
 
   <div class="graph-layout">
-    <div class="graph-main">
-      <div class="graph-frame" id="graph-frame">
-        <svg
-          class="graph-svg"
-          id="graph-svg"
-          viewBox={`0 0 ${W} ${H}`}
-          role="group"
-          aria-label="Relationship graph of the party, NPCs, and factions"
-        >
-          <g class="g-edges" aria-hidden="true">
-            {
-              memberEdges.map((e) => (
-                <line
-                  class:list={['g-edge', 'member', e.disp]}
-                  data-a={e.a}
-                  data-b={e.b}
-                  x1={e.x1.toFixed(1)}
-                  y1={e.y1.toFixed(1)}
-                  x2={e.x2.toFixed(1)}
-                  y2={e.y2.toFixed(1)}
-                />
-              ))
-            }
-            {
-              stanceEdges.map((e) => (
-                <line
-                  class:list={['g-edge', e.disp]}
-                  data-a={e.a}
-                  data-b={e.b}
-                  x1={e.x1.toFixed(1)}
-                  y1={e.y1.toFixed(1)}
-                  x2={e.x2.toFixed(1)}
-                  y2={e.y2.toFixed(1)}
-                />
-              ))
-            }
-          </g>
-
-          <g class="g-nodes">
-            {
-              factionNodes.map((f) => (
-                <g
-                  class:list={['g-node', 'faction', f.disp]}
-                  data-node={`faction:${f.id}`}
-                  data-open={`faction:${f.id}`}
-                  data-tip-title={f.data.name}
-                  data-tip-sub={[f.data.type, dispositionLabel[f.disp]].filter(Boolean).join(' · ')}
-                  tabindex="0"
-                  role="button"
-                  aria-label={`Faction: ${f.data.name}`}
-                >
-                  <circle class="g-hit" cx={f.x} cy={f.y} r="30" />
-                  <polygon class="g-hex" points={hexPoints(f.x, f.y, 21)} />
-                  <text
-                    class="g-label g-flabel"
-                    x={f.x}
-                    y={f.labelDown ? f.y + 36 : f.y - 30}
-                    text-anchor="middle"
-                  >
-                    {f.data.name}
-                  </text>
-                </g>
-              ))
-            }
-
-            {
-              npcNodes.map((n) => (
-                <g
-                  class:list={['g-node', 'npc', n.data.status]}
-                  data-node={`npc:${n.id}`}
-                  data-open={`npc:${n.id}`}
-                  data-tip-title={n.data.name}
-                  data-tip-sub={roleLine(n.data.role, n.data.affiliation) || dispositionLabel[n.data.status]}
-                  tabindex="0"
-                  role="button"
-                  aria-label={`NPC: ${n.data.name}`}
-                >
-                  <circle class="g-hit" cx={n.x} cy={n.y} r="24" />
-                  <circle class="g-ring" cx={n.x} cy={n.y} r="12.5" />
-                  <text class="g-label" x={n.lx.toFixed(1)} y={n.ly.toFixed(1)} text-anchor={n.anchor}>
-                    {n.data.name}
-                  </text>
-                </g>
-              ))
-            }
-
-            <g
-              class="g-node party"
-              data-node="party"
-              data-open="party"
-              data-tip-title="The Party"
-              data-tip-sub={`${party.length} adventurers`}
-              tabindex="0"
-              role="button"
-              aria-label="The Party"
-            >
-              <circle class="g-hit" cx={CX} cy={CY} r="40" />
-              <circle class="g-party-halo" cx={CX} cy={CY} r="30" />
-              <circle class="g-party-dot" cx={CX} cy={CY} r="26" />
-              <text class="g-label g-party-label" x={CX} y={CY + 1} text-anchor="middle">
-                Party
-              </text>
-            </g>
-          </g>
-        </svg>
-
-        <div class="graph-controls">
-          <button type="button" id="graph-zoom-in" aria-label="Zoom in">+</button>
-          <button type="button" id="graph-zoom-out" aria-label="Zoom out">−</button>
-          <button type="button" id="graph-zoom-reset" aria-label="Reset view">⌂</button>
-        </div>
-        <div class="graph-tooltip" id="graph-tooltip" hidden>
-          <div class="tip-title"></div>
-          <div class="tip-sub"></div>
-        </div>
-        <div class="graph-hint" aria-hidden="true">Tap anyone to trace their ties</div>
-      </div>
-
       {/* The graph shows the shape of the web; this reads it out, faction by
           faction — the reliable path on a phone, no tiny targets required. */}
       <section class="graph-rollcall" aria-label="Roll call by allegiance">
@@ -358,9 +240,140 @@ const roleLine = (role?: string, affiliation?: string) =>
           }
         </div>
       </section>
-    </div>
+    <div class="graph-main">
+      <button type="button" class="btn-ghost graph-expand" id="graph-expand" aria-expanded="false" aria-controls="graph-frame" hidden>Show relationship graph</button>
+      <div id="graph-canvas">
+      <div class="map-interaction" data-map-interaction hidden>
+        <button type="button" class="btn-ghost" id="graph-explore" aria-pressed="false" aria-controls="graph-svg" hidden>Explore graph</button>
+        <p id="graph-interaction-hint">Scroll the page normally. Choose Explore graph to drag or pinch, or hold Ctrl/⌘ while scrolling to zoom. Arrow keys pan while exploring. Zoom in to read the graph labels; the allegiance list links every entry.</p>
+      </div>
+      <div class="graph-frame" id="graph-frame">
+        <svg
+          class="graph-svg"
+          id="graph-svg"
+          viewBox={`0 0 ${W} ${H}`}
+          role="group"
+          tabindex="0"
+          aria-describedby="graph-interaction-hint"
+          aria-label="Relationship graph of the party, NPCs, and factions"
+        >
+          <g class="g-edges" aria-hidden="true">
+            {
+              memberEdges.map((e) => (
+                <line
+                  class:list={['g-edge', 'member', e.disp]}
+                  data-a={e.a}
+                  data-b={e.b}
+                  x1={e.x1.toFixed(1)}
+                  y1={e.y1.toFixed(1)}
+                  x2={e.x2.toFixed(1)}
+                  y2={e.y2.toFixed(1)}
+                />
+              ))
+            }
+            {
+              stanceEdges.map((e) => (
+                <line
+                  class:list={['g-edge', e.disp]}
+                  data-a={e.a}
+                  data-b={e.b}
+                  x1={e.x1.toFixed(1)}
+                  y1={e.y1.toFixed(1)}
+                  x2={e.x2.toFixed(1)}
+                  y2={e.y2.toFixed(1)}
+                />
+              ))
+            }
+          </g>
 
-    <aside class="graph-panel" id="graph-panel" aria-live="polite">
+          <g class="g-nodes">
+            {
+              factionNodes.map((f) => (
+                <g
+                  class:list={['g-node', 'faction', f.disp]}
+                  data-node={`faction:${f.id}`}
+                  data-open={`faction:${f.id}`}
+                  data-tip-title={f.data.name}
+                  data-tip-sub={[f.data.type, dispositionLabel[f.disp]].filter(Boolean).join(' · ')}
+                  tabindex="0"
+                  role="button"
+                  aria-controls="graph-panel-detail"
+                  aria-pressed="false"
+                  aria-label={`Faction: ${f.data.name}`}
+                >
+                  <circle class="g-hit" cx={f.x} cy={f.y} r="30" />
+                  <polygon class="g-hex" points={hexPoints(f.x, f.y, 21)} />
+                  <text
+                    class="g-label g-flabel"
+                    x={f.x}
+                    y={f.labelDown ? f.y + 36 : f.y - 30}
+                    text-anchor="middle"
+                  >
+                    {f.data.name}
+                  </text>
+                </g>
+              ))
+            }
+
+            {
+              npcNodes.map((n) => (
+                <g
+                  class:list={['g-node', 'npc', n.data.status]}
+                  data-node={`npc:${n.id}`}
+                  data-open={`npc:${n.id}`}
+                  data-tip-title={n.data.name}
+                  data-tip-sub={roleLine(n.data.role, n.data.affiliation) || dispositionLabel[n.data.status]}
+                  tabindex="0"
+                  role="button"
+                  aria-controls="graph-panel-detail"
+                  aria-pressed="false"
+                  aria-label={`NPC: ${n.data.name}`}
+                >
+                  <circle class="g-hit" cx={n.x} cy={n.y} r="24" />
+                  <circle class="g-ring" cx={n.x} cy={n.y} r="12.5" />
+                  <text class="g-label" x={n.lx.toFixed(1)} y={n.ly.toFixed(1)} text-anchor={n.anchor}>
+                    {n.data.name}
+                  </text>
+                </g>
+              ))
+            }
+
+            <g
+              class="g-node party"
+              data-node="party"
+              data-open="party"
+              data-tip-title="The Party"
+              data-tip-sub={`${party.length} adventurers`}
+              tabindex="0"
+              role="button"
+              aria-controls="graph-panel-detail"
+              aria-pressed="false"
+              aria-label="The Party"
+            >
+              <circle class="g-hit" cx={CX} cy={CY} r="40" />
+              <circle class="g-party-halo" cx={CX} cy={CY} r="30" />
+              <circle class="g-party-dot" cx={CX} cy={CY} r="26" />
+              <text class="g-label g-party-label" x={CX} y={CY + 1} text-anchor="middle">
+                Party
+              </text>
+            </g>
+          </g>
+        </svg>
+
+        <div class="graph-controls">
+          <button type="button" id="graph-zoom-in" aria-label="Zoom in">+</button>
+          <button type="button" id="graph-zoom-out" aria-label="Zoom out">−</button>
+          <button type="button" id="graph-zoom-reset" aria-label="Reset view">⌂</button>
+        </div>
+        <div class="graph-tooltip" id="graph-tooltip" hidden>
+          <div class="tip-title"></div>
+          <div class="tip-sub"></div>
+        </div>
+        <div class="graph-hint" aria-hidden="true">Tap anyone to trace their ties</div>
+      </div>
+      </div>
+    </div>
+    <aside class="graph-panel" id="graph-panel">
       <div id="graph-panel-home">
         <div class="kicker">Legend</div>
         <ul class="graph-legend">
@@ -378,10 +391,10 @@ const roleLine = (role?: string, affiliation?: string) =>
         <p class="graph-panel-hint">
           Choose anyone to light up their ties and read their entry. Line colour
           is disposition toward the party; the dashed lines mark who answers to
-          which faction. Drag to pan, scroll or pinch to zoom.
+          which faction. The allegiance list links every entry; choose Explore graph to pan and zoom the drawing.
         </p>
       </div>
-      <div id="graph-panel-detail" hidden></div>
+      <div id="graph-panel-detail" role="region" aria-labelledby="graph-detail-title" hidden></div>
 
       {
         factionNodes.map((f) => (
@@ -390,7 +403,7 @@ const roleLine = (role?: string, affiliation?: string) =>
               ×
             </button>
             <div class="kicker">Faction</div>
-            <h2 class="graph-panel-title">{f.data.name}</h2>
+            <h2 class="graph-panel-title" id="graph-detail-title" tabindex="-1">{f.data.name}</h2>
             <p class="graph-panel-meta">
               {[f.data.type, f.data.alignment, f.data.status].filter(Boolean).join(' · ')}
             </p>
@@ -422,7 +435,7 @@ const roleLine = (role?: string, affiliation?: string) =>
               ×
             </button>
             <div class="kicker">NPC</div>
-            <h2 class="graph-panel-title">{n.data.name}</h2>
+            <h2 class="graph-panel-title" id="graph-detail-title" tabindex="-1">{n.data.name}</h2>
             <p class="graph-panel-meta graph-panel-metarow">
               {roleLine(n.data.role, n.data.affiliation) && (
                 <span>{roleLine(n.data.role, n.data.affiliation)}</span>
@@ -446,7 +459,7 @@ const roleLine = (role?: string, affiliation?: string) =>
       <template data-node="party">
         <button class="graph-panel-close" type="button" aria-label="Back to legend">×</button>
         <div class="kicker">The Party</div>
-        <h2 class="graph-panel-title">The Party</h2>
+        <h2 class="graph-panel-title" id="graph-detail-title" tabindex="-1">The Party</h2>
         <p class="graph-panel-body">
           The centre of every thread — the adventurers whose choices the whole web
           answers to.
@@ -477,6 +490,23 @@ const roleLine = (role?: string, affiliation?: string) =>
   const panel = document.getElementById('graph-panel')!;
   const panelHome = document.getElementById('graph-panel-home')!;
   const panelDetail = document.getElementById('graph-panel-detail')!;
+  const expandButton = document.getElementById('graph-expand') as HTMLButtonElement;
+  const canvas = document.getElementById('graph-canvas')!;
+  const narrow = window.matchMedia('(max-width: 900px)');
+  let expanded = false;
+  let selectionSource: SVGElement | null = null;
+  function updateCanvas() {
+    expandButton.hidden = !narrow.matches;
+    frame.hidden = canvas.hidden = narrow.matches && !expanded;
+    expandButton.setAttribute('aria-expanded', String(!frame.hidden));
+    expandButton.textContent = frame.hidden ? 'Show relationship graph' : 'Hide relationship graph';
+  }
+  expandButton.addEventListener('click', () => {
+    expanded = !expanded;
+    updateCanvas();
+  });
+  narrow.addEventListener('change', updateCanvas);
+  updateCanvas();
 
   const viewer = initMapViewer({
     svg,
@@ -488,6 +518,7 @@ const roleLine = (role?: string, affiliation?: string) =>
     zoomInBtn: document.getElementById('graph-zoom-in'),
     zoomOutBtn: document.getElementById('graph-zoom-out'),
     resetBtn: document.getElementById('graph-zoom-reset'),
+    exploreBtn: document.getElementById('graph-explore'),
   });
 
   const nodeEls = [...svg.querySelectorAll<SVGGElement>('.g-node[data-node]')];
@@ -514,44 +545,55 @@ const roleLine = (role?: string, affiliation?: string) =>
   function clearFocus() {
     svg.classList.remove('has-focus');
     for (const el of [...nodeEls, ...edgeEls]) el.classList.remove('lit');
+    for (const el of nodeEls) el.setAttribute('aria-pressed', 'false');
   }
 
-  function openNode(id: string) {
+  function openNode(id: string, source: SVGElement) {
     const tpl = panel.querySelector<HTMLTemplateElement>(`template[data-node="${id}"]`);
     if (!tpl) return;
     panelDetail.innerHTML = '';
     panelDetail.appendChild(tpl.content.cloneNode(true));
     panelDetail.hidden = false;
     panelHome.hidden = true;
+    selectionSource = source;
+    for (const el of nodeEls) el.setAttribute('aria-pressed', String(el.dataset.node === id));
     focusNode(id);
-    if (window.matchMedia('(max-width: 900px)').matches) {
-      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    panelDetail.querySelector<HTMLElement>('.graph-panel-title')!.focus({ preventScroll: true });
+    if (narrow.matches) {
+      panel.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'nearest' });
     }
   }
 
-  function closePanel() {
+  function closePanel(returnFocus = true) {
     panelDetail.hidden = true;
     panelDetail.innerHTML = '';
     panelHome.hidden = false;
     clearFocus();
+    if (returnFocus && selectionSource) {
+      (canvas.hidden ? expandButton : selectionSource).focus();
+    }
+    selectionSource = null;
   }
 
   panel.addEventListener('click', (e) => {
     if ((e.target as HTMLElement).closest('.graph-panel-close')) closePanel();
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !panelDetail.hidden) closePanel();
+    if (e.key === 'Escape' && !panelDetail.hidden && !document.querySelector('dialog[open]')) {
+      e.preventDefault();
+      closePanel();
+    }
   });
 
   for (const el of nodeEls) {
     el.addEventListener('click', () => {
       if (viewer.wasDrag()) return; // it was a pan, not a click
-      openNode(el.dataset.node!);
+      openNode(el.dataset.node!, el);
     });
     el.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        openNode(el.dataset.node!);
+        openNode(el.dataset.node!, el);
       }
     });
   }
@@ -559,6 +601,6 @@ const roleLine = (role?: string, affiliation?: string) =>
   // A click on empty canvas (not a node, not a pan) clears the selection.
   svg.addEventListener('click', (e) => {
     if (viewer.wasDrag()) return;
-    if (!(e.target as Element).closest('.g-node') && !panelDetail.hidden) closePanel();
+    if (!(e.target as Element).closest('.g-node') && !panelDetail.hidden) closePanel(false);
   });
 </script>

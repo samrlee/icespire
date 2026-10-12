@@ -190,7 +190,7 @@ stated preference for mountainous ground.
 
 **Rut wild-shaped into a giant badger and burrowed through the blocked
 rubble**, opening a **sealed round chamber** — two pedestals, one holding a
-statue of a horned dwarf cradling an enormous emerald, the other blown to
+statue of a horned dwarf cradling an enormous emerald, the other broken into
 fragments scattered in a wide radius. Two pedestals and two statues match the
 ledger's description of a sacrifice chamber, but nothing in the room named
 itself, and the party never confirmed it. Thom, Bean, and Barnaby went in;
@@ -331,7 +331,13 @@ animal rode out of there on Dax's shoulder.
 **Thom stashed his backpack — and the emerald — in a bush**, then spent two
 sorcery points to **twin Invisibility on himself and Bean**. One hour on
 concentration; they held onto each other because they could not see one another.
-When the guard held the door open for Dax on his way out, **the two of them
+
+**Barnaby boosted Hamish a third time** to watch for Dax leaving. This time the
+ranger ended up sitting, stuck with the crown of his head showing in the
+window. Their noise made the people inside turn toward the glass; they climbed
+down and withdrew.
+
+When the guard held the door open for Dax on his way out, **Thom and Bean
 walked in**.
 
 The guard then found **Sage** in the lane and she talked her way out truthfully

@@ -38,28 +38,86 @@ for (const close of ['Escape', 'button', 'shortcut', 'backdrop']) {
   });
 }
 
-test('pending index renders the latest query after reopen, fetching only once', async ({ page }) => {
+test('closing search cancels a pending index and reopening ignores its late response', async ({ page }) => {
   let release!: () => void;
   const gate = new Promise<void>(resolve => { release = resolve; });
   let calls = 0;
   await page.route('**/search-index.json', async route => {
     calls++;
-    await gate;
-    await route.fulfill({ json: docs });
+    if (calls === 1) {
+      await gate;
+      await route.fulfill({ json: [docs[0]] }).catch(() => {});
+    } else await route.fulfill({ json: docs });
   });
   await open(page);
   await input(page).fill('report');
+  await expect.poll(() => calls).toBe(1);
   await expect(page.locator('#search-status')).toHaveText('Loading the chronicle…');
   await input(page).press('Enter');
   await expect(page.getByRole('dialog')).toBeVisible();
+  const aborted = page.waitForEvent('requestfailed', request => request.url().endsWith('/search-index.json'));
   await input(page).press('Escape');
+  await aborted;
   await open(page);
   await input(page).fill('sightings');
   release();
   await expect(page.getByRole('option')).toHaveCount(1);
   await expect(page.getByRole('option')).toContainText('Dragon sightings');
-  expect(calls).toBe(1);
+  expect(calls).toBe(2);
 });
+
+test('a stalled index times out and an explicit retry loads the current query', async ({ page }) => {
+  await page.clock.install();
+  let release!: () => void;
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  let calls = 0;
+  let questions = 0;
+  await page.route('**/api/ask', route => { questions++; return route.abort(); });
+  await page.route('**/search-index.json', async route => {
+    if (++calls === 1) {
+      await gate;
+      await route.fulfill({ json: docs }).catch(() => {});
+    } else await route.fulfill({ json: docs });
+  });
+  await open(page);
+  await input(page).fill('sightings');
+  await expect.poll(() => calls).toBe(1);
+  await page.clock.fastForward(5_001);
+  await expect(page.locator('#search-status')).toContainText("couldn't load");
+  await expect(page.getByRole('button', { name: 'Try again' })).toBeVisible();
+  await page.getByRole('button', { name: 'Try again' }).click();
+  await expect(page.getByRole('option')).toHaveCount(1);
+  await expect(page.getByRole('option')).toContainText('Dragon sightings');
+  await expect(input(page)).toBeFocused();
+  expect(calls).toBe(2);
+  expect(questions).toBe(0);
+  release();
+});
+
+for (const focus of ['input', 'filter']) {
+  test(`Escape from the ${focus} closes search without reaching another dialog`, async ({ page }) => {
+    await page.evaluate(() => {
+      const parent = document.createElement('dialog');
+      parent.id = 'parent-dialog';
+      const control = document.createElement('button');
+      control.textContent = 'Underlying dialog control';
+      parent.append(control);
+      document.body.append(parent);
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') parent.close(); });
+      parent.showModal();
+      control.focus();
+    });
+    await page.keyboard.press('Control+k');
+    await expect(input(page)).toBeFocused();
+    await input(page).fill('dragon');
+    await expect(page.getByRole('option')).toHaveCount(2);
+    if (focus === 'filter') await page.getByRole('button', { name: 'All types', exact: true }).focus();
+    await page.keyboard.press('Escape');
+    await expect(page.locator('#search-dialog')).not.toBeVisible();
+    await expect(page.locator('#parent-dialog')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Underlying dialog control' })).toBeFocused();
+  });
+}
 
 for (const failure of ['http', 'network', 'malformed', 'invalid-entry']) {
   test(`recover from ${failure} failure without disguising it as no matches`, async ({ page }) => {

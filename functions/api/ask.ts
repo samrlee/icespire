@@ -21,7 +21,8 @@
 // built from published entries only (src/lib/search-index.ts).
 
 import { buildAskContext } from '../../src/lib/ask-context.ts';
-import { contentTokens, index, pickAny } from '../../src/lib/search-rank.ts';
+import { index } from '../../src/lib/search-rank.ts';
+import { retrieveAsk } from '../../src/lib/ask-retrieval.ts';
 import { acceptsAskOrigin, AskBodyTooLarge, readAskBody } from '../../src/lib/ask-request.ts';
 import type { Indexed, SearchDoc } from '../../src/lib/search-rank';
 import { corpusVersion, EVIDENCE_RULES, safeSourceHref, withDeadline } from '../../src/lib/ask-safety.ts';
@@ -42,8 +43,6 @@ const CONTEXT_BUDGET = Math.min(12_000, CONTEXT_LIMIT - MAX_OUTPUT - SAFETY_MARG
 
 const MAX_QUESTION_CHARS = 400;
 const MAX_ENTRIES = 5;
-/** Below this the best match is noise; answer without spending a call. */
-const MIN_RELEVANCE = 12;
 
 const NOT_RECORDED = 'The chronicle does not record that.';
 
@@ -115,11 +114,15 @@ async function loadIndex(request: Request): Promise<Indexed[]> {
   });
   if (!res.ok) throw new Error(`index fetch failed: ${res.status}`);
   const raw = (await res.json()) as SearchDoc[];
-  if (!Array.isArray(raw) || raw.some(doc => !safeSourceHref(doc.href) || typeof doc.text !== 'string' || typeof doc.title !== 'string' || typeof doc.kind !== 'string')) throw new Error('Invalid source index');
+  if (!Array.isArray(raw) || raw.some(doc => !doc || !safeSourceHref(doc.href)
+    || typeof doc.text !== 'string' || typeof doc.title !== 'string' || typeof doc.kind !== 'string'
+    || ['sub', 'summary', 'parentTitle', 'sceneLabel'].some(field => doc[field as keyof SearchDoc] !== undefined && typeof doc[field as keyof SearchDoc] !== 'string')
+    || (doc.sessionNumber !== undefined && (!Number.isSafeInteger(doc.sessionNumber) || doc.sessionNumber < 0))
+    || (doc.currentState !== undefined && typeof doc.currentState !== 'boolean'))) throw new Error('Invalid source index');
   cachedVersion = await corpusVersion(raw);
-  // Prefer the shared, linked recap parts over duplicate whole-recap context.
-  const partParents = new Set(raw.filter(doc => doc.kind === 'Recap part').map(doc => doc.href.split('#')[0]));
-  cachedIndex = index(raw.filter(doc => doc.kind !== 'Recap' || !partParents.has(doc.href)));
+  // Ordinary questions use linked parts; numbered overviews can use a recap's
+  // authored summary. Keep both available without supplying duplicate prose.
+  cachedIndex = index(raw);
   return cachedIndex;
 }
 
@@ -164,8 +167,7 @@ export const onRequestPost = async (context: FunctionContext): Promise<Response>
     return json({ error: 'The chronicle could not be read just now.' }, 502);
   }
 
-  const terms = contentTokens(question);
-  const hits = pickAny(docs, terms, MAX_ENTRIES, MIN_RELEVANCE);
+  const { hits, terms } = retrieveAsk(docs, question, MAX_ENTRIES);
 
   // Nothing relevant: say so rather than asking a model to confirm it. Honest,
   // instant, and it spends no Neurons on questions the chronicle can't answer.

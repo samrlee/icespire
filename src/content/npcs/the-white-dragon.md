@@ -17,7 +17,15 @@ The threat hanging over the whole region. The party has never laid eyes on it
 - Guildmaster Thornton pays standing coin for any dragon intelligence
   (Session 4).
 
-Sooner or later, the warnings run out and the dragon shows up.
+## Umbrage Hill (reported in Session 7)
+
+A messenger arrived at the Phandalin inn with a report that the dragon had
+destroyed Umbrage Hill. The party had escorted Adabra Gwynn from her windmill
+earlier that day. They did not witness the attack or return to inspect its
+aftermath, and no replacement potion workshop has been established.
+
+Dax and Thornton reasoned from the timing that the dragon was a short flight
+from Phandalin. That did not locate its lair (Session 8).
 
 ## Signs on the mine road (Session 9)
 

@@ -6,7 +6,7 @@ summary: 'The dragon news gets out, Harbin puts a hundred gold on learning what 
 playersPresent: ['Nolan', 'Nate', 'Jay', 'Christa', 'Joseph', 'Brittany', 'Samuel']
 ---
 
-<span id="scene-s1677dc719e" data-scene-label="Part 1" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s1677dc719e" data-scene-label="The inn's anger" class="recap-scene-anchor" tabindex="-1"></span>
 
 The man who brought the news about Umbrage Hill did not stay to answer
 questions. He shouted it into the common room and went back out the door, and
@@ -45,7 +45,7 @@ rest of the town did.
 
 ---
 
-<span id="scene-seeb00737c2" data-scene-label="Part 2" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-seeb00737c2" data-scene-label="A figure in the shadows" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Halfway there, three of them saw the figure.
@@ -62,7 +62,7 @@ The rest went on to Harbin's door.
 
 ---
 
-<span id="scene-s19f716e801" data-scene-label="Part 3" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s19f716e801" data-scene-label="The first window boost" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 He darted in and out of the alleys the whole way, keeping off the open lane,
@@ -86,7 +86,7 @@ Dax kept the yard. There was nothing in it but owls and rats.
 
 ---
 
-<span id="scene-s655721627f" data-scene-label="Part 4" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s655721627f" data-scene-label="Harbin's hundred gold" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Thom banged on the door of Harbin Wester's house and told him to get off the
@@ -164,7 +164,7 @@ been paid.
 
 ---
 
-<span id="scene-sfd3c8ac0f3" data-scene-label="Part 5" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-sfd3c8ac0f3" data-scene-label="Dax is caught" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Barnaby put Hamish up a second time.
@@ -205,7 +205,7 @@ Hamish and Barnaby he never saw at all.
 
 ---
 
-<span id="scene-s2afd62fe4b" data-scene-label="Part 6" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s2afd62fe4b" data-scene-label="A whispered reply and a name" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Thom had a cantrip nobody had seen him use: a whisper he could put directly into
@@ -242,7 +242,7 @@ It was the first time she had called him anything.
 
 ---
 
-<span id="scene-s2aa70599ef" data-scene-label="Part 7" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s2aa70599ef" data-scene-label="Dax's bargain" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Inside there was one candle and four people, and only one of them was sitting
@@ -366,7 +366,7 @@ go now.*
 
 ---
 
-<span id="scene-s86eb54229a" data-scene-label="Part 8" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s86eb54229a" data-scene-label="Rut under the door" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Rut had found the gap under the front door and gone at it head first.
@@ -392,7 +392,7 @@ about the eating.
 
 ---
 
-<span id="scene-s52e62f9e6b" data-scene-label="Part 9" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s52e62f9e6b" data-scene-label="Thom and Bean vanish" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Thom found a bush a good distance from the building, far enough that walking
@@ -415,7 +415,7 @@ They waited by the door for it to open.
 
 ---
 
-<span id="scene-s8d4edca676" data-scene-label="Part 10" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s8d4edca676" data-scene-label="The third window boost" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Barnaby and Hamish went back to the window. If Dax came out of that building at
@@ -437,7 +437,7 @@ between them and the building.
 
 ---
 
-<span id="scene-sfe24fe67e9" data-scene-label="Part 11" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-sfe24fe67e9" data-scene-label="A guard and a weasel" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 It opened for Dax.
@@ -472,7 +472,7 @@ weasel, and the party walked away up the lane.
 
 ---
 
-<span id="scene-s689dc0dbb5" data-scene-label="Part 12" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s689dc0dbb5" data-scene-label="The five keep watch" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Five of them, and no idea where the other two had gone.
@@ -514,7 +514,7 @@ finding out.
 
 ---
 
-<span id="scene-sb893d2e8ff" data-scene-label="Part 13" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-sb893d2e8ff" data-scene-label="Thornton's declaration" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 Inside, Thom and Bean stood in the middle of the room and let their eyes adjust.
@@ -562,7 +562,7 @@ where to stand.
 
 ---
 
-<span id="scene-s4fb47213c9" data-scene-label="Part 14" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s4fb47213c9" data-scene-label="The hatch and the ladder" class="recap-scene-anchor" tabindex="-1"></span>
 
 
 They searched the office anyway.

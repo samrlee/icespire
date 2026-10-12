@@ -76,6 +76,6 @@ cost of a spell slot. In a fight she spends her action to command him.
 She said she would think about a name.
 
 **His name is Phantom.** She gave it to him in the street outside the Miner's
-Exchange in Session 8, the first time she needed him to do something and had to
-call him something to do it. He understands what she says to him without the
-spell; she needs **Speak with Animals** only to hear him answer.
+Exchange in Session 8, when she called him off Hamish. He understands what
+she says to him without the spell; she needs **Speak with Animals** only to
+hear him answer.

@@ -14,7 +14,7 @@ encounters:
     href: '/map/#orc-encampment'
 ---
 
-<span id="scene-s3b523e72cc" data-scene-label="Part 1" class="recap-scene-anchor" tabindex="-1"></span>
+<span id="scene-s3b523e72cc" data-scene-label="Adabra and the first temple rooms" class="recap-scene-anchor" tabindex="-1"></span>
 
 The session picked up in the immediate aftermath of the manticore fight at the
 Umbrage Hill windmill, with most of the party badly wounded. Rut spent his

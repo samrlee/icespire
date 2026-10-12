@@ -6,7 +6,7 @@ kind: landmark
 status: visited
 firstVisited: 4
 labelPlacement: right
-summary: 'Adabra Gwynn’s stone windmill. Saved from two manticores, evacuated hours ahead of the dragon, and destroyed the same evening.'
+summary: 'Adabra Gwynn’s stone windmill. Saved from two manticores, evacuated, and reported destroyed by the dragon that evening.'
 lore: 'umbrage-hill'
 ---
 
@@ -18,5 +18,6 @@ healing potion and a promise to check in on the way back.
 
 They kept the promise in Session 7, and the orcs finally persuaded her where
 the dragon never had: she packed her brewing equipment and walked to Phandalin
-with them. The **white dragon** destroyed Umbrage Hill that same evening.
-Nothing is left of it. She is alive because they came back.
+with them. That evening a messenger reported that the **white dragon** had
+destroyed Umbrage Hill and nothing was left. The party did not witness the
+attack or return to inspect the site. No replacement workshop is established.

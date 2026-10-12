@@ -107,7 +107,10 @@ event pins are generated from the content collections by
 map in `offical-assets/Maps/` (reference only — the scans are never shipped
 to the built site). The full reference sheet uses a 1344×1872 coordinate space
 and five-mile hexes. Only visited places are labelled; all other terrain is unnamed.
-The map pans and zooms (drag/scroll/pinch), markers open
+The map pans and zooms after choosing **Explore map** (drag/pinch, or arrow
+keys while the canvas is focused). Ordinary scrolling moves the page; Ctrl/⌘
+with the wheel zooms without entering Explore mode. Zoom buttons remain available.
+Markers and the visited-place picker's **View place** button open
 a detail panel with links to recaps and codex entries, and
 `/map/#location-slug` deep-links to a location. Terrain colors live in the
 Campaign Map section of `src/styles/global.css` and follow both themes.
@@ -165,10 +168,11 @@ the existing `npcs`, `factions`, and `characters` collections at build time.
   the same four buckets.
 - **Dashed lines are membership** — an NPC's `faction` slug draws a quiet grey
   tie to that faction's hub.
-- Choosing any node lights up its ties and opens a detail panel (with links to
-  the full NPC/faction/roster pages); the graph pans and zooms like the maps
-  (it reuses `src/scripts/map-viewer.ts`). A plain "By allegiance" roll-call
-  under the graph is the no-tiny-targets path on a phone.
+- Choosing any node lights up its ties and opens a focused detail panel (with
+  links to the full NPC/faction/roster pages); closing returns focus to the
+  opening control. The graph uses the maps' explicit Explore mode and zoom
+  buttons (`src/scripts/map-viewer.ts`). On phones the readable "By allegiance"
+  roll-call comes first, with an explicit button to show the graph.
 
 To grow the web, just add NPCs and factions as normal — set an NPC's `faction`
 to cluster it, and its `status` to colour its line.
@@ -431,6 +435,9 @@ they do not replace physical iPhone or screen-reader testing.
 
 Each recap opens with its cast: the party who were at the table, then the NPCs
 and factions the session involves, as chips linking to their pages.
+On phones, a Show cast button expands the complete list. Desktop, printing and
+the no-JavaScript fallback retain the full cast. The homepage's latest-recap,
+summary and Ask actions appear before the snapshot and introductory text.
 
 Party membership uses optional `charactersPresent` character IDs when supplied.
 An explicit empty array selects no party characters. Otherwise `playersPresent`
@@ -465,9 +472,9 @@ Two rules keep it honest, both of which cost coverage on purpose:
   merits as named NPCs.
 
 Sage's panther is the case that shows why the frontmatter fallback earns its
-place: she is not named Phantom until Session 8, so the Session 7 recap calls
-her "the panther" and has no name to match on. `firstAppearance: 7` puts her in
-that session's cast anyway, and Session 8 picks her up from the prose like
+place: he is not named Phantom until Session 8, so the Session 7 recap calls
+him "the panther" and has no name to match on. `firstAppearance: 7` puts him in
+that session's cast anyway, and Session 8 picks him up from the prose like
 anyone else.
 
 ## Profile review checkpoints
@@ -715,8 +722,10 @@ timeline part lists and search documents. Draft parts inherit the recap gate.
 The build checks IDs and all rendered navigation targets. Profiles say “mentioned
 in”; neither matching a part nor attending a session proves character knowledge.
 
-Search keeps whole recap results and adds Recap part results. Ask uses the part
-records in place of duplicated whole recaps when parts exist. Source links come
+Search keeps whole recap results and adds Recap part results. The index includes
+authored summaries, session numbers, dated scene labels and the current snapshot.
+Ask uses summaries for session overviews, the snapshot for current whereabouts,
+and scene prose with adjacent context for detailed questions. Source links come
 from those supplied records, never model-authored URLs. Sources are labelled
 “Sources consulted,” not a claim that every answer sentence has been verified.
 
@@ -731,10 +740,15 @@ invalidate the saved answer. Storage failures do not prevent ordinary search/Ask
 Nothing automatically repeats a model request. Cancel question, editing the query,
 and closing search discard the in-flight response; retries require a click.
 
-The index request has a five-second timeout, the model wait twenty seconds and the
-browser request twenty-five seconds. A timeout/cancel stops waiting and prevents
+Both browser search-index loading and the Function's index request have a
+five-second timeout, the model wait twenty seconds and the browser Ask request
+twenty-five seconds. Closing search cancels an unfinished index load; reopening
+loads a fresh index. A timeout/cancel stops waiting and prevents
 stale UI updates; the Workers AI binding does not expose cancellation here, so it
 must not be described as cancelling provider computation or guaranteeing no charge.
-Existing body limits, relevance thresholds, five-entry retrieval and output/token
-budgets remain. No paid service or account-level rate-limit setting was changed.
+Existing body limits, five-entry retrieval and output/token budgets remain.
+Ask recognizes numbered-session and current-position questions, admits exact
+body evidence for single-keyword questions, and ranks recap parts by their own
+prose rather than repeatedly boosting their parent title. No paid service or
+account-level rate-limit setting was changed.
 Cloudflare dashboard quotas/rate controls remain an account-owner review item.

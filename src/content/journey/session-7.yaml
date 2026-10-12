@@ -7,7 +7,7 @@ events:
   - title: 'The hidden chamber'
     at: dwarven-excavation
     kind: discovery
-    note: 'Rut burrows through the rubble as a giant badger into a sealed round chamber. Lifting the emerald detonates the statue holding it; working the gearing under both pedestals opens the alcove, its last offering chest, and a note releasing whoever survived the room.'
+    note: 'Rut burrows through the rubble as a giant badger into a sealed round chamber. Lifting the emerald detonates the statue holding it; working the gearing under both pedestals opens the alcove, its offering chest, and a note permitting survivors to take what remains.'
   - title: 'The cat distribution system'
     at: umbrage-hill
     kind: discovery
@@ -19,7 +19,7 @@ events:
   - title: 'Adabra leaves the windmill'
     at: umbrage-hill
     kind: social
-    note: 'The dragon never moved her. The orcs do. She packs her brewing equipment and walks to Phandalin with the party — hours before the hill is destroyed.'
+    note: 'The dragon never moved her. The orcs do. She packs her brewing equipment and walks to Phandalin with the party; that evening a messenger reports the hill destroyed by the dragon.'
   - title: 'A debt paid at the bar'
     at: phandalin
     kind: social
