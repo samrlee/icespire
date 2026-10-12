@@ -7,6 +7,8 @@ import { retrieveAsk } from '../src/lib/ask-retrieval.ts';
 
 const evidence = 'The dragon payment was discussed. Thornton reported the dragon had left. They agreed fifty gold for the dragon news, but no payment was made. Only Bean heard the dragon report.';
 const debtTitle = 'The Hidden Chamber, a Debt Paid, and a Dragon';
+const longOpening = Array.from({ length: 220 }, (_, i) => `They followed the road past milestone ${i}. `).join('');
+const lateEvidence = 'Bean found a cobalt ledger. Only Bean saw the cobalt entry. The cobalt seal was intact.';
 const docs = [
   { title: 'Dragon recap', kind: 'Recap', href: '/sessions/example/', text: evidence },
   { title: 'Dragon recap — Part 1', kind: 'Recap part', href: '/sessions/example/#scene-fixed', text: evidence },
@@ -19,6 +21,9 @@ const docs = [
   { title: 'An Alibi and an Escort — Part 1', kind: 'Recap part', href: '/sessions/session-9/#scene-shop', sessionNumber: 9, sceneLabel: 'Part 1', text: 'Thom bought supplies for 35 gp.' },
   { title: 'Where we left off', kind: 'Page', href: '/campaign/#where-we-left-off', currentState: true, text: 'As of Session 9, the party stood inside the mine entrance. No rooms had been observed. The escort reward remained unpaid.' },
   { title: debtTitle, kind: 'Recap', href: '/sessions/session-7/', sessionNumber: 7, text: 'They gave Norbus twenty-five gold and seventy tarnished silver.' },
+  { title: 'A ledger report', kind: 'Lore', href: '/lore/test-ledger/', text: longOpening + lateEvidence },
+  { title: 'Bismuth unbroken record', kind: 'Lore', href: '/lore/test-unfit/', text: 'Bismuth ' + 'x'.repeat(20000) },
+  { title: 'Bismuth note', kind: 'Lore', href: '/lore/test-note/', text: 'Bean found a bismuth token. She did not sell it.' },
   ...Array.from({ length: 12 }, (_, i) => ({ title: `${debtTitle} — Part ${i + 1}`, kind: 'Recap part',
     href: `/sessions/session-7/#scene-part-${i + 1}`, sessionNumber: 7, parentTitle: debtTitle, sceneLabel: `Part ${i + 1}`,
     text: i === 7 ? 'Harbin paid the party for warning the townspeople. He paid two bags of gold.'
@@ -48,8 +53,35 @@ test('Ask uses published scene records as sources and preserves evidence distinc
   const data = await response.json();
   assert.equal(response.status, 200);
   assert.equal(calls, 1);
-  assert.deepEqual(data.sources, [{ title: docs[1].title, kind: 'Recap part', href: docs[1].href }]);
+  assert.deepEqual(data.sources, [{ title: docs[1].title, kind: 'Recap part', href: docs[1].href, excerpt: evidence }]);
   assert.equal(data.corpusVersion, await corpusVersion(docs));
+});
+
+test('API excerpts are the exact bounded passages supplied, excluding unfit and omitted evidence', async t => {
+  t.mock.method(globalThis, 'fetch', async () => new Response(JSON.stringify(docs)));
+  for (const [question, sourceHref] of [
+    ['What about the cobalt ledger?', '/lore/test-ledger/'],
+    ['What about bismuth?', '/lore/test-note/'],
+  ]) {
+    let supplied = '';
+    const response = await onRequestPost({ request: request(question), env: { AI: { async run(_model, input) {
+      supplied = input.messages[0].content;
+      return { response: 'An answer from the supplied evidence.' };
+    } } } });
+    const data = await response.json();
+    assert.equal(response.status, 200);
+    assert.deepEqual(data.sources.map(source => source.href), [sourceHref]);
+    assert.equal(data.consulted, data.sources.length);
+    assert.ok(data.contextTokens <= 12000);
+    assert.ok(data.sources.every(source => source.excerpt && supplied.includes(source.excerpt)));
+    assert.ok(data.sources.reduce((total, source) => total + source.excerpt.length, 0) <= 48000);
+    assert.ok(!supplied.includes('milestone 0.'));
+    assert.ok(!supplied.includes('Bismuth unbroken record'));
+    if (sourceHref.endsWith('/test-ledger/')) {
+      assert.ok(data.sources[0].excerpt.includes(lateEvidence));
+      assert.ok(data.sources[0].excerpt.length < longOpening.length);
+    }
+  }
 });
 
 test('known single-keyword facts reach the model instead of an unrecorded answer', async t => {
@@ -90,7 +122,9 @@ test('numbered session overviews use the requested summary and date', async t =>
       assert.ok(!input.messages[0].content.includes('Session Zero'));
       return { response: 'The requested session overview.' };
     } } } });
-    assert.deepEqual((await response.json()).sources.map(source => source.href), [recap.href]);
+    const data = await response.json();
+    assert.deepEqual(data.sources.map(source => source.href), [recap.href]);
+    assert.equal(data.sources[0].excerpt, recap.summary);
   }
   const detail = retrieveAsk(index(docs), 'What did Thom buy in Session 9?');
   assert.ok(detail.hits.length > 0);
@@ -128,4 +162,27 @@ test('duplicated recap titles cannot crowd out the preceding payment evidence', 
     assert.ok(data.sources.length <= 5);
     assert.ok(data.sources.every(source => source.href.startsWith('/sessions/session-7/#')));
   }
+});
+
+test('accent folding admits recorded names and removes named recap titles at original offsets', () => {
+  const title = "İn Facktoré's Workshop";
+  const corpus = index([
+    { title, kind: 'Recap', href: '/sessions/workshop/', sessionNumber: 10,
+      summary: 'Bean reached the workshop.', text: 'Bean reached the workshop.' },
+    { title: `${title} — Part 1`, sceneLabel: 'Part 1', kind: 'Recap part', href: '/sessions/workshop/#scene-token',
+      sessionNumber: 10, text: 'Bean found the emerald in Facktoré’s workshop.' },
+    { title: 'Another workshop', kind: 'Lore', href: '/lore/another-workshop/', text: 'An emerald was mentioned elsewhere.' },
+  ]);
+  for (const spelling of ["in facktore's workshop", "İN FACKTORÉ'S WORKSHOP", "in facktore\u0301's workshop"]) {
+    const overview = retrieveAsk(corpus, `What happened in ${spelling}?`);
+    assert.equal(overview.hits.length, 1);
+    assert.equal(overview.hits[0].doc.href, '/sessions/workshop/');
+    assert.equal(overview.hits[0].doc.text, corpus[0].summary);
+    const detail = retrieveAsk(corpus, `What about emerald in ${spelling}?`);
+    assert.deepEqual(detail.terms, ['emerald']);
+    assert.deepEqual(detail.hits.map(hit => hit.doc.href), ['/sessions/workshop/#scene-token']);
+  }
+  const name = retrieveAsk(corpus, 'What about Facktore?');
+  assert.ok(name.hits.some(hit => hit.doc.href === '/sessions/workshop/#scene-token'));
+  assert.deepEqual(retrieveAsk(corpus, 'What about Facktoreville?').hits, []);
 });

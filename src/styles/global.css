@@ -3,7 +3,7 @@
  * Tokens are verbatim from the Claude Design project; the component classes
  * below translate its React components (inline styles) into CSS.
  */
-@import './tokens/fonts.css';
+@import './fonts.css';
 @import './tokens/colors.css';
 @import './tokens/typography.css';
 @import './tokens/spacing.css';
@@ -4436,15 +4436,292 @@ body {
 .map-svg[data-exploring='true'], .graph-svg[data-exploring='true'] { touch-action: none; cursor: grab; }
 .map-svg[data-exploring='true']:active, .graph-svg[data-exploring='true']:active { cursor: grabbing; }
 .map-controls button, .graph-controls button { width: 44px; height: 44px; }
+.map-hint-mobile { display: none; }
+/* Page scrolling and map gestures have separate surfaces on a phone. */
+.map-explorer {
+  inset: 0;
+  right: auto;
+  bottom: auto;
+  margin: 0;
+  padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  border: 0;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+.map-explorer[open] { display: flex; flex-direction: column; gap: 12px; }
+.map-explorer::backdrop { background: var(--bg-page); }
+.map-explorer-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-shrink: 0; }
+.map-explorer-header h2 { margin: 0; min-width: 0; overflow-wrap: anywhere; font-size: var(--text-lg); line-height: 1.15; max-height: calc(var(--explorer-height, 100dvh) / 4); overflow-y: auto; }
+.map-explorer-header button { min-width: 64px; min-height: 44px; flex-shrink: 0; }
+.map-explorer-canvas { flex: 1; min-height: 120px; min-width: 0; }
+.map-explorer .map-frame, .map-explorer .graph-frame { height: 100%; width: 100%; }
+.map-explorer .map-svg, .map-explorer .graph-svg { height: 100%; max-height: none; }
+.map-explorer .map-controls, .map-explorer .graph-controls { top: auto; bottom: 12px; right: 12px; flex-direction: row; flex-wrap: nowrap; max-width: calc(100% - 24px); overflow-x: auto; overscroll-behavior-x: contain; touch-action: pan-x pinch-zoom; }
+.map-explorer .map-controls button, .map-explorer .graph-controls button { flex-shrink: 0; }
+.map-explorer .map-zoom-note, .map-explorer .graph-hint { display: none; }
+.map-explorer > p { flex-shrink: 0; margin: 0; font-size: var(--text-sm); color: var(--text-secondary); }
+.map-explorer-key { flex-shrink: 0; max-height: min(calc(var(--explorer-height, 100dvh) * .3), 240px); overflow-y: auto; overscroll-behavior: contain; border: 1px solid var(--border-default); border-radius: var(--radius-sm); touch-action: pan-y; }
+.map-explorer-key summary { min-height: 44px; padding: 10px 12px; cursor: pointer; color: var(--accent-gold-strong); }
+.map-explorer-key ol { margin: 0; padding: 0 16px 12px 36px; font-size: var(--text-sm); }
+.map-explorer-key li + li { margin-top: 8px; }
+.map-explorer-key[open] ~ p, .map-explorer.compact-explorer > p { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.map-explorer.compact-explorer .map-explorer-header h2 { max-height: calc(var(--explorer-height, 100dvh) / 5); }
+.map-explorer.compact-explorer .map-explorer-key { max-height: max(44px, min(calc(var(--explorer-height, 100dvh) * .15), 120px)); }
+.map-explorer.compact-explorer .map-explorer-canvas { min-height: 60px; }
+.map-explorer.narrow-explorer .map-explorer-header { gap: 0; justify-content: flex-end; }
+.map-explorer.narrow-explorer .map-explorer-header h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-height: 600px) {
+  .map-explorer > p { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+html.map-explorer-open { overflow: hidden; }
+.map-explorer-open body { position: fixed; top: var(--map-page-top); left: 0; width: 100%; overflow: hidden; }
 .map-panel-title:focus, .graph-panel-title:focus { outline: 2px solid var(--accent-gold); outline-offset: 4px; }
 .mj-place[aria-pressed='true'] { background: var(--accent-gold-wash); color: var(--accent-gold-strong); text-decoration: underline; }
 .graph-expand { margin-bottom: 1rem; }
+.page-title, .table-reference-section h2, .table-reminder h3 { overflow-wrap: anywhere; }
 .graph-frame[hidden], .graph-expand[hidden] { display: none; }
 @media (max-width: 900px) {
+  .map-svg { max-height: min(60svh, 480px); }
+  .map-hint-desktop { display: none; }
+  .map-hint-mobile { display: inline; }
   .map-layout { grid-template-areas: 'main' 'panel' 'journey'; }
   .graph-layout { grid-template-areas: 'list' 'canvas' 'panel'; }
   .graph-rollcall { margin-top: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .scrub-off, .map-pin-group, #map-here-anchor { transition: none; }
+}
+
+/* Ask evidence uses the exact passage admitted to the model's context. */
+.ask-sources > p { margin: 0; }
+.ask-source-list { margin: var(--space-2) 0 0; padding-left: var(--space-4); }
+.ask-source-list > li + li { margin-top: var(--space-3); }
+.ask-evidence { margin-top: var(--space-1); }
+.ask-evidence summary {
+  min-height: 44px;
+  padding: var(--space-2) 0;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.ask-evidence summary:focus-visible,
+.ask-excerpt:focus-visible { outline: 2px solid var(--accent-gold); outline-offset: 3px; }
+.ask-excerpt {
+  margin: 0 0 var(--space-2);
+  padding: var(--space-3);
+  max-height: 20rem;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--text-primary);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Private browser bookmarks; uses the campaign's existing tokens. */
+.scene-bookmarks { margin-block: var(--space-5); max-width: 75ch; }
+.bookmark-explanation, .bookmark-status { color: var(--text-secondary); font-size: var(--text-sm); line-height: var(--leading-normal); }
+.bookmark-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
+.bookmark-actions button, .bookmark-actions a, .scene-bookmark-trigger, [data-bookmark-clear], [data-bookmark-retry] { min-height: 44px; }
+.bookmark-actions a { display: inline-flex; align-items: center; }
+.scene-bookmark-trigger { margin-block: .5rem 1rem; cursor: pointer; font-family: var(--font-body); font-size: var(--text-sm); }
+.scene-bookmarks button { cursor: pointer; }
+.scene-bookmarks button:disabled { cursor: default; opacity: .7; }
+.scene-bookmarks [hidden] { display: none !important; }
+.bookmark-list { list-style: none; padding: 0; display: grid; gap: var(--space-5); }
+.bookmark-entry { min-width: 0; border: 1px solid var(--border-default); border-radius: var(--radius-md); padding: var(--space-5); background: var(--bg-surface); overflow-wrap: anywhere; }
+.bookmark-entry h2 { font-family: var(--font-display); font-size: var(--text-lg); margin: 0; line-height: var(--leading-snug); }
+.bookmark-part { color: var(--text-secondary); margin-top: .5rem; }
+.bookmark-note-text { white-space: pre-wrap; line-height: var(--leading-normal); }
+.bookmark-warning { border-left: 2px solid var(--accent-gold); padding-left: .75rem; line-height: var(--leading-normal); color: var(--text-secondary); }
+.bookmark-confirm { border: 1px solid var(--accent-gold); padding: var(--space-4); margin-block: var(--space-4); }
+.bookmark-editor { width: min(640px, calc(100vw - 24px)); max-width: none; max-height: calc(100dvh - 24px); margin: auto; border: 1px solid var(--border-strong); border-radius: var(--radius-md); padding: var(--space-5); background: var(--bg-surface-raised); color: var(--text-primary); overflow-y: auto; overscroll-behavior: contain; }
+.bookmark-editor::backdrop { background: rgba(13,17,20,.7); }
+.bookmark-editor h2 { font-family: var(--font-display); line-height: var(--leading-snug); font-size: var(--text-xl); margin-top: 0; }
+.bookmark-editor label { display: block; margin-bottom: .5rem; }
+.bookmark-editor select, .bookmark-editor textarea { display: block; width: 100%; max-width: 100%; min-height: 44px; color: var(--text-primary); background: var(--bg-inset); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); font: inherit; padding: .5rem; }
+.bookmark-editor textarea { resize: vertical; }
+.bookmark-editor .bookmark-actions { margin-top: var(--space-4); }
+.bookmark-editor [data-bookmark-source], .bookmark-editor #bookmark-note-help { line-height: var(--leading-normal); overflow-wrap: anywhere; }
+.bookmark-editor #bookmark-note-help { color: var(--text-secondary); font-size: var(--text-sm); }
+@media print { .scene-bookmarks, .scene-bookmark-trigger { display: none !important; } }
+
+/* ---------- Player table reference ---------- */
+
+.table-reference { max-width: 900px; margin: 0 auto; }
+.table-reference-header .page-title { margin-bottom: var(--space-3); }
+.table-reference-intro { color: var(--text-secondary); margin: 0 0 var(--space-4); }
+.table-print-button {
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-4);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font: inherit;
+  cursor: pointer;
+}
+.table-print-button:hover { border-color: var(--accent-gold); }
+.table-print-button:focus-visible,
+.table-roster-scroll:focus-visible { outline: 2px solid var(--accent-gold); outline-offset: 4px; }
+.table-reference-section {
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-default);
+}
+.table-reference-section h2,
+.table-reminder h3 {
+  font-family: var(--font-display);
+  line-height: var(--leading-snug);
+  margin: 0 0 var(--space-3);
+}
+.table-reference-section h2 { font-size: var(--text-xl); }
+.table-reminder h3 { font-size: var(--text-md); }
+.table-game-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin: 0; }
+.table-game-facts dt { color: var(--text-muted); font-size: var(--text-sm); }
+.table-game-facts dd { margin: 0; font-size: var(--text-md); }
+.table-reference-sources { font-size: var(--text-sm); color: var(--text-muted); margin: var(--space-2) 0 0; }
+.table-reference-note { color: var(--text-secondary); font-size: var(--text-sm); margin: 0 0 var(--space-4); }
+.table-house-rules { list-style: none; padding: 0; margin: 0; }
+.table-house-rules li { margin: 0 0 var(--space-4); }
+.table-house-rules li:last-child { margin-bottom: 0; }
+.table-house-rules p { margin: 0; color: var(--text-secondary); }
+.table-reminders { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
+.table-reminder > p:not(.table-reference-sources) { margin: 0; color: var(--text-secondary); }
+.table-roster-scroll { overflow-x: auto; }
+.table-roster { width: 100%; min-width: 540px; border-collapse: collapse; font-size: var(--text-sm); text-align: left; }
+.table-roster th,
+.table-roster td { padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--border-default); vertical-align: top; }
+.table-roster thead th { color: var(--text-muted); font-weight: var(--weight-medium); }
+.table-roster tbody th { font-weight: var(--weight-medium); }
+.table-roster tbody td { color: var(--text-secondary); }
+.table-roster th:first-child { padding-left: 0; }
+.table-roster td:last-child,
+.table-roster th:last-child { padding-right: 0; }
+
+@media (max-width: 720px) {
+  .table-game-facts { grid-template-columns: 1fr; gap: var(--space-3); }
+  .table-reminders { grid-template-columns: 1fr; }
+}
+
+@media print {
+  body.print-document .table-reference { max-width: none; }
+  body.print-document .table-print-button { display: none !important; }
+  body.print-document .table-reference-section { margin-top: 14pt; padding-top: 10pt; }
+  body.print-document .table-reference-header .page-title { font-size: 24pt; }
+  body.print-document .table-reference-section h2 { font-size: 16pt; }
+  body.print-document .table-reminder h3 { font-size: 12pt; }
+  body.print-document .table-reference { font-size: 11pt; line-height: 1.4; }
+  body.print-document .table-reference-sources,
+  body.print-document .table-reference-note,
+  body.print-document .table-roster { font-size: 9pt; }
+  body.print-document .table-game-facts { grid-template-columns: repeat(3, 1fr); }
+  body.print-document .table-reminders { grid-template-columns: 1fr; gap: 10pt; }
+  body.print-document .table-game-facts,
+  body.print-document .table-reminder,
+  body.print-document .table-house-rules li,
+  body.print-document .table-roster tr { break-inside: avoid; }
+  body.print-document .table-roster-scroll { overflow: visible; }
+  body.print-document .table-roster { min-width: 0; }
+}
+
+/* ---------- Briefing, catch-up and curated evidence ---------- */
+.reference-intro, .reference-section, .reference-links,
+.reference-controls, .reference-cutoffs, .reference-count,
+.reference-filter-note, .reference-notice, .catchup-list {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.reference-copy { color: var(--text-secondary); line-height: var(--leading-relaxed); }
+.reference-copy p { margin: 0 0 var(--space-3); }
+.reference-copy h2, .reference-copy h3, .reference-section > h2 {
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  line-height: var(--leading-snug);
+  overflow-wrap: anywhere;
+}
+.reference-section { margin-top: var(--space-7); }
+.reference-section > h2 { font-size: var(--text-xl); margin: 0 0 var(--space-4); }
+.reference-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+.reference-card { padding: var(--space-5); border: 1px solid var(--border-default); background: var(--bg-surface); border-radius: var(--radius-sm); min-width: 0; }
+.reference-card h2 { font-size: var(--text-xl); margin: 0 0 var(--space-3); }
+.reference-card h3 { font-size: var(--text-lg); margin: 0 0 var(--space-3); }
+.reference-review, .reference-count { color: var(--text-muted); font-size: var(--text-sm); }
+.reference-notice { padding: var(--space-3) var(--space-4); border-left: 2px solid var(--accent-gold); background: var(--bg-surface); color: var(--text-secondary); }
+.reference-limits { padding-top: var(--space-3); border-top: 1px solid var(--border-default); }
+.reference-sources { display: flex; align-items: baseline; flex-wrap: wrap; gap: var(--space-1) var(--space-3); margin-top: var(--space-3); font-size: var(--text-sm); color: var(--text-muted); }
+.reference-sources a { overflow-wrap: anywhere; }
+.reference-more { display: inline-block; margin-top: var(--space-4); }
+.reference-links { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-5); margin-top: var(--space-7); padding-top: var(--space-4); border-top: 1px solid var(--border-default); }
+.reference-controls { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: flex-end; margin-top: var(--space-5); margin-bottom: var(--space-4); }
+.reference-controls > div { display: grid; gap: var(--space-2); flex: 1 1 240px; }
+.reference-controls label { color: var(--text-primary); font-size: var(--text-sm); }
+.reference-controls select, .reference-button {
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  font: inherit;
+}
+.reference-controls select { width: 100%; }
+.reference-button { cursor: pointer; }
+.reference-button:hover { border-color: var(--accent-gold); }
+.reference-controls select:focus-visible, .reference-button:focus-visible,
+.catchup-passages > summary:focus-visible { outline: 2px solid var(--accent-gold); outline-offset: 3px; }
+.reference-controls[hidden], .reference-cutoffs[hidden],
+.reference-section[hidden], .reference-card[hidden] { display: none; }
+.evidence-grid { grid-template-columns: minmax(0, 1fr); }
+.evidence-card-label { color: var(--accent-gold); font-size: var(--text-xs); font-family: var(--font-display); letter-spacing: var(--tracking-wide); text-transform: uppercase; margin-bottom: var(--space-2); }
+.evidence-record { margin: var(--space-4) 0 0; }
+.evidence-record dt { color: var(--text-primary); font-size: var(--text-sm); font-weight: var(--weight-medium); margin-top: var(--space-4); }
+.evidence-record dd { margin: var(--space-1) 0 0; }
+.evidence-record dd > p { margin-top: var(--space-2); }
+.evidence-telling + .evidence-telling { margin-top: var(--space-3); }
+.reference-cutoffs { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-5); }
+.catchup-list { padding: 0; list-style: none; display: grid; gap: var(--space-5); }
+.catchup-passages { margin-top: var(--space-4); }
+.catchup-passages > summary { cursor: pointer; color: var(--accent-gold); padding: var(--space-2) 0; }
+.catchup-passage { margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--border-default); }
+.catchup-passage p { white-space: normal; }
+
+@media (max-width: 720px) {
+  .reference-grid { grid-template-columns: minmax(0, 1fr); }
+  .reference-card { padding: var(--space-4); }
+  .reference-controls > div { flex-basis: 100%; }
+  .reference-controls .reference-button { width: 100%; }
+}
+
+@media print {
+  body.print-document .reference-controls,
+  body.print-document .reference-cutoffs,
+  body.print-document .reference-links,
+  body.print-document .reference-more { display: none !important; }
+  body.print-document .reference-intro,
+  body.print-document .reference-section,
+  body.print-document .reference-count,
+  body.print-document .reference-filter-note,
+  body.print-document .reference-notice,
+  body.print-document .catchup-list { max-width: none; }
+  body.print-document .reference-grid { display: block; }
+  body.print-document .reference-card { padding: 0; margin: 0 0 14pt; border: 0; }
+  body.print-document .reference-copy { font-size: 11pt; line-height: 1.45; }
+  body.print-document .reference-section { margin-top: 18pt; }
+  body.print-document .reference-section > h2,
+  body.print-document .reference-card h2 { font-size: 16pt; }
+  body.print-document .reference-card h3 { font-size: 12pt; }
+  body.print-document .reference-sources,
+  body.print-document .reference-review { font-size: 9pt; }
+  body.print-document .reference-sources a { text-decoration: underline; }
+  body.print-document .evidence-record dt { break-after: avoid; }
 }

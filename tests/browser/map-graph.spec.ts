@@ -279,7 +279,9 @@ for (const canvas of [
     await page.mouse.up();
     await expect(svg).not.toHaveAttribute('viewBox', beforeDrag);
 
-    await explore.click();
+    const explorer = page.locator('#map-explorer');
+    if (await explorer.isVisible()) await explorer.getByRole('button', { name: 'Done', exact: true }).click();
+    else await explore.click();
     await expect(explore).toHaveAttribute('aria-pressed', 'false');
     expect(await svg.evaluate(element => getComputedStyle(element).touchAction)).toContain('pan-y');
   });

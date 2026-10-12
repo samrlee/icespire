@@ -6,6 +6,8 @@ import { isMapLocationPublished } from './map-publication';
 import { url } from '../utils/url';
 import { getCurrentState } from './current-state';
 import { recapScenes } from './recap-scenes';
+import { buildTableReference } from './table-reference';
+import { getPlayerReference } from './player-reference';
 import type { SearchDoc } from './search-rank';
 
 // Build-time search index. Everything the site publishes becomes one document
@@ -171,5 +173,24 @@ export async function buildSearchIndex(): Promise<SearchDoc[]> {
     text: [asOf, state.newerRecap ? 'A newer recap is available; this snapshot has not yet been updated.' : '',
       ...state.groups.map(group => `${group.label}. ${group.members.map(member => member.data.name).join(', ')}. ${group.summary}`)].filter(Boolean).join(' '),
   });
+  const [sessions, characters, npcs] = await Promise.all([
+    getCollection('sessions'), getCollection('characters'), getCollection('npcs'),
+  ]);
+  const table = buildTableReference(readFileSync(join(process.cwd(), 'docs/TABLE-FACTS.md'), 'utf8'), sessions, characters, npcs);
+  docs.push({ title: 'Table reference', kind: KIND.page, href: url('/table/'),
+    text: [table.game ? `Dungeon Master ${table.game.dm}. D&D 5e ${table.game.edition}. Level cap ${table.game.levelCap}.` : '',
+      ...table.rules.map(rule => rule.text), ...table.reminders.map(item => `${item.title}. ${item.text}`),
+      ...characters.map(character => `${character.data.player} plays ${character.data.name}, ${character.data.ancestry} ${character.data.class}.`)].filter(Boolean).join(' ') });
+  const reference = await getPlayerReference();
+  docs.push({ title: 'Before the next session', kind: KIND.page, sub: `Reminders checked through Session ${reference.checkpoint.data.sessionNumber}`, href: url('/briefing/'),
+    text: reference.briefing.map(item => `${item.title}. ${item.text}`).join(' ') });
+  for (const claim of reference.evidence) {
+    docs.push({ title: claim.title, kind: 'Evidence', sub: `${claim.basis} · checked through Session ${reference.checkpoint.data.sessionNumber}`,
+      href: url(`/evidence/#${claim.id}`), text: [claim.statement, claim.witnessNote, claim.limits,
+        `Explicitly recorded for ${claim.witnesses?.map(character => character.name).join(', ') || 'no individually identified witnesses'}.`,
+        ...claim.tellings.map(telling => `Session ${telling.citation.sessionNumber}: ${telling.recipients.map(character => character.name).join(', ')}. ${telling.note}`)].join(' ') });
+  }
+  docs.push({ title: 'Catch up through a session', kind: KIND.page, href: url('/catch-up/'), text: 'Choose where to stop. Read published recap summaries and passages through a selected session.' });
+  docs.push({ title: 'My bookmarks', kind: KIND.page, href: url('/bookmarks/'), text: 'Explicitly save stable recap links and personal notes on this browser. Review changed sources and forget bookmarks. Notes are private browser data and are not part of the chronicle.' });
   return docs;
 }

@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import CurrentState from '../../components/CurrentState.astro';
+import ReferenceSources from '../../components/ReferenceSources.astro';
+import { getPlayerReference } from '../../lib/player-reference';
+import { getCurrentState } from '../../lib/current-state';
+import { url } from '../../utils/url';
+const { briefing, briefingEvidence, checkpoint, newerRecap } = await getPlayerReference();
+const { source: snapshotSource } = await getCurrentState();
+---
+<Base title="Before the next session" description="A short, source-linked briefing for the next game: where we paused, unpaid work and what has been told." printable>
+  <div class="kicker">At the table</div>
+  <h1 class="page-title">Before the next session</h1>
+  <div class="reference-intro reference-copy">
+    <p>A brief catch-up before play. The continuation point below is shared with the homepage and Story so far.</p>
+    <p class="reference-review">Selected reminders checked through <a href={url(`/sessions/${checkpoint.id}/`)}>Session {checkpoint.data.sessionNumber}</a>.</p>
+    {(newerRecap || snapshotSource.id !== checkpoint.id) && <p class="reference-notice">The reminders still reflect Session {checkpoint.data.sessionNumber}. Read the latest recap and the current snapshot before using them for play.</p>}
+  </div>
+  <CurrentState />
+  <section class="reference-section" aria-labelledby="briefing-reminders">
+    <h2 id="briefing-reminders">Keep in mind</h2>
+    <div class="reference-grid">
+      {briefing.map(item => <article class="reference-card reference-copy" id={item.id}>
+        <h3>{item.title}</h3>
+        <p>{item.text}</p>
+        <ReferenceSources citations={item.citations} label={`Sources for ${item.title}`} />
+      </article>)}
+    </div>
+  </section>
+  <section class="reference-section" aria-labelledby="briefing-exchange">
+    <h2 id="briefing-exchange">What was shared about the Exchange</h2>
+    <p class="reference-copy">Thom and Bean told the party their account at the inn. The original witnesses remain distinct from the people who heard that account.</p>
+    <div class="reference-grid">
+      {briefingEvidence.map(claim => <article class="reference-card reference-copy">
+        <h3>{claim.title}</h3>
+        <p>{claim.statement}</p>
+        <p class="reference-limits">{claim.limits}</p>
+        <ReferenceSources citations={claim.tellings.map(telling => telling.citation)} label={`Sources for ${claim.title}`} />
+        <a class="reference-more" href={url(`/evidence/#${claim.id}`)}>Who witnessed it and who was told →</a>
+      </article>)}
+    </div>
+  </section>
+  <nav class="reference-links" aria-label="More player references">
+    <a href={url('/campaign/#open-threads')}>All open threads →</a>
+    <a href={url('/table/')}>Rules at our table →</a>
+    <a href={url('/catch-up/')}>Catch up through a session →</a>
+  </nav>
+</Base>

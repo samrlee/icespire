@@ -1,0 +1,102 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { buildTableReference } from '../../lib/table-reference';
+import { url } from '../../utils/url';
+import tableFacts from '../../../docs/TABLE-FACTS.md?raw';
+
+const [sessions, characters, npcs] = await Promise.all([
+  getCollection('sessions'), getCollection('characters'), getCollection('npcs'),
+]);
+const reference = buildTableReference(tableFacts, sessions, characters, npcs);
+const roster = [...characters].sort((a, b) =>
+  a.data.player.localeCompare(b.data.player) || a.data.name.localeCompare(b.data.name)
+);
+const statusLabels = { active: 'Active', retired: 'Retired', dead: 'Dead', missing: 'Missing' };
+---
+
+<Base title="Table reference" description="The table’s standing house rules, player lookup and recorded communication rules." printable>
+  <div class="table-reference">
+    <header class="table-reference-header">
+      <div class="kicker">During play</div>
+      <h1 class="page-title">Table reference</h1>
+      <p class="table-reference-intro">The standing rules and a quick lookup for this table.</p>
+      <button type="button" class="table-print-button" data-table-print hidden>Print reference</button>
+    </header>
+
+    {reference.game && (
+      <section class="table-reference-section" aria-labelledby="table-game-heading">
+        <h2 id="table-game-heading">The game</h2>
+        <dl class="table-game-facts">
+          <div><dt>Dungeon Master</dt><dd>{reference.game.dm}</dd></div>
+          <div><dt>Rules</dt><dd>D&amp;D 5e · {reference.game.edition}</dd></div>
+          <div><dt>Level cap</dt><dd>{reference.game.levelCap}</dd></div>
+        </dl>
+        <p class="table-reference-sources">Established in <a href={url(reference.game.source.href)}>{reference.game.source.label}</a>.</p>
+      </section>
+    )}
+
+    {reference.rules.length > 0 && (
+      <section class="table-reference-section" aria-labelledby="table-rules-heading">
+        <h2 id="table-rules-heading">House rules</h2>
+        <ul class="table-house-rules">
+          {reference.rules.map((rule) => (
+            <li>
+              <p>{rule.text}{!/[.!?]$/.test(rule.text) && '.'}</p>
+              <a class="table-reference-sources" href={url(rule.source.href)}>{rule.source.label}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {reference.reminders.length > 0 && (
+      <section class="table-reference-section" aria-labelledby="table-reminders-heading">
+        <h2 id="table-reminders-heading">Communication and companions</h2>
+        <p class="table-reference-note">Recorded capabilities at this table.</p>
+        <div class="table-reminders">
+          {reference.reminders.map((reminder) => (
+            <article class="table-reminder">
+              <h3>{reminder.title}</h3>
+              <p>{reminder.text}</p>
+              <p class="table-reference-sources">
+                Sources: {reminder.sources.map((source, index) => (
+                  <>{index > 0 && ' · '}<a href={url(source.href)}>{source.label}</a></>
+                ))}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section class="table-reference-section" aria-labelledby="table-roster-heading">
+      <h2 id="table-roster-heading">Player lookup</h2>
+      <p class="table-reference-note">Current roster. Player names are table information; the chronicle uses character names.</p>
+      {roster.length > 0 ? (
+        <div class="table-roster-scroll" tabindex="0" role="region" aria-label="Current player and character roster">
+          <table class="table-roster">
+            <caption class="visually-hidden">Current player-to-character lookup</caption>
+            <thead><tr><th scope="col">Player</th><th scope="col">Character</th><th scope="col">Ancestry and class</th><th scope="col">Status</th></tr></thead>
+            <tbody>{roster.map((entry) => (
+              <tr>
+                <th scope="row">{entry.data.player}</th>
+                <td><a href={url(`/characters/${entry.id}/`)}>{entry.data.name}</a></td>
+                <td>{entry.data.ancestry} {entry.data.class}</td>
+                <td>{statusLabels[entry.data.status]}</td>
+              </tr>
+            ))}</tbody>
+          </table>
+        </div>
+      ) : <p>No characters are recorded yet.</p>}
+    </section>
+  </div>
+
+  <script>
+    const printButton = document.querySelector<HTMLButtonElement>('[data-table-print]');
+    if (printButton) {
+      printButton.hidden = false;
+      printButton.addEventListener('click', () => window.print());
+    }
+  </script>
+</Base>

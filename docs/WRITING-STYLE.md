@@ -143,7 +143,8 @@ threads notice.
 
 - **When the party splits, say who saw it.** At the end of Session 8, Rut had
   heard the negotiation from under a door and missed the speech that followed;
-  Thom and Bean, invisible in the room, heard both. Two of them knew what the
+  Dax took part in that negotiation. Thom and Bean entered invisibly after
+  he left and heard the later declaration. Two of them knew what the
   guildmaster intended and five did not; the next scenes depended on that
   distinction until the accounts were shared.
 - **Say when knowledge travels.** Sage watched Rut turn into a weasel and told

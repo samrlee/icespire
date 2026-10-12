@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import SceneBookmarks from '../../components/SceneBookmarks.astro';
+import { url } from '../../utils/url';
+---
+
+<Base title="My bookmarks" description="Private recap bookmarks and personal notes saved on this browser.">
+  <h1 class="page-title">My bookmarks</h1>
+  <p>Save a recap part to revisit it or leave yourself a note for the next session.</p>
+  <p><a href={url('/sessions/')}>Browse the recaps →</a></p>
+  <SceneBookmarks />
+</Base>

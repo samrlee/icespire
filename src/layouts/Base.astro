@@ -16,6 +16,7 @@ interface Props {
   // Exceptional flat-file routes, such as Cloudflare's 404.html.
   canonicalPath?: string;
   printable?: boolean;
+  linkEntities?: boolean;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   ogImage = '/images/social-card.jpg',
   canonicalPath = Astro.url.pathname,
   printable = false,
+  linkEntities = true,
 } = Astro.props;
 
 const fullTitle = `${title} · Dragon of Icespire Peak`;
@@ -61,6 +63,16 @@ const navGroups: NavGroup[] = [
       { href: '/npcs/', label: 'NPCs', match: ['/npcs/'] },
       { href: '/graph/', label: 'Relationships', match: ['/graph/'] },
       { href: '/codex/', label: 'Codex', match: ['/codex/', '/factions/', '/lore/'] },
+    ],
+  },
+  {
+    label: 'Tools',
+    items: [
+      { href: '/briefing/', label: 'Next session', match: ['/briefing/'] },
+      { href: '/catch-up/', label: 'Catch up', match: ['/catch-up/'] },
+      { href: '/table/', label: 'Table reference', match: ['/table/'] },
+      { href: '/bookmarks/', label: 'Bookmarks and notes', match: ['/bookmarks/'] },
+      { href: '/evidence/', label: 'Evidence', match: ['/evidence/'] },
     ],
   },
 ];
@@ -160,7 +172,7 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
       </nav>
       A chronicle kept by the party. Updated between sessions.
     </footer>
-    <EntityLinks />
+    {linkEntities && <EntityLinks />}
     <SearchPalette />
     <script is:inline>
       (() => {

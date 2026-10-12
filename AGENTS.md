@@ -211,8 +211,9 @@ CSS in `global.css`, not the tokens.
 emits it at build time and hashes every inline script into the CSP's
 `script-src`, which is what lets the policy drop `'unsafe-inline'`. Edit the
 integration; never add a `public/_headers`. Two invariants it leans on:
-`build.inlineStylesheets: 'never'` in `astro.config.mjs`, and the Google Fonts
-allowances that exist only for the `@import` in `src/styles/tokens/fonts.css`.
+`build.inlineStylesheets: 'never'` in `astro.config.mjs`, and self-hosted fonts
+in `src/styles/fonts.css`. The verbatim token font file is retained as a design
+reference and is not imported by the site.
 
 **There are no secrets in this repo, and it should stay that way.** The Ask
 endpoint uses Cloudflare's Workers AI *binding* rather than an API key — the

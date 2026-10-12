@@ -150,7 +150,7 @@ test('production publication across assembled routes, indexes, maps and navigati
   const site = await mkdtemp(path.join(tmpdir(), 'icespire-publication-'));
   try {
     // No writes to campaign files or the real dist/. No old build/cache is copied.
-    for (const item of ['src', 'public', 'integrations', 'astro.config.mjs', 'tsconfig.json', 'package.json']) {
+    for (const item of ['src', 'public', 'docs', 'integrations', 'astro.config.mjs', 'tsconfig.json', 'package.json']) {
       await cp(path.join(root, item), path.join(site, item), { recursive: true });
     }
     await symlink(path.join(root, 'node_modules'), path.join(site, 'node_modules'), process.platform === 'win32' ? 'junction' : 'dir');
