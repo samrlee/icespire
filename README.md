@@ -107,9 +107,18 @@ event pins are generated from the content collections by
 map in `offical-assets/Maps/` (reference only — the scans are never shipped
 to the built site). The full reference sheet uses a 1344×1872 coordinate space
 and five-mile hexes. Only visited places are labelled; all other terrain is unnamed.
-The map pans and zooms after choosing **Explore map** (drag/pinch, or arrow
-keys while the canvas is focused). Ordinary scrolling moves the page; Ctrl/⌘
-with the wheel zooms without entering Explore mode. Zoom buttons remain available.
+Ordinary scrolling over the map moves the page. On phones and narrow windows,
+**Explore map** opens a viewport-sized native dialog: drag/pinch or use the
+zoom buttons, then **Done** returns to the same page position. The dialog keeps
+its exit and zoom controls visible, locks background scrolling, and restores
+keyboard focus. Selecting a region marker closes it and opens that place's
+page details. The page preview is bounded in height, including landscape phones;
+SVG coordinates and marker sizing account for letterboxing without stretching
+the drawing. On wider windows, Explore enables inline drag/pinch or arrow-key
+panning. Ctrl/⌘ with the wheel zooms without Explore, and zoom buttons remain
+available in both views. Local maps use the same viewer, with an expandable
+key containing the same published landmarks as the page. The key scrolls
+independently, and compact/enlarged-text layouts preserve the canvas and controls.
 Markers and the visited-place picker's **View place** button open
 a detail panel with links to recaps and codex entries, and
 `/map/#location-slug` deep-links to a location. Terrain colors live in the

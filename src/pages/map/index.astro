@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import MapTerrain from '../../components/map/MapTerrain.astro';
+import MapExplorer from '../../components/map/MapExplorer.astro';
 import { hasSubmapPage } from '../../components/map/submaps/registry';
 import { url } from '../../utils/url';
 
@@ -283,7 +284,7 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
     {scrubSessions.length > 1 && (
       <div class="map-scrubber" id="map-scrubber">
         <button type="button" class="scrub-play" id="scrub-play" aria-label="Play the journey" aria-pressed="false">
-          <span class="scrub-play-icon" aria-hidden="true">▶</span>
+          <span class="scrub-play-icon" aria-hidden="true"></span>
         </button>
         <div class="scrub-body">
           <input
@@ -303,7 +304,7 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
     )}
     <div class="map-interaction" data-map-interaction hidden>
       <button type="button" class="btn-ghost" id="map-explore" aria-pressed="false" aria-controls="map-svg" hidden>Explore map</button>
-      <p id="map-interaction-hint">Scroll the page normally. Choose Explore map to drag or pinch, or hold Ctrl/⌘ while scrolling to zoom. Arrow keys pan while exploring.</p>
+      <p id="map-interaction-hint"><span class="map-hint-desktop">Scroll the page normally. Choose Explore map to drag or pinch, or hold Ctrl/⌘ while scrolling to zoom. Arrow keys pan while exploring.</span><span class="map-hint-mobile">Swipe to scroll the page. Explore map opens a larger view to drag and zoom.</span></p>
       <label for="map-location">Find a visited place</label>
       <select id="map-location" aria-controls="map-panel-detail">
         <option value="">Choose a place…</option>
@@ -455,6 +456,7 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
       </div>
       <div class="map-zoom-note" aria-hidden="true">Tap a place to reveal what happened there</div>
     </div>
+    <MapExplorer title="Campaign Map" />
 
     {
       entries.some((e) => e.hasLocalMap) && (
@@ -651,9 +653,9 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
   let lastScale = 1;
   function applyCounterScale(scale: number) {
     lastScale = scale;
-    const rect = svg.getBoundingClientRect();
-    const vbW = 1344 / scale; // current viewBox width, in map units
-    const pxPerUnit = rect.width / vbW || 1; // how big a map unit paints right now
+    // The bounded preview and expanded viewer can letterbox the drawing.
+    // Its CTM measures the painted scale, not the surrounding SVG viewport.
+    const pxPerUnit = svg.getScreenCTM()?.a || 1;
     const k = Math.min(2.8, Math.max(0.14, TARGET_PX_PER_UNIT / pxPerUnit)).toFixed(3);
     for (const el of cscaleEls) {
       el.setAttribute('transform', `${el.dataset.base} scale(${k})`);
@@ -670,6 +672,7 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
     zoomOutBtn: document.getElementById('map-zoom-out'),
     resetBtn: document.getElementById('map-zoom-reset'),
     exploreBtn: document.getElementById('map-explore'),
+    explorer: document.getElementById('map-explorer') as HTMLDialogElement,
     // Session pins only fade in once the reader is actually looking closely —
     // at the resting zoom they'd bury the markers.
     onZoom: (scale) => {
@@ -686,6 +689,7 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
     cancelAnimationFrame(resizeRaf);
     resizeRaf = requestAnimationFrame(() => applyCounterScale(lastScale));
   });
+  new ResizeObserver(() => applyCounterScale(lastScale)).observe(frame);
 
   // ---- Detail panel -----------------------------------------------------------
   function clearSelection() {
@@ -723,6 +727,8 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
     if (!knownSlugs.has(slug)) return;
     const tpl = panel.querySelector<HTMLTemplateElement>(`template[data-loc="${slug}"]`);
     if (!tpl) return;
+    // Page details cannot take focus while the native explorer is modal.
+    if (frame.closest('dialog[open]')) viewer.finishExploring(false);
     ensureLocationVisible(slug);
     panelDetail.innerHTML = '';
     panelDetail.appendChild(tpl.content.cloneNode(true));

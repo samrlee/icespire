@@ -1,0 +1,26 @@
+---
+interface Props {
+  title: string;
+  keyItems?: { n: number; item: { label: string; note?: string } }[];
+}
+const { title, keyItems = [] } = Astro.props;
+---
+
+<dialog class="map-explorer" id="map-explorer" aria-labelledby="map-explorer-title" aria-describedby="map-explorer-hint">
+  <header class="map-explorer-header">
+    <h2 id="map-explorer-title">{title}</h2>
+    <button type="button" class="btn-ghost" data-map-explorer-close>Done</button>
+  </header>
+  <div class="map-explorer-canvas" data-map-explorer-canvas></div>
+  {keyItems.length > 0 && (
+    <details class="map-explorer-key">
+      <summary>Map key</summary>
+      <ol>
+        {keyItems.map(({ item, n }) => (
+          <li value={n}><strong>{item.label}</strong>{item.note && ` — ${item.note}`}</li>
+        ))}
+      </ol>
+    </details>
+  )}
+  <p id="map-explorer-hint">Drag to move. Pinch or use + and − to zoom. Done returns to the page.</p>
+</dialog>
