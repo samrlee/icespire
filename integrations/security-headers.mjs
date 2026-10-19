@@ -71,15 +71,15 @@ function headersFile(scriptSrc) {
     // Hash-pinned: see the note at the top of this file. No 'unsafe-inline'.
     `script-src ${scriptSrc}`,
     // 'unsafe-inline' here is for the ~70 `style="…"` attributes the layouts
-    // and map SVGs carry; hashes can't cover style *attributes*. It also
-    // covers the Google Fonts stylesheet the site CSS pulls in with @import.
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    // and map SVGs carry; hashes can't cover style *attributes*.
+    "style-src 'self' 'unsafe-inline'",
     // Stylesheet *elements* are stricter than the attributes above: the build
     // emits one linked stylesheet and never an inline <style> (enforced by
     // `build.inlineStylesheets: 'never'`), so no 'unsafe-inline' is needed
     // and an injected <style> block is refused.
-    "style-src-elem 'self' https://fonts.googleapis.com",
-    "font-src 'self' https://fonts.gstatic.com",
+    "style-src-elem 'self'",
+    // All typefaces ship with the site; no external font hosts are needed.
+    "font-src 'self'",
     "img-src 'self' data:",
     "connect-src 'self'",
     "object-src 'none'",

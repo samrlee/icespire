@@ -24,16 +24,31 @@ const showToc = toc.length >= 3;
 
 <Base title={frontmatter.title} description={frontmatter.description} printable>
   {frontmatter.kicker && <div class="kicker">{frontmatter.kicker}</div>}
-  {frontmatter.showCurrentState && <><h1 class="page-title" id="campaign-summary">{frontmatter.title}</h1><CurrentState /></>}
+  {frontmatter.showCurrentState && <h1 class="page-title" id="campaign-summary">{frontmatter.title}</h1>}
+  {showToc && (
+    <details class="doc-toc doc-toc-mobile">
+      <summary>On this page</summary>
+      <nav aria-label="On this page">
+        <ul>
+          {toc.map((h) => (
+            <li class={h.depth === 3 ? 'sub' : undefined}>
+              <a href={`#${h.slug}`}>{h.text}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </details>
+  )}
+  {frontmatter.showCurrentState && <CurrentState />}
   <div class={`doc-layout${showToc ? '' : ' no-aside'}`}>
     <div class="prose">
       <slot />
     </div>
     {
       showToc && (
-        <aside class="doc-toc" aria-label="On this page">
+        <aside class="doc-toc doc-toc-desktop">
           <div class="doc-toc-title">On this page</div>
-          <nav>
+          <nav aria-label="On this page">
             <ul>
               {toc.map((h) => (
                 <li class={h.depth === 3 ? 'sub' : undefined}>
@@ -57,16 +72,22 @@ const showToc = toc.length >= 3;
           for (const link of links) {
             const id = decodeURIComponent((link.getAttribute('href') || '').slice(1));
             const heading = id && document.getElementById(id);
-            if (heading) byId.set(heading, link);
+            if (heading) byId.set(heading, [...(byId.get(heading) || []), link]);
           }
           if (!byId.size) return;
 
           let current = null;
-          const setActive = (link) => {
-            if (link === current) return;
-            if (current) current.classList.remove('active');
-            if (link) link.classList.add('active');
-            current = link;
+          const setActive = (sectionLinks) => {
+            if (sectionLinks === current) return;
+            for (const link of current || []) {
+              link.classList.remove('active');
+              link.removeAttribute('aria-current');
+            }
+            for (const link of sectionLinks || []) {
+              link.classList.add('active');
+              link.setAttribute('aria-current', 'location');
+            }
+            current = sectionLinks;
           };
 
           // The section the reader is in is the lowest heading still above the

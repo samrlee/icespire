@@ -95,7 +95,7 @@ export const submaps: Record<string, SubmapEntry> = {
     Component: Gnomengarde,
     width: 1960,
     height: 1248,
-    scaleNote: '1 square = 5 feet · Drag to pan; scroll or pinch to zoom',
+    scaleNote: '1 square = 5 feet',
     legend: [
       { label: 'The grotto pool', note: 'mushroom farm on the isles' },
       { label: 'Rope bridge & waterfall', note: 'goop-covered; crossed anyway' },
@@ -110,7 +110,7 @@ export const submaps: Record<string, SubmapEntry> = {
     Component: DwarvenExcavation,
     width: 1960,
     height: 1248,
-    scaleNote: '1 square = 5 feet · Drag to pan; scroll or pinch to zoom',
+    scaleNote: '1 square = 5 feet',
     legend: [
       { label: "The dwarves' camp", note: 'Norbus & Dazlyn — stripped bare and abandoned in Session 6' },
       { label: 'Buried settlement', note: "ruins under Abbathor's avalanche" },

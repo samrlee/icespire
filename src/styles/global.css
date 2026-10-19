@@ -3,7 +3,7 @@
  * Tokens are verbatim from the Claude Design project; the component classes
  * below translate its React components (inline styles) into CSS.
  */
-@import './tokens/fonts.css';
+@import './fonts.css';
 @import './tokens/colors.css';
 @import './tokens/typography.css';
 @import './tokens/spacing.css';
@@ -82,6 +82,37 @@ body {
   color: var(--accent-gold);
 }
 
+.header-panel {
+  display: flex;
+  align-items: center;
+}
+
+.site-menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 5px 10px;
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  cursor: pointer;
+}
+
+.site-menu-toggle:hover {
+  color: var(--text-primary);
+}
+
+.site-menu-toggle[hidden],
+.site-header .search-trigger[hidden],
+.nav-trigger[hidden] {
+  display: none;
+}
+
 .site-nav {
   display: flex;
   flex-wrap: wrap;
@@ -90,6 +121,9 @@ body {
 }
 
 .site-nav > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-family: var(--font-display);
   font-size: var(--text-xs);
   line-height: 1;
@@ -217,6 +251,100 @@ body {
   border-bottom-color: transparent;
 }
 
+/* Script-free navigation stays fully usable; enhancement adds disclosures. */
+.site-nav:not([data-nav-ready]) .nav-group,
+.site-nav:not([data-nav-ready]) .nav-menu {
+  display: contents;
+}
+
+@media (max-width: 900px) {
+  .site-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .site-header .site-title {
+    min-width: 0;
+    font-size: 14px;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+  }
+
+  .site-header .site-title .gold {
+    display: block;
+  }
+
+  .site-header .header-tools {
+    grid-column: 2;
+    grid-row: 1;
+    flex-wrap: nowrap;
+    gap: var(--space-2);
+  }
+
+  .site-header .search-trigger-detail,
+  .site-header .search-trigger-key {
+    display: none;
+  }
+
+  .site-header[data-mobile-nav-ready] .site-menu-toggle {
+    display: inline-flex;
+  }
+
+  .site-header .header-panel {
+    grid-column: 1 / -1;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+    padding-block: var(--space-2);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .site-header[data-mobile-nav-ready]:not(.menu-open) .header-panel {
+    display: none;
+  }
+
+  .site-header .site-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .site-header .nav-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .site-header .nav-trigger {
+    justify-content: space-between;
+    min-height: 44px;
+    text-align: left;
+  }
+
+  .site-header .nav-menu {
+    position: static;
+    min-width: 0;
+    padding: 0 0 0 var(--space-3);
+    border: 0;
+    border-left: 1px solid var(--border-subtle);
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .site-header .nav-menu a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .site-header .header-panel .theme-toggle {
+    align-self: flex-start;
+  }
+}
+
 .page {
   max-width: var(--container-page);
   margin: 0 auto;
@@ -265,6 +393,12 @@ body {
 .search-filters button, .search-more { min-height: 44px; min-width: 44px; }
 .search-filters button[aria-pressed='true'] { color: var(--accent-gold); border-color: var(--accent-gold); }
 .search-more { margin: var(--space-3) var(--space-4); }
+
+/* Keep every type available without spending several rows above phone results. */
+@media (max-width: 640px), (max-height: 480px) {
+  .search-filters { flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain; }
+  .search-filters button { flex-shrink: 0; white-space: nowrap; }
+}
 
 .header-tools {
   display: flex;
@@ -316,9 +450,11 @@ body {
 }
 
 .search-dialog {
+  --search-top: min(6dvh, 48px);
+  --search-max-height: min(760px, calc(100dvh - var(--search-top) - var(--space-4)));
   width: min(640px, calc(100vw - 2 * var(--space-4)));
-  max-height: min(70vh, 640px);
-  margin: 12vh auto auto;
+  max-height: var(--search-max-height);
+  margin: var(--search-top) auto auto;
   padding: 0;
   background: var(--bg-surface-raised);
   border: 1px solid var(--border-strong);
@@ -339,20 +475,42 @@ body {
 .search-panel {
   display: flex;
   flex-direction: column;
-  max-height: inherit;
+  max-height: calc(var(--search-max-height) - 2px);
+}
+
+.search-header {
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.search-header .search-status {
+  padding-top: 0;
+}
+
+/* One scroll area keeps results, answers, sources and saved controls reachable.
+ * The query, close control and live result count remain outside it. */
+.search-body {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .search-field {
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  padding: var(--space-4);
-  border-bottom: 1px solid var(--border-subtle);
+  padding: var(--space-3) var(--space-4);
+}
+
+.search-field .search-close {
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .search-input {
   flex: 1;
   min-width: 0;
+  min-height: 44px;
   background: transparent;
   border: 0;
   color: var(--text-primary);
@@ -367,6 +525,12 @@ body {
 
 .search-input:focus {
   outline: none;
+}
+
+.search-input:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
 }
 
 /* The browser's own clear button sits badly against a transparent field. */
@@ -397,8 +561,7 @@ body {
 }
 
 .search-results {
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  overflow-wrap: anywhere;
 }
 
 .search-results:not(:empty) {
@@ -407,6 +570,7 @@ body {
 
 .search-hit {
   display: block;
+  scroll-margin-block: var(--space-2);
   padding: var(--space-3);
   border-radius: var(--radius-md);
   border-left: 2px solid transparent;
@@ -571,6 +735,7 @@ body {
 .search-ask {
   border-top: 1px solid var(--border-subtle);
   padding: var(--space-3) var(--space-4);
+  overflow-wrap: anywhere;
 }
 
 .ask-trigger {
@@ -896,6 +1061,8 @@ body {
 .current-state-source,
 .current-state-members { color: var(--text-muted); font-size: var(--text-sm); }
 .current-state-freshness { border-left: 2px solid var(--accent-gold); padding-left: var(--space-3); }
+.current-state-details { margin: 0 0 var(--space-3); padding-left: var(--space-4); }
+.current-state-details li { padding-left: var(--space-1); margin-bottom: var(--space-2); line-height: var(--leading-normal); }
 .current-state-map { display: inline-block; margin-bottom: var(--space-3); }
 
 .home-hero {
@@ -1407,7 +1574,7 @@ body {
 }
 
 .tl-event.battle .tl-event-kind {
-  color: var(--accent-ember);
+  color: var(--status-hostile);
   border-color: var(--accent-ember);
 }
 
@@ -1863,12 +2030,16 @@ body {
 }
 
 .char-name {
+  margin: 0;
+  font-weight: var(--weight-regular);
   font-family: var(--font-display);
   font-size: var(--text-lg);
   color: var(--text-primary);
 }
 
 .character-card.page .char-name {
+  margin: 0;
+  font-weight: var(--weight-regular);
   font-size: var(--text-2xl);
 }
 
@@ -2109,7 +2280,8 @@ body {
   padding: var(--space-5);
 }
 
-.faction-panel h3 {
+.faction-panel h2 {
+  overflow-wrap: anywhere;
   font-family: var(--font-display);
   font-size: var(--text-2xl);
   color: var(--text-primary);
@@ -2118,17 +2290,17 @@ body {
   line-height: var(--leading-tight);
 }
 
-.faction-panel.sidebar h3 {
+.faction-panel.sidebar h2 {
   font-size: var(--text-lg);
 }
 
-.faction-panel h3 a {
+.faction-panel h2 a {
   color: var(--text-primary);
   text-decoration: none;
   transition: color var(--duration-fast) var(--ease-standard);
 }
 
-.faction-panel h3 a:hover {
+.faction-panel h2 a:hover {
   color: var(--link-hover);
 }
 
@@ -2150,18 +2322,25 @@ body {
 /* Codex page layout */
 .codex-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   gap: var(--space-6);
   align-items: start;
 }
 
 @media (max-width: 800px) {
   .codex-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
+@media (max-width: 520px) {
+  .faction-panel,
+  .faction-panel.sidebar { padding: var(--space-4); }
+  .faction-panel h2 { font-size: var(--text-xl); }
+}
+
 .codex-col {
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
@@ -2381,14 +2560,11 @@ body {
   border-color: var(--accent-gold);
 }
 
-.scrub-play .scrub-play-icon::before {
-  content: '▶';
-}
-
-.scrub-play.playing .scrub-play-icon::before {
-  content: '❚❚';
-  font-size: 0.85em;
-  letter-spacing: -1px;
+.scrub-play-icon {
+  display: block;
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
 }
 
 .scrub-body {
@@ -3212,6 +3388,21 @@ body {
   line-height: var(--leading-normal);
 }
 
+.map-wip-details {
+  flex: 1 1 20ch;
+  font-size: var(--text-sm);
+}
+
+.map-wip-details summary {
+  width: fit-content;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+.map-wip-details .wip-text {
+  margin: var(--space-2) 0 0;
+}
+
 /* On a phone the label and the caveat each want the full width. */
 @media (max-width: 560px) {
   .map-wip {
@@ -3377,7 +3568,7 @@ body {
 }
 
 .mj-event.battle .mj-event-kind {
-  color: var(--accent-ember);
+  color: var(--status-hostile);
   border-color: var(--accent-ember);
 }
 
@@ -4128,11 +4319,47 @@ body {
   overflow-y: auto;
 }
 
-/* The rail is in-page navigation for a long read; on narrow screens the
-   prose already flows top-to-bottom, so it would just be clutter. */
+.doc-toc-mobile {
+  display: none;
+}
+
+/* Keep section navigation within reach on phones without crowding the read. */
 @media (max-width: 900px) {
-  .doc-toc {
+  .doc-toc-desktop {
     display: none;
+  }
+
+  .doc-toc-mobile {
+    display: block;
+    position: static;
+    max-height: none;
+    margin-block: var(--space-4);
+    padding: 0;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+  }
+
+  .doc-toc-mobile > summary {
+    min-height: 44px;
+    padding: var(--space-2) var(--space-3);
+    color: var(--text-primary);
+    cursor: pointer;
+  }
+
+  .doc-toc-mobile nav {
+    padding: 0 var(--space-3) var(--space-2);
+  }
+
+  .doc-toc-mobile a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding-block: var(--space-2);
+  }
+
+  .doc-toc-mobile ul {
+    gap: 0;
   }
 }
 
@@ -4412,8 +4639,14 @@ body {
 
 .recap-scenes { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; margin-block: 1rem; }
 .recap-scenes a { display: inline-flex; align-items: center; min-height: 44px; padding-block: 0.5rem; }
+.recap-scenes-mobile { display: none; }
+@media (max-width: 900px) {
+  .recap-scenes-desktop { display: none; }
+  .recap-scenes-mobile { display: block; margin-block: 1rem; border: 1px solid var(--border-default); border-radius: var(--radius-sm); background: var(--bg-surface); }
+  .recap-scenes-mobile > summary { min-height: 44px; padding: var(--space-2) var(--space-3); color: var(--text-primary); cursor: pointer; }
+  .recap-scenes-mobile .recap-scenes { flex-direction: column; align-items: stretch; gap: 0; margin: 0; padding: 0 var(--space-3) var(--space-2); }
+}
 .recap-scene-anchor { display: block; scroll-margin-top: 2rem; }
-@media print { nav.recap-scenes { display: none; } }
 /* Readable document order around the interactive canvases. */
 .map-layout { grid-template-areas: 'main panel' 'journey panel'; }
 .map-main { grid-area: main; }

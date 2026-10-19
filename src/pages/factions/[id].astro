@@ -15,7 +15,7 @@ const metaLine = [faction.data.type, faction.data.alignment, faction.data.status
   .join(' · ');
 ---
 
-<Base title={faction.data.name}>
+<Base title={faction.data.name} description={faction.data.summary}>
   <a class="backlink" href={url('/codex/')}>← Codex</a>
   <div class="kicker">Faction</div>
   <h1 class="page-title" style="margin-bottom: var(--space-3);">{faction.data.name}</h1>

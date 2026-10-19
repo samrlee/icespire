@@ -13,6 +13,7 @@ interface Props {
 
 const { name, player, classRace, portrait, bio, traits = [], href, variant = 'roster' } =
   Astro.props;
+const NameHeading = variant === 'page' ? 'h1' : 'h2';
 
 // The portrait path lands inside a style attribute, where Astro's HTML escaping
 // doesn't help: a ")" in the value would close url() early and let the rest of
@@ -31,9 +32,9 @@ const portraitCss = portrait && variant === 'page'
     ) : !portrait && 'Portrait'}
   </div>
   <div class="char-body">
-    <div class="char-name">
+    <NameHeading class="char-name">
       {href ? <a href={href}>{name}</a> : name}
-    </div>
+    </NameHeading>
     <div class="char-class">{classRace}</div>
     <div class="char-player">Played by {player}</div>
     {bio && <p class="char-bio">{bio}</p>}

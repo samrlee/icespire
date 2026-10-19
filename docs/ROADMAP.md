@@ -48,6 +48,16 @@ issue stays open through final review; its older recommendations are historical.
 
 ## Done
 
+- **Follow-up website review fixes** — make Search/Ask answers, source links and
+  save controls scrollable on phones and short screens; recognize plain current
+  whereabouts without substituting current state for historical questions.
+  Compact phone navigation and recap contents, restore a phone campaign contents
+  menu, prevent narrow Codex overflow, and repair heading/landmark semantics and
+  battle-label contrast. Keep selected map markers visible after pan/zoom, use
+  one replay icon, and simplify local-map introductions. Split the shared current
+  state into a brief situation and sourced detail bullets, add entity-specific
+  descriptions, and self-host licensed fonts with a matching CSP. _(Oct 2026)_
+
 - **October website review fixes** — correct Ask retrieval for session numbers,
   current whereabouts and scene evidence; repair same-page search navigation,
   stalled-index recovery, map/graph focus and gesture handling; remove hidden
@@ -303,8 +313,6 @@ fixes do not add the features below.
 - **Optional expanded canvas view.** Consider fullscreen maps/relationships and
   a person selector if the list-first phone view and Explore controls still
   leave a practical need. Preserve a readable keyboard alternative.
-- **Self-hosted fonts.** Bundle licensed font files and update the stylesheet
-  and generated CSP together, removing the Google Fonts network dependency.
 - **Catch up through a chosen session.** Restrict an initial version to
   published recap summaries and passages through that session. Current profiles
   cannot become historical views without explicitly authored historical state.
