@@ -30,11 +30,12 @@ was consolidated in [PR #96](https://github.com/samrlee/icespire/pull/96). See
 These are optional editorial work, account/device verification or campaign work,
 not a reason to keep adding small implementation PRs to this completion batch.
 
-- Optional quick catch-up prose remains deferred. Descriptive scene labels are
-  included in the October review fixes, with existing IDs preserved.
-- Review existing profiles before authoring their review checkpoints. Claim-level
-  provenance and character-specific knowledge briefings need a separately reviewed
-  pilot; mention matching is not proof of knowledge.
+- Optional newly authored catch-up prose remains deferred; the player tool uses
+  existing published summaries through a chosen session. Descriptive scene labels
+  are included in the October review fixes, with existing IDs preserved.
+- Review existing profiles before authoring their review checkpoints. The temple
+  and Exchange provenance pilot is implemented; review further claims before
+  extending it. Mention matching is not proof of character knowledge.
 - Physical iPhone and assistive-technology checks require those devices. Browser
   emulation covers automated interaction regressions only.
 - Review Cloudflare account-level rate/budget controls with account access. Current
@@ -47,6 +48,27 @@ The rejected quest board, treasury index and RSS feed remain rejected. The umbre
 issue stays open through final review; its older recommendations are historical.
 
 ## Done
+
+- **Player tools and source evidence** — complete the remaining October review
+  recommendations: player-facing rules/roster reference, explicit scene bookmarks
+  and private notes, expandable Ask passages, accent-tolerant lookup, source-linked
+  pre-session briefing, temple/Exchange provenance and character-knowledge pilot,
+  mobile relationship explorer/person selector, and static catch-up routes through
+  a chosen session. Validate cited scenes and observer IDs, keep current profiles
+  out of historical catch-up, preserve unpublished-source gates, and retain notes
+  when a source changes or disappears.
+  Repair cross-tab editor focus, touch-jitter tap detection, breakpoint focus and
+  pre-existing browser zoom; carry the mobile-map patch into main's history.
+  Retain the font and accessibility fixes already merged in PR #104.
+  _(Oct 2026)_
+
+- **Mobile map scrolling** — keep page previews scrollable and bounded in
+  landscape; open region and local maps in a dedicated phone viewer with
+  reachable Done and zoom controls. Restore page position/focus on dismissal,
+  open selected-place details after leaving the viewer, and correct pointer
+  coordinates, pinch anchoring and continuous touch capture. Local viewers
+  retain the published key; letterboxed and enlarged-text layouts keep the
+  drawing proportional and the controls reachable. _(Oct 2026)_
 
 - **Follow-up website review fixes** — make Search/Ask answers, source links and
   save controls scrollable on phones and short screens; recognize plain current
@@ -284,38 +306,6 @@ issue stays open through final review; its older recommendations are historical.
 ## Ideas
 
 Ordered high → low by rough impact-per-effort.
-
-### Deferred features — implement after the review fixes
-
-These recommendations are recorded for a later implementation pass. The October
-fixes do not add the features below.
-
-- **Player-facing table reference.** Present the 2014 rules, level cap, house
-  rules, DM and player-to-character lookup from `TABLE-FACTS.md`, with links to
-  the establishing recaps. Keep transcription instructions out of the page.
-- **Optional passage bookmarks and personal notes.** Let a reader explicitly
-  save stable recap scene links with notes such as “Ask about Norbus next
-  session.” Provide review/forget controls and handle changed or removed sources;
-  no account or shared editing is needed.
-- **Expandable Ask evidence excerpts.** Display the supplied passage beneath
-  each source link so readers can check answers without hunting through a recap.
-  Distinguish sources consulted from verification of every answer claim.
-- **Accent-tolerant name lookup.** Match names such as Facktoré when readers
-  omit the accent, while retaining correct snippet and highlight positions in
-  the original text.
-- **A short pre-session briefing.** Curate a source-linked catch-up from the
-  current position and relevant open threads. Preserve reports, unpaid rewards
-  and who knows what; do not infer character knowledge from mentions.
-- **Claim-provenance and character-knowledge pilot.** Start with the temple and
-  Exchange: mark consequential claims observed, reported or inferred, with
-  stable scene citations and explicitly established witnesses. Review the pilot
-  before applying it across profiles or generating character briefings.
-- **Optional expanded canvas view.** Consider fullscreen maps/relationships and
-  a person selector if the list-first phone view and Explore controls still
-  leave a practical need. Preserve a readable keyboard alternative.
-- **Catch up through a chosen session.** Restrict an initial version to
-  published recap summaries and passages through that session. Current profiles
-  cannot become historical views without explicitly authored historical state.
 
 ### Campaign maps
 

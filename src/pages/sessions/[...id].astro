@@ -10,6 +10,7 @@ import { submaps } from '../../components/map/submaps/registry';
 import { readingMinutes } from '../../lib/reading-time';
 import ReadingPosition from '../../components/ReadingPosition.astro';
 import { recapScenes } from '../../lib/recap-scenes';
+import SceneBookmarks from '../../components/SceneBookmarks.astro';
 
 export async function getStaticPaths() {
   const published = (await getCollection('sessions', isSessionPublished)).sort(
@@ -140,6 +141,7 @@ const hasAside = hasEncounters || hasJourney;
       )
     }
   </div>
+  {scenes.length > 0 && <SceneBookmarks sessionId={session.id} />}
   <nav class="session-pager" aria-label="Session navigation">
     {
       prev ? (

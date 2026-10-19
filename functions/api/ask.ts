@@ -175,7 +175,7 @@ export const onRequestPost = async (context: FunctionContext): Promise<Response>
     return json({ answer: NOT_RECORDED, sources: [], consulted: 0, corpusVersion: cachedVersion });
   }
 
-  const { text, used, tokens } = buildAskContext(hits, terms, CONTEXT_BUDGET);
+  const { text, used, passages, tokens } = buildAskContext(hits, terms, CONTEXT_BUDGET);
   if (used.length === 0) {
     return json({ answer: NOT_RECORDED, sources: [], consulted: 0, corpusVersion: cachedVersion });
   }
@@ -194,7 +194,7 @@ export const onRequestPost = async (context: FunctionContext): Promise<Response>
     // Out of Neurons for the day, or the model is briefly unavailable. The
     // reader still has search, so point them at it rather than at an error.
     return json(
-      { error: 'The chronicler is resting. Search still works — try the results above.' },
+      { error: 'The chronicler is resting. Search still works — try the search results.' },
       503
     );
   }
@@ -208,7 +208,7 @@ export const onRequestPost = async (context: FunctionContext): Promise<Response>
     corpusVersion: cachedVersion,
     // Only the entries the model actually read, so a citation can't point at
     // something it never saw.
-    sources: used.map((d) => ({ title: d.title, kind: d.kind, href: d.href })),
+    sources: passages.map(({ doc, excerpt }) => ({ title: doc.title, kind: doc.kind, href: doc.href, excerpt })),
     consulted: used.length,
     contextTokens: tokens,
   });

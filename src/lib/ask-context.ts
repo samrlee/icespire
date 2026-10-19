@@ -48,6 +48,7 @@ export function buildAskContext(
   hits: { doc: Indexed; overview?: boolean }[], terms: string[], budget: number,
 ) {
   const used: Indexed[] = [];
+  const passages: { doc: Indexed; excerpt: string }[] = [];
   const blocks: string[] = [];
   for (const { doc, overview } of hits) {
     const heading = `## ${doc.title} (${doc.kind})\n${doc.sub ? doc.sub + '\n' : ''}`;
@@ -64,7 +65,10 @@ export function buildAskContext(
     if (estimateTokens(blocks.join('') + block) > budget) continue;
     blocks.push(block);
     used.push(doc);
+    // Retain the exact admitted prose, including omission markers. The API must
+    // not recreate an excerpt from the full entry after the budget was applied.
+    passages.push({ doc, excerpt: prose });
   }
   const text = blocks.join('');
-  return { text, used, tokens: estimateTokens(text) };
+  return { text, used, passages, tokens: estimateTokens(text) };
 }

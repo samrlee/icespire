@@ -93,6 +93,22 @@ test('theme control names its destination and remembers the selection', async ({
   await expect(light).toBeVisible();
 });
 
+test('player tools remain reachable through the primary navigation', async ({ page }) => {
+  await openMobileMenu(page);
+  const nav = page.getByRole('navigation', { name: 'Primary' });
+  const tools = nav.getByRole('button', { name: 'Tools', exact: true });
+  await tools.click();
+  await expect(tools).toHaveAttribute('aria-expanded', 'true');
+  for (const name of ['Next session', 'Catch up', 'Table reference', 'Bookmarks and notes', 'Evidence']) {
+    await expect(nav.getByRole('link', { name, exact: true })).toBeVisible();
+  }
+  await nav.getByRole('link', { name: 'Table reference', exact: true }).click();
+  await expect(page).toHaveURL('/table/');
+  await openMobileMenu(page);
+  await tools.click();
+  await expect(nav.getByRole('link', { name: 'Table reference', exact: true })).toHaveAttribute('aria-current', 'page');
+});
+
 test('theme switching survives blocked preference storage', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -195,7 +211,7 @@ test('without JavaScript every navigation link remains available on a phone', as
     await page.route('https://**', route => route.abort());
     await page.goto('/');
     const nav = page.getByRole('navigation', { name: 'Primary' });
-    for (const name of ['Home', 'Recaps', 'Timeline', 'Story so far', 'Map', 'Party', 'NPCs', 'Relationships', 'Codex']) {
+    for (const name of ['Home', 'Recaps', 'Timeline', 'Story so far', 'Map', 'Party', 'NPCs', 'Relationships', 'Codex', 'Next session', 'Catch up', 'Table reference', 'Bookmarks and notes', 'Evidence']) {
       await expect(nav.getByRole('link', { name, exact: true })).toBeVisible();
     }
     await expect(page.locator('.site-menu-toggle')).toBeHidden();

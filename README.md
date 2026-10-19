@@ -107,9 +107,20 @@ event pins are generated from the content collections by
 map in `offical-assets/Maps/` (reference only — the scans are never shipped
 to the built site). The full reference sheet uses a 1344×1872 coordinate space
 and five-mile hexes. Only visited places are labelled; all other terrain is unnamed.
-The map pans and zooms after choosing **Explore map** (drag/pinch, or arrow
-keys while the canvas is focused). Ordinary scrolling moves the page; Ctrl/⌘
-with the wheel zooms without entering Explore mode. Zoom buttons remain available.
+Ordinary scrolling over the map moves the page. On phones and narrow windows,
+**Explore map** opens a viewport-sized native dialog: drag/pinch or use the
+zoom buttons, then **Done** returns to the same page position. The dialog keeps
+its exit and zoom controls visible, locks background scrolling, and restores
+keyboard focus. Selecting a region marker closes it and opens that place's
+page details. The page preview is bounded in height, including landscape phones;
+SVG coordinates and marker sizing account for letterboxing without stretching
+the drawing. On wider windows, Explore enables inline drag/pinch or arrow-key
+panning. Ctrl/⌘ with the wheel zooms without Explore, and zoom buttons remain
+available in both views. Local maps use the same viewer, with an expandable
+key containing the same published landmarks as the page. The key scrolls
+independently, and compact/enlarged-text layouts preserve the canvas and controls.
+The viewer also follows the visual viewport after browser pinch zoom; at very
+large zoom, its keyboard-focusable zoom toolbar scrolls horizontally.
 Markers and the visited-place picker's **View place** button open
 a detail panel with links to recaps and codex entries, and
 `/map/#location-slug` deep-links to a location. Terrain colors live in the
@@ -397,6 +408,50 @@ The design is implemented from the **Icespire Peak Campaign Design System**
   assets in `src/assets/fonts/`. Fontsource package versions and exact SIL Open
   Font License notices are documented there; public notices live under
   `/licenses/fonts/`. The original font tokens remain unchanged.
+
+## Player tools
+
+The **Tools** menu links the player reference, next-session briefing, session
+catch-up, bookmarks and evidence pilot. These pages have readable no-JavaScript
+fallbacks; personal browser storage and interactive filtering require JavaScript.
+
+- `/table/` reads standing rules from `docs/TABLE-FACTS.md` and player mappings
+  from the roster. Sourced reminders use published recap scenes; recording and
+  transcription instructions are excluded.
+- `/briefing/` reuses the shared continuation point and curated source-linked
+  reminders in `src/data/player-reference.ts`. `/evidence/` uses the same data
+  for the temple/Exchange pilot. `src/lib/provenance.ts` validates published
+  scenes, explicit witnesses, tellings and review chronology. Character filters
+  select recorded witnessing/telling; they do not establish complete knowledge.
+  Advance `referenceReview` and review the curated claims as play progresses;
+  newer recaps produce a stale-reference notice rather than inferred updates.
+- `/catch-up/` starts at the earliest published recap. Each
+  `/catch-up/<session-id>/` route includes only summaries and passages through
+  that cutoff. Current entity previews are disabled on these pages; the rest
+  of the site and global search remain current. Drafts have no cutoff route.
+- Recaps offer per-scene bookmarks and an editor; `/bookmarks/` lists them.
+  Nothing is saved before an explicit save action. Notes stay in localStorage
+  under `icespire-bookmarks-v1`, with limits of 50 bookmarks, 2,000 characters
+  per note and 256 KiB per record collection. No account, sync or upload exists.
+  The gated `/bookmark-catalog.json` supplies current titles, safe links and
+  source fingerprints; changed/removed sources retain notes for review.
+  Blocked, malformed, full and offline storage/catalog states have explicit
+  recovery controls. Clear-all requires a deliberate confirmation.
+- Ask sources can include optional `excerpt` text: exactly the passage admitted
+  by `buildAskContext`, including omission markers. The client renders it as
+  text in an expandable disclosure, validates it against the current corpus,
+  and retains it only through explicit answer saving. Older link-only responses
+  remain compatible; consultation is not verification of each answer claim.
+- Search folds accents, combining marks and case while mapping match offsets
+  back to the original text. Names such as Facktoré match `facktore` without
+  corrupting snippets or highlights. Ask uses the same folding and budgets.
+- Relationships have a person/faction selector that works without opening the
+  phone drawing, plus a dedicated mobile explorer. Individual party members
+  highlight the collective Party node; individual NPC ties are not inferred.
+
+Publication fixtures copy the authoritative `docs/` build inputs into their
+disposable workspace. Font, storage, provenance and ranking checks are included
+in the required integrity/Ask suites.
 
 ## Social preview cards
 

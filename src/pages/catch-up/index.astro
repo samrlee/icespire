@@ -1,0 +1,7 @@
+---
+import { getCollection } from 'astro:content';
+import CatchUp from '../../components/CatchUp.astro';
+import { isSessionPublished } from '../../lib/session-publication';
+const sessions = await getCollection('sessions', isSessionPublished);
+---
+<CatchUp sessions={sessions} />

@@ -217,12 +217,19 @@ time, and skip an item deliberately rather than by forgetting it.
       casts to the player's current character. Neither field proves knowledge.
 - [ ] **`src/content/current-state/current.yaml`** — update the continuation
       point and `sourceSession` to the published recap. Each group has a label,
-      character slugs, a plain-text summary, and an optional location slug.
+      character slugs, a brief plain-text summary, optional detail bullets, and
+      an optional location slug.
       Use separate groups when the party splits. Preserve knowledge boundaries
       and unpaid promises; do not infer resources from an earlier rest.
       Homepage, campaign and search share this record. A newer published recap
       displays a freshness notice until the snapshot is updated; draft sources
       and invalid references fail the build.
+- [ ] **`src/data/player-reference.ts` and `src/lib/table-reference.ts`** — review
+      curated briefing and table reminders and temple/Exchange evidence when
+      publishing or correcting a recap. Preserve original witnesses, later tellings,
+      unpaid agreements and source limits; update citations when the passage changes.
+      Advance `referenceReview` only after checking the curated reference through
+      that session. Otherwise retain its older checkpoint and freshness warning.
 - [ ] **`src/content/journey/session-N.yaml`** — the ordered `route` of location
       slugs and the `events` pinned to them. Include intermediate stops on a
       return trip so the trail overlaps instead of cutting a new line. Unknown

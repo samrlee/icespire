@@ -37,6 +37,11 @@ for (const javaScriptEnabled of [true, false]) {
 
     test('recap scene navigation collapses on phones and preserves published anchors', async ({ page, isMobile }) => {
       await page.goto('/sessions/session-9/');
+      // Keep the full bookmark panel out of the recap introduction. Individual
+      // scene actions remain available alongside the authored headings.
+      expect(await page.locator('.session-layout').evaluate(element => !!(
+        element.compareDocumentPosition(document.querySelector('.scene-bookmarks')!) & Node.DOCUMENT_POSITION_FOLLOWING
+      ))).toBe(true);
       const disclosure = page.locator('.recap-scenes-mobile');
       const navigation = page.getByRole('navigation', { name: 'Jump within this recap', exact: true });
       if (isMobile) {

@@ -118,6 +118,10 @@ for (const activation of ['picker', 'journey', 'fragment'] as const) {
       await svg.press('ArrowUp');
       await svg.press('ArrowLeft');
     }
+    // Phone exploration is modal. Return to the page before using its picker
+    // or journey, retaining the zoomed camera position being exercised.
+    const explorer = page.locator('#map-explorer');
+    if (await explorer.isVisible()) await explorer.getByRole('button', { name: 'Done', exact: true }).click();
     const before = await svg.evaluate(element => {
       const { x, y, width, height } = (element as SVGSVGElement).viewBox.baseVal;
       return { x, y, width, height };
@@ -373,7 +377,9 @@ for (const canvas of [
     await page.mouse.up();
     await expect(svg).not.toHaveAttribute('viewBox', beforeDrag);
 
-    await explore.click();
+    const explorer = page.locator('#map-explorer');
+    if (await explorer.isVisible()) await explorer.getByRole('button', { name: 'Done', exact: true }).click();
+    else await explore.click();
     await expect(explore).toHaveAttribute('aria-pressed', 'false');
     expect(await svg.evaluate(element => getComputedStyle(element).touchAction)).toContain('pan-y');
   });

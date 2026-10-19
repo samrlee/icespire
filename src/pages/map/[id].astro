@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import MapExplorer from '../../components/map/MapExplorer.astro';
 import { submaps, hasSubmapPage } from '../../components/map/submaps/registry';
 import { url } from '../../utils/url';
 import { isMapInteriorPublished } from '../../lib/map-publication';
@@ -85,7 +86,7 @@ const kindLabels: Record<string, string> = {
 
   <div class="map-interaction" data-map-interaction hidden>
     <button type="button" class="btn-ghost" id="map-explore" aria-pressed="false" aria-controls="map-svg" hidden>Explore map</button>
-    <p id="map-interaction-hint">Explore map enables drag and pinch. Zoom buttons work anytime.</p>
+    <p id="map-interaction-hint"><span class="map-hint-desktop">Explore map enables drag and pinch. Zoom buttons work anytime.</span><span class="map-hint-mobile">Swipe to scroll the page. Explore map opens a larger view to drag and zoom.</span></p>
   </div>
   <div class="map-frame" id="map-frame">
     <svg
@@ -99,7 +100,7 @@ const kindLabels: Record<string, string> = {
     >
       <Component interior={interiorSeen} />
     </svg>
-    <div class="map-controls">
+    <div class="map-controls" role="group" aria-label="Map zoom controls" tabindex="0">
       <button type="button" id="map-zoom-in" aria-label="Zoom in">+</button>
       <button type="button" id="map-zoom-out" aria-label="Zoom out">−</button>
       <button type="button" id="map-zoom-reset" aria-label="Reset view">⌂</button>
@@ -109,6 +110,8 @@ const kindLabels: Record<string, string> = {
       <div class="tip-sub"></div>
     </div>
   </div>
+
+  <MapExplorer title={location.data.name} keyItems={keyItems} />
 
   <nav class="map-quicklinks" aria-label="Other maps">
     <span class="ql-label">More maps</span>
@@ -153,5 +156,6 @@ const kindLabels: Record<string, string> = {
     zoomOutBtn: document.getElementById('map-zoom-out'),
     resetBtn: document.getElementById('map-zoom-reset'),
     exploreBtn: document.getElementById('map-explore'),
+    explorer: document.getElementById('map-explorer') as HTMLDialogElement,
   });
 </script>

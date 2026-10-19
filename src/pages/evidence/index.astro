@@ -1,0 +1,92 @@
+---
+import Base from '../../layouts/Base.astro';
+import ReferenceSources from '../../components/ReferenceSources.astro';
+import { getPlayerReference } from '../../lib/player-reference';
+import { url } from '../../utils/url';
+const { evidence, characters, checkpoint, newerRecap } = await getPlayerReference();
+const topics = [{ id: 'temple', title: 'The temple' }, { id: 'exchange', title: 'The Exchange' }] as const;
+const basisLabels = { observed: 'Observed', reported: 'Reported', inferred: 'Inferred' };
+const observerLabels = { observed: 'Established witnesses', reported: 'Readers or reported observers', inferred: 'Inference made by' };
+---
+<Base title="Evidence and character knowledge" description="A curated temple and Exchange pilot: observed events, reports, interpretations and explicitly recorded witnesses and tellings." printable>
+  <div class="kicker">The chronicle’s evidence</div>
+  <h1 class="page-title">Evidence and character knowledge</h1>
+  <div class="reference-intro reference-copy">
+    <p>A curated pilot for the temple and the Exchange, checked through <a href={url(`/sessions/${checkpoint.id}/`)}>Session {checkpoint.data.sessionNumber}</a>. It is a selection of consequential claims, not a complete record of anyone’s knowledge.</p>
+    <p>“Observed” records an event or words heard. “Reported” records an account or document. “Inferred” preserves a character’s interpretation.</p>
+    {newerRecap && <p class="reference-notice">A newer recap is available. This pilot still reflects Session {checkpoint.data.sessionNumber}.</p>}
+  </div>
+  <form class="reference-controls" data-evidence-controls hidden>
+    <div><label for="evidence-character">Recorded for character</label>
+      <select id="evidence-character" name="character">
+        <option value="">All curated claims</option>
+        {characters.map(character => <option value={character.id}>{character.name}</option>)}
+      </select>
+    </div>
+    <div><label for="evidence-topic">Topic</label>
+      <select id="evidence-topic" name="topic">
+        <option value="">Both topics</option>
+        {topics.map(topic => <option value={topic.id}>{topic.title}</option>)}
+      </select>
+    </div>
+    <button class="reference-button" type="reset">Show all</button>
+  </form>
+  <p class="reference-copy reference-filter-note">Character filtering includes only explicit witnessing, reading, interpretation or a recorded telling. An omitted claim does not prove that character is ignorant.</p>
+  <p class="reference-count" data-evidence-status role="status" aria-live="polite">{evidence.length} curated claims.</p>
+  <p class="reference-notice" data-evidence-empty hidden>No recorded witnessing or telling matches these filters in this pilot.</p>
+  {topics.map(topic => <section class="reference-section" data-evidence-section aria-labelledby={`evidence-${topic.id}`}>
+    <h2 id={`evidence-${topic.id}`}>{topic.title}</h2>
+    <div class="reference-grid evidence-grid">
+      {evidence.filter(claim => claim.topic === topic.id).map(claim => <article class="reference-card evidence-card reference-copy" id={claim.id} aria-labelledby={`${claim.id}-title`} data-evidence-claim data-topic={claim.topic} data-recorded-for={claim.recordedFor.join(' ')}>
+        <div class="evidence-card-label">{basisLabels[claim.basis]}</div>
+        <h3 id={`${claim.id}-title`}>{claim.title}</h3>
+        <p>{claim.statement}</p>
+        <dl class="evidence-record">
+          <dt>{observerLabels[claim.basis]}</dt>
+          <dd>{claim.witnesses === null ? 'Not recorded' : claim.witnesses.map((character, i) => <>{i > 0 && ', '}{character.name}</>)}<p>{claim.witnessNote}</p></dd>
+          <dt>Recorded tellings</dt>
+          <dd>{claim.tellings.length === 0 ? <p>No individual telling is recorded in the cited scenes.</p> : claim.tellings.map(telling => <div class="evidence-telling">
+            <p>{telling.recipients.map((character, i) => <>{i > 0 && ', '}{character.name}</>)} — {telling.note}</p>
+            <ReferenceSources citations={[telling.citation]} label={`Telling source for ${claim.title}`} />
+          </div>)}</dd>
+          <dt>What this does not establish</dt>
+          <dd>{claim.limits}</dd>
+        </dl>
+        <ReferenceSources citations={claim.citations} label={`Establishing scenes for ${claim.title}`} />
+      </article>)}
+    </div>
+  </section>)}
+  <nav class="reference-links" aria-label="More player references">
+    <a href={url('/briefing/')}>Before the next session →</a>
+    <a href={url('/catch-up/')}>Catch up through a session →</a>
+  </nav>
+  <script>
+    const controls = document.querySelector<HTMLFormElement>('[data-evidence-controls]');
+    const character = document.querySelector<HTMLSelectElement>('#evidence-character');
+    const topic = document.querySelector<HTMLSelectElement>('#evidence-topic');
+    const cards = [...document.querySelectorAll<HTMLElement>('[data-evidence-claim]')];
+    const sections = [...document.querySelectorAll<HTMLElement>('[data-evidence-section]')];
+    const status = document.querySelector<HTMLElement>('[data-evidence-status]');
+    const empty = document.querySelector<HTMLElement>('[data-evidence-empty]');
+    if (controls && character && topic && status && empty) {
+      const update = () => {
+        let count = 0;
+        for (const card of cards) {
+          const knownFor = (card.dataset.recordedFor ?? '').split(' ').filter(Boolean);
+          const matches = (!character.value || knownFor.includes(character.value)) && (!topic.value || card.dataset.topic === topic.value);
+          card.hidden = !matches;
+          if (matches) count++;
+        }
+        for (const section of sections) section.hidden = ![...section.querySelectorAll<HTMLElement>('[data-evidence-claim]')].some(card => !card.hidden);
+        const who = character.value ? character.selectedOptions[0].textContent : 'all characters';
+        status.textContent = `${count} curated ${count === 1 ? 'claim' : 'claims'} recorded for ${who}.`;
+        empty.hidden = count !== 0;
+      };
+      controls.hidden = false;
+      controls.addEventListener('change', update);
+      controls.addEventListener('submit', event => event.preventDefault());
+      controls.addEventListener('reset', () => { character.value = ''; topic.value = ''; update(); });
+      update();
+    }
+  </script>
+</Base>

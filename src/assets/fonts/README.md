@@ -35,6 +35,10 @@ Package archives used:
 - <https://registry.npmjs.org/@fontsource-variable/crimson-pro/-/crimson-pro-5.3.0.tgz>
 - <https://registry.npmjs.org/@fontsource-variable/jetbrains-mono/-/jetbrains-mono-5.3.0.tgz>
 
+[`SHA256SUMS`](SHA256SUMS) records the bundled files' checksums. The font
+integrity test verifies those bytes, the complete subset inventory, the CSS
+weight/style ranges and local URLs, and the published license notices.
+
 To update, inspect the new package's license and metadata, copy the needed
-WOFF2 files without modification, and retain its corresponding Unicode ranges
-in `fonts.css`. No npm dependency is needed at build time or in the browser.
+WOFF2 files without modification, update `SHA256SUMS`, and retain its corresponding
+Unicode ranges in `fonts.css`. No npm dependency is needed at build time or in the browser.

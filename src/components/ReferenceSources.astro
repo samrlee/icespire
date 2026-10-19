@@ -1,0 +1,10 @@
+---
+import type { ResolvedCitation } from '../lib/provenance';
+import { url } from '../utils/url';
+interface Props { citations: readonly ResolvedCitation[]; label?: string }
+const { citations, label = 'Sources' } = Astro.props;
+---
+<nav class="reference-sources" aria-label={label}>
+  <span>Sources:</span>
+  {citations.map(source => <a href={url(source.href)}>Session {source.sessionNumber} · {source.sceneLabel}</a>)}
+</nav>
