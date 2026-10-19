@@ -86,6 +86,7 @@ test('catch-up excludes draft content and all later prose, even from cutoff choi
 test('table facts use the authoritative document and unpublished play cannot supply reminders', () => {
   const markdown = readFileSync(new URL('../docs/TABLE-FACTS.md', import.meta.url), 'utf8');
   const facts = readTableFacts(markdown);
+  assert.deepEqual(readTableFacts(markdown.replace(/\n/g, '\r\n')), facts);
   assert.equal(facts.dm, 'Owen');
   assert.equal(facts.edition, '2014 rules');
   assert.equal(facts.levelCap, 6);

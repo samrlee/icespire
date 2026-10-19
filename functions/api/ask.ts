@@ -194,7 +194,7 @@ export const onRequestPost = async (context: FunctionContext): Promise<Response>
     // Out of Neurons for the day, or the model is briefly unavailable. The
     // reader still has search, so point them at it rather than at an error.
     return json(
-      { error: 'The chronicler is resting. Search still works — try the results above.' },
+      { error: 'The chronicler is resting. Search still works — try the search results.' },
       503
     );
   }

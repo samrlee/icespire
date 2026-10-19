@@ -106,6 +106,104 @@ test('viewing a later place advances replay and returns focus to the location pi
   await expect(picker).toBeFocused();
 });
 
+for (const activation of ['picker', 'journey', 'fragment'] as const) {
+  test(`a ${activation} place selection brings its marker into the zoomed map`, async ({ page }) => {
+    await page.goto('/map/');
+    const svg = page.locator('#map-svg');
+    const marker = page.locator('.map-marker[data-slug="mountains-toe-gold-mine"]');
+    for (let i = 0; i < 3; i++) await page.locator('#map-zoom-in').click();
+    await page.locator('#map-explore').click();
+    await svg.focus();
+    for (let i = 0; i < 4; i++) {
+      await svg.press('ArrowUp');
+      await svg.press('ArrowLeft');
+    }
+    // Phone exploration is modal. Return to the page before using its picker
+    // or journey, retaining the zoomed camera position being exercised.
+    const explorer = page.locator('#map-explorer');
+    if (await explorer.isVisible()) await explorer.getByRole('button', { name: 'Done', exact: true }).click();
+    const before = await svg.evaluate(element => {
+      const { x, y, width, height } = (element as SVGSVGElement).viewBox.baseVal;
+      return { x, y, width, height };
+    });
+    const point = await marker.evaluate(element => ({
+      x: Number((element as SVGElement).dataset.x),
+      y: Number((element as SVGElement).dataset.y),
+    }));
+    expect(point.x < before.x || point.x > before.x + before.width ||
+      point.y < before.y || point.y > before.y + before.height).toBe(true);
+
+    if (activation === 'picker') {
+      await page.locator('#map-location').selectOption('mountains-toe-gold-mine');
+      await page.locator('#map-location-open').click();
+    } else if (activation === 'journey') {
+      await page.locator('.map-journey [data-goto="mountains-toe-gold-mine"]').first().click();
+    } else {
+      await page.evaluate(() => { location.hash = 'mountains-toe-gold-mine'; });
+    }
+    await expectDetailFocus(page.locator('#map-panel-detail'));
+    await expect(marker).toHaveAttribute('aria-pressed', 'true');
+    const after = await svg.evaluate(element => {
+      const { x, y, width, height } = (element as SVGSVGElement).viewBox.baseVal;
+      return { x, y, width, height };
+    });
+    expect(after.width).toBe(before.width);
+    expect(after.height).toBe(before.height);
+    expect(point.x).toBeGreaterThan(after.x);
+    expect(point.x).toBeLessThan(after.x + after.width);
+    expect(point.y).toBeGreaterThan(after.y);
+    expect(point.y).toBeLessThan(after.y + after.height);
+    // Check the painted marker, too: viewBox membership alone would miss a
+    // transform or counter-scaling regression that left the selection clipped.
+    // Read both rects in one browser task: fragment/detail smooth scrolling can
+    // move the viewport between separate Playwright boundingBox requests.
+    const { canvasBox, dotBox } = await svg.evaluate(element => {
+      const canvas = element.getBoundingClientRect();
+      const dot = element.querySelector('.map-marker[data-slug="mountains-toe-gold-mine"] .dot')!.getBoundingClientRect();
+      return {
+        canvasBox: { x: canvas.x, y: canvas.y, width: canvas.width, height: canvas.height },
+        dotBox: { x: dot.x, y: dot.y, width: dot.width, height: dot.height },
+      };
+    });
+    expect(dotBox.x).toBeGreaterThanOrEqual(canvasBox.x);
+    expect(dotBox.y).toBeGreaterThanOrEqual(canvasBox.y);
+    expect(dotBox.x + dotBox.width).toBeLessThanOrEqual(canvasBox.x + canvasBox.width);
+    expect(dotBox.y + dotBox.height).toBeLessThanOrEqual(canvasBox.y + canvasBox.height);
+  });
+}
+
+test('journey replay shows one icon matching its play and pause action', async ({ page }) => {
+  await page.goto('/map/');
+  const replay = page.locator('#scrub-play');
+  const icon = replay.locator('svg path');
+  await expect(icon).toHaveCount(1);
+  expect((await replay.textContent())!.trim()).toBe('');
+  await expect(replay).toHaveAccessibleName('Play the journey');
+  const playShape = await icon.getAttribute('d');
+  await replay.click();
+  await expect(replay).toHaveAccessibleName('Pause the journey');
+  await expect(replay).toHaveAttribute('aria-pressed', 'true');
+  await expect(icon).not.toHaveAttribute('d', playShape!);
+  await replay.click();
+  await expect(replay).toHaveAccessibleName('Play the journey');
+  await expect(replay).toHaveAttribute('aria-pressed', 'false');
+  await expect(icon).toHaveAttribute('d', playShape!);
+});
+
+test('local map caveats keep their longer explanation in a native disclosure', async ({ page }) => {
+  await page.goto('/map/gnomengarde/');
+  const about = page.locator('.map-wip-details');
+  const explanation = about.locator('.wip-text').first();
+  await expect(page.locator('.map-wip .wip-label')).toHaveText('Work in progress');
+  await expect(about).not.toHaveAttribute('open', '');
+  await expect(explanation).toBeHidden();
+  await expect(page.locator('.session-meta')).not.toContainText('Drag to pan');
+  await about.locator('summary').focus();
+  await page.keyboard.press('Enter');
+  await expect(explanation).toBeVisible();
+  await expect(about).toContainText('Choose Explore map');
+});
+
 test('closing a revealed event pin restores focus to its visible place marker', async ({ page }) => {
   await page.goto('/map/');
   const marker = page.locator('.map-marker[data-slug="phandalin"]');

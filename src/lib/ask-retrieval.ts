@@ -16,37 +16,49 @@ const exactTerm = (text: string, term: string) => {
 export function retrieveAsk(docs: Indexed[], question: string, maximum = 5): { hits: AskHit[]; terms: string[] } {
   let terms = contentTokens(question, false);
   if (maximum <= 0) return { hits: [], terms };
+  const recaps = docs.filter(doc => doc.kind === 'Recap');
+  const foldedQuestion = foldSearchTextWithOffsets(question);
+  const named = recaps.find(doc => foldedQuestion.text.includes(foldSearchText(doc.title)));
 
+  // Bare present-tense questions have no keywords after stop-word removal.
+  // Keep them narrow: a named session or historical qualifier needs historical
+  // evidence, even when the reader also writes "now" or "left off".
+  const currentLocation = /\bcurrent\s+(?:party\s+)?(?:location|position|state)\b/i.test(question);
+  const historicalLocation = (/\bwhere\b/i.test(question) || currentLocation) && (named !== undefined || /\bsession\s+\d+\b|\b(?:before|after|during|when|previously|earlier|yesterday|ago|then)\b|\blast\s+(?:session|time|week|month|night)\b/i.test(question));
+  const bareLocation = /^\s*(?:please\s+)?where\s+(?:are\s+we|is\s+the\s+party)(?:\s+at)?\s*[?!.]*\s*$/i.test(question);
   // A time/location question needs the explicitly sourced continuation point,
   // rather than whichever old recap happens to contain the word "now".
-  if (/\bwhere\b.*\b(?:we|party)\b.*\b(?:now|currently)\b|\bwhere\b.*\b(?:left|leave)\s+off\b|\bcurrent\s+(?:party\s+)?(?:location|position|state)\b/i.test(question)) {
+  if (!historicalLocation && (bareLocation || currentLocation || /\bwhere\b.*\b(?:we|party)\b.*\b(?:now|currently)\b|\bwhere\b.*\b(?:left|leave)\s+off\b/i.test(question))) {
     const state = docs.find(doc => doc.currentState === true || doc.href.endsWith('/campaign/#where-we-left-off'));
     return { hits: state ? [{ doc: state, score: 40, at: -1 }] : [], terms };
   }
 
-  const recaps = docs.filter(doc => doc.kind === 'Recap');
   const numbered = question.match(/\bsession\s+(\d+)\b/i);
   let scoped: Indexed | undefined;
   if (numbered) {
     scoped = recaps.find(doc => sessionNumber(doc) === Number(numbered[1]));
     // An unavailable session is not permission to substitute another session.
     if (!scoped) return { hits: [], terms };
-    terms = contentTokens(question.replace(numbered[0], ''), false);
+    let scopedQuestion = question.replace(numbered[0], '');
+    // These phrases ask for the recap's continuation point, not prose containing
+    // the words "current location" or "leave off". Preserve named detail terms.
+    if (historicalLocation) scopedQuestion = scopedQuestion.replace(/\bcurrent\s+(?:party\s+)?(?:location|position|state)\b|\b(?:left|leave)\s+off\b/gi, '');
+    terms = contentTokens(scopedQuestion, false);
     const details = terms.filter(term => !['summary', 'summarize', 'recap', 'overview', 'played', 'play',
       'describe', 'during', 'date', 'day', 'time', 'title', 'name', 'events', 'main', 'key', 'occurred', "what's"].includes(term));
     if (!details.length) {
       return { hits: [overview(scoped)], terms };
     }
   } else {
-    const foldedQuestion = foldSearchTextWithOffsets(question);
-    const named = recaps.find(doc => foldedQuestion.text.includes(foldSearchText(doc.title)));
     if (named) {
       scoped = named;
       const title = foldSearchText(named.title);
       const offset = foldedQuestion.text.indexOf(title);
       const start = foldedQuestion.starts[offset];
       const end = foldedQuestion.ends[offset + title.length - 1];
-      terms = contentTokens(question.slice(0, start) + question.slice(end), false);
+      let scopedQuestion = question.slice(0, start) + question.slice(end);
+      if (historicalLocation) scopedQuestion = scopedQuestion.replace(/\bcurrent\s+(?:party\s+)?(?:location|position|state)\b|\b(?:left|leave)\s+off\b/gi, '');
+      terms = contentTokens(scopedQuestion, false);
       if (!terms.length) return { hits: [overview(named)], terms };
     } else {
       // Two distinctive title terms can identify a recap, but each scene must
@@ -58,6 +70,7 @@ export function retrieveAsk(docs: Indexed[], question: string, maximum = 5): { h
 
   const partParents = new Set(docs.filter(doc => doc.kind === 'Recap part').map(parentHref));
   const eligible = docs.filter(doc => (!scoped || parentHref(doc) === scoped.href)
+    && (!historicalLocation || !(doc.currentState === true || doc.href.endsWith('/campaign/#where-we-left-off')))
     && (doc.kind !== 'Recap' || !partParents.has(doc.href)));
   const rankedDocs = eligible.map(doc => doc.kind === 'Recap part'
     ? { ...doc, titleLc: foldSearchText(doc.sceneLabel ?? doc.title.split(' — ').at(-1) ?? '') }

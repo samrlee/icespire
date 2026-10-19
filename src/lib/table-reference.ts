@@ -8,6 +8,7 @@ export type TableReminder = { title: string; text: string; sources: TableCitatio
 
 /** Extract the standing table facts from their existing authoritative document. */
 export function readTableFacts(markdown: string) {
+  markdown = markdown.replace(/\r\n/g, '\n');
   function section(heading: string) {
     const start = markdown.indexOf(`## ${heading}\n`);
     if (start < 0) throw new Error(`TABLE-FACTS: missing ${heading} section`);

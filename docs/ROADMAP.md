@@ -49,16 +49,17 @@ issue stays open through final review; its older recommendations are historical.
 
 ## Done
 
-- **Player tools and source evidence** — implement the nine October review
+- **Player tools and source evidence** — complete the remaining October review
   recommendations: player-facing rules/roster reference, explicit scene bookmarks
   and private notes, expandable Ask passages, accent-tolerant lookup, source-linked
   pre-session briefing, temple/Exchange provenance and character-knowledge pilot,
-  mobile relationship explorer/person selector, licensed self-hosted fonts, and
-  static catch-up routes through a chosen session. Validate cited scenes and
-  observer IDs, keep current profiles out of historical catch-up, preserve
-  unpublished-source gates, and retain notes when a source changes or disappears.
+  mobile relationship explorer/person selector, and static catch-up routes through
+  a chosen session. Validate cited scenes and observer IDs, keep current profiles
+  out of historical catch-up, preserve unpublished-source gates, and retain notes
+  when a source changes or disappears.
   Repair cross-tab editor focus, touch-jitter tap detection, breakpoint focus and
   pre-existing browser zoom; carry the mobile-map patch into main's history.
+  Retain the font and accessibility fixes already merged in PR #104.
   _(Oct 2026)_
 
 - **Mobile map scrolling** — keep page previews scrollable and bounded in
@@ -68,6 +69,16 @@ issue stays open through final review; its older recommendations are historical.
   coordinates, pinch anchoring and continuous touch capture. Local viewers
   retain the published key; letterboxed and enlarged-text layouts keep the
   drawing proportional and the controls reachable. _(Oct 2026)_
+
+- **Follow-up website review fixes** — make Search/Ask answers, source links and
+  save controls scrollable on phones and short screens; recognize plain current
+  whereabouts without substituting current state for historical questions.
+  Compact phone navigation and recap contents, restore a phone campaign contents
+  menu, prevent narrow Codex overflow, and repair heading/landmark semantics and
+  battle-label contrast. Keep selected map markers visible after pan/zoom, use
+  one replay icon, and simplify local-map introductions. Split the shared current
+  state into a brief situation and sourced detail bullets, add entity-specific
+  descriptions, and self-host licensed fonts with a matching CSP. _(Oct 2026)_
 
 - **October website review fixes** — correct Ask retrieval for session numbers,
   current whereabouts and scene evidence; repair same-page search navigation,

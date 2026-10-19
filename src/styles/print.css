@@ -22,6 +22,8 @@
   body.print-document .backlink,
   body.print-document .session-pager,
   body.print-document .doc-toc,
+  body.print-document .recap-scenes,
+  body.print-document .recap-scenes-mobile,
   body.print-document .entity-pop,
   body.print-document dialog,
   body.print-document .journey-map-link,

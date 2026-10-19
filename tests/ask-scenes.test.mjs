@@ -102,13 +102,37 @@ test('known single-keyword facts reach the model instead of an unrecorded answer
 
 test('current-location intent uses only the sourced continuation point', async t => {
   t.mock.method(globalThis, 'fetch', async () => new Response(JSON.stringify(docs)));
-  const response = await onRequestPost({ request: request('Where are we now?'), env: { AI: { async run(_model, input) {
-    assert.match(input.messages[0].content, /inside the mine entrance/);
-    assert.match(input.messages[0].content, /No rooms had been observed/);
-    assert.match(input.messages[0].content, /reward remained unpaid/);
-    return { response: 'The party stood inside the entrance.' };
-  } } } });
-  assert.deepEqual((await response.json()).sources.map(source => source.href), ['/campaign/#where-we-left-off']);
+  for (const question of ['Where are we now?', 'Where are we?', 'Where is the party?', 'Where are we at?', 'Where did we leave off?', 'What is the current party location?', 'What is our current position?', 'What is the current party state?']) {
+    let calls = 0;
+    const response = await onRequestPost({ request: request(question), env: { AI: { async run(_model, input) {
+      calls++;
+      assert.match(input.messages[0].content, /inside the mine entrance/);
+      assert.match(input.messages[0].content, /No rooms had been observed/);
+      assert.match(input.messages[0].content, /reward remained unpaid/);
+      return { response: 'The party stood inside the entrance.' };
+    } } } });
+    assert.equal(calls, 1, question);
+    assert.deepEqual((await response.json()).sources.map(source => source.href), ['/campaign/#where-we-left-off'], question);
+  }
+});
+
+test('historical whereabouts never substitute the current snapshot', () => {
+  for (const question of [
+    'Where were we in Session 8?', 'Where is the party in Session 8?', 'Where was Bean in Session 8?',
+    'Where are we now in Session 8?', 'Where did we leave off in Session 8?',
+    'What was the current party location in Session 8?', 'What was our current location after Session 8?',
+    'What was the current party position during Session 8?', 'What was the current party state in Session 8?',
+    'Where were we before the mine?', 'Where was the party after the dragon report?',
+  ]) {
+    const result = retrieveAsk(index(docs), question);
+    assert.ok(result.hits.every(hit => !hit.doc.currentState && !hit.doc.href.endsWith('/campaign/#where-we-left-off')), question);
+    if (question.includes('Session 8')) {
+      assert.ok(result.hits.length > 0, question);
+      assert.ok(result.hits.every(hit => hit.doc.sessionNumber === 8), question);
+    }
+    if (question.includes('dragon report')) assert.ok(result.hits.length > 0, question);
+    if (question.includes('Bean')) assert.ok(result.hits.some(hit => hit.doc.text.includes('Bean entered the office.')), question);
+  }
 });
 
 test('numbered session overviews use the requested summary and date', async t => {
@@ -172,6 +196,8 @@ test('accent folding admits recorded names and removes named recap titles at ori
     { title: `${title} — Part 1`, sceneLabel: 'Part 1', kind: 'Recap part', href: '/sessions/workshop/#scene-token',
       sessionNumber: 10, text: 'Bean found the emerald in Facktoré’s workshop.' },
     { title: 'Another workshop', kind: 'Lore', href: '/lore/another-workshop/', text: 'An emerald was mentioned elsewhere.' },
+    { title: 'Where we left off', kind: 'Page', href: '/campaign/#where-we-left-off', currentState: true,
+      text: 'The party is currently at the mine entrance, well after the workshop visit.' },
   ]);
   for (const spelling of ["in facktore's workshop", "İN FACKTORÉ'S WORKSHOP", "in facktore\u0301's workshop"]) {
     const overview = retrieveAsk(corpus, `What happened in ${spelling}?`);
@@ -181,8 +207,14 @@ test('accent folding admits recorded names and removes named recap titles at ori
     const detail = retrieveAsk(corpus, `What about emerald in ${spelling}?`);
     assert.deepEqual(detail.terms, ['emerald']);
     assert.deepEqual(detail.hits.map(hit => hit.doc.href), ['/sessions/workshop/#scene-token']);
+    for (const question of [`In ${spelling}, where did we leave off?`, `In ${spelling}, what was the current party location?`]) {
+      const historical = retrieveAsk(corpus, question);
+      assert.deepEqual(historical.hits.map(hit => hit.doc.href), ['/sessions/workshop/'], question);
+      assert.equal(historical.hits[0].doc.text, corpus[0].summary);
+    }
   }
   const name = retrieveAsk(corpus, 'What about Facktore?');
   assert.ok(name.hits.some(hit => hit.doc.href === '/sessions/workshop/#scene-token'));
   assert.deepEqual(retrieveAsk(corpus, 'What about Facktoreville?').hits, []);
+  assert.deepEqual(retrieveAsk(corpus, 'Where are we?').hits.map(hit => hit.doc.href), ['/campaign/#where-we-left-off']);
 });

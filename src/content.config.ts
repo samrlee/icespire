@@ -191,6 +191,7 @@ const currentState = defineCollection({
       characters: z.array(filled()).min(1),
       location: filled().optional(),
       summary: filled(),
+      details: z.array(filled()).default([]),
     })).min(1),
   }),
 });

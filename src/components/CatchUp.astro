@@ -7,6 +7,10 @@ interface Props { sessions: readonly CatchUpSession[]; throughId?: string }
 const { sessions, throughId } = Astro.props;
 const { through, choices, entries } = catchUpThrough(sessions, throughId);
 const date = (value: Date) => value.toLocaleDateString('en-US', { dateStyle: 'medium', timeZone: 'UTC' });
+// Search snippets flatten whitespace; a whole scene needs its paragraph breaks
+// to stay readable. Remove non-prose blocks before separating the paragraphs.
+const paragraphs = (body: string) => body.replace(/<!--[\s\S]*?-->|```[\s\S]*?```/g, '')
+  .split(/\r?\n\s*\r?\n/).map(block => toPlainText(block).replaceAll('&amp;', '&')).filter(Boolean);
 ---
 <Base title={through ? `Catch up through Session ${through.number}` : 'Catch up'} description="Choose where to stop: published recap summaries and passages through your selected session." printable linkEntities={false}>
   <div class="kicker">Read at your own pace</div>
@@ -37,7 +41,7 @@ const date = (value: Date) => value.toLocaleDateString('en-US', { dateStyle: 'me
           <summary>Read passages from Session {entry.number}</summary>
           {entry.scenes.map(scene => <section class="catchup-passage" aria-labelledby={`catchup-${entry.id.replaceAll('/', '-')}-${scene.id}`}>
             <h3 id={`catchup-${entry.id.replaceAll('/', '-')}-${scene.id}`}>{scene.label}</h3>
-            <p>{toPlainText(scene.body)}</p>
+            {paragraphs(scene.body).map(paragraph => <p>{paragraph}</p>)}
             <a href={url(`/sessions/${entry.id}/#${scene.id}`)}>Read this scene in the recap →</a>
           </section>)}
         </details>}

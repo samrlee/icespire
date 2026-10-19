@@ -123,7 +123,8 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
     <a class="skip-link" href="#main-content" tabindex="0">Skip to content</a>
     <header class="site-header">
       <a class="site-title" href={url('/')}>Dragon of <span class="gold">Icespire Peak</span></a>
-      <nav class="site-nav" aria-label="Primary">
+      <div class="header-panel" id="site-navigation">
+        <nav class="site-nav" aria-label="Primary">
         <a href={url(homeItem.href)} aria-current={isActive(homeItem) ? 'page' : undefined}>
           {homeItem.label}
         </a>
@@ -133,6 +134,7 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
               <button
                 type="button"
                 class="nav-trigger"
+                hidden
                 aria-controls={`nav-links-${i}`}
                 aria-expanded="false"
                 data-current-group={groupActive(group) ? '' : undefined}
@@ -154,20 +156,22 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
             </div>
           ))
         }
-      </nav>
+        </nav>
+      </div>
       <div class="header-tools">
-        <button class="search-trigger" type="button" data-search-open aria-haspopup="dialog">
-          <span class="search-trigger-label">Search or ask</span>
+        <button class="search-trigger" type="button" data-search-open aria-haspopup="dialog" aria-label="Search or ask" hidden>
+          <span class="search-trigger-label">Search<span class="search-trigger-detail"> or ask</span></span>
           <kbd class="search-trigger-key">⌘K</kbd>
         </button>
         <button class="theme-toggle" id="theme-toggle" type="button" hidden>Light mode</button>
+        <button class="site-menu-toggle" type="button" aria-controls="site-navigation" aria-expanded="false" hidden>Menu</button>
       </div>
     </header>
     <main class="page" id="main-content" tabindex="-1">
       <slot />
     </main>
     <footer class="site-footer">
-      <nav class="footer-nav">
+      <nav class="footer-nav" aria-label="Footer">
         {allItems.map((item) => <a href={url(item.href)}>{item.label}</a>)}
       </nav>
       A chronicle kept by the party. Updated between sessions.
@@ -202,6 +206,30 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
       // Click-based (not hover) so it behaves the same for touch, mouse, and
       // keyboard; a click anywhere else, or Escape, closes any open menu.
       (() => {
+        const header = document.querySelector('.site-header');
+        const panel = header.querySelector('.header-panel');
+        const nav = header.querySelector('.site-nav');
+        const tools = header.querySelector('.header-tools');
+        const menuToggle = header.querySelector('.site-menu-toggle');
+        const search = header.querySelector('[data-search-open]');
+        const theme = header.querySelector('.theme-toggle');
+        const phone = window.matchMedia('(max-width: 900px)');
+        let phoneLayout = phone.matches;
+        let changingLayout = false;
+        let pointerInHeader = false;
+        let lastHeaderFocus = null;
+        // Touch-generated focus changes can briefly have no related target.
+        // Pointer clicks already have explicit inside/outside dismissal; only
+        // keyboard focus leaving the header should dismiss it through focusout.
+        document.addEventListener('pointerdown', (e) => {
+          pointerInHeader = header.contains(e.target);
+          if (!pointerInHeader) lastHeaderFocus = null;
+        }, true);
+        document.addEventListener('keydown', () => { pointerInHeader = false; }, true);
+        document.addEventListener('focusin', (e) => {
+          if (header.contains(e.target)) lastHeaderFocus = e.target;
+          else if (!changingLayout && phone.matches === phoneLayout) lastHeaderFocus = null;
+        });
         const groups = Array.from(document.querySelectorAll('[data-nav-group]'));
         const closeAll = (except) => {
           for (const group of groups) {
@@ -210,9 +238,72 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
             group.querySelector('.nav-trigger')?.setAttribute('aria-expanded', 'false');
           }
         };
+        const closeMobile = (restoreFocus = false) => {
+          header.classList.remove('menu-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          closeAll(null);
+          if (restoreFocus) menuToggle.focus();
+        };
+        // Keep the DOM in the same order as the visible controls at each size.
+        // Desktop: brand, navigation, search, theme. Phone: brand, search, Menu,
+        // then its navigation and theme. Without scripts, all links stay visible.
+        const layout = () => {
+          // A media query may hide a focused control before its change event
+          // runs. Retain that control so focus can move to the visible equivalent.
+          const active = header.contains(document.activeElement) ? document.activeElement : lastHeaderFocus;
+          const focusedPanel = panel.contains(active) || active === theme;
+          const focusedMenu = active === menuToggle;
+          const groupTrigger = active?.closest?.('[data-nav-group]')?.querySelector('.nav-trigger');
+          changingLayout = true;
+          closeMobile();
+          if (phone.matches) {
+            panel.append(theme);
+            header.append(panel);
+          } else {
+            header.insertBefore(panel, tools);
+            tools.insertBefore(theme, menuToggle);
+          }
+          phoneLayout = phone.matches;
+          changingLayout = false;
+          if (phone.matches && focusedPanel) menuToggle.focus();
+          else if (!phone.matches && focusedMenu) header.querySelector('.site-title').focus();
+          else if (!phone.matches && focusedPanel) (groupTrigger || active).focus({ preventScroll: true });
+        };
+        nav.setAttribute('data-nav-ready', '');
+        header.setAttribute('data-mobile-nav-ready', '');
+        menuToggle.hidden = false;
+        search.hidden = false;
+        phone.addEventListener('change', layout);
+        layout();
+        menuToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (header.classList.contains('menu-open')) closeMobile(true);
+          else {
+            header.classList.add('menu-open');
+            menuToggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+        header.addEventListener('keydown', (e) => {
+          if (e.key !== 'Escape' || !phone.matches || !header.classList.contains('menu-open')) return;
+          e.preventDefault();
+          e.stopPropagation();
+          closeMobile(true);
+        });
+        header.addEventListener('focusout', (e) => {
+          if (changingLayout || phone.matches !== phoneLayout || pointerInHeader) return;
+          if (!header.contains(e.relatedTarget)) {
+            lastHeaderFocus = null;
+            if (phone.matches) closeMobile();
+          }
+        });
+        search.addEventListener('click', () => closeMobile());
+        panel.addEventListener('click', (e) => {
+          if (phone.matches && e.target.closest('a[href]')) closeMobile();
+        });
         for (const group of groups) {
           const trigger = group.querySelector('.nav-trigger');
           if (!trigger) continue;
+          trigger.hidden = false;
           trigger.addEventListener('click', (e) => {
             e.stopPropagation();
             const open = group.classList.toggle('open');
@@ -220,16 +311,21 @@ const groupActive = (group: NavGroup) => group.items.some(isActive);
             closeAll(group);
           });
           group.addEventListener('focusout', (e) => {
+            if (changingLayout || phone.matches !== phoneLayout || pointerInHeader) return;
             if (!group.contains(e.relatedTarget)) closeAll(null);
           });
           group.addEventListener('keydown', (e) => {
             if (e.key !== 'Escape' || !group.classList.contains('open')) return;
             e.preventDefault();
+            e.stopPropagation();
             closeAll(null);
             trigger.focus();
           });
         }
-        document.addEventListener('click', () => closeAll(null));
+        document.addEventListener('click', (e) => {
+          closeAll(null);
+          if (phone.matches && !header.contains(e.target)) closeMobile();
+        });
       })();
     </script>
   </body>

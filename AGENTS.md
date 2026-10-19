@@ -87,7 +87,12 @@ Note `npm run preview` serves the built site but does **not** apply
 **Content work** — a new session goes up, an NPC's disposition changes, a place
 is discovered. This is most of it, and it is what
 [`docs/SESSION-WORKFLOW.md`](docs/SESSION-WORKFLOW.md) covers end to end. It
-touches only Markdown and YAML under `src/content/` plus `src/pages/campaign.md`.
+usually touches Markdown and YAML under `src/content/` plus `src/pages/campaign.md`.
+The curated briefing and evidence pilot in `src/data/player-reference.ts`, and
+table reminders in `src/lib/table-reference.ts`, also contain campaign facts.
+Review those claims and their citations when publishing or correcting a recap;
+advance `referenceReview` only after checking the curated reference, never
+automatically to suppress a freshness notice.
 
 **Site work** — a new page type, a component, a build integration. Check
 [`docs/ROADMAP.md`](docs/ROADMAP.md) first; the next few ideas are already
@@ -101,6 +106,8 @@ sketched with enough detail to pick up cold.
 | Where the party went, and what happened where | `src/content/journey/session-N.yaml` |
 | Running campaign summary | `src/pages/campaign.md` (one page, edited in place) |
 | Shared continuation point | `src/content/current-state/current.yaml` (homepage, campaign, search) |
+| Curated briefing and evidence pilot | `src/data/player-reference.ts` (review checkpoint and cited claims) |
+| Cited table reminders | `src/lib/table-reference.ts` |
 | Party | `src/content/characters/` |
 | NPCs | `src/content/npcs/` |
 | Factions / lore | `src/content/factions/`, `src/content/lore/` |
@@ -212,8 +219,9 @@ emits it at build time and hashes every inline script into the CSP's
 `script-src`, which is what lets the policy drop `'unsafe-inline'`. Edit the
 integration; never add a `public/_headers`. Two invariants it leans on:
 `build.inlineStylesheets: 'never'` in `astro.config.mjs`, and self-hosted fonts
-in `src/styles/fonts.css`. The verbatim token font file is retained as a design
-reference and is not imported by the site.
+loaded by `src/styles/fonts.css`. The original font token file is retained but
+is not imported. Keep font assets, provenance and license notices together;
+CSP has no Google Fonts allowances.
 
 **There are no secrets in this repo, and it should stay that way.** The Ask
 endpoint uses Cloudflare's Workers AI *binding* rather than an API key — the

@@ -165,7 +165,14 @@ function initBookmarks(root: HTMLElement) {
   note.addEventListener('input', () => { drafts.set(targetKey, note.value); });
   find<HTMLButtonElement>('[data-bookmark-cancel]').addEventListener('click', closeEditor);
   editor.addEventListener('cancel', event => { event.preventDefault(); closeEditor(); });
-  editor.addEventListener('click', event => { if (event.target === editor) closeEditor(); });
+  editor.addEventListener('click', event => {
+    if (event.target !== editor) return;
+    const bounds = editor.getBoundingClientRect();
+    // The dialog's padding also targets the dialog. Only a real backdrop click
+    // dismisses the editor; clicking its inner space must retain an unsaved note.
+    if (event.clientX < bounds.left || event.clientX > bounds.right ||
+      event.clientY < bounds.top || event.clientY > bounds.bottom) closeEditor();
+  });
   form.addEventListener('submit', event => {
     event.preventDefault();
     if (note.value.length > MAX_NOTE_LENGTH) { editorStatus.textContent = `Personal notes can contain up to ${MAX_NOTE_LENGTH.toLocaleString()} characters.`; note.focus(); return; }

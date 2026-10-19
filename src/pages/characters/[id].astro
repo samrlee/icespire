@@ -20,7 +20,7 @@ const statusNote =
   character.data.status !== 'active' ? ` (${character.data.status})` : '';
 ---
 
-<Base title={character.data.name}>
+<Base title={character.data.name} description={character.data.tagline}>
   <a class="backlink" href={url('/characters/')}>← Party roster</a>
   <CharacterCard
     name={`${character.data.name}${statusNote}`}

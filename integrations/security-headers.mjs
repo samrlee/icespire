@@ -78,6 +78,7 @@ function headersFile(scriptSrc) {
     // `build.inlineStylesheets: 'never'`), so no 'unsafe-inline' is needed
     // and an injected <style> block is refused.
     "style-src-elem 'self'",
+    // All typefaces ship with the site; no external font hosts are needed.
     "font-src 'self'",
     "img-src 'self' data:",
     "connect-src 'self'",

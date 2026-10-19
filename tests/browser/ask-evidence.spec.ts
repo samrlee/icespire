@@ -132,3 +132,31 @@ test('unmatched sources and unsafe URLs cannot create evidence disclosures', asy
   await expect(page.locator('.ask-sources a')).toHaveAttribute('href', '/campaign/');
   await expect(page.locator('.ask-evidence')).toHaveCount(1);
 });
+
+test('expanded evidence and saved controls preserve the query and close control in a short dialog', async ({ page }) => {
+  await page.setViewportSize({ width: 844, height: 390 });
+  const longPassage = 'Bean read the ledger entry and kept its wording separate from her account of it. '.repeat(65);
+  const corpus = [{ ...docs[0], text: longPassage }];
+  const corpusVersion = createHash('sha256').update(JSON.stringify(corpus)).digest('hex');
+  await page.route('**/search-index.json', route => route.fulfill({ json: corpus }));
+  await page.route('**/api/ask', route => route.fulfill({ json: {
+    answer: answer.answer, corpusVersion,
+    sources: [{ title: corpus[0].title, kind: corpus[0].kind, href: corpus[0].href, excerpt: longPassage }],
+  } }));
+  await ask(page);
+  await page.getByLabel('Read supplied passage from Ledger report', { exact: true }).click();
+  const passage = page.getByRole('region', { name: 'Passage supplied from Ledger report', exact: true });
+  expect(await passage.textContent()).toBe(longPassage);
+  expect(await passage.evaluate(el => el.scrollHeight > el.clientHeight)).toBe(true);
+  await passage.focus();
+  await passage.press('End');
+  await expect.poll(() => passage.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
+  await page.getByRole('button', { name: 'Save answer in this tab', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Restore saved answer', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Forget saved answer', exact: true }).click();
+  await expect(page.getByRole('combobox')).toBeInViewport({ ratio: 1 });
+  const close = page.getByRole('button', { name: 'Close search', exact: true });
+  await expect(close).toBeInViewport({ ratio: 1 });
+  await close.click();
+  await expect(page.getByRole('dialog')).not.toBeVisible();
+});

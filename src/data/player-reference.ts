@@ -98,7 +98,7 @@ export const briefingItems: readonly BriefingItem[] = [
   {
     id: 'next-jobs', title: 'The work after the mine',
     text: 'The plan is to return to Phandalin for the cart, deliver provisions to Harbin’s unnamed half-brother at Loggers’ Camp, then investigate the reported orc attack at Butterskull Ranch. Both jobs promise 150 gp; neither journey nor collection of the supplies has happened.',
-    citations: [{ sessionId: 'session-9', sceneId: 'scene-s9ba2a11016' }],
+    citations: [{ sessionId: 'session-9', sceneId: 'scene-s9e0ccf91ba' }, { sessionId: 'session-9', sceneId: 'scene-s9ba2a11016' }],
   },
   {
     id: 'dragon-evidence', title: 'The dragon remains unseen',

@@ -49,11 +49,17 @@ test('catch-up changes the cutoff deliberately and excludes later content and cu
   await expect(page.locator('#entity-link-data, .entity-pop, .entity-link')).toHaveCount(0);
   await page.getByText('Read passages from Session 5', { exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Adabra and the first temple rooms' })).toBeVisible();
+  const passage = page.locator('[data-session-number="5"] .catchup-passage').first();
+  expect(await passage.locator(':scope > p').count()).toBeGreaterThan(1);
   const scene = page.getByRole('link', { name: 'Read this scene in the recap' }).last();
   await expect(scene).toHaveAttribute('href', '/sessions/session-5/#scene-s3b523e72cc');
   await page.goto('/catch-up/session-9/');
   await expect(page.locator('[data-catchup-entry]')).toHaveCount(10);
   await expect(page.getByRole('main')).toContainText('Don-Jon');
+  const latest = page.locator('[data-session-number="9"]');
+  await latest.getByText('Read passages from Session 9', { exact: true }).click();
+  await expect(latest).toContainText('Payments & Sales');
+  await expect(latest).not.toContainText('Payments &amp; Sales');
 });
 
 test('the evidence selector preserves original witnesses and later tellings and resets', async ({ page }) => {
@@ -62,7 +68,7 @@ test('the evidence selector preserves original witnesses and later tellings and 
   await character.selectOption('rut');
   await expect(page.locator('#exchange-townmaster')).toBeVisible();
   await expect(page.locator('#exchange-townmaster')).toContainText('Rut did not hear this speech');
-  await expect(page.locator('#exchange-townmaster').getByRole('navigation', { name: 'Telling source' }).getByRole('link')).toHaveAttribute('href', '/sessions/session-9/#scene-s326fe50dfd');
+  await expect(page.locator('#exchange-townmaster').getByRole('navigation', { name: 'Telling source for Thornton’s stated intention' }).getByRole('link')).toHaveAttribute('href', '/sessions/session-9/#scene-s326fe50dfd');
   await expect(page.locator('#exchange-payment-line')).toBeHidden();
   await character.selectOption('bean-hootwhistle');
   await expect(page.locator('#exchange-payment-line')).toBeVisible();

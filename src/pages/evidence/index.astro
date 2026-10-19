@@ -47,12 +47,12 @@ const observerLabels = { observed: 'Established witnesses', reported: 'Readers o
           <dt>Recorded tellings</dt>
           <dd>{claim.tellings.length === 0 ? <p>No individual telling is recorded in the cited scenes.</p> : claim.tellings.map(telling => <div class="evidence-telling">
             <p>{telling.recipients.map((character, i) => <>{i > 0 && ', '}{character.name}</>)} — {telling.note}</p>
-            <ReferenceSources citations={[telling.citation]} label="Telling source" />
+            <ReferenceSources citations={[telling.citation]} label={`Telling source for ${claim.title}`} />
           </div>)}</dd>
           <dt>What this does not establish</dt>
           <dd>{claim.limits}</dd>
         </dl>
-        <ReferenceSources citations={claim.citations} label="Establishing scenes" />
+        <ReferenceSources citations={claim.citations} label={`Establishing scenes for ${claim.title}`} />
       </article>)}
     </div>
   </section>)}

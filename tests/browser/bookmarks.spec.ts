@@ -66,6 +66,19 @@ test('a part control chooses its stable ID and keyboard cancellation preserves d
   await expect(trigger).toBeFocused(); expect(await read(page)).toBeNull();
 });
 
+test('clicking inside the editor padding preserves an unsaved note', async ({ page }) => {
+  await open(page);
+  const editor = page.getByRole('dialog', { name: 'Bookmark recap part' });
+  const note = page.getByLabel('Personal note (optional)');
+  await note.fill('Keep this unsaved draft.');
+  await editor.click({ position: { x: 8, y: 8 } });
+  await expect(editor).toBeVisible();
+  await expect(note).toHaveValue('Keep this unsaved draft.');
+  expect(await read(page)).toBeNull();
+  await page.getByRole('button', { name: 'Cancel', exact: true }).click();
+  await expect(editor).toBeHidden();
+});
+
 test('changed sources use current titles and retain notes until reviewed explicitly', async ({ page }) => {
   await seed(page);
   await page.route('**/bookmark-catalog.json', route => route.fulfill({ json: { version: 1, scenes: [{ ...first, sessionTitle: 'A revised title', sceneLabel: 'A revised part label', fingerprint: 'b'.repeat(64) }] } }));

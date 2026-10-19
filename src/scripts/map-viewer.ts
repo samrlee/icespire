@@ -26,6 +26,8 @@ export interface MapViewerConfig {
 export interface MapViewer {
   /** True while the pointer interaction that just ended was a pan, not a click. */
   wasDrag(): boolean;
+  /** Bring a map coordinate into view without changing the reader's zoom. */
+  centerOn(x: number, y: number): void;
   reset(): void;
   finishExploring(returnFocus?: boolean): void;
 }
@@ -308,6 +310,14 @@ export function initMapViewer(config: MapViewerConfig): MapViewer {
   return {
     wasDrag: () => dragDistance > 5,
     finishExploring,
+    centerOn: (x, y) => {
+      // Keep the full-sheet overview intact at resting zoom. Once zoomed in,
+      // centre the selection; applyViewBox keeps the camera within its bounds.
+      const fullView = vb.w === BASE.w;
+      vb.x = fullView ? BASE.x : x - vb.w / 2;
+      vb.y = fullView ? BASE.y : y - vb.h / 2;
+      applyViewBox();
+    },
     reset: () => {
       vb = { ...BASE };
       applyViewBox();

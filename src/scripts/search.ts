@@ -45,6 +45,7 @@ function wire(
   const filters = dialog.querySelector<HTMLElement>('#search-filters');
   const filterNote = dialog.querySelector<HTMLElement>('#search-filter-note');
   const more = dialog.querySelector<HTMLButtonElement>('[data-search-more]');
+  const body = dialog.querySelector<HTMLElement>('.search-body');
   let kind = '';
   let limit = MAX_HITS;
   let hits: Hit[] = [];
@@ -84,6 +85,7 @@ function wire(
             kind = value;
             limit = MAX_HITS;
             render();
+            if (body) body.scrollTop = 0;
           });
           filters?.append(button);
         }
@@ -107,6 +109,7 @@ function wire(
     if (dialog.open) return;
     returnFocus = opener ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
     dialog.showModal();
+    if (body) body.scrollTop = 0;
     if (state === 'ready') { state = 'idle'; docs = null; }
     input.select();
     render();
@@ -114,14 +117,14 @@ function wire(
   };
 
   retry?.addEventListener('click', () => {
-    input.focus();
+    input.focus({ preventScroll: true });
     void load();
   });
   more?.addEventListener('click', () => {
     limit += MAX_HITS;
     render();
     // Keep focus available even when the final batch hides this button.
-    input.focus();
+    input.focus({ preventScroll: true });
   });
 
   // Virtual keyboards can submit without the input's Enter keydown. Submitting
@@ -197,6 +200,8 @@ function wire(
     kind = '';
     limit = MAX_HITS;
     if (filters) filters.hidden = true;
+    if (filters) filters.scrollLeft = 0;
+    if (body) body.scrollTop = 0;
     if (filterNote) filterNote.hidden = true;
     if (more) more.hidden = true;
     list.replaceChildren();
@@ -208,6 +213,15 @@ function wire(
     if (intro) intro.hidden = false;
     if (retry) retry.hidden = true;
     // WebKit does not necessarily focus a clicked button before showModal().
+    // A shortcut can originate inside a navigation disclosure that closes when
+    // focus enters the dialog. Return to its visible trigger in that case.
+    if (returnFocus?.closest('.header-panel') && !returnFocus.getClientRects().length) {
+      const candidates = [
+        returnFocus.closest('[data-nav-group]')?.querySelector<HTMLElement>('.nav-trigger'),
+        document.querySelector<HTMLElement>('.site-menu-toggle'),
+      ];
+      returnFocus = candidates.find(candidate => candidate && candidate.getClientRects().length > 0) ?? null;
+    }
     returnFocus?.focus({ preventScroll: true });
     returnFocus = null;
   });
@@ -218,12 +232,14 @@ function wire(
       limit = MAX_HITS;
       input.focus();
       render();
+      if (body) body.scrollTop = 0;
     });
   }
 
   input.addEventListener('input', () => {
     limit = MAX_HITS;
     render();
+    if (body) body.scrollTop = 0;
   });
 
   input.addEventListener('keydown', (e) => {
@@ -301,8 +317,8 @@ function wire(
 
     if (hits.length === 0) {
       statusLine.textContent = kind
-        ? `No ${kind} results match “${query}”. Try All types.`
-        : `Nothing in the chronicle matches “${query}”.`;
+        ? `No ${kind} results. Try All types.`
+        : 'Nothing in the chronicle matches. Try different keywords.';
       return;
     }
 

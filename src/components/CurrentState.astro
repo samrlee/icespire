@@ -11,8 +11,9 @@ const date = source.data.date.toLocaleDateString('en-US', { dateStyle: 'medium',
   {groups.map(group => (
     <div class="current-state-group">
       <h3>{group.label}</h3>
-      <p class="current-state-members">{group.members.map((member, i) => <>{i > 0 && ', '}<a href={url(`/characters/${member.id}/`)}>{member.data.name}</a></>)}</p>
       <p>{group.summary}</p>
+      {group.details.length > 0 && <ul class="current-state-details">{group.details.map(detail => <li>{detail}</li>)}</ul>}
+      <p class="current-state-members">Party: {group.members.map((member, i) => <>{i > 0 && ', '}<a href={url(`/characters/${member.id}/`)}>{member.data.name}</a></>)}</p>
       {group.mapLocation && <a class="current-state-map" href={url(`/map/#${group.mapLocation.id}`)}>View location on the map →</a>}
     </div>
   ))}

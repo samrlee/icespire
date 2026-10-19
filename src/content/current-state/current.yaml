@@ -5,8 +5,8 @@ groups:
     location: mountains-toe-gold-mine
     summary: >-
       Don-Jon has just led the party in.
-      No rooms or occupants have been observed yet. He wants the interior made
-      safe before providing his completion note; the 150 gp escort reward
-      remains unpaid. His extra offer covers loose gold found inside, while Thom
-      claimed anything not bolted down. That broader claim was not explicitly
-      accepted. Nothing has been recovered.
+      No rooms or occupants have been observed yet.
+    details:
+      - He wants the interior made safe before providing his completion note; the 150 gp escort reward remains unpaid.
+      - His extra offer covers loose gold found inside, while Thom claimed anything not bolted down. That broader claim was not explicitly accepted.
+      - Nothing has been recovered.
