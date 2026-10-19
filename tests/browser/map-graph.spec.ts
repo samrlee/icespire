@@ -151,8 +151,16 @@ for (const activation of ['picker', 'journey', 'fragment'] as const) {
     expect(point.y).toBeLessThan(after.y + after.height);
     // Check the painted marker, too: viewBox membership alone would miss a
     // transform or counter-scaling regression that left the selection clipped.
-    const canvasBox = (await svg.boundingBox())!;
-    const dotBox = (await marker.locator('.dot').boundingBox())!;
+    // Read both rects in one browser task: fragment/detail smooth scrolling can
+    // move the viewport between separate Playwright boundingBox requests.
+    const { canvasBox, dotBox } = await svg.evaluate(element => {
+      const canvas = element.getBoundingClientRect();
+      const dot = element.querySelector('.map-marker[data-slug="mountains-toe-gold-mine"] .dot')!.getBoundingClientRect();
+      return {
+        canvasBox: { x: canvas.x, y: canvas.y, width: canvas.width, height: canvas.height },
+        dotBox: { x: dot.x, y: dot.y, width: dot.width, height: dot.height },
+      };
+    });
     expect(dotBox.x).toBeGreaterThanOrEqual(canvasBox.x);
     expect(dotBox.y).toBeGreaterThanOrEqual(canvasBox.y);
     expect(dotBox.x + dotBox.width).toBeLessThanOrEqual(canvasBox.x + canvasBox.width);

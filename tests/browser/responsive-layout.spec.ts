@@ -35,16 +35,28 @@ test('all font subsets load under the production CSP without external font hosts
   });
   const headers = await readFile(new URL('../../dist/_headers', import.meta.url), 'utf8');
   const csp = headers.match(/^  Content-Security-Policy: (.+)$/m)![1];
-  await page.route('**/*', async route => {
-    if (route.request().resourceType() !== 'document') return route.continue();
-    const response = await route.fetch();
-    await route.fulfill({ response, headers: { ...response.headers(), 'content-security-policy': csp } });
-  });
+  // Give the browser a secure site origin while serving the real build through
+  // the local fixture. The production policy upgrades insecure requests, which
+  // WebKit also applies to the fixture's HTTP loopback stylesheet URLs.
   await page.route('https://**', route => route.abort());
-  await page.goto('/timeline/');
+  await page.route('https://chronicle.test/**', async route => {
+    const target = new URL(route.request().url());
+    const response = await route.fetch({ url: `http://127.0.0.1:4322${target.pathname}${target.search}` });
+    await route.fulfill({ response, headers: {
+      ...response.headers(),
+      ...(route.request().resourceType() === 'document' ? { 'content-security-policy': csp } : {}),
+    } });
+  });
+  await page.goto('https://chronicle.test/timeline/');
+  // WebKit can resolve fonts.ready before its first style/layout pass has
+  // populated the CSS-backed FontFaceSet. Flush layout and wait for that set
+  // before loading every subset, including ones absent from the page's text.
+  await page.locator('h1').evaluate(heading => heading.getBoundingClientRect());
+  await expect.poll(() => page.evaluate(() => document.fonts.size)).toBe(14);
   await page.evaluate(() => document.fonts.ready);
   await page.evaluate(() => Promise.all([...document.fonts].map(font => font.load())));
   const families = await page.evaluate(() => [...document.fonts].filter(font => font.status === 'loaded').map(font => font.family));
+  expect(families).toHaveLength(14);
   for (const family of ['Cinzel', 'Crimson Pro', 'JetBrains Mono']) expect(families.join(' ')).toContain(family);
   expect(externalRequests).toEqual([]);
 });
