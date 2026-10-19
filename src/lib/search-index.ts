@@ -169,7 +169,7 @@ export async function buildSearchIndex(): Promise<SearchDoc[]> {
     href: url('/campaign/#where-we-left-off'),
     currentState: true,
     text: [asOf, state.newerRecap ? 'A newer recap is available; this snapshot has not yet been updated.' : '',
-      ...state.groups.map(group => `${group.label}. ${group.members.map(member => member.data.name).join(', ')}. ${group.summary}`)].filter(Boolean).join(' '),
+      ...state.groups.map(group => `${group.label}. ${group.members.map(member => member.data.name).join(', ')}. ${group.summary} ${group.details.join(' ')}`)].filter(Boolean).join(' '),
   });
   return docs;
 }

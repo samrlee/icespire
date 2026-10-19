@@ -283,7 +283,7 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
     {scrubSessions.length > 1 && (
       <div class="map-scrubber" id="map-scrubber">
         <button type="button" class="scrub-play" id="scrub-play" aria-label="Play the journey" aria-pressed="false">
-          <span class="scrub-play-icon" aria-hidden="true">▶</span>
+          <svg class="scrub-play-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 3 L13 8 L5 13 Z" /></svg>
         </button>
         <div class="scrub-body">
           <input
@@ -303,7 +303,7 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
     )}
     <div class="map-interaction" data-map-interaction hidden>
       <button type="button" class="btn-ghost" id="map-explore" aria-pressed="false" aria-controls="map-svg" hidden>Explore map</button>
-      <p id="map-interaction-hint">Scroll the page normally. Choose Explore map to drag or pinch, or hold Ctrl/⌘ while scrolling to zoom. Arrow keys pan while exploring.</p>
+      <p id="map-interaction-hint">Explore to drag, pinch or pan with arrow keys. Zoom buttons and Ctrl/⌘ + scroll work anytime.</p>
       <label for="map-location">Find a visited place</label>
       <select id="map-location" aria-controls="map-panel-detail">
         <option value="">Choose a place…</option>
@@ -418,6 +418,8 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
                 transform={`translate(${loc.data.x} ${loc.data.y})`}
                 data-open={loc.id}
                 data-slug={loc.id}
+                data-x={loc.data.x}
+                data-y={loc.data.y}
                 data-reveal={revealBySlug.get(loc.id)}
                 data-tip-title={loc.data.name}
                 data-tip-sub={`${kindLabels[loc.data.kind]} · ${statusLabels[loc.data.status]}`}
@@ -733,8 +735,10 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
     picker.value = slug;
     viewPlace.disabled = false;
     selectionSource = source ?? svg.querySelector<SVGElement>(`.map-marker[data-slug="${slug}"]`);
-    svg.querySelector(`.map-marker[data-slug="${slug}"]`)?.classList.add('selected');
+    const marker = svg.querySelector<SVGElement>(`.map-marker[data-slug="${slug}"]`);
+    marker?.classList.add('selected');
     svg.querySelector(`.map-pin-group[data-loc="${slug}"]`)?.classList.add('reveal');
+    if (marker) viewer.centerOn(Number(marker.dataset.x), Number(marker.dataset.y));
     history.replaceState(null, '', `#${encodeURIComponent(slug)}`);
     syncMapAccessibility();
     if (focus) {
@@ -887,6 +891,7 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
     // ---- Replay: step through the rungs on a timer, revealing the journey.
     let playTimer = 0;
     let playing = false;
+    const playSymbol = playBtn.querySelector('path')!;
     function stopPlay() {
       if (!playing) return;
       playing = false;
@@ -894,12 +899,14 @@ const scrubJson = JSON.stringify(scrubSessions).replaceAll('<', '\\u003c');
       playBtn!.classList.remove('playing');
       playBtn!.setAttribute('aria-pressed', 'false');
       playBtn!.setAttribute('aria-label', 'Play the journey');
+      playSymbol.setAttribute('d', 'M5 3 L13 8 L5 13 Z');
     }
     function startPlay() {
       playing = true;
       playBtn!.classList.add('playing');
       playBtn!.setAttribute('aria-pressed', 'true');
       playBtn!.setAttribute('aria-label', 'Pause the journey');
+      playSymbol.setAttribute('d', 'M4 3 H7 V13 H4 Z M10 3 H13 V13 H10 Z');
       // Replaying from the end restarts at the beginning.
       if (Number(range!.value) >= lastIndex) {
         range!.value = '0';

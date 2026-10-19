@@ -70,13 +70,37 @@ test('known single-keyword facts reach the model instead of an unrecorded answer
 
 test('current-location intent uses only the sourced continuation point', async t => {
   t.mock.method(globalThis, 'fetch', async () => new Response(JSON.stringify(docs)));
-  const response = await onRequestPost({ request: request('Where are we now?'), env: { AI: { async run(_model, input) {
-    assert.match(input.messages[0].content, /inside the mine entrance/);
-    assert.match(input.messages[0].content, /No rooms had been observed/);
-    assert.match(input.messages[0].content, /reward remained unpaid/);
-    return { response: 'The party stood inside the entrance.' };
-  } } } });
-  assert.deepEqual((await response.json()).sources.map(source => source.href), ['/campaign/#where-we-left-off']);
+  for (const question of ['Where are we now?', 'Where are we?', 'Where is the party?', 'Where are we at?', 'Where did we leave off?', 'What is the current party location?', 'What is our current position?', 'What is the current party state?']) {
+    let calls = 0;
+    const response = await onRequestPost({ request: request(question), env: { AI: { async run(_model, input) {
+      calls++;
+      assert.match(input.messages[0].content, /inside the mine entrance/);
+      assert.match(input.messages[0].content, /No rooms had been observed/);
+      assert.match(input.messages[0].content, /reward remained unpaid/);
+      return { response: 'The party stood inside the entrance.' };
+    } } } });
+    assert.equal(calls, 1, question);
+    assert.deepEqual((await response.json()).sources.map(source => source.href), ['/campaign/#where-we-left-off'], question);
+  }
+});
+
+test('historical whereabouts never substitute the current snapshot', () => {
+  for (const question of [
+    'Where were we in Session 8?', 'Where is the party in Session 8?', 'Where was Bean in Session 8?',
+    'Where are we now in Session 8?', 'Where did we leave off in Session 8?',
+    'What was the current party location in Session 8?', 'What was our current location after Session 8?',
+    'What was the current party position during Session 8?', 'What was the current party state in Session 8?',
+    'Where were we before the mine?', 'Where was the party after the dragon report?',
+  ]) {
+    const result = retrieveAsk(index(docs), question);
+    assert.ok(result.hits.every(hit => !hit.doc.currentState && !hit.doc.href.endsWith('/campaign/#where-we-left-off')), question);
+    if (question.includes('Session 8')) {
+      assert.ok(result.hits.length > 0, question);
+      assert.ok(result.hits.every(hit => hit.doc.sessionNumber === 8), question);
+    }
+    if (question.includes('dragon report')) assert.ok(result.hits.length > 0, question);
+    if (question.includes('Bean')) assert.ok(result.hits.some(hit => hit.doc.text.includes('Bean entered the office.')), question);
+  }
 });
 
 test('numbered session overviews use the requested summary and date', async t => {

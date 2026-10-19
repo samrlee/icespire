@@ -239,7 +239,8 @@ publishing a recap; do not duplicate the snapshot in campaign prose.
 | `groups` | One or more groups at the continuation point; separate them when the party splits |
 | `groups[].label` | Short heading for the group's situation |
 | `groups[].characters` | Nonempty list of character IDs; no character may repeat across groups |
-| `groups[].summary` | Plain text grounded in the cited recap, preserving knowledge and payment distinctions |
+| `groups[].summary` | Brief situation grounded in the cited recap |
+| `groups[].details` | Optional plain-text bullet points; preserve knowledge, agreements and payment distinctions |
 | `groups[].location` | Optional location ID; only visited locations receive region-map links |
 
 The build rejects missing/draft source recaps, unknown characters or locations,
@@ -392,8 +393,10 @@ The design is implemented from the **Icespire Peak Campaign Design System**
 - Tokens live in `src/styles/tokens/` (verbatim from the design project);
   component classes in `src/styles/global.css`; Astro components in
   `src/components/`.
-- Fonts load from Google Fonts (the design system's documented substitution —
-  swap `src/styles/tokens/fonts.css` if self-hosting later).
+- Fonts are self-hosted through `src/styles/fonts.css`, with fingerprinted WOFF2
+  assets in `src/assets/fonts/`. Fontsource package versions and exact SIL Open
+  Font License notices are documented there; public notices live under
+  `/licenses/fonts/`. The original font tokens remain unchanged.
 
 ## Social preview cards
 
@@ -657,9 +660,9 @@ Two invariants the policy leans on, so change them together:
   stylesheet a linked file, which is what lets `style-src-elem` drop
   `'unsafe-inline'`. `style-src` keeps it for the `style="…"` attributes on
   the map SVGs — CSP can't hash attributes.
-- The Google Fonts allowances (`fonts.googleapis.com`, `fonts.gstatic.com`)
-  exist only for the `@import` in `src/styles/tokens/fonts.css`. Self-host
-  those faces and both can go.
+- Fonts and stylesheets are served from the same origin. `src/styles/fonts.css`
+  replaces the original token import, and CSP permits only self-hosted fonts and
+  stylesheet elements. Keep the font assets and policy in sync.
 
 To check a change locally, `npm run build` and read `dist/_headers`; `npm run
 preview` does **not** apply it.

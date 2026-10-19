@@ -71,6 +71,9 @@ export function createAsk(container: HTMLElement, endpoint: string, restoreQuery
       try { sessionStorage.setItem(key, JSON.stringify(record)); saved = record; savedControls(); }
       catch { retention.replaceChildren(say('', 'This browser cannot save answers in this tab.')); }
     }));
+    // Answers and their sources share the dialog's scroll area. Bring the
+    // response into view without moving keyboard focus away from the query.
+    container.scrollIntoView({ block: 'start' });
   };
   async function run(query: string) {
     inFlight?.abort();

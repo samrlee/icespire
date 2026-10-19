@@ -48,6 +48,8 @@ test('explicit cancel prevents a late answer replacing the new offer',async({pag
 });
 test('recap jump links and profile part links share published anchors',async({page})=> {
  await page.goto('/sessions/session-9/');
+ const disclosure=page.locator('.recap-scenes-mobile');
+ if(await disclosure.isVisible()) await disclosure.locator('summary').click();
  const nav=page.getByRole('navigation',{name:'Jump within this recap'});
  const href=await nav.getByRole('link').nth(1).getAttribute('href');
  await nav.getByRole('link').nth(1).click();

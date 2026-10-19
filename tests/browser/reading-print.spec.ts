@@ -78,8 +78,10 @@ for (const route of ['/sessions/session-9/', '/campaign/']) {
       await expect(page.locator('.session-meta')).toBeVisible();
       await expect(page.locator('.dramatis')).toBeVisible();
       await expect(page.locator('.session-pager')).toBeHidden();
+      await expect(page.locator('.recap-scenes-mobile')).toBeHidden();
+      for (const navigation of await page.locator('.recap-scenes').all()) await expect(navigation).toBeHidden();
     } else {
-      await expect(page.locator('.doc-toc')).toBeHidden();
+      for (const navigation of await page.locator('.doc-toc').all()) await expect(navigation).toBeHidden();
     }
     await page.emulateMedia({ media: 'screen' });
     await expect(page.locator('.site-header')).toBeVisible();

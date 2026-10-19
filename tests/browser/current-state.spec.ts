@@ -21,3 +21,18 @@ test('home and campaign show the same sourced current state', async ({ page }) =
   await page.getByRole('region', { name: 'Where we left off' }).getByRole('link', { name: 'View location on the map' }).click();
   await expect(page).toHaveURL('/map/#mountains-toe-gold-mine');
 });
+
+
+test('current-state details stay available in the page and search evidence', async ({ page, request }) => {
+  await page.goto('/');
+  const state = page.getByRole('region', { name: 'Where we left off' });
+  const details = await state.locator('.current-state-details li').allTextContents();
+  expect(details).toHaveLength(3);
+  const response = await request.get('/search-index.json');
+  const docs = await response.json();
+  const snapshot = docs.find((doc: { currentState?: boolean }) => doc.currentState);
+  for (const detail of details) expect(snapshot.text).toContain(detail);
+  const members = state.locator('.current-state-members');
+  await expect(members).toBeVisible();
+  await expect(members.getByRole('link')).toHaveCount(7);
+});
