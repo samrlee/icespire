@@ -18,17 +18,17 @@
     "test:integrity": "node --experimental-strip-types --test tests/content-integrity.test.mjs tests/generated-links.test.mjs tests/reading-time.test.mjs tests/recap-scenes.test.mjs tests/security-headers.test.mjs tests/self-hosted-fonts.test.mjs tests/bookmarks.test.mjs tests/provenance.test.mjs tests/reference-search.test.mjs"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.4",
-    "astro": "^7.1.0",
-    "satori": "^0.12.2",
+    "@astrojs/sitemap": "^3.7.5",
+    "astro": "^7.4.12",
+    "satori": "^0.63.2",
     "sharp": "^0.35.5"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.9",
-    "@playwright/test": "^1.63.0",
-    "@types/node": "^26.1.1",
-    "parse5": "^8.0.1",
-    "typescript": "^6.0.3",
+    "@astrojs/check": "^0.9.12",
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.6",
+    "parse5": "^8.1.1",
+    "typescript": "^7.0.2",
     "yaml": "^2.9.0"
   }
 }
